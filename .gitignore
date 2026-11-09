@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+.env
+.env.local
+data/
+*.sqlite
+*.sqlite-*
+.DS_Store
+# Raw image-model output before pixelize. Keep it locally, commit only the cleaned assets.
+art/raw/*
+!art/raw/.gitkeep

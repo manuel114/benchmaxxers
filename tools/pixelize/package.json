@@ -1,0 +1,22 @@
+{
+  "name": "@benchmaxxers/pixelize",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pixelize": "tsx src/cli.ts",
+    "assets:status": "tsx src/status.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@benchmaxxers/shared": "workspace:*",
+    "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/pngjs": "^6.0.5",
+    "tsx": "^4.20.0",
+    "typescript": "^6.0.0",
+    "vitest": "^4.0.0"
+  }
+}

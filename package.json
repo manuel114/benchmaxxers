@@ -1,0 +1,21 @@
+{
+  "name": "benchmaxxers",
+  "private": true,
+  "description": "A shared pixel art gym where developers send their real AI agents to work out.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.32.1",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @benchmaxxers/server dev",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "pass:create": "pnpm --filter @benchmaxxers/server pass:create",
+    "pixelize": "pnpm --filter @benchmaxxers/pixelize pixelize",
+    "assets:status": "pnpm --filter @benchmaxxers/pixelize assets:status"
+  }
+}

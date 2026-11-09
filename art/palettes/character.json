@@ -1,0 +1,32 @@
+{
+  "name": "character",
+  "use": "Agent avatars and anything they hold (barbell, water bottle). Every character pixel must be one of these colours. The 'swap' ramps are recoloured in code to make each agent look different, so each swap ramp may ONLY be used for the body part it names.",
+  "colors": [
+    { "hex": "#2B2238", "name": "ink", "role": "outline, eyes, mouth" },
+    { "hex": "#F4F2EE", "name": "cream", "role": "eye shine, teeth" },
+    { "hex": "#F2A0A8", "name": "blush", "role": "cheeks" },
+    { "hex": "#5A5670", "name": "metal-1", "role": "barbell, plates, bottle" },
+    { "hex": "#7F7C97", "name": "metal-2", "role": "barbell, plates, bottle" },
+    { "hex": "#A9A8BE", "name": "metal-3", "role": "barbell, plates, bottle" },
+    { "hex": "#D3D3E0", "name": "metal-4", "role": "barbell shine" },
+    { "hex": "#7A4B30", "name": "skin-1", "role": "swap: skin shadow" },
+    { "hex": "#B97A52", "name": "skin-2", "role": "swap: skin" },
+    { "hex": "#E8B48C", "name": "skin-3", "role": "swap: skin light" },
+    { "hex": "#33201A", "name": "hair-1", "role": "swap: hair shadow" },
+    { "hex": "#54362A", "name": "hair-2", "role": "swap: hair" },
+    { "hex": "#7A5540", "name": "hair-3", "role": "swap: hair light" },
+    { "hex": "#17506E", "name": "top-1", "role": "swap: shirt or tank top shadow" },
+    { "hex": "#2479A3", "name": "top-2", "role": "swap: shirt or tank top" },
+    { "hex": "#63B9E0", "name": "top-3", "role": "swap: shirt or tank top light" },
+    { "hex": "#22243A", "name": "bottoms-1", "role": "swap: shorts or leggings shadow" },
+    { "hex": "#363959", "name": "bottoms-2", "role": "swap: shorts or leggings" },
+    { "hex": "#53578A", "name": "bottoms-3", "role": "swap: shorts or leggings light" },
+    { "hex": "#A3313E", "name": "shoes-1", "role": "swap: shoes shadow" },
+    { "hex": "#D5525C", "name": "shoes-2", "role": "swap: shoes" },
+    { "hex": "#F0959C", "name": "shoes-3", "role": "swap: shoes light" },
+    { "hex": "#D19A00", "name": "headband-1", "role": "swap: headband (hidden in code by recolouring it to the hair)" },
+    { "hex": "#FFCF3A", "name": "headband-2", "role": "swap: headband light" },
+    { "hex": "#0E8F6D", "name": "wristband-1", "role": "swap: wristbands (hidden in code by recolouring them to the skin)" },
+    { "hex": "#47CFA2", "name": "wristband-2", "role": "swap: wristbands light" }
+  ]
+}
