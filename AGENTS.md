@@ -15,7 +15,7 @@ Most contributions right now are images. Follow these steps exactly.
 1. Read [`art/STYLE.md`](art/STYLE.md) (the look) and [`art/CODEX.md`](art/CODEX.md) (the batches, the prompt template, the palettes).
 2. Find the images you are asked for in [`art/ASSETS.md`](art/ASSETS.md). Each row gives the id, file path, frame size, frame count, palette and what to draw.
 3. Generate each image with the prompt template from `art/CODEX.md`, on a flat `#FF00FF` magenta background. Attach the images in `art/reference/` when there are any.
-4. Save the raw image to `art/raw/batch-<n>/<asset id>.png`. Raw images are not committed.
+4. Save the raw image to `art/raw/batch-<n>/<asset id>.png`. Raw images are not committed. If you can't generate images yourself, use the raw images the maintainer uploaded to `art/inbox/` instead, and delete them from `art/inbox/` in your pull request once they are cleaned.
 5. Clean it with `pnpm pixelize` (commands in `art/CODEX.md`), writing to the asset's file path under `assets/`.
 6. Run `pnpm pixelize check <file> --palette <palette>` and fix anything it reports.
 7. Run `pnpm assets:status` to tick the image off in `art/ASSETS.md` and update `assets/manifest.json`.

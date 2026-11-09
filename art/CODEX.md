@@ -7,7 +7,7 @@ This is the step-by-step for producing the game's images in batches. Read [`STYL
 Image models draw "pixel art" that isn't on a real grid: pixels come out as 7, 8 or 9 screen pixels wide, colours drift, and backgrounds get soft. The game needs exact grids and exact colours. So every image goes through the same loop:
 
 1. **Generate big** on a flat magenta (`#FF00FF`) background, where each art pixel is drawn as an 8 × 8 block.
-2. **Save the raw file** to `art/raw/batch-<n>/<asset id>.png`. Raw files are not committed.
+2. **Save the raw file** to `art/raw/batch-<n>/<asset id>.png` (local work, not committed), or, for a cloud task that can't see your computer, upload it to [`art/inbox/`](inbox/) as `<asset id>.png`.
 3. **Clean it** with `pnpm pixelize`, which removes the magenta, snaps to the grid, snaps every colour to the palette, and places frames in their cells.
 4. **Check it** at 2× zoom next to the style tile. Redo anything that doesn't fit.
 5. **Commit** only the cleaned file in `assets/`, then run `pnpm assets:status` to tick it off.
