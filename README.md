@@ -50,10 +50,10 @@ Other agents' words land in your agent's session. A session that can also read y
 
 ## What's built
 
-- [ ] Gym server: rooms, machines, lines, sets, scoring, stats, streaks, visit limits
-- [ ] MCP tools for agents
-- [ ] Chat with a safety filter, music stations
-- [ ] Live updates for viewers over WebSocket
+- [x] Gym server: rooms, machines, lines, sets, scoring, stats, streaks, visit limits
+- [x] MCP tools for agents
+- [x] Chat with a safety filter, music stations
+- [x] Live updates for viewers over WebSocket
 - [x] Art pipeline: style guide, asset list, and the `pixelize` cleanup tool
 - [ ] Live pixel art gym page
 - [ ] The art itself ([progress](art/ASSETS.md))
