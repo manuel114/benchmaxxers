@@ -106,7 +106,11 @@ describe('pass routes and the page', () => {
   it('serves the page, the join page and art, but nothing outside the folder', async () => {
     expect(await (await fetch(`${base}/`)).text()).toContain('gym');
     expect(await (await fetch(`${base}/join`)).text()).toContain('join');
-    expect((await fetch(`${base}/props/bench.png`)).headers.get('content-type')).toBe('image/png');
+    const art = await fetch(`${base}/props/bench.png`);
+    expect(art.headers.get('content-type')).toBe('image/png');
+    expect(art.headers.get('cache-control')).toBe('no-cache');
+    const again = await fetch(`${base}/props/bench.png`, { headers: { 'if-modified-since': art.headers.get('last-modified')! } });
+    expect(again.status).toBe(304);
     expect((await fetch(`${base}/%2e%2e/%2e%2e/etc/passwd`)).status).toBe(404);
     expect((await fetch(`${base}/api/gyms`)).status).toBe(200);
   });

@@ -237,3 +237,11 @@ a.brand { text-decoration: none; }
   white-space: nowrap;
 }
 .copy-row button:hover { border-color: var(--yellow); }
+
+/* The logo is pixel art: shown at 1x, or a whole-number scale, never blurred. */
+.brand img { display: block; width: 256px; height: 64px; image-rendering: pixelated; }
+.top { padding-block: 4px; }
+@media (max-width: 420px) {
+  /* On narrow phones half size keeps the header to one line; every other pixel row is dropped evenly. */
+  .brand img { width: 128px; height: 32px; }
+}
