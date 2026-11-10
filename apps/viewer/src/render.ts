@@ -11,6 +11,7 @@ import { drawSprite, frameAt, type Sprite, type SpriteBank } from './sprites.js'
 import { STAFF_ID, type Bubble, type ViewState } from './state.js';
 import { ENV } from './pixels.js';
 import { drawNine } from './nine.js';
+import { linePlaceLabel } from './labels.js';
 
 /** The font every word on the canvas uses. */
 const FONT = '"Pixelify Sans", ui-monospace, monospace';
@@ -379,19 +380,16 @@ export class GymRenderer {
       if (line && place >= 0 && !t.leaving) {
         // 1 means next up; the person offered the machine counts as ahead.
         const n = place + 1 + (line.offeredTo ? 1 : 0);
+        // A yellow pill that says "next", "2nd", "3rd": a bare number in a circle read like a medal.
         const cy = (p.y - 52) * z;
-        const badge = this.sprites.get('ui.line_badge');
-        if (badge.real) {
-          ctx.drawImage(badge.image, 0, 0, badge.width, badge.height, Math.round(tx - (badge.width * z) / 2), Math.round(cy - (badge.height * z) / 2), badge.width * z, badge.height * z);
-        } else {
-          const r = 5 * z;
-          ctx.fillStyle = ink;
-          ctx.beginPath(); ctx.arc(tx, cy, r + z, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = ENV['yellow-2']!;
-          ctx.beginPath(); ctx.arc(tx, cy, r, 0, Math.PI * 2); ctx.fill();
-        }
+        const label = linePlaceLabel(n);
+        ctx.font = `${Math.round(size * 0.9)}px ${FONT}`;
+        const w = Math.ceil(ctx.measureText(label).width / z) + 6;
+        const h = 9;
+        drawPill(ctx, Math.round(tx - (w * z) / 2), Math.round(cy - (h * z) / 2), w, h, z, ENV['yellow-2']!, ink);
         ctx.fillStyle = ink;
-        ctx.fillText(String(n), tx, cy + 0.5);
+        ctx.fillText(label, tx, cy + 0.5);
+        ctx.font = `${size}px ${FONT}`;
       }
     }
 
@@ -404,6 +402,15 @@ export class GymRenderer {
     }
   }
 }
+
+/** Draws a pixel-style pill: a 1-pixel ink outline with cut corners around a flat fill, `w`×`h` art pixels at zoom `z`. */
+const drawPill = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, z: number, fill: string, ink: string): void => {
+  ctx.fillStyle = ink;
+  ctx.fillRect(x + z, y, (w - 2) * z, h * z);
+  ctx.fillRect(x, y + z, w * z, (h - 2) * z);
+  ctx.fillStyle = fill;
+  ctx.fillRect(x + z, y + z, (w - 2) * z, (h - 2) * z);
+};
 
 /** Traces a rounded rectangle path. */
 const roundRect = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number): void => {
