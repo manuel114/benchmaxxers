@@ -1,0 +1,112 @@
+{
+  "base_main": "0d4d36d",
+  "options": {
+    "1": {
+      "path": "art/previews/logo-redo/option-1.png",
+      "size": [
+        256,
+        64
+      ],
+      "palette": "environment",
+      "check": "passed",
+      "alpha": "binary",
+      "magenta_pixels": 0,
+      "bounds": [
+        15,
+        4,
+        241,
+        60
+      ],
+      "metal_bounds": [
+        19,
+        40,
+        235,
+        58
+      ],
+      "sha256": "596000f4fba53d7379b2d4a93387683437c0086a2770554c958310be323e64a7",
+      "placement": "under the word",
+      "visual_review_at_1x": "BENCHMAXXERS; all12 letters readable, both Xs complete",
+      "separate_dumbbell_component": true
+    },
+    "2": {
+      "path": "art/previews/logo-redo/option-2.png",
+      "size": [
+        256,
+        64
+      ],
+      "palette": "environment",
+      "check": "passed",
+      "alpha": "binary",
+      "magenta_pixels": 0,
+      "bounds": [
+        11,
+        14,
+        244,
+        49
+      ],
+      "metal_bounds": [
+        162,
+        29,
+        173,
+        34
+      ],
+      "sha256": "e2a5c1ae991f7844312d5bedac4550056cbae3831f86043a1cade6f683ff268a",
+      "placement": "between the two Xs",
+      "visual_review_at_1x": "BENCHMAXXERS; all12 letters readable, both Xs complete",
+      "separate_dumbbell_component": true
+    },
+    "3": {
+      "path": "art/previews/logo-redo/option-3.png",
+      "size": [
+        256,
+        64
+      ],
+      "palette": "environment",
+      "check": "passed",
+      "alpha": "binary",
+      "magenta_pixels": 0,
+      "bounds": [
+        16,
+        14,
+        239,
+        50
+      ],
+      "metal_bounds": [
+        97,
+        30,
+        104,
+        35
+      ],
+      "sha256": "53aa4eeca988124d165fa3d7fec5ee37f0536240f58150655dba0abe5dcaf6bc",
+      "placement": "H crossbar",
+      "visual_review_at_1x": "BENCHMAXXERS; all12 letters readable, both Xs complete",
+      "continuous_yellow_H_stem_columns": [
+        92,
+        93,
+        94,
+        95,
+        105,
+        106,
+        107,
+        110,
+        111,
+        112,
+        113
+      ]
+    }
+  },
+  "pixelize_warnings": [],
+  "tests": {
+    "pnpm test": {
+      "passed": 99
+    },
+    "pnpm typecheck": "passed"
+  },
+  "preview_background": "#1d1727",
+  "generation": "built-in imagegen; style-tile.png and current assets/brand/logo.png attached to every call",
+  "protected_files_unchanged": {
+    "assets/brand/logo.png": "7d08089b1f0e17edf069d0a26b890ca16036fcac2f8a3e8acaf909869a6063c2",
+    "art/ASSETS.md": "2f37265f06c9b1b54bc4eef982c42307ef7ce5645e3a1bb9fdb09332d3b6ff33",
+    "assets/manifest.json": "48bce1029a4585d1e64c8c6f8f492bb7fae6b19d28cd85c7e19a4ea6ad903a77"
+  }
+}
