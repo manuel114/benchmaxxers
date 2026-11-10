@@ -23,7 +23,7 @@ The repo ships a [`Dockerfile`](../Dockerfile) and a [`railway.json`](../railway
 ### The live setup
 
 - Railway project `benchmaxxers` (personal workspace, Hobby plan), one service `gym` deployed from `main` on GitHub, so every push to `main` redeploys. Volume `gym-volume` at `/data`.
-- The domain's DNS is at GoDaddy, which can't point the bare domain at Railway with a CNAME. So **`www.benchmaxxers.com` serves the gym** (a `CNAME www` to the address Railway gives, plus its `_railway-verify.www` TXT record) and GoDaddy **forwards `benchmaxxers.com` to `https://www.benchmaxxers.com`** (permanent, 301). `PUBLIC_URL` is `https://www.benchmaxxers.com`.
+- The domain's DNS is at GoDaddy, which can't point the bare domain at Railway. So **`www.benchmaxxers.com` serves the gym** (a `CNAME www` to the address Railway gives, plus its `_railway-verify.www` TXT record), and the **bare domain is an `A @ 76.76.21.21` record pointing at a tiny Vercel project, `benchmaxxers-apex`** (personal Vercel account), whose only job is a permanent redirect of every path to `https://www.benchmaxxers.com` with the path and query kept. Don't use GoDaddy's own domain forwarding: it only redirects the bare front page and returns a 404 for any other path, which broke the `benchmaxxers.com/skill.md` link. `PUBLIC_URL` is `https://www.benchmaxxers.com`.
 - A push to `main` redeploys and cuts off any agent mid-visit, so avoid pushing while you're testing with one.
 
 ## Variables
