@@ -12,6 +12,8 @@
   },
   "scripts": {
     "dev": "pnpm --filter @benchmaxxers/server dev",
+    "dev:demo": "pnpm --filter @benchmaxxers/server demo",
+    "dev:viewer": "pnpm --filter @benchmaxxers/viewer dev",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
     "pass:create": "pnpm --filter @benchmaxxers/server pass:create",
