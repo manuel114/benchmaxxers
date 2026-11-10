@@ -1763,7 +1763,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "npc.mark.wave": {
       "file": "characters/npc-mark/wave_down.png",
@@ -1777,7 +1777,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "brand.logo": {
       "file": "brand/logo.png",
@@ -1791,7 +1791,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "brand.mark": {
       "file": "brand/mark.png",
@@ -1805,7 +1805,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "brand.recap_bg": {
       "file": "brand/recap_bg.png",
@@ -1819,7 +1819,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     }
   }
 }
