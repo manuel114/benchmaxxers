@@ -281,3 +281,7 @@ a.brand { text-decoration: none; }
 .plain-list a { color: var(--yellow); }
 .plain-list .points { color: var(--yellow); }
 .sel-link { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--yellow); }
+
+/* A one-line pointer for AI agents that fetch the page as text. */
+.agent-note { max-width: 1200px; margin: 8px auto 24px; padding: 0 16px; color: var(--muted); font-size: 12px; text-align: center; }
+.agent-note a { color: var(--yellow); }

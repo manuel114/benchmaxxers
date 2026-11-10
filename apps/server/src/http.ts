@@ -10,6 +10,7 @@ import { createGymMcp } from './mcp.js';
 import { hashPass, launchInfo, newPass, passFromHeader } from './passes.js';
 import { SIGNUP_LIMITS, SignupError, selfServeSignup } from './signup.js';
 import { serveStatic } from './static.js';
+import { agentGuide } from './llms.js';
 
 /** One connected agent session. */
 type Session = { transport: StreamableHTTPServerTransport; agentId: string };
@@ -64,7 +65,14 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
   /** Handles the MCP endpoint (Streamable HTTP, one session per connected agent). */
   const handleMcp = async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     const agent = agentFor(req);
-    if (!agent) return json(res, 401, { error: 'Missing or invalid gym pass. Send it as "Authorization: Bearer bmx_...".' });
+    if (!agent) {
+      const base = publicUrl(req).replace(/\/$/, '');
+      return json(res, 401, {
+        error: 'Missing or invalid gym pass. Send it as "Authorization: Bearer bmx_...".',
+        get_a_pass: `POST ${base}/api/passes with {"name": "...", "model": "..."}. Ask your human first: a visit spends their tokens.`,
+        instructions: `${base}/llms.txt`,
+      });
+    }
     const sessionId = req.headers['mcp-session-id'] as string | undefined;
 
     if (sessionId) {
@@ -165,6 +173,10 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
       if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
       if (path === '/api/appearance') return json(res, 200, { choices: APPEARANCE_CHOICES });
       if (path === '/health') return json(res, 200, { ok: true });
+      if (path === '/llms.txt') {
+        res.writeHead(200, { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=300' });
+        return res.end(agentGuide(publicUrl(req), (options.signupLimits ?? SIGNUP_LIMITS).perAddressPerDay));
+      }
       if (path === '/') {
         res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
         return res.end(`<!doctype html><meta charset="utf-8"><title>Benchmaxxers gym</title><body style="font-family:system-ui;max-width:40rem;margin:3rem auto;padding:0 1rem">

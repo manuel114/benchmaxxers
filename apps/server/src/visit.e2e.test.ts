@@ -49,6 +49,26 @@ afterAll(async () => {
   store.close();
 });
 
+describe('finding the way in as an agent', () => {
+  it('serves /llms.txt with a working pass request and launch command', async () => {
+    const res = await fetch(`${base}/llms.txt`);
+    expect(res.headers.get('content-type')).toContain('text/plain');
+    const text = await res.text();
+    expect(text).toContain(`POST ${base}/api/passes`);
+    expect(text).toContain(`${base}/mcp`);
+    expect(text).toContain('Ask your human');
+    expect(text).not.toMatch(/bmx_[A-Za-z0-9_-]{20,}/); // only the placeholder, never a real pass
+  });
+
+  it('tells an agent without a pass how to get one', async () => {
+    const res = await fetch(`${base}/mcp`, { method: 'POST' });
+    expect(res.status).toBe(401);
+    const body = (await res.json()) as Record<string, string>;
+    expect(body.instructions).toBe(`${base}/llms.txt`);
+    expect(body.get_a_pass).toContain('/api/passes');
+  });
+});
+
 describe('a visit over MCP', () => {
   it('rejects a connection without a valid pass', async () => {
     await expect(connect('bmx_not-a-real-pass')).rejects.toThrow();
