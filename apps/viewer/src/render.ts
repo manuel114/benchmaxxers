@@ -10,6 +10,7 @@ import { DOOR, ROOM_PX, WALL_ROWS, machineSpot, placeAll, step, type Mover, type
 import { drawSprite, frameAt, type Sprite, type SpriteBank } from './sprites.js';
 import { STAFF_ID, type Bubble, type ViewState } from './state.js';
 import { ENV } from './pixels.js';
+import { drawNine } from './nine.js';
 
 /** The font every word on the canvas uses. */
 const FONT = '"Pixelify Sans", ui-monospace, monospace';
@@ -312,16 +313,32 @@ export class GymRenderer {
     for (const m of gym.machines) {
       if (!m.set) continue;
       const s = machineSpot(m);
-      const w = 40 * z;
-      const h = 4 * z;
-      const bx = s.x * z - w / 2;
-      const by = (s.y - 58) * z;
-      ctx.fillStyle = ink;
-      ctx.fillRect(bx - z, by - z, w + 2 * z, h + 2 * z);
-      ctx.fillStyle = ENV['gray-1']!;
-      ctx.fillRect(bx, by, w, h);
-      ctx.fillStyle = ENV['green-2']!;
-      ctx.fillRect(bx, by, Math.round((w * m.set.answered) / Math.max(1, m.set.total)), h);
+      const done = m.set.answered / Math.max(1, m.set.total);
+      const frame = this.sprites.get('ui.progress_frame');
+      const fill = this.sprites.get('ui.progress_fill');
+      let by = (s.y - 58) * z;
+      if (frame.real && fill.real) {
+        // Art bar: 44×8 frame; the empty inside is 2 pixels in from each side.
+        const fw = 44;
+        const fh = 8;
+        const bx = Math.round((s.x - fw / 2) * z);
+        by = Math.round((s.y - 60) * z);
+        ctx.fillStyle = ENV['gray-1']!;
+        ctx.fillRect(bx + 2 * z, by + 2 * z, (fw - 4) * z, (fh - 4) * z);
+        const fillW = Math.round((fw - 4) * done);
+        if (fillW > 0) ctx.drawImage(fill.image, 0, 0, fill.width, fill.height, bx + 2 * z, by + 2 * z, fillW * z, (fh - 4) * z);
+        drawNine(ctx, frame, bx, by, fw, fh, z);
+      } else {
+        const w = 40 * z;
+        const h = 4 * z;
+        const bx = s.x * z - w / 2;
+        ctx.fillStyle = ink;
+        ctx.fillRect(bx - z, by - z, w + 2 * z, h + 2 * z);
+        ctx.fillStyle = ENV['gray-1']!;
+        ctx.fillRect(bx, by, w, h);
+        ctx.fillStyle = ENV['green-2']!;
+        ctx.fillRect(bx, by, Math.round(w * done), h);
+      }
       ctx.font = `${Math.round(size * 0.85)}px ${FONT}`;
       ctx.fillStyle = cream;
       ctx.strokeStyle = ink;
@@ -339,12 +356,21 @@ export class GymRenderer {
       const t = this.tracked.get(id);
       if (!t) continue;
       const label = t.agent.name;
-      const tw = ctx.measureText(label).width + 6 * z;
       const tx = p.x * z;
       const ty = (p.y + 7) * z;
-      ctx.fillStyle = id === this.selected ? ENV['yellow-2']! : ink;
-      roundRect(ctx, tx - tw / 2, ty - size * 0.6, tw, size * 1.2, 2 * z);
-      ctx.fill();
+      const tag = this.sprites.get('ui.name_tag');
+      if (tag.real && id !== this.selected) {
+        // Art tag: ink pill with a cream rim, sized to the name in whole art pixels.
+        const w = Math.ceil(ctx.measureText(label).width / z) + 8;
+        const h = Math.max(9, Math.ceil(size / z) + 4);
+        drawNine(ctx, tag, Math.round(tx - (w * z) / 2), Math.round(ty - (h * z) / 2), w, h, z);
+      } else {
+        // The selected agent's tag stays a yellow pill so it stands out.
+        const tw = ctx.measureText(label).width + 6 * z;
+        ctx.fillStyle = id === this.selected ? ENV['yellow-2']! : ink;
+        roundRect(ctx, tx - tw / 2, ty - size * 0.6, tw, size * 1.2, 2 * z);
+        ctx.fill();
+      }
       ctx.fillStyle = id === this.selected ? ink : cream;
       ctx.fillText(label, tx, ty + 0.5);
 
@@ -353,12 +379,17 @@ export class GymRenderer {
       if (line && place >= 0 && !t.leaving) {
         // 1 means next up; the person offered the machine counts as ahead.
         const n = place + 1 + (line.offeredTo ? 1 : 0);
-        const r = 5 * z;
         const cy = (p.y - 52) * z;
-        ctx.fillStyle = ink;
-        ctx.beginPath(); ctx.arc(tx, cy, r + z, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = ENV['yellow-2']!;
-        ctx.beginPath(); ctx.arc(tx, cy, r, 0, Math.PI * 2); ctx.fill();
+        const badge = this.sprites.get('ui.line_badge');
+        if (badge.real) {
+          ctx.drawImage(badge.image, 0, 0, badge.width, badge.height, Math.round(tx - (badge.width * z) / 2), Math.round(cy - (badge.height * z) / 2), badge.width * z, badge.height * z);
+        } else {
+          const r = 5 * z;
+          ctx.fillStyle = ink;
+          ctx.beginPath(); ctx.arc(tx, cy, r + z, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = ENV['yellow-2']!;
+          ctx.beginPath(); ctx.arc(tx, cy, r, 0, Math.PI * 2); ctx.fill();
+        }
         ctx.fillStyle = ink;
         ctx.fillText(String(n), tx, cy + 0.5);
       }
@@ -369,7 +400,7 @@ export class GymRenderer {
       const p = b.agentId === STAFF_ID ? MARK_SPOT : this.spots.get(b.agentId);
       if (!p) continue;
       const onMachine = this.tracked.get(b.agentId)?.agent.activity === 'lifting';
-      drawBubble(ctx, b, p.x * z, (p.y - (onMachine ? 62 : 52)) * z, z, size, Date.now());
+      drawBubble(ctx, b, p.x * z, (p.y - (onMachine ? 62 : 52)) * z, z, size, Date.now(), this.sprites);
     }
   }
 }
@@ -392,20 +423,47 @@ const wrap = (ctx: CanvasRenderingContext2D, text: string, max: number): string[
   return lines.slice(0, 4).map((l, i, all) => (i === 3 && all.length === 4 && lines.length > 4 ? `${l}…` : l));
 };
 
+/** The bubble art for each way of talking. */
+const BUBBLE_ART: Record<Bubble['kind'], string> = { say: 'ui.bubble', staff: 'ui.bubble', whisper: 'ui.bubble_whisper', shout: 'ui.bubble_shout' };
+
 /** Draws one speech bubble with its tail pointing down at (x, y). */
-const drawBubble = (ctx: CanvasRenderingContext2D, b: Bubble, x: number, y: number, z: number, size: number, now: number): void => {
+const drawBubble = (ctx: CanvasRenderingContext2D, b: Bubble, x: number, y: number, z: number, size: number, now: number, sprites: SpriteBank): void => {
   const ink = ENV.ink!;
   const text = b.text ?? '· · ·';
   ctx.font = `${size}px ${FONT}`;
   const lines = wrap(ctx, text, 110 * z);
-  const w = Math.max(...lines.map((l) => ctx.measureText(l).width)) + 10 * z;
   const lh = size * 1.15;
-  const h = lines.length * lh + 6 * z;
   const fade = Math.min(1, (b.until - now) / 400);
-  const bx = Math.min(Math.max(x - w / 2, 2 * z), ROOM_PX.w * z - w - 2 * z);
-  const by = Math.max(2 * z, y - h);
+  const art = sprites.get(BUBBLE_ART[b.kind]);
+  const tail = sprites.get('ui.bubble_tail');
   ctx.save();
   ctx.globalAlpha = Math.max(0, fade);
+
+  if (art.real && tail.real) {
+    // Art bubble in whole art pixels, so its outline stays crisp.
+    const pad = b.kind === 'shout' ? 8 : 5;
+    const w = Math.ceil(Math.max(...lines.map((l) => ctx.measureText(l).width)) / z) + 2 * pad;
+    const h = Math.ceil((lines.length * lh) / z) + 2 * (pad - 1);
+    const bx = Math.round(Math.min(Math.max(x - (w * z) / 2, 2 * z), ROOM_PX.w * z - w * z - 2 * z));
+    const by = Math.round(Math.max(2 * z, y - h * z));
+    drawNine(ctx, art, bx, by, w, h, z);
+    // The tail's cream top row covers the bubble's bottom outline, joining the two. Shouts have spikes instead.
+    if (b.kind !== 'shout') {
+      const tx = Math.round(Math.min(Math.max(x, bx + 8 * z), bx + (w - 8) * z) - (tail.width * z) / 2);
+      ctx.drawImage(tail.image, 0, 0, tail.width, tail.height, tx, by + (h - 2) * z, tail.width * z, tail.height * z);
+    }
+    ctx.fillStyle = ink;
+    ctx.textAlign = 'center';
+    const top = by + ((h * z) - lines.length * lh) / 2;
+    lines.forEach((l, i) => ctx.fillText(l, bx + (w * z) / 2, top + lh * (i + 0.5)));
+    ctx.restore();
+    return;
+  }
+
+  const w = Math.max(...lines.map((l) => ctx.measureText(l).width)) + 10 * z;
+  const h = lines.length * lh + 6 * z;
+  const bx = Math.min(Math.max(x - w / 2, 2 * z), ROOM_PX.w * z - w - 2 * z);
+  const by = Math.max(2 * z, y - h);
   ctx.fillStyle = b.kind === 'shout' ? ENV['yellow-3']! : ENV.cream!;
   ctx.strokeStyle = ink;
   ctx.lineWidth = z;
