@@ -5,11 +5,12 @@ import {
   buildForStrength, statFromPoints, nextGlowUp,
   appearanceFromSeed, AppearanceError, parseAppearancePatch,
   type Activity, type AgentView, type AreaId, type GymEvent, type GymSnapshot, type MachineKind,
-  type MachineView, type SetResult, type StatName, type Weight,
+  type MachineView, type SetResult, type StatName, type StepView, type Weight,
 } from '@benchmaxxers/shared';
 import { makeChallenge, type Challenge } from './exercises/index.js';
 import { scoreSet, utcDay, nextStreak } from './scoring.js';
 import { filterMessage } from './chat.js';
+import { describeInput, describeOutput } from './steps.js';
 import { nowPlaying, speakerStation } from './music.js';
 import { newId, type AgentRecord, type Store } from './store.js';
 
@@ -82,6 +83,9 @@ type Presence = {
   spotAskedAt: number | null;
   /** True once this agent has pinned a note to the whiteboard this visit (one per visit). */
   noteLeft: boolean;
+  /** This visit's latest steps, for people who open this agent. */
+  steps: StepView[];
+  nextStep: number;
   finishedWorkoutThisVisit: boolean;
   /** After a full turn the agent rests from that machine for a minute, so others get a go. */
   restingFrom: { machineId: string; until: number } | null;
@@ -354,6 +358,7 @@ export class World extends EventEmitter {
       toolCalls: 0, startedAt: now, lastCallAt: now, wake: [], results: [], statsBefore: statsOf(agent),
       talkedTo: new Set(), bestLine: null, doneToday: this.store.setsDoneSince(agent.id, since), finishedWorkoutThisVisit: false,
       restingFrom: null, restUntil: 0, spotting: null, spotter: null, spotAskedAt: null, noteLeft: false,
+      steps: [], nextStep: 1,
     };
     gym.agents.set(agent.id, p);
     this.send(gym, { type: 'agent_entered', agent: this.agentView(p) });
@@ -394,6 +399,56 @@ export class World extends EventEmitter {
       your_appearance: { ...agent.appearance },
       streak: agent.streak,
     };
+  }
+
+  /**
+   * Runs one of an agent's tool calls and records it as a step: once when it
+   * starts (so viewers see it waiting) and again with the reply. Steps go out
+   * as 'step' events, which only reach viewers watching that agent.
+   */
+  async logged<T>(agentId: string, tool: string, input: Record<string, unknown>, fn: () => T | Promise<T>): Promise<T> {
+    let found = this.find(agentId);
+    let step = found ? this.stepStarted(found.gym, found.p, tool, input) : null;
+    const resultsBefore = found?.p.results.length ?? 0;
+    /** Records how the call ended, starting the step first if the agent only just walked in. */
+    const end = (ok: boolean, output: unknown) => {
+      found ??= this.find(agentId);
+      if (!found) return;
+      step ??= this.stepStarted(found.gym, found.p, tool, input);
+      this.stepEnded(found.gym, found.p, step, ok, output, resultsBefore);
+    };
+    try {
+      const result = await fn();
+      end(true, result);
+      return result;
+    } catch (err) {
+      end(false, err instanceof GymError ? err.message : 'Something went wrong on the gym side.');
+      throw err;
+    }
+  }
+
+  /** An agent's steps so far this visit, for a viewer that just opened it. */
+  stepsOf(agentId: string): { gymId: string; steps: StepView[] } | null {
+    const found = this.find(agentId);
+    return found ? { gymId: found.gym.id, steps: found.p.steps } : null;
+  }
+
+  /** Adds a running step and tells anyone watching. */
+  private stepStarted(gym: Gym, p: Presence, tool: string, input: Record<string, unknown>): StepView {
+    const step: StepView = { id: p.nextStep++, at: this.clock.now(), tool, input: describeInput(tool, input), output: null, ok: true, endedAt: null };
+    p.steps = [...p.steps, step].slice(-LIMITS.stepsShown);
+    this.emit('step', gym.id, p.agent.id, step);
+    return step;
+  }
+
+  /** Fills in a step's reply (and the set it finished, if any) and tells anyone watching. */
+  private stepEnded(gym: Gym, p: Presence, step: StepView, ok: boolean, output: unknown, resultsBefore: number): void {
+    step.ok = ok;
+    step.output = describeOutput(output);
+    step.endedAt = this.clock.now();
+    const finished = p.results.length > resultsBefore ? p.results.at(-1) : undefined;
+    if (finished) step.set = finished;
+    this.emit('step', gym.id, p.agent.id, step);
   }
 
   /** Counts a tool call and ends the visit if a limit is reached. Returns the recap if it ended. */

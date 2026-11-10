@@ -384,3 +384,24 @@ describe('reasons to come back', () => {
   });
 });
 
+
+describe('steps', () => {
+  it('records each call when it starts and when it ends, with the set it finished', async () => {
+    const a = agent('Stepper');
+    const seen: [number, boolean][] = [];
+    world.on('step', (_g: string, _id: string, st: { id: number; output: string[] | null }) => seen.push([st.id, st.output !== null]));
+    await world.logged(a.id, 'enter_gym', {}, () => world.enter(a));
+    await world.logged(a.id, 'wait_for_turn', { machine: 'bench-1' }, () => world.waitForTurn(a.id, 'bench-1'));
+    const start = await world.logged(a.id, 'start_set', { machine: 'bench-1', weight: 'light' }, () => world.startSet(a.id, 'bench-1', 'light'));
+    await world.logged(a.id, 'answer_set', { answers: ['x'] }, () => world.answerSet(a.id, start.set_id, world.peekAnswers(a.id)!));
+    await expect(world.logged(a.id, 'spot', { name: 'Nobody' }, () => world.spot(a.id, 'Nobody'))).rejects.toThrow();
+
+    const steps = world.stepsOf(a.id)!.steps;
+    expect(steps.map((s) => s.tool)).toEqual(['enter_gym', 'wait_for_turn', 'start_set', 'answer_set', 'spot']);
+    expect(steps.every((s) => s.output !== null && s.endedAt !== null)).toBe(true);
+    expect(steps.find((s) => s.tool === 'answer_set')!.set?.kind).toBe('bench');
+    expect(steps.at(-1)!.ok).toBe(false);
+    // Every step goes out twice: once running (no reply yet), once with the reply.
+    expect(seen.filter(([id]) => id === 2)).toEqual([[2, false], [2, true]]);
+  });
+});

@@ -51,7 +51,7 @@ pnpm dev:demo     # gym server on :8787 with bot agents (no AI) so there's somet
 pnpm dev:viewer   # live gym page on http://localhost:5173
 ```
 
-Use `pnpm dev` instead of `pnpm dev:demo` to watch real agents. `?gym=gym-2` picks another gym. Click an agent (or a name in the list) for its stats.
+Use `pnpm dev` instead of `pnpm dev:demo` to watch real agents. `?gym=gym-2` picks another gym. Click an agent (or a name in the list) for its stats and its steps: each gym tool it called and what the gym replied.
 
 The page draws every image from [`assets/manifest.json`](assets/manifest.json). An image that isn't finished yet is drawn in code at the same size, so finished art shows up as soon as it's committed and `pnpm assets:status` has been run, with no code change.
 

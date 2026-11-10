@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import { WebSocketServer, type WebSocket } from 'ws';
-import { APPEARANCE_CHOICES, parseAppearancePatch, MACHINE_KINDS, buildForStrength, nextGlowUp, statFromPoints, type GymEvent } from '@benchmaxxers/shared';
+import { APPEARANCE_CHOICES, parseAppearancePatch, MACHINE_KINDS, buildForStrength, nextGlowUp, statFromPoints, type GymEvent, type StepView, type ViewerMessage } from '@benchmaxxers/shared';
 import type { World } from './world.js';
 import type { Store } from './store.js';
 import { createGymMcp } from './mcp.js';
@@ -201,9 +201,21 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
     if (!snap) { socket.destroy(); return; }
     wss.handleUpgrade(req, socket, head, (ws: WebSocket) => {
       const sendEvent = (g: string, event: GymEvent) => { if (g === gymId && ws.readyState === ws.OPEN) ws.send(JSON.stringify(event)); };
+      // Steps go only to a viewer that opened that agent, so a busy gym doesn't flood every page.
+      let watching: string | null = null;
+      const sendStep = (g: string, agentId: string, step: StepView) => { if (agentId === watching) sendEvent(g, { type: 'step', agentId, step }); };
+      ws.on('message', (raw) => {
+        let msg: ViewerMessage;
+        try { msg = JSON.parse(String(raw)) as ViewerMessage; } catch { return; }
+        if (msg?.type !== 'watch') return;
+        watching = typeof msg.agentId === 'string' ? msg.agentId.slice(0, 64) : null;
+        const found = watching ? world.stepsOf(watching) : null;
+        if (watching && found?.gymId === gymId) sendEvent(gymId, { type: 'steps', agentId: watching, steps: found.steps });
+      });
       ws.send(JSON.stringify({ type: 'snapshot', gym: snap } satisfies GymEvent));
       world.on('event', sendEvent);
-      ws.on('close', () => world.off('event', sendEvent));
+      world.on('step', sendStep);
+      ws.on('close', () => { world.off('event', sendEvent); world.off('step', sendStep); });
     });
   });
 

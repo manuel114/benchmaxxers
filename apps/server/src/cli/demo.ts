@@ -77,7 +77,11 @@ const runBot = async (index: number): Promise<void> => {
 const visit = async (agentId: string, record: () => AgentRecord, accuracy: number): Promise<void> => {
   /** Counts a "tool call" like a real agent; false when the visit has ended. */
   const call = () => world.isInGym(agentId) && world.beginCall(agentId).ended === null && world.isInGym(agentId);
-  world.enter(record(), 'demo');
+  /** Runs one gym action as a step, so people who open a bot can follow it like a real agent. */
+  const step = <T>(tool: string, input: Record<string, unknown>, fn: () => T | Promise<T>) => world.logged(agentId, tool, input, fn);
+  /** Says or shouts a random gym line. */
+  const chat = (kind: 'say' | 'shout') => { const text = any(LINES); return step(kind, { text }, () => world.speak(agentId, kind, text)); };
+  await step('enter_gym', { goal: 'demo' }, () => world.enter(record(), 'demo'));
   await sleep(between(1500, 4000));
   const exercises = between(2, 3);
 
@@ -86,11 +90,11 @@ const visit = async (agentId: string, record: () => AgentRecord, accuracy: numbe
     for (let i = 0; i < 4; i++) {
       if (!call()) return false;
       let r: Awaited<ReturnType<World['rest']>>;
-      try { r = await world.rest(agentId); } catch { return true; }
+      try { r = await step('rest', {}, () => world.rest(agentId)); } catch { return true; }
       if ('status' in r) return false;
       const asking = r.asking_for_a_spot?.[0];
       if (asking && Math.random() < 0.6 && call()) {
-        try { world.spot(agentId, asking); await sleep(between(6000, 12_000)); } catch { /* someone else got there first */ }
+        try { await step('spot', { name: asking }, () => world.spot(agentId, asking)); await sleep(between(6000, 12_000)); } catch { /* someone else got there first */ }
       }
       if (r.ready) return true;
     }
@@ -104,14 +108,15 @@ const visit = async (agentId: string, record: () => AgentRecord, accuracy: numbe
     for (let tries = 0; tries < 4 && !machine; tries++) {
       if (!call()) return;
       let turn: Awaited<ReturnType<World['waitForTurn']>>;
-      try { turn = await world.waitForTurn(agentId, kind); } catch { break; }
+      try { turn = await step('wait_for_turn', { machine: kind }, () => world.waitForTurn(agentId, kind)); } catch { break; }
       if (turn.status === 'your_turn') { machine = turn.machine; break; }
       if (turn.status !== 'waiting') break;
       // Sometimes ask to work in rather than keep waiting, like a real gym.
       if (Math.random() < 0.35 && call()) {
-        try { machine = world.workIn(agentId, turn.machine).machine; } catch { /* no room to work in */ }
+        const busy = turn.machine;
+        try { machine = (await step('work_in', { machine: busy }, () => world.workIn(agentId, busy))).machine; } catch { /* no room to work in */ }
       } else if (Math.random() < 0.3 && call()) {
-        try { world.speak(agentId, 'say', any(LINES)); } catch { /* cooldown */ }
+        try { await chat('say'); } catch { /* cooldown */ }
       }
     }
     if (!machine) continue;
@@ -123,18 +128,21 @@ const visit = async (agentId: string, record: () => AgentRecord, accuracy: numbe
       if (!call()) return;
       const weight: Weight = any(['light', 'medium', 'medium', 'heavy'] as const);
       if (kind === 'bench' && weight === 'heavy') {
-        try { await world.askForSpot(agentId); } catch { /* lift lighter instead */ }
+        try { await step('ask_for_spot', {}, () => world.askForSpot(agentId)); } catch { /* lift lighter instead */ }
       }
-      let set: ReturnType<World['startSet']>;
-      try { set = world.startSet(agentId, machine, weight); } catch {
-        try { set = world.startSet(agentId, machine, 'medium'); } catch { break; }
+      let set: Awaited<ReturnType<World['startSetWhenRested']>>;
+      const on = machine;
+      try { set = await step('start_set', { machine: on, weight }, () => world.startSetWhenRested(agentId, on, weight)); } catch {
+        try { set = await step('start_set', { machine: on, weight: 'medium' }, () => world.startSetWhenRested(agentId, on, 'medium')); } catch { break; }
       }
+      if ('status' in set && set.status === 'visit_over') return;
+      const setId = set.set_id;
       for (;;) {
         await sleep(between(1500, 4500));
         const answers = world.peekAnswers(agentId);
         if (!answers || !call()) break;
         const given = answers.map((a) => (Math.random() < accuracy ? a : 'pass'));
-        const res = world.answerSet(agentId, set.set_id, given);
+        const res = await step('answer_set', { set_id: setId, answers: given }, () => world.answerSet(agentId, setId, given));
         if (res.status === 'set_done') break;
       }
       if (!(await restUp())) return;
@@ -145,14 +153,16 @@ const visit = async (agentId: string, record: () => AgentRecord, accuracy: numbe
     if (!call()) return;
     const roll = Math.random();
     try {
-      if (roll < 0.35) world.speak(agentId, Math.random() < 0.1 ? 'shout' : 'say', any(LINES));
-      else if (roll < 0.5) world.headphones(agentId, Math.random() < 0.7 ? any(STATIONS).id : null);
-      else if (roll < 0.7) { world.walkTo(agentId, 'water_cooler'); await sleep(between(4000, 9000)); }
-      else if (roll < 0.78) world.walkTo(agentId, any(AREAS.filter((a): a is AreaId => a !== 'locker_room')));
+      if (roll < 0.35) await chat(Math.random() < 0.1 ? 'shout' : 'say');
+      else if (roll < 0.5) {
+        const station = Math.random() < 0.7 ? any(STATIONS).id : null;
+        await (station ? step('put_on_headphones', { station }, () => world.headphones(agentId, station)) : step('take_off_headphones', {}, () => world.headphones(agentId, null)));
+      } else if (roll < 0.7) { await step('walk_to', { area: 'water_cooler' }, () => world.walkTo(agentId, 'water_cooler')); await sleep(between(4000, 9000)); }
+      else if (roll < 0.78) { const area = any(AREAS.filter((a): a is AreaId => a !== 'locker_room')); await step('walk_to', { area }, () => world.walkTo(agentId, area)); }
     } catch { /* cooldowns and limits are fine */ }
   }
   if (world.isInGym(agentId)) {
-    world.walkTo(agentId, 'locker_room');
+    await step('walk_to', { area: 'locker_room' }, () => world.walkTo(agentId, 'locker_room'));
     await sleep(3000);
   }
 };

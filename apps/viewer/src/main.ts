@@ -5,11 +5,11 @@
  * reach the page as text (textContent), never as HTML.
  */
 import { ASSETS, BUILDS } from '@benchmaxxers/shared/assets';
-import type { AgentView, GymEvent } from '@benchmaxxers/shared';
+import type { AgentView, GymEvent, GymSnapshot, StepView, ViewerMessage } from '@benchmaxxers/shared';
 import { appearanceFor } from './appearance.js';
 import { GymRenderer } from './render.js';
 import { SpriteBank } from './sprites.js';
-import { applyEvent, emptyState, expire, type FeedItem, type ViewState } from './state.js';
+import { applyEvent, emptyState, expire, watchSteps, type FeedItem, type ViewState } from './state.js';
 
 /** Shorthand for document.getElementById with a type. */
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
@@ -35,6 +35,16 @@ const STAT_COLOURS = { strength: 'var(--purple)', stamina: 'var(--red)', flexibi
 let state: ViewState = emptyState();
 let feedShown = 0;
 let rosterKey = '';
+let stepsKey = '';
+/** The open connection, for telling the server which agent's steps to send. */
+let socket: WebSocket | null = null;
+/** The agent whose steps this page asked for. */
+let watched: string | null = null;
+
+/** Tells the server which agent this page has open, so it sends that agent's steps. */
+const sendWatch = (): void => {
+  if (socket?.readyState === WebSocket.OPEN) socket.send(JSON.stringify({ type: 'watch', agentId: watched } satisfies ViewerMessage));
+};
 
 /** Shows the connection state in the header. */
 const setStatus = (s: 'live' | 'connecting' | 'down', text: string): void => {
@@ -63,7 +73,8 @@ const connect = (attempt = 0): void => {
   const proto = location.protocol === 'https:' ? 'wss' : 'ws';
   const ws = new WebSocket(`${proto}://${location.host}/ws?gym=${encodeURIComponent(gymId)}`);
   let opened = false;
-  ws.onopen = () => { opened = true; setStatus('live', 'live'); };
+  socket = ws;
+  ws.onopen = () => { opened = true; setStatus('live', 'live'); sendWatch(); };
   ws.onmessage = (msg) => {
     try {
       state = applyEvent(state, JSON.parse(String(msg.data)) as GymEvent, Date.now());
@@ -81,15 +92,77 @@ const connect = (attempt = 0): void => {
 /** Time of day as HH:MM. */
 const clock = (t: number): string => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-/** One feed line, with the revealed challenge for finished sets. */
+/** One chat line. */
 const feedLine = (f: FeedItem): HTMLLIElement => {
   const li = h('li', {}, h('time', { text: clock(f.at) }), document.createTextNode(f.text));
   li.dataset.kind = f.kind;
-  if (f.result && f.result.reveal.length) {
-    const list = h('ol', { class: 'reveal' }, ...f.result.reveal.slice(0, 8).map((r) => h('li', { text: `${r.correct ? '✓' : '✗'} ${r.ask.slice(0, 90)} → ${r.expected}` })));
-    li.append(h('details', {}, h('summary', { text: 'see the set' }), list));
+  return li;
+};
+
+/** Reply lines shown before the rest fold away. */
+const REPLY_LINES_SHOWN = 3;
+
+/** What the agent is doing right now, in one line. */
+const doingNow = (a: AgentView, gym: GymSnapshot): string => {
+  if (a.spotting) return `Spotting someone on ${a.spotting}`;
+  const m = gym.machines.find((x) => x.id === a.machine);
+  if (m?.set && m.set.agentId === a.id) return `Lifting ${m.set.weight} on ${m.id}: ${m.set.answered} of ${m.set.total} answered`;
+  if (a.line) {
+    const line = gym.machines.find((x) => x.id === a.line)?.line ?? [];
+    return `In line for ${a.line}${line.includes(a.id) ? `, ${line.indexOf(a.id) + 1} of ${line.length}` : ''}`;
+  }
+  if (m) return `On ${m.id}, between sets`;
+  return `${DOING[a.activity][0]!.toUpperCase()}${DOING[a.activity].slice(1)} at the ${a.area.replace(/_/g, ' ')}`;
+};
+
+/** One step as a pair of chat bubbles: what the agent asked, then what the gym answered. */
+const stepItem = (st: StepView): HTMLLIElement => {
+  const ask = h('div', { class: 'step-ask' },
+    h('time', { text: clock(st.at) }),
+    h('b', { text: st.tool.replace(/_/g, ' ') }),
+    ...st.input.map(([k, v]) => h('span', { class: 'step-arg' }, h('i', { text: k.replace(/_/g, ' ') }), document.createTextNode(` ${v}`))));
+  const reply = h('div', { class: 'step-reply' });
+  if (!st.output) {
+    reply.dataset.state = 'waiting';
+    reply.textContent = 'waiting for the gym…';
+  } else {
+    if (!st.ok) reply.dataset.state = 'error';
+    for (const line of st.output.slice(0, REPLY_LINES_SHOWN)) reply.append(h('div', { text: line }));
+    const rest = st.output.slice(REPLY_LINES_SHOWN);
+    if (rest.length) reply.append(h('details', {}, h('summary', { text: `${rest.length} more` }), ...rest.map((line) => h('div', { text: line }))));
+  }
+  const li = h('li', { class: 'step' }, ask, reply);
+  if (st.set) {
+    const r = st.set;
+    const sum = `${r.reps}/${r.maxReps} reps, +${r.points} pts${r.personalBest ? ', a personal best' : r.dropped ? ', dropped the bar' : ''}`;
+    const list = h('ol', { class: 'reveal' }, ...r.reveal.slice(0, 12).map((x) => h('li', { text: `${x.correct ? '✓' : '✗'} ${x.ask.slice(0, 90)} → ${x.expected}` })));
+    li.append(h('details', { class: 'step-set' }, h('summary', { text: `Set done: ${sum}. See the set` }), list));
   }
   return li;
+};
+
+/** Redraws the opened agent's steps when they change, staying scrolled to the newest. */
+const renderSteps = (sel: AgentView | undefined, gym: GymSnapshot): void => {
+  const card = $('steps');
+  const list = state.steps?.agentId === sel?.id ? state.steps?.list ?? [] : [];
+  const last = list.at(-1);
+  const now = sel ? doingNow(sel, gym) : '';
+  const key = sel ? `${sel.id}|${now}|${list.length}|${last?.id}|${last?.endedAt}` : '';
+  if (key === stepsKey) return;
+  stepsKey = key;
+  card.hidden = !sel;
+  if (!sel) return;
+  const old = card.querySelector<HTMLOListElement>('.steps');
+  const atBottom = !old || old.scrollTop + old.clientHeight >= old.scrollHeight - 24;
+  const ol = h('ol', { class: 'steps' }, ...list.map(stepItem));
+  if (!list.length) ol.append(h('li', { class: 'steps-empty', text: 'Steps show up here as it calls the gym.' }));
+  card.replaceChildren(
+    h('h2', { text: `What ${sel.name} is doing` }),
+    h('p', { class: 'steps-now', text: now }),
+    h('p', { class: 'steps-note', text: 'Each gym tool it called and what the gym told it. Its own thinking stays private.' }),
+    ol,
+  );
+  ol.scrollTop = atBottom ? ol.scrollHeight : old!.scrollTop;
 };
 
 /** Redraws the side panel when its inputs change. */
@@ -162,6 +235,8 @@ const renderPanel = (renderer: GymRenderer): void => {
     }
   }
 
+  renderSteps(agents.find((a) => a.id === renderer.selected), gym);
+
   const newest = state.feed[0]?.id ?? 0;
   if (newest !== feedShown) {
     feedShown = newest;
@@ -197,6 +272,11 @@ const main = async (): Promise<void> => {
 
   /** One animation frame. */
   const frame = (t: number) => {
+    if (renderer.selected !== watched) {
+      watched = renderer.selected;
+      state = watchSteps(state, watched);
+      sendWatch();
+    }
     state = expire(state, Date.now());
     renderer.draw(state, t);
     renderPanel(renderer);

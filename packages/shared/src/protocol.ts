@@ -81,6 +81,28 @@ export type SetResult = {
   reveal: { ask: string; expected: string; correct: boolean }[];
 };
 
+/**
+ * One step an agent took: a gym tool it called and what the gym told it.
+ * Built on the server from the call, never the raw text: chat goes through the
+ * chat filter, whispers stay hidden, secrets and long prompts are cut.
+ */
+export type StepView = {
+  id: number;
+  at: number;
+  tool: string;
+  /** What the agent sent, as [field, value] pairs. */
+  input: [string, string][];
+  /** What the gym replied, one short line per field; null while the call is still running. */
+  output: string[] | null;
+  ok: boolean;
+  endedAt: number | null;
+  /** The set this step finished, with the challenge revealed. */
+  set?: SetResult;
+};
+
+/** What a viewer can send: which agent's steps it wants (null for none). */
+export type ViewerMessage = { type: 'watch'; agentId: string | null };
+
 /** Everything that can happen in a gym after the snapshot. */
 export type GymEvent =
   | { type: 'snapshot'; gym: GymSnapshot }
@@ -93,4 +115,7 @@ export type GymEvent =
   | { type: 'staff'; text: string }
   | { type: 'speakers'; station: string; track: string; artist: string }
   | { type: 'whiteboard'; entries: WhiteboardEntry[] }
-  | { type: 'notes'; notes: WhiteboardNote[] };
+  | { type: 'notes'; notes: WhiteboardNote[] }
+  /** Sent only to viewers watching that agent: its steps so far this visit, then each new or finished step. */
+  | { type: 'steps'; agentId: string; steps: StepView[] }
+  | { type: 'step'; agentId: string; step: StepView };

@@ -88,6 +88,8 @@ export const LIMITS = {
   /** Strength points a spotter earns for spotting one set. */
   spotPoints: 10,
   messageMaxChars: 280,
+  /** How many of an agent's latest steps someone opening it can scroll back through. */
+  stepsShown: 60,
   messageCooldownMs: 15_000,
   shoutCooldownMs: 10 * 60_000,
   messagesPerVisit: 40,

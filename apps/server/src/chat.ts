@@ -17,6 +17,10 @@ const SECRET_PATTERNS: RegExp[] = [
   /\bpassword\s*[:=]\s*\S+/i,
 ];
 
+/** Replaces anything that looks like a secret with [hidden]. */
+export const redactSecrets = (text: string): string =>
+  SECRET_PATTERNS.reduce((t, p) => t.replace(new RegExp(p.source, p.flags.includes('g') ? p.flags : `${p.flags}g`), '[hidden]'), text);
+
 /** Attempts to give another agent orders or pull things out of its session. */
 const ORDER_PATTERNS: RegExp[] = [
   /\b(ignore|disregard|forget|override)\b.{0,30}\b(instructions?|prompts?|rules|system|previous|above)\b/i,

@@ -3,7 +3,7 @@
  * stream (packages/shared/src/protocol.ts). Pure: no DOM, no clocks; the
  * caller passes `now`.
  */
-import type { AgentView, GymEvent, GymSnapshot, MachineKind, SetResult } from '@benchmaxxers/shared';
+import type { AgentView, GymEvent, GymSnapshot, StepView } from '@benchmaxxers/shared';
 
 /** A speech bubble over someone's head. Whispers have no text. */
 export type Bubble = { agentId: string; kind: 'say' | 'whisper' | 'shout' | 'staff'; text: string | null; until: number };
@@ -11,8 +11,11 @@ export type Bubble = { agentId: string; kind: 'say' | 'whisper' | 'shout' | 'sta
 /** A short effect over an agent after a set. */
 export type Flash = { agentId: string; kind: 'personal_best' | 'dropped' | 'perfect' | 'done' | 'wave'; until: number };
 
-/** One line in the activity feed. */
-export type FeedItem = { id: number; at: number; kind: 'chat' | 'staff' | 'set' | 'enter' | 'leave'; text: string; result?: SetResult };
+/** One line in the chat feed: something an agent or Mark said out loud (whispers show only that they happened). */
+export type FeedItem = { id: number; at: number; kind: 'chat' | 'staff'; text: string };
+
+/** The steps of the agent someone opened: what it asked the gym and what it heard back. */
+export type Steps = { agentId: string; list: StepView[] };
 
 /** Everything the page draws. */
 export type ViewState = {
@@ -21,6 +24,8 @@ export type ViewState = {
   flashes: Flash[];
   feed: FeedItem[];
   nextFeedId: number;
+  /** The opened agent's steps; null when nobody is opened. */
+  steps: Steps | null;
 };
 
 /** Id the front-desk staff member speaks with. */
@@ -29,14 +34,11 @@ export const STAFF_ID = 'staff:mark';
 /** How many feed lines to keep. */
 const FEED_MAX = 80;
 
-/** Words for each machine in the feed. */
-const DID: Record<MachineKind, string> = { bench: 'benched', treadmill: 'ran', yoga_mat: 'held a pose' };
-
-/** Why an agent left, in words. */
-const LEFT: Record<string, string> = { left: 'headed home', time_up: 'ran out of time', idle: 'wandered off', walked_out: 'was walked out by staff' };
+/** How many steps of the opened agent to keep. */
+const STEPS_KEPT = 80;
 
 /** A fresh, empty state. */
-export const emptyState = (): ViewState => ({ gym: null, bubbles: [], flashes: [], feed: [], nextFeedId: 1 });
+export const emptyState = (): ViewState => ({ gym: null, bubbles: [], flashes: [], feed: [], nextFeedId: 1, steps: null });
 
 /** How long a bubble stays up: longer for longer messages. */
 export const bubbleMs = (text: string | null): number => Math.min(9000, 3500 + (text?.length ?? 0) * 55);
@@ -61,11 +63,21 @@ const upsertAgent = (gym: GymSnapshot, agent: AgentView): void => {
 /** A name for an agent id, falling back to "someone" (or "Someone" at the start of a line). */
 const nameOf = (gym: GymSnapshot, id: string, start = true): string => gym.agents.find((a) => a.id === id)?.name ?? (start ? 'Someone' : 'someone');
 
+/** Opens an agent's steps (or closes them with null). Steps then fill in from the server. */
+export const watchSteps = (s: ViewState, agentId: string | null): ViewState => ({ ...s, steps: agentId ? { agentId, list: [] } : null });
+
 /** Applies one server event. Returns a new state object (inner arrays may be reused). */
 export const applyEvent = (prev: ViewState, event: GymEvent, now: number): ViewState => {
   const s: ViewState = { ...prev };
   if (event.type === 'snapshot') {
-    return { ...emptyState(), gym: structuredClone(event.gym), feed: prev.feed, nextFeedId: prev.nextFeedId };
+    return { ...emptyState(), gym: structuredClone(event.gym), feed: prev.feed, nextFeedId: prev.nextFeedId, steps: prev.steps };
+  }
+  // Steps only arrive for the agent this page opened.
+  if (event.type === 'steps') return prev.steps?.agentId === event.agentId ? { ...prev, steps: { agentId: event.agentId, list: event.steps } } : prev;
+  if (event.type === 'step') {
+    if (prev.steps?.agentId !== event.agentId) return prev;
+    const list = prev.steps.list.filter((x) => x.id !== event.step.id);
+    return { ...prev, steps: { agentId: event.agentId, list: [...list, event.step].sort((a, b) => a.id - b.id).slice(-STEPS_KEPT) } };
   }
   if (!s.gym) return s;
   const gym: GymSnapshot = { ...s.gym, agents: [...s.gym.agents], machines: [...s.gym.machines] };
@@ -74,20 +86,16 @@ export const applyEvent = (prev: ViewState, event: GymEvent, now: number): ViewS
   switch (event.type) {
     case 'agent_entered':
       upsertAgent(gym, event.agent);
-      pushFeed(s, now, { kind: 'enter', text: `${event.agent.name} (${event.agent.model}) walked in` });
       // New arrivals wave hello once they reach the front desk.
       s.flashes = [...s.flashes.filter((f) => f.agentId !== event.agent.id), { agentId: event.agent.id, kind: 'wave', until: now + 8000 }];
       break;
     case 'agent_updated':
       upsertAgent(gym, event.agent);
       break;
-    case 'agent_left': {
-      const name = nameOf(gym, event.agentId);
+    case 'agent_left':
       gym.agents = gym.agents.filter((a) => a.id !== event.agentId);
       s.bubbles = s.bubbles.filter((b) => b.agentId !== event.agentId);
-      pushFeed(s, now, { kind: 'leave', text: `${name} ${LEFT[event.reason] ?? 'left'}` });
       break;
-    }
     case 'machine_updated': {
       const i = gym.machines.findIndex((m) => m.id === event.machine.id);
       if (i >= 0) gym.machines[i] = event.machine;
@@ -98,8 +106,6 @@ export const applyEvent = (prev: ViewState, event: GymEvent, now: number): ViewS
       const r = event.result;
       const kind: Flash['kind'] = r.personalBest ? 'personal_best' : r.dropped ? 'dropped' : r.reps === r.maxReps ? 'perfect' : 'done';
       s.flashes = [...s.flashes.filter((f) => f.agentId !== r.agentId), { agentId: r.agentId, kind, until: now + 2500 }];
-      const extra = r.dropped ? ' and dropped the bar' : r.personalBest ? ', a personal best!' : '';
-      pushFeed(s, now, { kind: 'set', text: `${nameOf(gym, r.agentId)} ${DID[r.kind]} ${r.weight}: ${r.reps}/${r.maxReps} reps, +${r.points} pts${extra}`, result: r });
       break;
     }
     case 'chat':
