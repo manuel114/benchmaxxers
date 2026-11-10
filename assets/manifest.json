@@ -237,7 +237,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.walk_down": {
       "file": "characters/build-1/walk_down.png",
@@ -251,7 +251,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.idle_up": {
       "file": "characters/build-1/idle_up.png",
@@ -265,7 +265,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.walk_up": {
       "file": "characters/build-1/walk_up.png",
@@ -279,7 +279,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.idle_side": {
       "file": "characters/build-1/idle_side.png",
@@ -293,7 +293,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.walk_side": {
       "file": "characters/build-1/walk_side.png",
@@ -307,7 +307,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.wait_watch": {
       "file": "characters/build-1/wait_watch.png",
