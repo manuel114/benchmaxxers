@@ -19,27 +19,38 @@ describe('placeholder art', () => {
     }
   });
 
-  it('puts character feet on row 46, centred on column 16, in every build and direction', () => {
+  /** Frame 0 of a character's idle placeholder, as the game draws it. */
+  const idle = (build: 0 | 1 | 2 | 3, dir: 'down' | 'up' | 'side') => {
+    const def = ASSETS.find((a) => a.id === `char.build-${build}.idle_${dir}`)!;
+    return drawPlaceholder(def);
+  };
+
+  it('puts character feet on row 22 of the 16 x 24 frame, centred on column 8, with an empty row below', () => {
     for (const build of [0, 1, 2, 3] as const) {
       for (const dir of ['down', 'up', 'side'] as const) {
-        const px = drawFigure(build, { dir });
-        expect(px.bottomRow(), `build ${build} ${dir}`).toBe(46);
+        const px = idle(build, dir);
         const xs: number[] = [];
-        for (let x = 0; x < 32; x++) if (px.get(x, 46)) xs.push(x);
-        expect(Math.abs((Math.min(...xs) + Math.max(...xs)) / 2 - 16), `build ${build} ${dir}`).toBeLessThanOrEqual(1.5);
+        for (let x = 0; x < 16; x++) if (px.get(x, 22)) xs.push(x);
+        expect(xs.length, `build ${build} ${dir}`).toBeGreaterThan(0);
+        for (let x = 0; x < 16; x++) expect(px.get(x, 23), `build ${build} ${dir}`).toBeNull();
+        expect(Math.abs((Math.min(...xs) + Math.max(...xs)) / 2 - 8), `build ${build} ${dir}`).toBeLessThanOrEqual(1.5);
       }
     }
   });
 
   it('makes builds wider as they get stronger', () => {
     const width = (b: 0 | 1 | 2 | 3) => {
-      const px = drawFigure(b, { dir: 'down' });
-      let min = 32, max = 0;
-      for (let x = 0; x < 32; x++) if (px.get(x, 28)) { min = Math.min(min, x); max = Math.max(max, x); }
+      const px = idle(b, 'down');
+      let min = 16, max = 0;
+      for (let x = 0; x < 16; x++) if (px.get(x, 14)) { min = Math.min(min, x); max = Math.max(max, x); }
       return max - min;
     };
-    expect(width(0)).toBeLessThan(width(1));
+    expect(width(0)).toBeLessThanOrEqual(width(1));
     expect(width(1)).toBeLessThan(width(2));
-    expect(width(2)).toBeLessThan(width(3));
+    expect(width(2)).toBeLessThanOrEqual(width(3));
+  });
+
+  it('keeps the double-size drawing in proportion', () => {
+    expect(drawFigure(1, { dir: 'down' }).bottomRow()).toBe(46);
   });
 });

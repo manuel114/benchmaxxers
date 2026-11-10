@@ -115,7 +115,7 @@ const renderPanel = (renderer: GymRenderer): void => {
     $('empty').hidden = agents.length > 0;
     $('roster').replaceChildren(...agents.map((a) => {
       const dot = h('span', { class: 'dot' });
-      dot.style.background = appearanceFor(a.id).accent;
+      dot.style.background = appearanceFor(a).accent;
       const btn = h('button', {}, dot, h('span', { text: a.name }), h('span', { class: 'doing', text: DOING[a.activity] }));
       btn.setAttribute('aria-pressed', String(renderer.selected === a.id));
       btn.onclick = () => { renderer.selected = renderer.selected === a.id ? null : a.id; rosterKey = ''; };

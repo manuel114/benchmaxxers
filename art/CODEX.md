@@ -6,7 +6,7 @@ This is the step-by-step for producing the game's images in batches. Read [`STYL
 
 Image models draw "pixel art" that isn't on a real grid: pixels come out as 7, 8 or 9 screen pixels wide, colours drift, and backgrounds get soft. The game needs exact grids and exact colours. So every image goes through the same loop:
 
-1. **Generate big** on a flat magenta (`#FF00FF`) background, where each art pixel is drawn as an 8 × 8 block.
+1. **Generate big** on a flat magenta (`#FF00FF`) background, where each art pixel is drawn as a 12 × 12 block.
 2. **Save the raw file** to `art/raw/batch-<n>/<asset id>.png` (local work, not committed), or, for a cloud task that can't see your computer, upload it to [`art/inbox/`](inbox/) as `<asset id>.png`.
 3. **Clean it** with `pnpm pixelize`, which removes the magenta, snaps to the grid, snaps every colour to the palette, and places frames in their cells.
 4. **Check it** at 2× zoom next to the style tile. Redo anything that doesn't fit.
@@ -31,12 +31,12 @@ Draw: <brief from ASSETS.md>.
 
 Format:
 - <For animations: "<frames> animation frames of the same subject, side by side in one row, evenly spaced, each frame <width> x <height> art pixels."> <For stills: "One image, <width> x <height> art pixels.">
-- Every art pixel is a crisp square block exactly 8 x 8 image pixels. Hard edges only. No anti-aliasing, no blur, no gradients, no soft shadows, no texture noise.
+- This is 16-bit pixel art: few, big pixels. Every art pixel is a crisp square block exactly 12 x 12 image pixels (6 x 6 for anything wider than 128 art pixels). Hard edges only. No anti-aliasing, no blur, no gradients, no soft shadows, no texture noise.
 - Flat solid #FF00FF magenta background everywhere that is not the subject. No floor, no shadow, no frame, no grid lines, no text.
 - 1-pixel outline in #2B2238 around the subject. Shade with 3 flat tones per material.
 - Use ONLY these colours: <paste the palette list for this asset>.
-<For characters: "- Chunky cute proportions: head about one third of the body height, big 2x3-pixel eyes with a 1-pixel shine, blush cheeks. Short hair inside the head shape, a yellow headband, a green wristband on each wrist.">
-<For animations: "- Keep the head the same size and position in every frame; only move what the animation needs, by 1 or 2 pixels. Feet stay on the same line.">
+<For characters: "- Chunky cute proportions in a tiny 16 x 24 sprite: head about one third of the body height, 1x2-pixel eyes, 1-pixel blush cheeks. Short hair inside the head shape, a yellow headband, a green wristband on each wrist.">
+<For animations: "- Keep the head the same size and position in every frame; only move what the animation needs, by 1 pixel. Feet stay on the same line.">
 
 Match the attached reference images exactly in style, outline, colours and proportions.
 ```
@@ -71,13 +71,13 @@ Match the attached reference images exactly in style, outline, colours and propo
 
 ```bash
 # An animation strip: finds each frame, snaps it, places it in its cell with the feet on the right line.
-pnpm pixelize strip art/raw/batch-2/char.build-1.walk_down.png --frames 4 --frame 32x48 --palette character --out assets/characters/build-1/walk_down.png
+pnpm pixelize strip art/raw/batch-2/char.build-1.walk_down.png --frames 4 --frame 16x24 --palette character --out assets/characters/build-1/walk_down.png
 
 # A still prop or UI piece: snaps it and places it bottom-centre in a canvas of the given size.
-pnpm pixelize sprite art/raw/batch-5/prop.bench_back.png --size 64x48 --palette environment --out assets/props/bench_back.png
+pnpm pixelize sprite art/raw/batch-5/prop.bench_back.png --size 32x24 --palette environment --out assets/props/bench_back.png
 
 # A floor or wall tile that fills the whole image.
-pnpm pixelize tile art/raw/batch-4/tile.floor_rubber_1.png --size 32x32 --palette environment --out assets/tiles/floor_rubber_1.png
+pnpm pixelize tile art/raw/batch-4/tile.floor_rubber_1.png --size 16x16 --palette environment --out assets/tiles/floor_rubber_1.png
 
 # Check a finished file: size, transparency, palette.
 pnpm pixelize check assets/props/bench_back.png --palette environment
@@ -86,7 +86,7 @@ pnpm pixelize check assets/props/bench_back.png --palette environment
 pnpm assets:status
 ```
 
-If the tool guesses the pixel size wrong (the result looks doubled or mushy), pass it yourself with `--scale 8`.
+If the tool guesses the pixel size wrong (the result looks doubled or mushy), pass it yourself with `--scale 12`.
 
 ## Batches
 
@@ -108,7 +108,7 @@ Assets marked `later` in `ASSETS.md` (squat rack, leg press, rower, sparring rin
 
 ## Checklist before committing an image
 
-- [ ] Looks like it belongs next to the style tile at 2× zoom.
+- [ ] Looks like it belongs next to the style tile at 4× zoom.
 - [ ] `pnpm pixelize check` passes: right size, only palette colours, no half-transparent pixels.
 - [ ] Characters: feet on the same line in every frame, head the same size, swap colours only on their own body part.
 - [ ] Side-view sprites face right and have nothing that looks wrong when mirrored.

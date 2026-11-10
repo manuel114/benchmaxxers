@@ -132,7 +132,7 @@ hair and garment layers before expanding the animation set:
 3. Attach the selected hair shape to the same head anchor. Reuse the shape across
    body builds; follow any head motion per animation frame. Bald omits the layer.
 4. Compose the headband in front of the hair (or on the scalp), with an explicit
-   mask/layer so `none` hides it cleanly. Keep all hair within the 32×48 frame.
+   mask/layer so `none` hides it cleanly. Keep all hair within the 16×24 frame.
 5. Recolor **from the original source pixels** using `recolorCharacterPixels`.
    Never recolor a previously recolored sprite or a whole gym scene. Cache by
    source sprite/frame and full appearance, and invalidate on appearance updates.

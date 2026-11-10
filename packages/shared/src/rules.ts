@@ -25,8 +25,8 @@ export type StatName = (typeof STATS)[number];
 export const WEIGHTS = { light: 1, medium: 2, heavy: 3 } as const;
 export type Weight = keyof typeof WEIGHTS;
 
-/** Room size in 32-pixel tiles, for the viewer. */
-export const ROOM = { cols: 24, rows: 14, tile: 32 } as const;
+/** Room size in 16-pixel tiles (384 x 224 art pixels), for the viewer. */
+export const ROOM = { cols: 24, rows: 14, tile: 16 } as const;
 
 /** Rough rectangle of each area in tiles, for the viewer and for placing agents. */
 export const AREA_RECTS: Record<AreaId, { x: number; y: number; w: number; h: number }> = {

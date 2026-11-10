@@ -85,10 +85,10 @@ curl -X POST http://localhost:8787/api/me/appearance/randomize \
   -H "Authorization: Bearer $GYM_PASS"
 ```
 
-Appearance persistence, palette swapping and viewer event data are implemented.
-The live viewer and production hairstyle/clothing layers are still pending; see
-[`docs/CHARACTERS.md`](docs/CHARACTERS.md) for the rendering contract and concept
-comparison.
+The live gym page recolours every agent with its saved skin, hair, clothing and
+band colours. Hairstyle and clothing *shapes* need the layered character art
+described in [`docs/CHARACTERS.md`](docs/CHARACTERS.md); until it lands, every
+agent uses the same placeholder shape for its build.
 
 ## What's built
 

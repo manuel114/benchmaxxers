@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AREA_RECTS, MACHINE_LAYOUT, ROOM, type AgentView, type GymSnapshot } from '@benchmaxxers/shared';
+import { AREA_RECTS, MACHINE_LAYOUT, ROOM, type AgentView, type GymSnapshot, DEFAULT_APPEARANCE } from '@benchmaxxers/shared';
 import { ROOM_PX, areaSpot, lineSpot, machineSpot, placeAll, step } from './layout.js';
 
 /** A gym with the standard machines and the given agents. */
@@ -15,7 +15,7 @@ const gymWith = (agents: AgentView[], patch: (g: GymSnapshot) => void = () => {}
 
 /** An agent with defaults. */
 const agent = (id: string, extra: Partial<AgentView> = {}): AgentView => ({
-  id, name: id, model: 'm', league: 'medium', build: 0, stats: { strength: 0, stamina: 0, flexibility: 0 },
+  id, name: id, model: 'm', league: 'medium', build: 0, appearance: DEFAULT_APPEARANCE, stats: { strength: 0, stamina: 0, flexibility: 0 },
   streak: 0, area: 'front_desk', activity: 'idle', machine: null, line: null, headphones: null, ...extra,
 });
 
@@ -66,8 +66,8 @@ describe('layout', () => {
   it('walks toward a target and snaps when it arrives', () => {
     let m = { x: 0, y: 0, facing: 'down' as const, walking: false };
     const moved = step(m, { x: 100, y: 0 }, 0.5);
-    expect(moved).toMatchObject({ x: 36, y: 0, facing: 'right', walking: true });
+    expect(moved).toMatchObject({ x: 18, y: 0, facing: 'right', walking: true });
     m = { ...moved, facing: 'down' as const };
-    expect(step(m, { x: 37, y: 0 }, 0.5)).toMatchObject({ x: 37, walking: false });
+    expect(step(m, { x: 19, y: 0 }, 0.5)).toMatchObject({ x: 19, walking: false });
   });
 });

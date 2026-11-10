@@ -1,5 +1,5 @@
 /**
- * Draws the gym. The room is painted at art resolution (768 × 448) and scaled
+ * Draws the gym. The room is painted at art resolution (384 × 224) and scaled
  * up by a whole number, so pixels stay square. Words (names, bubbles, line
  * numbers) are drawn afterwards at screen resolution in Pixelify Sans, since
  * the style guide keeps text out of the images.
@@ -15,10 +15,10 @@ import { ENV } from './pixels.js';
 const FONT = '"Pixelify Sans", ui-monospace, monospace';
 
 /** Where Mark stands, behind the front desk. */
-const MARK_SPOT: Point = { x: 2 * ROOM.tile + 16, y: 3 * ROOM.tile + 30 };
+const MARK_SPOT: Point = { x: 2 * ROOM.tile + 8, y: 3 * ROOM.tile + 15 };
 
 /** Where the front desk stands. */
-const DESK_SPOT: Point = { x: 3 * ROOM.tile, y: 4 * ROOM.tile + 30 };
+const DESK_SPOT: Point = { x: 3 * ROOM.tile, y: 4 * ROOM.tile + 15 };
 
 /** Floor tile ids for each area. Two ids alternate in a checker. */
 const FLOOR: Record<AreaId, [string, string]> = {
@@ -32,34 +32,34 @@ const FLOOR: Record<AreaId, [string, string]> = {
 
 /** Back-wall pieces, left to right: [tile id, x in art pixels]. Gaps are plain wall. */
 const WALL_FEATURES: [string, number][] = [
-  ['tile.wall_door', 64],
-  ['tile.wall_window', 224],
-  ['tile.wall_window', 480],
-  ['tile.wall_window', 640],
+  ['tile.wall_door', 32],
+  ['tile.wall_window', 112],
+  ['tile.wall_window', 240],
+  ['tile.wall_window', 320],
 ];
 
 /** Things hung on the back wall: [sprite id, anchor x, anchor y]. */
 const WALL_PROPS: [string, number, number][] = [
-  ['prop.speaker', 32, 34],
-  ['prop.poster_bolt', 168, 44],
-  ['prop.mirror', 352, 50],
-  ['prop.poster_dumbbell', 432, 44],
-  ['prop.clock', 592, 34],
-  ['prop.poster_heart', 736, 44],
+  ['prop.speaker', 16, 17],
+  ['prop.poster_bolt', 84, 22],
+  ['prop.mirror', 176, 25],
+  ['prop.poster_dumbbell', 216, 22],
+  ['prop.clock', 296, 17],
+  ['prop.poster_heart', 368, 22],
 ];
 
 /** Props standing on the floor: [sprite id, anchor x, anchor y]. Drawn depth-sorted with people. */
 const FLOOR_PROPS: [string, number, number][] = [
   ['prop.front_desk', DESK_SPOT.x, DESK_SPOT.y],
-  ['prop.plant_big', 20, 104],
-  ['prop.dumbbell_rack', 300, 250],
-  ['prop.kettlebells', 380, 252],
-  ['prop.water_cooler', 300, 330],
-  ['prop.plant_small', 356, 330],
-  ['prop.lockers', 52, 330],
-  ['prop.lockers', 84, 330],
-  ['prop.locker_room_door', 120, 330],
-  ['prop.plant_big', 748, 440],
+  ['prop.plant_big', 10, 52],
+  ['prop.dumbbell_rack', 150, 125],
+  ['prop.kettlebells', 190, 126],
+  ['prop.water_cooler', 150, 165],
+  ['prop.plant_small', 178, 165],
+  ['prop.lockers', 26, 165],
+  ['prop.lockers', 42, 165],
+  ['prop.locker_room_door', 60, 165],
+  ['prop.plant_big', 374, 220],
 ];
 
 /** Mat colours, one per yoga mat in order. */
@@ -122,9 +122,9 @@ export class GymRenderer {
     const ax = cssX / cssPerArt;
     const ay = cssY / cssPerArt;
     let best: string | null = null;
-    let bestD = 18;
+    let bestD = 9;
     for (const [id, p] of this.spots) {
-      const d = Math.hypot(p.x - ax, p.y - 20 - ay);
+      const d = Math.hypot(p.x - ax, p.y - 10 - ay);
       if (d < bestD) { bestD = d; best = id; }
     }
     return best;
@@ -163,8 +163,8 @@ export class GymRenderer {
     const present = new Set(gym.agents.map((a) => a.id));
     for (const a of gym.agents) {
       const t = this.tracked.get(a.id);
-      if (t) { t.agent = a; t.leaving = false; continue; }
-      this.tracked.set(a.id, { mover: { ...DOOR, facing: 'down', walking: true }, look: appearanceFor(a.id), leaving: false, agent: a, since: now });
+      if (t) { t.agent = a; t.leaving = false; if (t.look.source !== a.appearance) t.look = appearanceFor(a); continue; }
+      this.tracked.set(a.id, { mover: { ...DOOR, facing: 'down', walking: true }, look: appearanceFor(a), leaving: false, agent: a, since: now });
     }
     for (const [id, t] of this.tracked) if (!present.has(id)) t.leaving = true;
   }
@@ -223,7 +223,7 @@ export class GymRenderer {
     if (m.kind === 'bench') {
       return [
         { y: s.y - 0.5, draw: () => drawSprite(ctx, get('prop.bench_back'), 0, s.x, s.y) },
-        ...(inUse ? [] : [{ y: s.y + 0.5, draw: () => drawSprite(ctx, get('prop.bench_bar'), 0, s.x, s.y - 28) }]),
+        ...(inUse ? [] : [{ y: s.y + 0.5, draw: () => drawSprite(ctx, get('prop.bench_bar'), 0, s.x, s.y - 14) }]),
       ];
     }
     if (m.kind === 'treadmill') {
@@ -234,7 +234,7 @@ export class GymRenderer {
     }
     const i = gym.machines.filter((x) => x.kind === 'yoga_mat').indexOf(m);
     const mat = get(`prop.yoga_mat_${MAT_COLOURS[i % MAT_COLOURS.length]}`);
-    return [{ y: s.y - 40, draw: () => drawSprite(ctx, mat, 0, s.x, s.y + 2) }];
+    return [{ y: s.y - 20, draw: () => drawSprite(ctx, mat, 0, s.x, s.y + 1) }];
   }
 
   /** Picks the animation for an agent. */
@@ -269,7 +269,7 @@ export class GymRenderer {
     if (!anim.action) {
       ctx.fillStyle = ENV.shadow!;
       ctx.beginPath();
-      ctx.ellipse(Math.round(x), Math.round(y), 7, 2, 0, 0, Math.PI * 2);
+      ctx.ellipse(Math.round(x), Math.round(y), 4, 1, 0, 0, Math.PI * 2);
       ctx.fill();
     }
     drawSprite(ctx, sprite, frameAt(sprite, now, offset), x, y, anim.flip);
@@ -278,18 +278,18 @@ export class GymRenderer {
       const s = this.sprites.get(id);
       drawSprite(ctx, s, frameAt(s, now, offset), fxX, fxY);
     };
-    const headY = anim.action ? y - 46 : y - 40;
+    const headY = anim.action ? y - 23 : y - 20;
     if (t.agent.headphones) {
       if (!anim.action) {
         const dir = anim.id.includes('_up') ? 'up' : anim.id.includes('_side') ? 'side' : 'down';
         const hp: Sprite = this.sprites.forAgent(`fx.headphones_${dir}`, t.look);
-        drawSprite(ctx, hp, 0, x, y - 26, anim.flip);
+        drawSprite(ctx, hp, 0, x, y - 13, anim.flip);
       }
-      fx('fx.notes', x + 12, headY - 2);
+      fx('fx.notes', x + 6, headY - 1);
     }
-    if (place.pose !== 'stand' && arrived && anim.action && t.agent.activity === 'lifting' && Math.floor(now / 1800) % 2 === 0) fx('fx.sweat', x + 10, headY);
-    if (flash === 'personal_best') fx('fx.sparkle', x, headY - 8);
-    if (flash === 'perfect') fx('fx.cheer', x, headY + 4);
+    if (place.pose !== 'stand' && arrived && anim.action && t.agent.activity === 'lifting' && Math.floor(now / 1800) % 2 === 0) fx('fx.sweat', x + 5, headY);
+    if (flash === 'personal_best') fx('fx.sparkle', x, headY - 4);
+    if (flash === 'perfect') fx('fx.cheer', x, headY + 2);
     if (flash === 'dropped') fx('fx.dust', x, y);
   }
 
@@ -302,7 +302,9 @@ export class GymRenderer {
   /** Names, line numbers, set progress and speech bubbles, at screen resolution. */
   private drawOverlay(ctx: CanvasRenderingContext2D, gym: GymSnapshot, state: ViewState, now: number): void {
     const z = this.zoom;
-    const size = Math.max(10, Math.round(5.5 * z));
+    /** Half an art pixel on screen: text and UI keep their size while the art got chunkier. */
+    const u = z / 2;
+    const size = Math.max(10, Math.round(5.5 * u));
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
     const ink = ENV.ink!;
@@ -312,10 +314,10 @@ export class GymRenderer {
     for (const m of gym.machines) {
       if (!m.set) continue;
       const s = machineSpot(m);
-      const w = 40 * z;
-      const h = 4 * z;
+      const w = 20 * z;
+      const h = 2 * z;
       const bx = s.x * z - w / 2;
-      const by = (s.y - 58) * z;
+      const by = (s.y - 29) * z;
       ctx.fillStyle = ink;
       ctx.fillRect(bx - z, by - z, w + 2 * z, h + 2 * z);
       ctx.fillStyle = ENV['gray-1']!;
@@ -339,11 +341,11 @@ export class GymRenderer {
       const t = this.tracked.get(id);
       if (!t) continue;
       const label = t.agent.name;
-      const tw = ctx.measureText(label).width + 6 * z;
+      const tw = ctx.measureText(label).width + 6 * u;
       const tx = p.x * z;
-      const ty = (p.y + 7) * z;
+      const ty = (p.y + 4) * z;
       ctx.fillStyle = id === this.selected ? ENV['yellow-2']! : ink;
-      roundRect(ctx, tx - tw / 2, ty - size * 0.6, tw, size * 1.2, 2 * z);
+      roundRect(ctx, tx - tw / 2, ty - size * 0.6, tw, size * 1.2, 2 * u);
       ctx.fill();
       ctx.fillStyle = id === this.selected ? ink : cream;
       ctx.fillText(label, tx, ty + 0.5);
@@ -353,8 +355,8 @@ export class GymRenderer {
       if (line && place >= 0 && !t.leaving) {
         // 1 means next up; the person offered the machine counts as ahead.
         const n = place + 1 + (line.offeredTo ? 1 : 0);
-        const r = 5 * z;
-        const cy = (p.y - 52) * z;
+        const r = 5 * u;
+        const cy = (p.y - 28) * z;
         ctx.fillStyle = ink;
         ctx.beginPath(); ctx.arc(tx, cy, r + z, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = ENV['yellow-2']!;
@@ -369,7 +371,7 @@ export class GymRenderer {
       const p = b.agentId === STAFF_ID ? MARK_SPOT : this.spots.get(b.agentId);
       if (!p) continue;
       const onMachine = this.tracked.get(b.agentId)?.agent.activity === 'lifting';
-      drawBubble(ctx, b, p.x * z, (p.y - (onMachine ? 62 : 52)) * z, z, size, Date.now());
+      drawBubble(ctx, b, p.x * z, (p.y - (onMachine ? 33 : 27)) * z, u, size, Date.now(), ROOM_PX.w * z);
     }
   }
 }
@@ -392,8 +394,8 @@ const wrap = (ctx: CanvasRenderingContext2D, text: string, max: number): string[
   return lines.slice(0, 4).map((l, i, all) => (i === 3 && all.length === 4 && lines.length > 4 ? `${l}…` : l));
 };
 
-/** Draws one speech bubble with its tail pointing down at (x, y). */
-const drawBubble = (ctx: CanvasRenderingContext2D, b: Bubble, x: number, y: number, z: number, size: number, now: number): void => {
+/** Draws one speech bubble with its tail pointing down at (x, y). `z` is the UI unit in screen pixels; `roomW` the room's width on screen. */
+const drawBubble = (ctx: CanvasRenderingContext2D, b: Bubble, x: number, y: number, z: number, size: number, now: number, roomW: number): void => {
   const ink = ENV.ink!;
   const text = b.text ?? '· · ·';
   ctx.font = `${size}px ${FONT}`;
@@ -402,7 +404,7 @@ const drawBubble = (ctx: CanvasRenderingContext2D, b: Bubble, x: number, y: numb
   const lh = size * 1.15;
   const h = lines.length * lh + 6 * z;
   const fade = Math.min(1, (b.until - now) / 400);
-  const bx = Math.min(Math.max(x - w / 2, 2 * z), ROOM_PX.w * z - w - 2 * z);
+  const bx = Math.min(Math.max(x - w / 2, 2 * z), roomW - w - 2 * z);
   const by = Math.max(2 * z, y - h);
   ctx.save();
   ctx.globalAlpha = Math.max(0, fade);

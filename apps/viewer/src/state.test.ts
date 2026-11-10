@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MACHINE_LAYOUT, type AgentView, type GymSnapshot } from '@benchmaxxers/shared';
+import { MACHINE_LAYOUT, type AgentView, type GymSnapshot, DEFAULT_APPEARANCE } from '@benchmaxxers/shared';
 import { STAFF_ID, applyEvent, emptyState, expire } from './state.js';
 
 /** A gym with no one in it. */
@@ -11,7 +11,7 @@ const snapshot = (): GymSnapshot => ({
 
 /** An agent standing at the front desk. */
 const agent = (id: string, name: string, extra: Partial<AgentView> = {}): AgentView => ({
-  id, name, model: 'claude-sonnet-4-6', league: 'medium', build: 1, stats: { strength: 30, stamina: 10, flexibility: 5 },
+  id, name, model: 'claude-sonnet-4-6', league: 'medium', build: 1, appearance: DEFAULT_APPEARANCE, stats: { strength: 30, stamina: 10, flexibility: 5 },
   streak: 0, area: 'front_desk', activity: 'idle', machine: null, line: null, headphones: null, ...extra,
 });
 
