@@ -22,36 +22,36 @@ export const ROOM_PX = { w: ROOM.cols * ROOM.tile, h: ROOM.rows * ROOM.tile } as
 export const WALL_ROWS = 2;
 
 /** Where people come in and go out: the door in the back wall above the front desk. */
-export const DOOR: Point = { x: 3 * ROOM.tile, y: WALL_ROWS * ROOM.tile + 3 };
+export const DOOR: Point = { x: 3 * ROOM.tile, y: WALL_ROWS * ROOM.tile + 6 };
 
 /** The pose for someone using each machine. */
 const POSE_FOR: Record<MachineKind, Pose> = { bench: 'bench', treadmill: 'run', yoga_mat: 'yoga' };
 
 /** The floor point a machine stands on (its sprite anchor). */
-export const machineSpot = (m: Pick<MachineView, 'x' | 'y'>): Point => ({ x: m.x * ROOM.tile + ROOM.tile, y: m.y * ROOM.tile + 20 });
+export const machineSpot = (m: Pick<MachineView, 'x' | 'y'>): Point => ({ x: m.x * ROOM.tile + ROOM.tile, y: m.y * ROOM.tile + 40 });
 
 /** Where the person whose turn is next stands, beside the machine. */
 const besideSpot = (m: MachineView): Point => {
   const s = machineSpot(m);
-  return { x: s.x - 20, y: s.y };
+  return { x: s.x - 40, y: s.y };
 };
 
 /** Where the n-th person (0 = first) waiting in a machine's line stands. */
 export const lineSpot = (m: MachineView, n: number): Point => {
   const s = machineSpot(m);
-  return { x: s.x - 15 + n * 8, y: s.y + 14 };
+  return { x: s.x - 30 + n * 16, y: s.y + 28 };
 };
 
 /** A free standing spot inside an area, the n-th of the agents loitering there. */
 export const areaSpot = (area: AgentView['area'], n: number, agentId: string): Point => {
   const r = AREA_RECTS[area];
-  const left = r.x * ROOM.tile + 8;
-  const top = Math.max(r.y, WALL_ROWS) * ROOM.tile + 22;
-  const cols = Math.max(1, Math.floor((r.w * ROOM.tile - 12) / 13));
-  const rows = Math.max(1, Math.floor((r.h * ROOM.tile - 20) / 15));
+  const left = r.x * ROOM.tile + 16;
+  const top = Math.max(r.y, WALL_ROWS) * ROOM.tile + 44;
+  const cols = Math.max(1, Math.floor((r.w * ROOM.tile - 24) / 26));
+  const rows = Math.max(1, Math.floor((r.h * ROOM.tile - 40) / 30));
   const slot = n % (cols * rows);
-  const jitter = hashString(agentId) % 4;
-  return { x: left + (slot % cols) * 13 + jitter - 2, y: top + Math.floor(slot / cols) * 15 + (jitter % 2) };
+  const jitter = hashString(agentId) % 7;
+  return { x: left + (slot % cols) * 26 + jitter - 3, y: top + Math.floor(slot / cols) * 30 + (jitter % 3) };
 };
 
 /** Works out where every agent in the gym should be. */
@@ -84,7 +84,7 @@ export const placeAll = (gym: GymSnapshot): Map<string, Placement> => {
 };
 
 /** Walking speed in art pixels per second. */
-export const WALK_SPEED = 36;
+export const WALK_SPEED = 72;
 
 /** One agent's on-screen position as it walks toward its placement. */
 export type Mover = Point & { facing: Placement['facing']; walking: boolean };

@@ -59,7 +59,7 @@ const main = (): void => {
     const anchorFlag = flags.get('anchor')?.split(',').map(Number);
     const anchor: [number, number] = anchorFlag && anchorFlag.length === 2
       ? [anchorFlag[0]!, anchorFlag[1]!]
-      : frame.height === 24 ? [8, 22] : [Math.floor(frame.width / 2), frame.height - 2];
+      : frame.height === 48 ? [16, 46] : [Math.floor(frame.width / 2), frame.height - 4];
     result = cleanStrip(img, palette, { frames, frameW: frame.width, frameH: frame.height, anchor, scale });
   } else if (cmd === 'sprite') {
     result = cleanSprite(img, palette, { ...parseSize(flags.get('size'), 'size'), scale });

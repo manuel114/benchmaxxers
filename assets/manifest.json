@@ -3,13 +3,13 @@
   "assets": {
     "char.build-0.idle_down": {
       "file": "characters/build-0/idle_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -17,13 +17,13 @@
     },
     "char.build-0.walk_down": {
       "file": "characters/build-0/walk_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -31,13 +31,13 @@
     },
     "char.build-0.idle_up": {
       "file": "characters/build-0/idle_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -45,13 +45,13 @@
     },
     "char.build-0.walk_up": {
       "file": "characters/build-0/walk_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -59,13 +59,13 @@
     },
     "char.build-0.idle_side": {
       "file": "characters/build-0/idle_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -73,13 +73,13 @@
     },
     "char.build-0.walk_side": {
       "file": "characters/build-0/walk_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -87,13 +87,13 @@
     },
     "char.build-0.wait_watch": {
       "file": "characters/build-0/wait_watch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -101,13 +101,13 @@
     },
     "char.build-0.wait_sip": {
       "file": "characters/build-0/wait_sip.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -115,13 +115,13 @@
     },
     "char.build-0.wait_stretch": {
       "file": "characters/build-0/wait_stretch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 4,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -129,13 +129,13 @@
     },
     "char.build-0.celebrate": {
       "file": "characters/build-0/celebrate.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -143,13 +143,13 @@
     },
     "char.build-0.bench_press": {
       "file": "characters/build-0/bench_press.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -157,13 +157,13 @@
     },
     "char.build-0.bench_fail": {
       "file": "characters/build-0/bench_fail.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -171,13 +171,13 @@
     },
     "char.build-0.run": {
       "file": "characters/build-0/run.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 12,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -185,13 +185,13 @@
     },
     "char.build-0.yoga_tree": {
       "file": "characters/build-0/yoga_tree.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -199,13 +199,13 @@
     },
     "char.build-0.yoga_warrior": {
       "file": "characters/build-0/yoga_warrior.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -213,13 +213,13 @@
     },
     "char.build-0.yoga_dog": {
       "file": "characters/build-0/yoga_dog.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -227,13 +227,13 @@
     },
     "char.build-1.idle_down": {
       "file": "characters/build-1/idle_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -241,13 +241,13 @@
     },
     "char.build-1.walk_down": {
       "file": "characters/build-1/walk_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -255,13 +255,13 @@
     },
     "char.build-1.idle_up": {
       "file": "characters/build-1/idle_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -269,13 +269,13 @@
     },
     "char.build-1.walk_up": {
       "file": "characters/build-1/walk_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -283,13 +283,13 @@
     },
     "char.build-1.idle_side": {
       "file": "characters/build-1/idle_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -297,13 +297,13 @@
     },
     "char.build-1.walk_side": {
       "file": "characters/build-1/walk_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -311,13 +311,13 @@
     },
     "char.build-1.wait_watch": {
       "file": "characters/build-1/wait_watch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -325,13 +325,13 @@
     },
     "char.build-1.wait_sip": {
       "file": "characters/build-1/wait_sip.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -339,13 +339,13 @@
     },
     "char.build-1.wait_stretch": {
       "file": "characters/build-1/wait_stretch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 4,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -353,13 +353,13 @@
     },
     "char.build-1.celebrate": {
       "file": "characters/build-1/celebrate.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -367,13 +367,13 @@
     },
     "char.build-1.bench_press": {
       "file": "characters/build-1/bench_press.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -381,13 +381,13 @@
     },
     "char.build-1.bench_fail": {
       "file": "characters/build-1/bench_fail.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -395,13 +395,13 @@
     },
     "char.build-1.run": {
       "file": "characters/build-1/run.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 12,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -409,13 +409,13 @@
     },
     "char.build-1.yoga_tree": {
       "file": "characters/build-1/yoga_tree.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -423,13 +423,13 @@
     },
     "char.build-1.yoga_warrior": {
       "file": "characters/build-1/yoga_warrior.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -437,13 +437,13 @@
     },
     "char.build-1.yoga_dog": {
       "file": "characters/build-1/yoga_dog.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -451,13 +451,13 @@
     },
     "char.build-2.idle_down": {
       "file": "characters/build-2/idle_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -465,13 +465,13 @@
     },
     "char.build-2.walk_down": {
       "file": "characters/build-2/walk_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -479,13 +479,13 @@
     },
     "char.build-2.idle_up": {
       "file": "characters/build-2/idle_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -493,13 +493,13 @@
     },
     "char.build-2.walk_up": {
       "file": "characters/build-2/walk_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -507,13 +507,13 @@
     },
     "char.build-2.idle_side": {
       "file": "characters/build-2/idle_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -521,13 +521,13 @@
     },
     "char.build-2.walk_side": {
       "file": "characters/build-2/walk_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -535,13 +535,13 @@
     },
     "char.build-2.wait_watch": {
       "file": "characters/build-2/wait_watch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -549,13 +549,13 @@
     },
     "char.build-2.wait_sip": {
       "file": "characters/build-2/wait_sip.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -563,13 +563,13 @@
     },
     "char.build-2.wait_stretch": {
       "file": "characters/build-2/wait_stretch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 4,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -577,13 +577,13 @@
     },
     "char.build-2.celebrate": {
       "file": "characters/build-2/celebrate.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -591,13 +591,13 @@
     },
     "char.build-2.bench_press": {
       "file": "characters/build-2/bench_press.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -605,13 +605,13 @@
     },
     "char.build-2.bench_fail": {
       "file": "characters/build-2/bench_fail.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -619,13 +619,13 @@
     },
     "char.build-2.run": {
       "file": "characters/build-2/run.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 12,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -633,13 +633,13 @@
     },
     "char.build-2.yoga_tree": {
       "file": "characters/build-2/yoga_tree.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -647,13 +647,13 @@
     },
     "char.build-2.yoga_warrior": {
       "file": "characters/build-2/yoga_warrior.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -661,13 +661,13 @@
     },
     "char.build-2.yoga_dog": {
       "file": "characters/build-2/yoga_dog.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -675,13 +675,13 @@
     },
     "char.build-3.idle_down": {
       "file": "characters/build-3/idle_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -689,13 +689,13 @@
     },
     "char.build-3.walk_down": {
       "file": "characters/build-3/walk_down.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -703,13 +703,13 @@
     },
     "char.build-3.idle_up": {
       "file": "characters/build-3/idle_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -717,13 +717,13 @@
     },
     "char.build-3.walk_up": {
       "file": "characters/build-3/walk_up.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -731,13 +731,13 @@
     },
     "char.build-3.idle_side": {
       "file": "characters/build-3/idle_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -745,13 +745,13 @@
     },
     "char.build-3.walk_side": {
       "file": "characters/build-3/walk_side.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -759,13 +759,13 @@
     },
     "char.build-3.wait_watch": {
       "file": "characters/build-3/wait_watch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -773,13 +773,13 @@
     },
     "char.build-3.wait_sip": {
       "file": "characters/build-3/wait_sip.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -787,13 +787,13 @@
     },
     "char.build-3.wait_stretch": {
       "file": "characters/build-3/wait_stretch.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 4,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -801,13 +801,13 @@
     },
     "char.build-3.celebrate": {
       "file": "characters/build-3/celebrate.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 4,
       "fps": 10,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "character",
       "phase": "v1",
@@ -815,13 +815,13 @@
     },
     "char.build-3.bench_press": {
       "file": "characters/build-3/bench_press.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -829,13 +829,13 @@
     },
     "char.build-3.bench_fail": {
       "file": "characters/build-3/bench_fail.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -843,13 +843,13 @@
     },
     "char.build-3.run": {
       "file": "characters/build-3/run.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 4,
       "fps": 12,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -857,13 +857,13 @@
     },
     "char.build-3.yoga_tree": {
       "file": "characters/build-3/yoga_tree.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -871,13 +871,13 @@
     },
     "char.build-3.yoga_warrior": {
       "file": "characters/build-3/yoga_warrior.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -885,13 +885,13 @@
     },
     "char.build-3.yoga_dog": {
       "file": "characters/build-3/yoga_dog.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 2,
       "fps": 3,
       "anchor": [
-        16,
-        30
+        32,
+        60
       ],
       "palette": "character",
       "phase": "v1",
@@ -899,8 +899,8 @@
     },
     "tile.floor_rubber_1": {
       "file": "tiles/floor_rubber_1.png",
-      "width": 16,
-      "height": 16,
+      "width": 32,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -913,8 +913,8 @@
     },
     "tile.floor_rubber_2": {
       "file": "tiles/floor_rubber_2.png",
-      "width": 16,
-      "height": 16,
+      "width": 32,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -927,8 +927,8 @@
     },
     "tile.floor_wood_1": {
       "file": "tiles/floor_wood_1.png",
-      "width": 16,
-      "height": 16,
+      "width": 32,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -941,8 +941,8 @@
     },
     "tile.floor_wood_2": {
       "file": "tiles/floor_wood_2.png",
-      "width": 16,
-      "height": 16,
+      "width": 32,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -955,8 +955,8 @@
     },
     "tile.floor_mat_pink": {
       "file": "tiles/floor_mat_pink.png",
-      "width": 16,
-      "height": 16,
+      "width": 32,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -969,8 +969,8 @@
     },
     "tile.floor_mat_teal": {
       "file": "tiles/floor_mat_teal.png",
-      "width": 16,
-      "height": 16,
+      "width": 32,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -983,8 +983,8 @@
     },
     "tile.wall_back": {
       "file": "tiles/wall_back.png",
-      "width": 16,
-      "height": 32,
+      "width": 32,
+      "height": 64,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -997,8 +997,8 @@
     },
     "tile.wall_window": {
       "file": "tiles/wall_window.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1011,8 +1011,8 @@
     },
     "tile.wall_door": {
       "file": "tiles/wall_door.png",
-      "width": 32,
-      "height": 32,
+      "width": 64,
+      "height": 64,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1025,8 +1025,8 @@
     },
     "tile.wall_side": {
       "file": "tiles/wall_side.png",
-      "width": 4,
-      "height": 16,
+      "width": 8,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1039,8 +1039,8 @@
     },
     "tile.wall_front": {
       "file": "tiles/wall_front.png",
-      "width": 16,
-      "height": 4,
+      "width": 32,
+      "height": 8,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1053,13 +1053,13 @@
     },
     "prop.front_desk": {
       "file": "props/front_desk.png",
-      "width": 48,
-      "height": 32,
+      "width": 96,
+      "height": 64,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        24,
-        30
+        48,
+        62
       ],
       "palette": "environment",
       "phase": "v1",
@@ -1067,13 +1067,13 @@
     },
     "prop.lockers": {
       "file": "props/lockers.png",
-      "width": 16,
-      "height": 32,
+      "width": 32,
+      "height": 64,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        8,
-        30
+        16,
+        62
       ],
       "palette": "environment",
       "phase": "v1",
@@ -1081,13 +1081,13 @@
     },
     "prop.locker_room_door": {
       "file": "props/locker_room_door.png",
-      "width": 16,
-      "height": 32,
+      "width": 32,
+      "height": 64,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        8,
-        30
+        16,
+        62
       ],
       "palette": "environment",
       "phase": "v1",
@@ -1095,13 +1095,13 @@
     },
     "prop.water_cooler": {
       "file": "props/water_cooler.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "environment",
       "phase": "v1",
@@ -1109,13 +1109,13 @@
     },
     "prop.plant_big": {
       "file": "props/plant_big.png",
-      "width": 16,
-      "height": 24,
+      "width": 32,
+      "height": 48,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        8,
-        22
+        16,
+        46
       ],
       "palette": "environment",
       "phase": "v1",
@@ -1123,244 +1123,6 @@
     },
     "prop.plant_small": {
       "file": "props/plant_small.png",
-      "width": 16,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        8,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.speaker": {
-      "file": "props/speaker.png",
-      "width": 16,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        8,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.mirror": {
-      "file": "props/mirror.png",
-      "width": 32,
-      "height": 24,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        22
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.poster_dumbbell": {
-      "file": "props/poster_dumbbell.png",
-      "width": 16,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        8,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.poster_heart": {
-      "file": "props/poster_heart.png",
-      "width": 16,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        8,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.poster_bolt": {
-      "file": "props/poster_bolt.png",
-      "width": 16,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        8,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.clock": {
-      "file": "props/clock.png",
-      "width": 16,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        8,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.dumbbell_rack": {
-      "file": "props/dumbbell_rack.png",
-      "width": 32,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.kettlebells": {
-      "file": "props/kettlebells.png",
-      "width": 16,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        8,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.bench_back": {
-      "file": "props/bench_back.png",
-      "width": 32,
-      "height": 24,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        22
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.bench_bar": {
-      "file": "props/bench_bar.png",
-      "width": 32,
-      "height": 12,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        10
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.treadmill_back": {
-      "file": "props/treadmill_back.png",
-      "width": 32,
-      "height": 24,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        22
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.treadmill_front": {
-      "file": "props/treadmill_front.png",
-      "width": 32,
-      "height": 24,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        22
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.yoga_mat_pink": {
-      "file": "props/yoga_mat_pink.png",
-      "width": 32,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.yoga_mat_teal": {
-      "file": "props/yoga_mat_teal.png",
-      "width": 32,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.yoga_mat_purple": {
-      "file": "props/yoga_mat_purple.png",
-      "width": 32,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.yoga_mat_green": {
-      "file": "props/yoga_mat_green.png",
-      "width": 32,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        14
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "prop.squat_rack": {
-      "file": "props/squat_rack.png",
       "width": 32,
       "height": 32,
       "frames": 1,
@@ -1370,39 +1132,249 @@
         30
       ],
       "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.speaker": {
+      "file": "props/speaker.png",
+      "width": 32,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        16,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.mirror": {
+      "file": "props/mirror.png",
+      "width": 64,
+      "height": 48,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        46
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.poster_dumbbell": {
+      "file": "props/poster_dumbbell.png",
+      "width": 32,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        16,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.poster_heart": {
+      "file": "props/poster_heart.png",
+      "width": 32,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        16,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.poster_bolt": {
+      "file": "props/poster_bolt.png",
+      "width": 32,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        16,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.clock": {
+      "file": "props/clock.png",
+      "width": 32,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        16,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.dumbbell_rack": {
+      "file": "props/dumbbell_rack.png",
+      "width": 64,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.kettlebells": {
+      "file": "props/kettlebells.png",
+      "width": 32,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        16,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.bench_back": {
+      "file": "props/bench_back.png",
+      "width": 64,
+      "height": 48,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        46
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.bench_bar": {
+      "file": "props/bench_bar.png",
+      "width": 64,
+      "height": 24,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        22
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.treadmill_back": {
+      "file": "props/treadmill_back.png",
+      "width": 64,
+      "height": 48,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        46
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.treadmill_front": {
+      "file": "props/treadmill_front.png",
+      "width": 64,
+      "height": 48,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        46
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.yoga_mat_pink": {
+      "file": "props/yoga_mat_pink.png",
+      "width": 64,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.yoga_mat_teal": {
+      "file": "props/yoga_mat_teal.png",
+      "width": 64,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.yoga_mat_purple": {
+      "file": "props/yoga_mat_purple.png",
+      "width": 64,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.yoga_mat_green": {
+      "file": "props/yoga_mat_green.png",
+      "width": 64,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        30
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "prop.squat_rack": {
+      "file": "props/squat_rack.png",
+      "width": 64,
+      "height": 64,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        62
+      ],
+      "palette": "environment",
       "phase": "later",
       "present": false
     },
     "prop.leg_press": {
       "file": "props/leg_press.png",
-      "width": 32,
-      "height": 24,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        22
-      ],
-      "palette": "environment",
-      "phase": "later",
-      "present": false
-    },
-    "prop.rower": {
-      "file": "props/rower.png",
-      "width": 32,
-      "height": 16,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        16,
-        14
-      ],
-      "palette": "environment",
-      "phase": "later",
-      "present": false
-    },
-    "prop.sparring_ring": {
-      "file": "props/sparring_ring.png",
       "width": 64,
       "height": 48,
       "frames": 1,
@@ -1415,15 +1387,43 @@
       "phase": "later",
       "present": false
     },
+    "prop.rower": {
+      "file": "props/rower.png",
+      "width": 64,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        32,
+        30
+      ],
+      "palette": "environment",
+      "phase": "later",
+      "present": false
+    },
+    "prop.sparring_ring": {
+      "file": "props/sparring_ring.png",
+      "width": 128,
+      "height": 96,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        64,
+        94
+      ],
+      "palette": "environment",
+      "phase": "later",
+      "present": false
+    },
     "fx.sweat": {
       "file": "fx/sweat.png",
-      "width": 8,
-      "height": 8,
+      "width": 16,
+      "height": 16,
       "frames": 4,
       "fps": 8,
       "anchor": [
-        4,
-        7
+        8,
+        15
       ],
       "palette": "environment",
       "phase": "v1",
@@ -1431,6 +1431,34 @@
     },
     "fx.cheer": {
       "file": "fx/cheer.png",
+      "width": 32,
+      "height": 32,
+      "frames": 4,
+      "fps": 10,
+      "anchor": [
+        16,
+        31
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "fx.dust": {
+      "file": "fx/dust.png",
+      "width": 32,
+      "height": 16,
+      "frames": 4,
+      "fps": 10,
+      "anchor": [
+        16,
+        15
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "fx.sparkle": {
+      "file": "fx/sparkle.png",
       "width": 16,
       "height": 16,
       "frames": 4,
@@ -1443,43 +1471,15 @@
       "phase": "v1",
       "present": false
     },
-    "fx.dust": {
-      "file": "fx/dust.png",
-      "width": 16,
-      "height": 8,
-      "frames": 4,
-      "fps": 10,
-      "anchor": [
-        8,
-        7
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "fx.sparkle": {
-      "file": "fx/sparkle.png",
-      "width": 8,
-      "height": 8,
-      "frames": 4,
-      "fps": 10,
-      "anchor": [
-        4,
-        7
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
     "fx.notes": {
       "file": "fx/notes.png",
-      "width": 8,
-      "height": 8,
+      "width": 16,
+      "height": 16,
       "frames": 4,
       "fps": 6,
       "anchor": [
-        4,
-        7
+        8,
+        15
       ],
       "palette": "environment",
       "phase": "v1",
@@ -1487,13 +1487,13 @@
     },
     "fx.headphones_down": {
       "file": "fx/headphones_down.png",
-      "width": 10,
-      "height": 6,
+      "width": 20,
+      "height": 12,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        5,
-        5
+        10,
+        11
       ],
       "palette": "character",
       "phase": "v1",
@@ -1501,13 +1501,13 @@
     },
     "fx.headphones_up": {
       "file": "fx/headphones_up.png",
-      "width": 10,
-      "height": 6,
+      "width": 20,
+      "height": 12,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        5,
-        5
+        10,
+        11
       ],
       "palette": "character",
       "phase": "v1",
@@ -1515,13 +1515,13 @@
     },
     "fx.headphones_side": {
       "file": "fx/headphones_side.png",
-      "width": 10,
-      "height": 6,
+      "width": 20,
+      "height": 12,
       "frames": 1,
       "fps": 0,
       "anchor": [
-        5,
-        5
+        10,
+        11
       ],
       "palette": "character",
       "phase": "v1",
@@ -1529,8 +1529,8 @@
     },
     "ui.bubble": {
       "file": "ui/bubble.png",
-      "width": 12,
-      "height": 12,
+      "width": 24,
+      "height": 24,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1543,8 +1543,8 @@
     },
     "ui.bubble_tail": {
       "file": "ui/bubble_tail.png",
-      "width": 4,
-      "height": 3,
+      "width": 8,
+      "height": 6,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1557,8 +1557,8 @@
     },
     "ui.bubble_whisper": {
       "file": "ui/bubble_whisper.png",
-      "width": 12,
-      "height": 12,
+      "width": 24,
+      "height": 24,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1571,8 +1571,8 @@
     },
     "ui.bubble_shout": {
       "file": "ui/bubble_shout.png",
-      "width": 16,
-      "height": 16,
+      "width": 32,
+      "height": 32,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1585,8 +1585,8 @@
     },
     "ui.name_tag": {
       "file": "ui/name_tag.png",
-      "width": 8,
-      "height": 6,
+      "width": 16,
+      "height": 12,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1599,8 +1599,8 @@
     },
     "ui.line_badge": {
       "file": "ui/line_badge.png",
-      "width": 6,
-      "height": 6,
+      "width": 12,
+      "height": 12,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1613,8 +1613,8 @@
     },
     "ui.progress_frame": {
       "file": "ui/progress_frame.png",
-      "width": 12,
-      "height": 4,
+      "width": 24,
+      "height": 8,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1627,8 +1627,8 @@
     },
     "ui.progress_fill": {
       "file": "ui/progress_fill.png",
-      "width": 2,
-      "height": 2,
+      "width": 4,
+      "height": 4,
       "frames": 1,
       "fps": 0,
       "anchor": [
@@ -1641,160 +1641,6 @@
     },
     "ui.icon_headphones": {
       "file": "ui/icon_headphones.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "ui.icon_note": {
-      "file": "ui/icon_note.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "ui.icon_dumbbell": {
-      "file": "ui/icon_dumbbell.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "ui.icon_heart": {
-      "file": "ui/icon_heart.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "ui.icon_leaf": {
-      "file": "ui/icon_leaf.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "ui.icon_flame": {
-      "file": "ui/icon_flame.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "ui.icon_trophy": {
-      "file": "ui/icon_trophy.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "ui.icon_clock": {
-      "file": "ui/icon_clock.png",
-      "width": 8,
-      "height": 8,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "npc.mark.idle": {
-      "file": "characters/npc-mark/idle_down.png",
-      "width": 16,
-      "height": 24,
-      "frames": 4,
-      "fps": 6,
-      "anchor": [
-        8,
-        22
-      ],
-      "palette": "character",
-      "phase": "v1",
-      "present": false
-    },
-    "npc.mark.wave": {
-      "file": "characters/npc-mark/wave_down.png",
-      "width": 16,
-      "height": 24,
-      "frames": 4,
-      "fps": 8,
-      "anchor": [
-        8,
-        22
-      ],
-      "palette": "character",
-      "phase": "v1",
-      "present": false
-    },
-    "brand.logo": {
-      "file": "brand/logo.png",
-      "width": 128,
-      "height": 32,
-      "frames": 1,
-      "fps": 0,
-      "anchor": [
-        0,
-        0
-      ],
-      "palette": "environment",
-      "phase": "v1",
-      "present": false
-    },
-    "brand.mark": {
-      "file": "brand/mark.png",
       "width": 16,
       "height": 16,
       "frames": 1,
@@ -1807,10 +1653,164 @@
       "phase": "v1",
       "present": false
     },
+    "ui.icon_note": {
+      "file": "ui/icon_note.png",
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "ui.icon_dumbbell": {
+      "file": "ui/icon_dumbbell.png",
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "ui.icon_heart": {
+      "file": "ui/icon_heart.png",
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "ui.icon_leaf": {
+      "file": "ui/icon_leaf.png",
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "ui.icon_flame": {
+      "file": "ui/icon_flame.png",
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "ui.icon_trophy": {
+      "file": "ui/icon_trophy.png",
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "ui.icon_clock": {
+      "file": "ui/icon_clock.png",
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "npc.mark.idle": {
+      "file": "characters/npc-mark/idle_down.png",
+      "width": 32,
+      "height": 48,
+      "frames": 4,
+      "fps": 6,
+      "anchor": [
+        16,
+        46
+      ],
+      "palette": "character",
+      "phase": "v1",
+      "present": false
+    },
+    "npc.mark.wave": {
+      "file": "characters/npc-mark/wave_down.png",
+      "width": 32,
+      "height": 48,
+      "frames": 4,
+      "fps": 8,
+      "anchor": [
+        16,
+        46
+      ],
+      "palette": "character",
+      "phase": "v1",
+      "present": false
+    },
+    "brand.logo": {
+      "file": "brand/logo.png",
+      "width": 256,
+      "height": 64,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
+    "brand.mark": {
+      "file": "brand/mark.png",
+      "width": 32,
+      "height": 32,
+      "frames": 1,
+      "fps": 0,
+      "anchor": [
+        0,
+        0
+      ],
+      "palette": "environment",
+      "phase": "v1",
+      "present": false
+    },
     "brand.recap_bg": {
       "file": "brand/recap_bg.png",
-      "width": 200,
-      "height": 105,
+      "width": 300,
+      "height": 157,
       "frames": 1,
       "fps": 0,
       "anchor": [

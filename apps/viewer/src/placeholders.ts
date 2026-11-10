@@ -3,10 +3,6 @@
  * exist. Every placeholder has the exact size, frame count and anchor from
  * the asset list and uses only palette colours, so the game code built
  * against it works unchanged when the real art lands in assets/.
- *
- * The shapes below are drawn at twice the 16-bit size (the numbers in them
- * are double-size art pixels), then halved and outlined, so they come out as
- * chunky as the style guide asks.
  */
 import type { AssetDef } from '@benchmaxxers/shared/assets';
 import { CHAR, ENV, Pixels } from './pixels.js';
@@ -46,7 +42,7 @@ type Arms = 'down' | 'watch' | 'sip' | 'stretch_l' | 'stretch_r' | 'fist' | 'up'
 type Pose = { dir: Dir; bob?: number; lift?: number; stride?: number; arms?: Arms; tank?: boolean };
 
 /** Paints one 32 × 48 character frame with feet on row 46, centred on column 16. */
-export const drawFigure = (build: 0 | 1 | 2 | 3, pose: Pose, outline = true): Pixels => {
+export const drawFigure = (build: 0 | 1 | 2 | 3, pose: Pose): Pixels => {
   const px = new Pixels(32, 48);
   const b = BODY[build];
   const lift = pose.lift ?? 0;
@@ -155,10 +151,9 @@ export const drawFigure = (build: 0 | 1 | 2 | 3, pose: Pose, outline = true): Pi
     }
   }
 
-  if (outline) {
-    px.outline(C.ink);
-    for (let x = 0; x < 32; x++) px.clear(x, 47);
-  }
+  px.outline(C.ink);
+  // Keep the two rows under the feet empty, as the style guide asks.
+  for (let y = 47; y < 48; y++) for (let x = 0; x < 32; x++) px.clear(x, y);
   return px;
 };
 
@@ -176,7 +171,7 @@ const drawAction = (build: 0 | 1 | 2 | 3, kind: string, frame: number): Pixels =
   const tank = build === 3;
   if (kind === 'bench_press' || kind === 'bench_fail') {
     // The standing figure turned to lie on its back, head on the left.
-    const lying = drawFigure(build, { dir: 'down', arms: 'down', tank }, false).rotateLeft();
+    const lying = drawFigure(build, { dir: 'down', arms: 'down', tank }).rotateLeft();
     // Lying figure is 48 wide × 32 tall; the bench top sits around row 38.
     px.paste(lying, 8, 22);
     const press = kind === 'bench_press' ? [0, 4, 8, 4][frame]! : [6, 3, 1, 0][frame]!;
@@ -189,20 +184,20 @@ const drawAction = (build: 0 | 1 | 2 | 3, kind: string, frame: number): Pixels =
   }
   const stride = [2, 0, -2, 0][frame % 4]!;
   if (kind === 'run') {
-    const fig = drawFigure(build, { dir: 'side', stride, bob: frame % 2, tank }, false);
+    const fig = drawFigure(build, { dir: 'side', stride, bob: frame % 2, tank });
     px.paste(fig, 16, 14);
     return px;
   }
   if (kind === 'yoga_tree') {
-    px.paste(drawFigure(build, { dir: 'down', arms: 'up', bob: frame, tank }, false), 16, 14);
+    px.paste(drawFigure(build, { dir: 'down', arms: 'up', bob: frame, tank }), 16, 14);
     return px;
   }
   if (kind === 'yoga_warrior') {
-    px.paste(drawFigure(build, { dir: 'side', stride: 3, arms: 'out', bob: frame, tank }, false), 16, 14);
+    px.paste(drawFigure(build, { dir: 'side', stride: 3, arms: 'out', bob: frame, tank }), 16, 14);
     return px;
   }
   // Downward dog: hands and feet on the floor, hips up.
-  const rot = drawFigure(build, { dir: 'side', arms: 'up', tank }, false).rotateLeft();
+  const rot = drawFigure(build, { dir: 'side', arms: 'up', tank }).rotateLeft();
   px.paste(rot, 8 + frame, 28);
   return px;
 };
@@ -212,12 +207,12 @@ const characterFrame = (build: 0 | 1 | 2 | 3, anim: string, frame: number): Pixe
   const tank = build === 3;
   const [verb, dirRaw] = anim.split('_') as [string, string | undefined];
   const dir: Dir = dirRaw === 'up' ? 'up' : dirRaw === 'side' ? 'side' : 'down';
-  if (verb === 'idle') return drawFigure(build, { dir, bob: frame === 1 || frame === 2 ? 1 : 0, tank }, false);
-  if (verb === 'walk') return drawFigure(build, { dir, stride: [1, 0, -1, 0][frame]!, bob: frame % 2, tank }, false);
-  if (anim === 'wait_watch') return drawFigure(build, { dir: 'down', arms: frame === 0 ? 'down' : 'watch', tank }, false);
-  if (anim === 'wait_sip') return drawFigure(build, { dir: 'down', arms: frame === 0 || frame === 3 ? 'down' : 'sip', tank }, false);
-  if (anim === 'wait_stretch') return drawFigure(build, { dir: 'down', arms: frame < 2 ? 'stretch_l' : 'stretch_r', tank }, false);
-  if (anim === 'celebrate') return drawFigure(build, { dir: 'down', arms: frame % 2 === 0 ? 'down' : 'fist', lift: frame === 1 || frame === 2 ? 2 : 0, tank }, false);
+  if (verb === 'idle') return drawFigure(build, { dir, bob: frame === 1 || frame === 2 ? 1 : 0, tank });
+  if (verb === 'walk') return drawFigure(build, { dir, stride: [1, 0, -1, 0][frame]!, bob: frame % 2, tank });
+  if (anim === 'wait_watch') return drawFigure(build, { dir: 'down', arms: frame === 0 ? 'down' : 'watch', tank });
+  if (anim === 'wait_sip') return drawFigure(build, { dir: 'down', arms: frame === 0 || frame === 3 ? 'down' : 'sip', tank });
+  if (anim === 'wait_stretch') return drawFigure(build, { dir: 'down', arms: frame < 2 ? 'stretch_l' : 'stretch_r', tank });
+  if (anim === 'celebrate') return drawFigure(build, { dir: 'down', arms: frame % 2 === 0 ? 'down' : 'fist', lift: frame === 1 || frame === 2 ? 2 : 0, tank });
   return drawAction(build, anim, frame);
 };
 
@@ -419,6 +414,7 @@ const drawProp = (id: string, w: number, h: number): Pixels => {
       shadow(w - 8);
       px.block(4, 4, w - 8, h - 8, E.gray);
   }
+  px.outline(E.ink);
   return px;
 };
 
@@ -482,55 +478,22 @@ const drawUi = (id: string, w: number, h: number): Pixels => {
     return px;
   }
   const fill = id === 'bubble_shout' ? E.yellow[2] : id === 'progress_fill' ? E.green[1] : id === 'line_badge' ? E.yellow[1] : id === 'name_tag' ? E.ink : E.cream;
-  if (w <= 2 || h <= 2) { px.rect(0, 0, w, h, fill); return px; }
   px.rect(1, 1, w - 2, h - 2, fill);
   px.outline(E.ink);
   return px;
-};
-
-/** Halves a double-size drawing: each 2 x 2 block becomes the colour most of it shows, or clear. Ties go to the darker colour. */
-export const halve = (src: Pixels): Pixels => {
-  const out = new Pixels(Math.ceil(src.width / 2), Math.ceil(src.height / 2));
-  for (let y = 0; y < out.height; y++) {
-    for (let x = 0; x < out.width; x++) {
-      const counts = new Map<string, number>();
-      for (const [dx, dy] of [[0, 0], [1, 0], [0, 1], [1, 1]] as const) {
-        const c = src.get(x * 2 + dx, y * 2 + dy);
-        if (c) counts.set(c, (counts.get(c) ?? 0) + 1);
-      }
-      const solid = [...counts.values()].reduce((a, b) => a + b, 0);
-      if (solid < 2) continue;
-      /** Rough brightness, to break ties toward the darker colour (keeps eyes and edges). */
-      const light = (hex: string) => { const n = Number.parseInt(hex.slice(1), 16); return ((n >> 16) & 255) + ((n >> 8) & 255) + (n & 255); };
-      const best = [...counts.entries()].sort((a, b) => b[1] - a[1] || light(a[0]) - light(b[0]))[0]![0];
-      out.set(x, y, best);
-    }
-  }
-  return out;
-};
-
-/** Halves a double-size drawing and outlines it in ink. `lift` moves it up, to keep an empty row under the feet. */
-const finish = (big: Pixels, ink: string | null, lift = 0): Pixels => {
-  const small = halve(big);
-  if (!ink) return small;
-  const out = new Pixels(small.width, small.height);
-  out.paste(small, 0, -lift);
-  out.outline(ink);
-  return out;
 };
 
 /** Paints one placeholder frame strip for an asset: all frames left to right, exact manifest size. */
 export const drawPlaceholder = (def: Pick<AssetDef, 'id' | 'width' | 'height' | 'frames'>): Pixels => {
   const strip = new Pixels(def.width * def.frames, def.height);
   const [group, a, b] = def.id.split('.') as [string, string, string | undefined];
-  const W = def.width * 2, H = def.height * 2;
   for (let f = 0; f < def.frames; f++) {
     let frame: Pixels;
-    if (group === 'char') frame = finish(characterFrame(Number(a!.split('-')[1]) as 0 | 1 | 2 | 3, b!, f), C.ink, def.width === 16 ? 1 : 0);
-    else if (group === 'npc') frame = finish(characterFrame(2, b === 'wave' ? 'celebrate' : 'idle_down', f), C.ink, 1);
-    else if (group === 'tile') frame = finish(drawTile(a!, W, H), null);
-    else if (group === 'prop') frame = finish(drawProp(a!, W, H), E.ink);
-    else if (group === 'fx') frame = finish(drawFx(a!, W, H, f), null);
+    if (group === 'char') frame = characterFrame(Number(a!.split('-')[1]) as 0 | 1 | 2 | 3, b!, f);
+    else if (group === 'npc') frame = characterFrame(2, b === 'wave' ? 'celebrate' : 'idle_down', f);
+    else if (group === 'tile') frame = drawTile(a!, def.width, def.height);
+    else if (group === 'prop') frame = drawProp(a!, def.width, def.height);
+    else if (group === 'fx') frame = drawFx(a!, def.width, def.height, f);
     else if (group === 'ui') frame = drawUi(a!, def.width, def.height);
     else { frame = new Pixels(def.width, def.height); frame.block(0, 0, def.width, def.height, E.yellow); }
     strip.paste(frame, f * def.width, 0);

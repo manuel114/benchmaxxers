@@ -66,8 +66,8 @@ describe('layout', () => {
   it('walks toward a target and snaps when it arrives', () => {
     let m = { x: 0, y: 0, facing: 'down' as const, walking: false };
     const moved = step(m, { x: 100, y: 0 }, 0.5);
-    expect(moved).toMatchObject({ x: 18, y: 0, facing: 'right', walking: true });
+    expect(moved).toMatchObject({ x: 36, y: 0, facing: 'right', walking: true });
     m = { ...moved, facing: 'down' as const };
-    expect(step(m, { x: 19, y: 0 }, 0.5)).toMatchObject({ x: 19, walking: false });
+    expect(step(m, { x: 37, y: 0 }, 0.5)).toMatchObject({ x: 37, walking: false });
   });
 });

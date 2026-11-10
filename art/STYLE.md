@@ -4,18 +4,18 @@ This is the rule book for every picture in the game. Every asset follows it, who
 
 ## The look in one paragraph
 
-Cosy, cute **16-bit pixel art**: big chunky square pixels, flat colours, clean dark outlines, like a Super Nintendo or Game Boy Advance RPG with an early-2000s free-game charm. Small sprites, few pixels, every pixel counts. The gym is warm and a bit silly: rubber floors, wooden benches, posters and plants. The agents are chunky little gym-goers with big heads, big eyes and visible muscles that grow as they train.
+Cosy, cute pixel art with a **16-bit console look**: square pixels, flat colours, chunky shapes and thick dark outlines, like a Super Nintendo RPG with an early-2000s free-game charm. The 16-bit feel comes from how things are drawn (big simple shapes, few tones), not from a tiny canvas: the grid stays at 32-pixel tiles so there is room for faces, hairstyles and outfits. The gym is warm and a bit silly: rubber floors, wooden benches, posters and plants. The agents are chunky little gym-goers with big heads, big eyes and visible muscles that grow as they train.
 
 ## Fixed numbers
 
 | Thing | Value |
 | --- | --- |
-| Tile size | 16 × 16 art pixels |
-| Gym room | 24 × 14 tiles (384 × 224 art pixels, about one Super Nintendo screen) |
-| On screen | Always a whole-number zoom (3×, 4×), never blurred |
-| Character frame | 16 wide × 24 tall |
-| Character action frame (on a machine) | 32 × 32 |
-| Character feet | Bottom of the feet (outline included) sits on row 22 of a 24-tall frame (1 empty row below) and is centred on column 8 |
+| Tile size | 32 × 32 art pixels |
+| Gym room | 24 × 14 tiles (768 × 448 art pixels) |
+| On screen | Always a whole-number zoom (2×, 3×), never blurred |
+| Character frame | 32 wide × 48 tall |
+| Character action frame (on a machine) | 64 × 64 |
+| Character feet | Bottom of the feet sits on row 46 of a 48-tall frame (2 empty rows below) and is centred on column 16 |
 | Background while generating | Solid `#FF00FF` magenta. Never use magenta in the art itself |
 | File type | PNG, fully transparent background after cleanup, every pixel either fully see-through or fully solid |
 
@@ -28,9 +28,10 @@ Cosy, cute **16-bit pixel art**: big chunky square pixels, flat colours, clean d
 ## Pixels
 
 - One art pixel is one square. No half pixels, no blur, no soft brushes, no anti-aliasing.
-- Shade with **3 tones per material** (shadow, base, light) from the palette ramps. No gradients.
+- Shade with **2 or 3 tones per material** (shadow, base, light) from the palette ramps. No gradients.
 - Dithering only on large flat areas (floor, walls), and only a 2-pixel checker between two neighbouring tones.
-- **Outlines**: 1 pixel, colour `ink` (`#2B2238`) around characters and around the outside of objects. Inside an object, separate parts with the darkest tone of that material, not with ink.
+- **Chunky 16-bit drawing**: build shapes from 2 × 2 pixel clusters. Use single pixels only for small details such as eye shine, highlights and buttons. Keep silhouettes square-ish and simple, and leave plenty of flat colour.
+- **Outlines**: 2 pixels thick, colour `ink` (`#2B2238`), around characters and around the outside of objects. Use 1 pixel only where 2 would swallow a detail (fingers, thin bars). Inside an object, separate parts with the darkest tone of that material, not with ink.
 - No pure black (`#000000`) and no pure white (`#FFFFFF`). Use `ink` and `cream`.
 
 ## Palettes
@@ -58,16 +59,16 @@ Never use a swap colour anywhere else. If the shirt's blue appears in the shoes,
 
 ## Characters
 
-- **Proportions**: cute and chunky. The head is about a third of the height (about 8 pixels tall). Eyes are 1 × 2 pixels of `ink`. A 1-pixel mouth, 1-pixel `blush` cheeks. At this size, suggest details with one or two pixels rather than drawing them.
+- **Proportions**: cute and chunky. The head is about a third of the height (about 16 pixels tall). Big eyes, 2 × 3 pixels in `ink` with a 1-pixel `cream` shine. Small mouth. `blush` cheeks.
 - **Gender-neutral body**, short-to-medium hair that stays inside the head shape (so the hair colour swap works), headband across the forehead, a wristband on each wrist, a top, shorts, shoes.
 - **Four builds**, chosen by the agent's strength. Same head and face in all four; only the body changes.
 
 | Build | Name | Body | Default top | Width at shoulders |
 | --- | --- | --- | --- | --- |
-| 0 | Noodle | Thin arms, slight slouch | Loose t-shirt | 7 px |
-| 1 | Toned | Normal arms, stands straight | Fitted t-shirt | 8 px |
-| 2 | Buff | Big arms, broad chest | Tight t-shirt | 10 px |
-| 3 | Maxxed | Huge arms, very broad, tiny legs (the joke) | Tank top | 13 px, arms may touch the frame edge |
+| 0 | Noodle | Thin arms, slight slouch | Loose t-shirt | 14 px |
+| 1 | Toned | Normal arms, stands straight | Fitted t-shirt | 16 px |
+| 2 | Buff | Big arms, broad chest | Tight t-shirt | 20 px |
+| 3 | Maxxed | Huge arms, very broad, tiny legs (the joke) | Tank top | 26 px |
 
 These are default reference outfits. Customization can choose a T-shirt, tank or
 hoodie and shorts, joggers or leggings independently of build. Garments follow
@@ -82,26 +83,26 @@ still use only `top-1..3`, and all bottoms only `bottoms-1..3`. See
 
 | Animation | Directions | Frames | Speed | Notes |
 | --- | --- | --- | --- | --- |
-| Idle | down, up, side | 4 | 6 per second | Breathing: 1-pixel rise of the head on frames 2 and 3 |
+| Idle | down, up, side | 4 | 6 per second | Breathing: 1-pixel rise of head and chest on frames 2 and 3 |
 | Walk | down, up, side | 4 | 10 per second | Contact, pass, contact, pass. 1-pixel head bob on pass frames |
 | Wait: check watch | down | 4 | 6 per second | Lifts wrist, looks, lowers |
 | Wait: sip water | down | 4 | 6 per second | Holds bottle (metal colours), sips |
 | Wait: stretch | down | 4 | 4 per second | Arm stretch overhead. Used by flexible agents |
 | Celebrate | down | 4 | 10 per second | Fist pump, little jump |
-| Bench press | on bench | 4 | 8 per second | 32 × 32 frame. Lying on the back, head to the left, barbell up and down. The bench is a separate sprite |
+| Bench press | on bench | 4 | 8 per second | 64 × 64 frame. Lying on the back, head to the left, barbell up and down. The bench is a separate sprite |
 | Drop the bar | on bench | 4 | 8 per second | Bar sinks onto the chest, arms flail, sweat drop |
-| Run | on treadmill, side | 4 | 12 per second | 32 × 32 frame, faces right |
-| Yoga: tree | on mat, down | 2 | 3 per second | 32 × 32 frame, gentle breathing |
-| Yoga: warrior | on mat, side | 2 | 3 per second | 32 × 32 frame |
-| Yoga: downward dog | on mat, side | 2 | 3 per second | 32 × 32 frame |
+| Run | on treadmill, side | 4 | 12 per second | 64 × 64 frame, faces right |
+| Yoga: tree | on mat, down | 2 | 3 per second | 64 × 64 frame, gentle breathing |
+| Yoga: warrior | on mat, side | 2 | 3 per second | 64 × 64 frame |
+| Yoga: downward dog | on mat, side | 2 | 3 per second | 64 × 64 frame |
 
-Every frame of one animation keeps the same head size and the same feet line. Anything that changes between frames should change by 1 pixel, not jump.
+Every frame of one animation keeps the same head size and the same feet line. Anything that changes between frames should change by 1 or 2 pixels, not jump.
 
 ## Environment
 
 - Floor: dark rubber in the weights area, wood in the cardio row and front, pastel rubber squares on the mats.
 - Walls: light grey-lilac (`gray-4`) with a wooden skirting board and big windows letting in blue light (`blue-4`).
-- Props are chunky and readable at 3× zoom: a name should be guessable from the silhouette alone.
+- Props are chunky and readable at 2× zoom: a name should be guessable from the silhouette alone.
 - Machines are split into **back** and **front** layers when a character sits inside them, so the game can draw back layer, then character, then front layer. The asset list says which ones.
 
 ## UI and text
@@ -115,4 +116,4 @@ Every frame of one animation keeps the same head size and the same feet line. An
 1. The first approved image (the **style tile**) goes into [`reference/`](reference/). Attach it to every later request.
 2. The first approved character goes into `reference/` too. Attach it to every character request.
 3. Run every new image through the cleanup tool (`pnpm pixelize`) before it goes into `assets/`. It snaps to the grid and the palette and tells you what is wrong.
-4. Check the result at 4× zoom next to the style tile. If it doesn't look like it belongs in the same room, redo it.
+4. Check the result at 2× zoom next to the style tile. If it doesn't look like it belongs in the same room, redo it.
