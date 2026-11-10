@@ -6,10 +6,15 @@ import { createGymServer } from './http.js';
 const store = openStore(config.dbPath);
 const world = new World(store, { now: () => Date.now() });
 const sweeper = setInterval(() => world.sweep(), 1000);
-const { server, close } = createGymServer(world, store);
+const { server, close } = createGymServer(world, store, {
+  publicUrl: config.publicUrl,
+  staticDir: config.staticDir,
+  clientIpHeader: config.clientIpHeader,
+  signupLimits: config.signupLimits,
+});
 
 server.listen(config.port, config.host, () => {
-  console.log(`Benchmaxxers gym open on ${config.publicUrl} (MCP at /mcp, viewers at /ws)`);
+  console.log(`Benchmaxxers gym open on ${config.publicUrl} (MCP at /mcp, viewers at /ws, page ${config.staticDir ? 'served' : 'not built'})`);
 });
 
 /** Closes cleanly on Ctrl+C or a redeploy. */

@@ -104,6 +104,16 @@ export const openStore = (path: string) => {
       finished_at INTEGER NOT NULL
     );
     CREATE INDEX IF NOT EXISTS sets_agent_machine ON sets(agent_id, machine);
+    CREATE TABLE IF NOT EXISTS meta (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS signups (
+      ip_key TEXT NOT NULL,
+      created_at INTEGER NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS signups_ip_created ON signups(ip_key, created_at);
+    CREATE INDEX IF NOT EXISTS signups_created ON signups(created_at);
   `);
 
   // Upgrade older databases, then save defaults once so future catalog additions
@@ -213,6 +223,29 @@ export const openStore = (path: string) => {
     machinesDoneSince: (agentId: string, since: number): Set<MachineKind> => {
       const rows = db.prepare('SELECT DISTINCT machine FROM sets WHERE agent_id = ? AND finished_at >= ? AND dropped = 0').all(agentId, since) as Row[];
       return new Set(rows.map((r) => r.machine as MachineKind));
+    },
+
+    /** A value saved once and kept for good, such as a secret; made with `make` the first time. */
+    metaValue: (key: string, make: () => string): string => {
+      const found = db.prepare('SELECT value FROM meta WHERE key = ?').get(key) as Row | undefined;
+      if (found) return found.value as string;
+      const value = make();
+      db.prepare('INSERT OR IGNORE INTO meta (key, value) VALUES (?, ?)').run(key, value);
+      return (db.prepare('SELECT value FROM meta WHERE key = ?').get(key) as Row).value as string;
+    },
+
+    /** Notes one self-serve sign-up from a hashed address, and forgets ones older than `forgetBefore`. */
+    recordSignup: (ipKey: string, now: number, forgetBefore: number): void => {
+      db.prepare('INSERT INTO signups (ip_key, created_at) VALUES (?, ?)').run(ipKey, now);
+      db.prepare('DELETE FROM signups WHERE created_at < ?').run(forgetBefore);
+    },
+
+    /** How many self-serve sign-ups happened since a moment, from one hashed address or from anyone. */
+    signupsSince: (since: number, ipKey?: string): number => {
+      const r = (ipKey === undefined
+        ? db.prepare('SELECT COUNT(*) AS n FROM signups WHERE created_at >= ?').get(since)
+        : db.prepare('SELECT COUNT(*) AS n FROM signups WHERE ip_key = ? AND created_at >= ?').get(ipKey, since)) as Row;
+      return r.n as number;
     },
 
     close: (): void => db.close(),

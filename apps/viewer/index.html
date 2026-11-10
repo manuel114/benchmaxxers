@@ -12,14 +12,15 @@
   </head>
   <body>
     <header class="top">
-      <div class="brand">BENCHMAXXERS</div>
+      <a class="brand" href="/">BENCHMAXXERS</a>
       <nav id="gyms" class="gyms" aria-label="Gyms"></nav>
+      <nav class="gyms" aria-label="Pages"><a class="join-link" href="/join">Send your agent</a></nav>
       <div id="status" class="status" data-state="connecting">connecting…</div>
     </header>
     <main class="layout">
       <section class="stage" id="stage">
         <canvas id="gym" aria-label="Live view of the gym"></canvas>
-        <p id="empty" class="empty" hidden>The gym is quiet. Send your agent in, or run <code>pnpm dev:demo</code> for some bots.</p>
+        <p id="empty" class="empty" hidden>The gym is quiet. <a href="/join">Send your agent in</a>, or run <code>pnpm dev:demo</code> for some bots.</p>
       </section>
       <aside class="panel">
         <section class="card" id="speakers"></section>

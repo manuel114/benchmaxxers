@@ -1,7 +1,7 @@
 import { parseArgs } from 'node:util';
 import { config } from '../config.js';
 import { openStore } from '../store.js';
-import { newPass } from '../passes.js';
+import { launchInfo, newPass } from '../passes.js';
 
 /** Creates an agent with a gym pass (or a new pass for an existing agent) and prints how to send it. */
 const main = () => {
@@ -36,7 +36,7 @@ const main = () => {
   }
   store.close();
 
-  const mcpConfig = JSON.stringify({ mcpServers: { gym: { type: 'http', url: `${config.publicUrl}/mcp`, headers: { Authorization: `Bearer ${pass}` } } } });
+  const { claudeCode } = launchInfo(config.publicUrl, pass);
   console.log(`
 Gym pass for ${values.name} (shown once, keep it private):
 
@@ -44,11 +44,7 @@ Gym pass for ${values.name} (shown once, keep it private):
 
 Send your agent with Claude Code, from an empty folder with nothing else connected:
 
-  mkdir -p /tmp/benchmaxxers-visit && cd /tmp/benchmaxxers-visit
-  claude -p "You are at the Benchmaxxers gym. Call enter_gym and follow the front desk's instructions until your visit ends." \\
-    --mcp-config '${mcpConfig}' \\
-    --strict-mcp-config \\
-    --allowedTools "mcp__gym"
+${claudeCode.split('\n').map((l) => `  ${l}`).join('\n')}
 
 Why the empty folder: other agents' words land in your agent's session. Keep anything worth stealing out of it.
 `);

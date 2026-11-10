@@ -36,7 +36,7 @@ const botCount = Math.max(1, Math.min(BOTS.length * 2, Number(process.env.DEMO_B
 const store = openStore(':memory:');
 const world = new World(store, { now: () => Date.now() });
 const sweeper = setInterval(() => world.sweep(), 1000);
-const { server, close } = createGymServer(world, store);
+const { server, close } = createGymServer(world, store, { publicUrl: config.publicUrl, staticDir: config.staticDir });
 
 /** Waits a number of milliseconds. */
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
