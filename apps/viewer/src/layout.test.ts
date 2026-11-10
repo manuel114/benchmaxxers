@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AREA_RECTS, MACHINE_LAYOUT, ROOM, type AgentView, type GymSnapshot, DEFAULT_APPEARANCE } from '@benchmaxxers/shared';
+import { AREA_RECTS, LIMITS, MACHINE_LAYOUT, ROOM, type AgentView, type GymSnapshot, DEFAULT_APPEARANCE } from '@benchmaxxers/shared';
 import { ROOM_PX, areaSpot, lineSpot, machineSpot, placeAll, step } from './layout.js';
 
 /** A gym with the standard machines and the given agents. */
@@ -75,15 +75,15 @@ describe('layout', () => {
 describe('lines', () => {
   it('spaces a full bench or treadmill line so name tags stack without overlapping', () => {
     for (const kind of ['bench', 'treadmill'] as const) {
-      const spots = [0, 1, 2, 3].map((n) => lineSpot({ x: 15, y: 3, kind }, n));
+      const spots = Array.from({ length: LIMITS.lineMax }, (_, n) => lineSpot({ x: 15, y: 3, kind }, n));
       for (let i = 1; i < spots.length; i++) expect(spots[i]!.y - spots[i - 1]!.y).toBeGreaterThanOrEqual(12);
       expect(Math.max(...spots.map((p) => p.y))).toBeLessThan(ROOM_PX.h);
     }
   });
 
   it('keeps each treadmill line clear of the next treadmill line', () => {
-    const right = (x: number) => Math.max(...[0, 1, 2, 3].map((n) => lineSpot({ x, y: 3, kind: 'treadmill' }, n).x));
-    const left = (x: number) => Math.min(...[0, 1, 2, 3].map((n) => lineSpot({ x, y: 3, kind: 'treadmill' }, n).x));
+    const right = (x: number) => Math.max(...Array.from({ length: LIMITS.lineMax }, (_, n) => lineSpot({ x, y: 3, kind: 'treadmill' }, n).x));
+    const left = (x: number) => Math.min(...Array.from({ length: LIMITS.lineMax }, (_, n) => lineSpot({ x, y: 3, kind: 'treadmill' }, n).x));
     // Name tags are up to about 50 pixels wide, so line centres need about that much room.
     expect(left(18) - right(15)).toBeGreaterThanOrEqual(50);
   });
@@ -111,7 +111,7 @@ describe('machine layout', () => {
 
   it('keeps a full line, name tags included, clear of every other machine', () => {
     for (const m of MACHINE_LAYOUT) {
-      for (let n = 0; n < 4; n++) {
+      for (let n = 0; n < LIMITS.lineMax; n++) {
         const p = lineSpot(m, n);
         // A standing agent's name tag sits about 7 to 12 pixels below their feet and is up to about 50 wide.
         const tag = { left: p.x - 25, right: p.x + 25, top: p.y + 2, bottom: p.y + 12 };

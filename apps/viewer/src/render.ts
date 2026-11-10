@@ -12,15 +12,11 @@ import { STAFF_ID, type Bubble, type ViewState } from './state.js';
 import { ENV } from './pixels.js';
 import { drawNine } from './nine.js';
 import { linePlaceLabel } from './labels.js';
+import { FLOOR_PROPS, MARK_SPOT } from './furniture.js';
+import { findPath, isFree, standClear } from './paths.js';
 
 /** The font every word on the canvas uses. */
 const FONT = '"Pixelify Sans", ui-monospace, monospace';
-
-/** Where Mark stands, behind the front desk. */
-const MARK_SPOT: Point = { x: 2 * ROOM.tile + 16, y: 3 * ROOM.tile + 30 };
-
-/** Where the front desk stands. */
-const DESK_SPOT: Point = { x: 3 * ROOM.tile, y: 4 * ROOM.tile + 30 };
 
 /** Floor tile ids for each area. Two ids alternate in a checker. */
 const FLOOR: Record<AreaId, [string, string]> = {
@@ -51,23 +47,6 @@ const WALL_PROPS: [string, number, number][] = [
   ['prop.poster_heart', 752, 44],
 ];
 
-/** Props standing on the floor: [sprite id, anchor x, anchor y]. Drawn depth-sorted with people. */
-const FLOOR_PROPS: [string, number, number][] = [
-  ['prop.front_desk', DESK_SPOT.x, DESK_SPOT.y],
-  ['prop.plant_big', 20, 104],
-  // Weights: free weights beside the benches.
-  ['prop.dumbbell_rack', 416, 250],
-  ['prop.kettlebells', 416, 330],
-  // Locker corner by the entrance, where agents head when they go home.
-  ['prop.lockers', 48, 254],
-  ['prop.lockers', 80, 254],
-  ['prop.lockers', 112, 254],
-  ['prop.locker_room_door', 144, 254],
-  // Water cooler lounge, where agents rest between sets.
-  ['prop.water_cooler', 48, 382],
-  ['prop.plant_small', 140, 380],
-  ['prop.plant_big', 870, 500],
-];
 
 /** Mat colours, one per yoga mat in order. */
 const MAT_COLOURS = ['pink', 'teal', 'purple', 'green'];
@@ -84,7 +63,13 @@ const areaAt = (col: number, row: number): AreaId | null => {
 type Drawable = { y: number; draw: () => void };
 
 /** One agent the renderer is tracking, including ones walking out after they left. */
-type Tracked = { mover: Mover; look: Appearance; leaving: boolean; agent: AgentView; since: number };
+type Tracked = {
+  mover: Mover; look: Appearance; leaving: boolean; agent: AgentView; since: number;
+  /** Points still to walk through to reach `goal`, around furniture. */
+  route: Point[];
+  /** Where the current route leads, to notice when the destination changes. */
+  goal: Point | null;
+};
 
 /** Paints the room and everyone in it onto a canvas, frame by frame. */
 export class GymRenderer {
@@ -171,7 +156,7 @@ export class GymRenderer {
     for (const a of gym.agents) {
       const t = this.tracked.get(a.id);
       if (t) { t.agent = a; t.leaving = false; if (t.look.source !== a.appearance) t.look = appearanceFor(a); continue; }
-      this.tracked.set(a.id, { mover: { ...DOOR, facing: 'down', walking: true }, look: appearanceFor(a), leaving: false, agent: a, since: now });
+      this.tracked.set(a.id, { mover: { ...DOOR, facing: 'down', walking: true }, look: appearanceFor(a), leaving: false, agent: a, since: now, route: [], goal: null });
     }
     for (const [id, t] of this.tracked) if (!present.has(id)) t.leaving = true;
   }
@@ -187,7 +172,7 @@ export class GymRenderer {
 
     const gym = state.gym;
     if (gym) this.sync(gym, now);
-    const places = gym ? placeAll(gym) : new Map<string, Placement>();
+    const places = gym ? placeAll(gym, isFree) : new Map<string, Placement>();
     const flashFor = new Map(state.flashes.map((f) => [f.agentId, f]));
     const items: Drawable[] = [];
     const usedMachines = new Set<string>();
@@ -195,9 +180,21 @@ export class GymRenderer {
     // Move everyone a little toward where they should be.
     this.spots.clear();
     for (const [id, t] of this.tracked) {
-      const place = t.leaving ? { ...DOOR, pose: 'stand' as const, facing: 'up' as const, machineId: null } : places.get(id);
-      if (!place) continue;
-      t.mover = step(t.mover, place, dt);
+      const raw = t.leaving ? { ...DOOR, pose: 'stand' as const, facing: 'up' as const, machineId: null } : places.get(id);
+      if (!raw) continue;
+      // Standing spots that land on furniture move to the nearest open floor; machine seats stay put.
+      const place = raw.machineId ? raw : { ...raw, ...standClear(raw) };
+      if (!t.goal || t.goal.x !== place.x || t.goal.y !== place.y) {
+        t.goal = { x: place.x, y: place.y };
+        t.route = findPath(t.mover, place);
+      }
+      const next = t.route[0] ?? place;
+      t.mover = step(t.mover, next, dt);
+      if (!t.mover.walking && t.route.length > 0) {
+        t.route.shift();
+        // Passing a corner on the way: keep walking rather than stopping for a frame.
+        if (t.route.length > 0) t.mover = { ...t.mover, walking: true };
+      }
       if (t.leaving && !t.mover.walking) { this.tracked.delete(id); continue; }
       this.spots.set(id, t.mover);
       const arrived = !t.mover.walking;

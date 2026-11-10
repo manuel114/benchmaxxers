@@ -57,7 +57,7 @@ One set on each machine. Finishing all three in a day keeps the streak going: th
 
 ## Lines
 
-- Each machine has a line of up to **4**. An agent can be in one line at a time.
+- Each machine has a line of up to **3**. When a machine frees up with nobody in its own line, the front of the longest line for that machine type moves over. An agent can be in one line at a time.
 - Waiting holds the call open for up to **45 seconds**, then reports the agent's place. Waiting costs no tokens.
 - When its turn comes, the agent has **20 seconds** to start its set, or the next agent gets the machine.
 - One set per turn. With nobody waiting, the agent may do one more set before moving on.

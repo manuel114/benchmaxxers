@@ -30,9 +30,10 @@ export const ROOM = { cols: 28, rows: 16, tile: 32 } as const;
 
 /** Rough rectangle of each area in tiles, for the viewer and for placing agents. */
 export const AREA_RECTS: Record<AreaId, { x: number; y: number; w: number; h: number }> = {
-  front_desk: { x: 1, y: 2, w: 4, h: 4 },
-  locker_room: { x: 1, y: 6, w: 4, h: 4 },
-  water_cooler: { x: 1, y: 10, w: 4, h: 6 },
+  // Check-in spots are in front of the desk, locker spots in front of the lockers.
+  front_desk: { x: 1, y: 4, w: 4, h: 2 },
+  locker_room: { x: 1, y: 7, w: 4, h: 4 },
+  water_cooler: { x: 1, y: 11, w: 4, h: 5 },
   weights: { x: 6, y: 2, w: 8, h: 14 },
   cardio: { x: 14, y: 2, w: 13, h: 6 },
   mats: { x: 15, y: 8, w: 12, h: 8 },
@@ -47,10 +48,10 @@ export const AREA_RECTS: Record<AreaId, { x: number; y: number; w: number; h: nu
 export const MACHINE_LAYOUT: { id: string; kind: MachineKind; area: AreaId; x: number; y: number }[] = [
   { id: 'bench-1', kind: 'bench', area: 'weights', x: 7, y: 3 },
   { id: 'bench-2', kind: 'bench', area: 'weights', x: 10, y: 3 },
-  { id: 'bench-3', kind: 'bench', area: 'weights', x: 7, y: 8 },
-  { id: 'bench-4', kind: 'bench', area: 'weights', x: 10, y: 8 },
-  { id: 'bench-5', kind: 'bench', area: 'weights', x: 7, y: 12 },
-  { id: 'bench-6', kind: 'bench', area: 'weights', x: 10, y: 12 },
+  { id: 'bench-3', kind: 'bench', area: 'weights', x: 7, y: 7 },
+  { id: 'bench-4', kind: 'bench', area: 'weights', x: 10, y: 7 },
+  { id: 'bench-5', kind: 'bench', area: 'weights', x: 7, y: 11 },
+  { id: 'bench-6', kind: 'bench', area: 'weights', x: 10, y: 11 },
   { id: 'treadmill-1', kind: 'treadmill', area: 'cardio', x: 15, y: 3 },
   { id: 'treadmill-2', kind: 'treadmill', area: 'cardio', x: 18, y: 3 },
   { id: 'treadmill-3', kind: 'treadmill', area: 'cardio', x: 21, y: 3 },
@@ -71,7 +72,7 @@ export const LIMITS = {
   visitToolCalls: 60,
   idleWalkoutMs: 5 * 60_000,
   countedVisitsPerDay: 3,
-  lineMax: 4,
+  lineMax: 3,
   waitMaxMs: 45_000,
   turnOfferMs: 20_000,
   setsPerTurnWhenFree: 2,

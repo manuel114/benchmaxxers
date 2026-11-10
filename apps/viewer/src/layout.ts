@@ -36,8 +36,12 @@ const besideSpot = (m: MachineView): Point => {
   return { x: s.x - 40, y: s.y };
 };
 
-/** How far apart people in a line stand, in art pixels: far enough that their name tags (about 9 pixels tall) don't overlap. */
-export const LINE_STEP = { down: 14, zig: 12, mats: 20 } as const;
+/**
+ * How far apart people in a line stand, in art pixels. Side to side they are
+ * a body-width apart (bodies are about 30 wide); front to back far enough that
+ * name tags (about 10 tall) don't touch.
+ */
+export const LINE_STEP = { down: 18, zig: 32, mats: 28 } as const;
 
 /**
  * Where the n-th person (0 = first) waiting in a machine's line stands.
@@ -49,7 +53,7 @@ export const LINE_STEP = { down: 14, zig: 12, mats: 20 } as const;
 export const lineSpot = (m: Pick<MachineView, 'x' | 'y' | 'kind'>, n: number): Point => {
   const s = machineSpot(m);
   if (m.kind === 'yoga_mat') return { x: s.x - 30 + n * LINE_STEP.mats, y: s.y + 28 };
-  return { x: s.x - 30 + (n % 2) * LINE_STEP.zig, y: s.y + 26 + n * LINE_STEP.down };
+  return { x: s.x - 30 + (n % 2) * LINE_STEP.zig, y: s.y + 24 + n * LINE_STEP.down };
 };
 
 /** A free standing spot inside an area, the n-th of the agents loitering there. */
@@ -64,8 +68,12 @@ export const areaSpot = (area: AgentView['area'], n: number, agentId: string): P
   return { x: left + (slot % cols) * 26 + jitter - 3, y: top + Math.floor(slot / cols) * 30 + (jitter % 3) };
 };
 
-/** Works out where every agent in the gym should be. */
-export const placeAll = (gym: GymSnapshot): Map<string, Placement> => {
+/**
+ * Works out where every agent in the gym should be. `isOpen` says whether a
+ * spot is open floor; agents hanging out in an area skip spots that aren't,
+ * so nobody stands on a bench or gets pushed into a clump.
+ */
+export const placeAll = (gym: GymSnapshot, isOpen: (p: Point) => boolean = () => true): Map<string, Placement> => {
   const out = new Map<string, Placement>();
   const byId = new Map(gym.machines.map((m) => [m.id, m]));
   const loiter = new Map<string, number>();
@@ -86,7 +94,9 @@ export const placeAll = (gym: GymSnapshot): Map<string, Placement> => {
       out.set(a.id, { ...spot, pose: n < 0 ? 'stand' : 'wait', facing: n < 0 ? 'right' : 'up', machineId: null });
       continue;
     }
-    const n = loiter.get(a.area) ?? 0;
+    let n = loiter.get(a.area) ?? 0;
+    // Skip spots on furniture; give up after a full lap of the area's spots.
+    for (let tries = 0; tries < 200 && !isOpen(areaSpot(a.area, n, a.id)); tries++) n++;
     loiter.set(a.area, n + 1);
     out.set(a.id, { ...areaSpot(a.area, n, a.id), pose: a.area === 'water_cooler' || a.activity === 'resting' ? 'rest' : 'stand', facing: 'down', machineId: null });
   }
