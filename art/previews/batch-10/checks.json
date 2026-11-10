@@ -1,0 +1,1637 @@
+{
+  "base_main": "b5e3471",
+  "assets": {
+    "char.build-0.spot": {
+      "file": "assets/characters/build-0/spot.png",
+      "size": [
+        64,
+        48
+      ],
+      "frames": 2,
+      "fps": 3,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          6,
+          7,
+          26,
+          47
+        ],
+        [
+          6,
+          7,
+          26,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "0c4c7fa0f748b4eb026fedbb930f0db8a88adce55fd8f595596908b7f325e3cc",
+      "alpha_component_sizes": [
+        [
+          523
+        ],
+        [
+          519
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-0.wave": {
+      "file": "assets/characters/build-0/wave.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 8,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          6,
+          5,
+          27,
+          47
+        ],
+        [
+          6,
+          5,
+          28,
+          47
+        ],
+        [
+          6,
+          5,
+          30,
+          47
+        ],
+        [
+          6,
+          5,
+          27,
+          47
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "1a802a8e6f35ec6601ee287df8996bdd13a3a9e78fd60e957d789b2b068e8e3e",
+      "alpha_component_sizes": [
+        [
+          628
+        ],
+        [
+          626
+        ],
+        [
+          649
+        ],
+        [
+          621
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-0.breathe": {
+      "file": "assets/characters/build-0/breathe.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 4,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          6,
+          13,
+          26,
+          47
+        ],
+        [
+          6,
+          12,
+          26,
+          47
+        ],
+        [
+          6,
+          12,
+          26,
+          47
+        ],
+        [
+          6,
+          13,
+          26,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "229d5ac7665090d4a8afee6f7aaa22da27247a628ef309701a935cb574c28092",
+      "alpha_component_sizes": [
+        [
+          528
+        ],
+        [
+          542
+        ],
+        [
+          542
+        ],
+        [
+          528
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-1.spot": {
+      "file": "assets/characters/build-1/spot.png",
+      "size": [
+        64,
+        48
+      ],
+      "frames": 2,
+      "fps": 3,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          5,
+          7,
+          27,
+          47
+        ],
+        [
+          5,
+          7,
+          28,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "b9d1e72a425ee5df27c7bc76825bf637e49de674f097c9ad889321648e2b416f",
+      "alpha_component_sizes": [
+        [
+          606
+        ],
+        [
+          628
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-1.wave": {
+      "file": "assets/characters/build-1/wave.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 8,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          6,
+          5,
+          27,
+          47
+        ],
+        [
+          6,
+          5,
+          29,
+          47
+        ],
+        [
+          6,
+          5,
+          31,
+          47
+        ],
+        [
+          6,
+          5,
+          28,
+          47
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "0147d82da8353424bb6ab7ffb514fca6a7b97941a1fd1b994099dbdcac7881ac",
+      "alpha_component_sizes": [
+        [
+          663
+        ],
+        [
+          682
+        ],
+        [
+          686
+        ],
+        [
+          674
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-1.breathe": {
+      "file": "assets/characters/build-1/breathe.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 4,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          5,
+          13,
+          27,
+          47
+        ],
+        [
+          5,
+          12,
+          27,
+          47
+        ],
+        [
+          5,
+          12,
+          27,
+          47
+        ],
+        [
+          5,
+          13,
+          27,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "f71d968420570204e53be65d89fc3c52107e310fdc35db99c5ec960271b14350",
+      "alpha_component_sizes": [
+        [
+          579
+        ],
+        [
+          596
+        ],
+        [
+          596
+        ],
+        [
+          579
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-2.spot": {
+      "file": "assets/characters/build-2/spot.png",
+      "size": [
+        64,
+        48
+      ],
+      "frames": 2,
+      "fps": 3,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          2,
+          7,
+          30,
+          47
+        ],
+        [
+          2,
+          7,
+          30,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "4c94fda8ca30cb9f3048052eee1a231f5b2421f956d91c4aa35fa7f78082eb6c",
+      "alpha_component_sizes": [
+        [
+          658
+        ],
+        [
+          664
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-2.wave": {
+      "file": "assets/characters/build-2/wave.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 8,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          3,
+          5,
+          29,
+          47
+        ],
+        [
+          3,
+          5,
+          30,
+          47
+        ],
+        [
+          3,
+          5,
+          32,
+          47
+        ],
+        [
+          3,
+          5,
+          30,
+          47
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "33697f9b38184683ce9a7785244a3bb17ea6eff7f3b04b67ad77ac5e57886323",
+      "alpha_component_sizes": [
+        [
+          731
+        ],
+        [
+          730
+        ],
+        [
+          744
+        ],
+        [
+          734
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-2.breathe": {
+      "file": "assets/characters/build-2/breathe.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 4,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          4,
+          13,
+          28,
+          47
+        ],
+        [
+          4,
+          12,
+          28,
+          47
+        ],
+        [
+          4,
+          12,
+          28,
+          47
+        ],
+        [
+          4,
+          13,
+          28,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "359b395aed22b2b16c470a9bbef3b6644412f4978ad2577416aed18bd5164dc2",
+      "alpha_component_sizes": [
+        [
+          602
+        ],
+        [
+          622
+        ],
+        [
+          622
+        ],
+        [
+          602
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-3.spot": {
+      "file": "assets/characters/build-3/spot.png",
+      "size": [
+        64,
+        48
+      ],
+      "frames": 2,
+      "fps": 3,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          1,
+          9,
+          31,
+          47
+        ],
+        [
+          1,
+          9,
+          31,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "8f0a69037cf980b228a1d9ca25311fd350a8bfd799976f60fd3ccaadef01f51c",
+      "alpha_component_sizes": [
+        [
+          714
+        ],
+        [
+          720
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-3.wave": {
+      "file": "assets/characters/build-3/wave.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 8,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          1,
+          5,
+          31,
+          47
+        ],
+        [
+          1,
+          5,
+          32,
+          47
+        ],
+        [
+          1,
+          5,
+          32,
+          47
+        ],
+        [
+          1,
+          5,
+          32,
+          47
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "da9206ea7ad7e1f92b7585390214a63cddbbb7ba683df7db2835f51f1ab45bcf",
+      "alpha_component_sizes": [
+        [
+          819
+        ],
+        [
+          838
+        ],
+        [
+          819
+        ],
+        [
+          838
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "char.build-3.breathe": {
+      "file": "assets/characters/build-3/breathe.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 4,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          2,
+          14,
+          31,
+          47
+        ],
+        [
+          2,
+          13,
+          31,
+          47
+        ],
+        [
+          2,
+          13,
+          31,
+          47
+        ],
+        [
+          2,
+          14,
+          31,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "ef77dfa0abd532ff5e792bb977d082ce5fedd2c7cde3538d4851f3f478b21827",
+      "alpha_component_sizes": [
+        [
+          634
+        ],
+        [
+          661
+        ],
+        [
+          661
+        ],
+        [
+          634
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "npc.mark.walk_down": {
+      "file": "assets/characters/npc-mark/walk_down.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 10,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          3,
+          5,
+          29,
+          47
+        ],
+        [
+          3,
+          4,
+          29,
+          47
+        ],
+        [
+          3,
+          5,
+          29,
+          47
+        ],
+        [
+          3,
+          4,
+          29,
+          47
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "259086e66cd9b9ad674aea1f9597517392c6c04b923169ee3a5ad825edf860c4",
+      "alpha_component_sizes": [
+        [
+          712
+        ],
+        [
+          752
+        ],
+        [
+          721
+        ],
+        [
+          744
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "npc.mark.walk_up": {
+      "file": "assets/characters/npc-mark/walk_up.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 10,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          3,
+          5,
+          29,
+          47
+        ],
+        [
+          3,
+          4,
+          28,
+          47
+        ],
+        [
+          3,
+          5,
+          29,
+          47
+        ],
+        [
+          3,
+          4,
+          29,
+          47
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "6f581d5c3fb1fe91697308deecb340b1a1fed49b0799b95528e3af554db0b89f",
+      "alpha_component_sizes": [
+        [
+          738
+        ],
+        [
+          746
+        ],
+        [
+          742
+        ],
+        [
+          746
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "npc.mark.walk_side": {
+      "file": "assets/characters/npc-mark/walk_side.png",
+      "size": [
+        128,
+        48
+      ],
+      "frames": 4,
+      "fps": 10,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          6,
+          6,
+          26,
+          47
+        ],
+        [
+          6,
+          5,
+          26,
+          47
+        ],
+        [
+          6,
+          6,
+          26,
+          47
+        ],
+        [
+          6,
+          5,
+          26,
+          47
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "31f72734e62f5ca839f45bb6bf03209305de47b1542f8c93f73375fb28b7bf54",
+      "alpha_component_sizes": [
+        [
+          617
+        ],
+        [
+          603
+        ],
+        [
+          606
+        ],
+        [
+          598
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "npc.mark.spot": {
+      "file": "assets/characters/npc-mark/spot.png",
+      "size": [
+        64,
+        48
+      ],
+      "frames": 2,
+      "fps": 3,
+      "palette": "character",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          3,
+          6,
+          30,
+          47
+        ],
+        [
+          3,
+          6,
+          30,
+          47
+        ]
+      ],
+      "unique_frames": 2,
+      "sha256": "4afbd8bdc7b1559c782c7ebaffa38c9ef61a4b00771f45047b028cbcfea3d364",
+      "alpha_component_sizes": [
+        [
+          674
+        ],
+        [
+          673
+        ]
+      ],
+      "feet_row": 46,
+      "anchor": [
+        16,
+        46
+      ],
+      "head_check": "passed"
+    },
+    "prop.whiteboard": {
+      "file": "assets/props/whiteboard.png",
+      "size": [
+        64,
+        48
+      ],
+      "frames": 1,
+      "fps": 0,
+      "palette": "environment",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          4,
+          7,
+          60,
+          48
+        ]
+      ],
+      "unique_frames": 1,
+      "sha256": "a9f13232197d29e3fbf37a0b42ef67cd3b96eeab71fe855d64eae051eae1074d"
+    },
+    "prop.pb_bell": {
+      "file": "assets/props/pb_bell.png",
+      "size": [
+        32,
+        32
+      ],
+      "frames": 1,
+      "fps": 0,
+      "palette": "environment",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          9,
+          4,
+          24,
+          31
+        ]
+      ],
+      "unique_frames": 1,
+      "sha256": "37a2d1ce54a77cfee93c347eeb217fb7c9e0ddd9ff61b9c607fe9a21f6e4bdfa"
+    },
+    "fx.bell_ring": {
+      "file": "assets/fx/bell_ring.png",
+      "size": [
+        128,
+        32
+      ],
+      "frames": 4,
+      "fps": 10,
+      "palette": "environment",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          5,
+          4,
+          27,
+          31
+        ],
+        [
+          7,
+          4,
+          29,
+          30
+        ],
+        [
+          5,
+          4,
+          27,
+          31
+        ],
+        [
+          6,
+          4,
+          28,
+          30
+        ]
+      ],
+      "unique_frames": 4,
+      "sha256": "ec1cfab027377d00a27bcfc2cc2ba27d8314673902d1240cdfd90e095c79d82d"
+    },
+    "prop.vending_machine": {
+      "file": "assets/props/vending_machine.png",
+      "size": [
+        32,
+        64
+      ],
+      "frames": 1,
+      "fps": 0,
+      "palette": "environment",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          2,
+          8,
+          30,
+          64
+        ]
+      ],
+      "unique_frames": 1,
+      "sha256": "bf0401332f372bab4ec06d2ec8ef83fb776d3dddec87fb7e15c379ac184cfb90"
+    },
+    "prop.seat_bench": {
+      "file": "assets/props/seat_bench.png",
+      "size": [
+        64,
+        32
+      ],
+      "frames": 1,
+      "fps": 0,
+      "palette": "environment",
+      "binary_alpha": true,
+      "off_palette_pixels": 0,
+      "magenta_pixels": 0,
+      "bounds": [
+        [
+          2,
+          6,
+          61,
+          32
+        ]
+      ],
+      "unique_frames": 1,
+      "sha256": "ace9f676dececabb91b7c536b988e65a308ae054eac1dc0e26520297a1a652ca"
+    }
+  },
+  "registration": {
+    "char.build-0.spot": {
+      "head_source": "build-0/idle_side frame0",
+      "head_offsets": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "char.build-0.wave": {
+      "head_source": "build-0/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "body": "approved idle except waving arm"
+    },
+    "char.build-0.breathe": {
+      "head_source": "build-0/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "char.build-1.spot": {
+      "head_source": "build-1/idle_side frame0",
+      "head_offsets": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "char.build-1.wave": {
+      "head_source": "build-1/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "body": "approved idle except waving arm"
+    },
+    "char.build-1.breathe": {
+      "head_source": "build-1/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "char.build-2.spot": {
+      "head_source": "build-2/idle_side frame0",
+      "head_offsets": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "char.build-2.wave": {
+      "head_source": "build-2/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "body": "approved idle except waving arm"
+    },
+    "char.build-2.breathe": {
+      "head_source": "build-2/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "char.build-3.spot": {
+      "head_source": "build-3/idle_side frame0",
+      "head_offsets": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "char.build-3.wave": {
+      "head_source": "build-3/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "body": "approved idle except waving arm"
+    },
+    "char.build-3.breathe": {
+      "head_source": "build-3/idle_down frame0",
+      "head_offsets": [
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          9
+        ]
+      ],
+      "body": "generated pose; fixed shoes; one-pixel breathing"
+    },
+    "npc.mark.walk_down": {
+      "body_source": "build-2/walk_down",
+      "head_source": "approved Mark idle",
+      "head_bob_y": [
+        0,
+        -1,
+        0,
+        -1
+      ]
+    },
+    "npc.mark.walk_up": {
+      "body_source": "build-2/walk_up",
+      "head_source": "generated cap registered onto approved Buff head silhouette",
+      "head_bob_y": [
+        0,
+        -1,
+        0,
+        -1
+      ]
+    },
+    "npc.mark.walk_side": {
+      "body_source": "build-2/walk_side",
+      "head_source": "generated cap registered onto approved Buff head silhouette",
+      "head_bob_y": [
+        0,
+        -1,
+        0,
+        -1
+      ]
+    },
+    "npc.mark.spot": {
+      "head_source": "Mark registered right-profile head",
+      "head_offsets": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "costume": "cap, polo and whistle"
+    },
+    "fx.bell_ring": {
+      "bracket_rows_0_to_12": "identical to still in all frames",
+      "rest_frames": [
+        0,
+        2
+      ],
+      "anchor": [
+        16,
+        30
+      ]
+    }
+  },
+  "pixelize_registration": {
+    "char.build-0.spot": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-0.wave": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-0.breathe": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-1.spot": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-1.wave": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "char.build-1.breathe": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-2.spot": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-2.wave": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-2.breathe": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-3.spot": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-3.wave": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "char.build-3.breathe": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "npc.mark.walk_down": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "npc.mark.walk_up": [
+      [
+        0,
+        0
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "npc.mark.walk_side": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "npc.mark.spot": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "fx.bell_ring": [
+      [
+        0,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  "warnings": [],
+  "tests": {
+    "pnpm test": 132,
+    "pnpm typecheck": "passed"
+  },
+  "bell_registration": {
+    "bracket_fixed": true,
+    "rest_frames_identical_to_still": [
+      0,
+      2
+    ],
+    "anchor": [
+      16,
+      30
+    ]
+  },
+  "preview_spotter_offset": [
+    -22,
+    -10
+  ],
+  "total_assets": 21,
+  "character_frames": 54,
+  "pixelize_checks_passed": 21,
+  "assets_status": {
+    "present": 148,
+    "total": 148,
+    "changed_entries": [
+      "char.build-0.spot",
+      "char.build-0.wave",
+      "char.build-0.breathe",
+      "char.build-1.spot",
+      "char.build-1.wave",
+      "char.build-1.breathe",
+      "char.build-2.spot",
+      "char.build-2.wave",
+      "char.build-2.breathe",
+      "char.build-3.spot",
+      "char.build-3.wave",
+      "char.build-3.breathe",
+      "npc.mark.walk_down",
+      "npc.mark.walk_up",
+      "npc.mark.walk_side",
+      "npc.mark.spot",
+      "prop.whiteboard",
+      "prop.pb_bell",
+      "fx.bell_ring",
+      "prop.vending_machine",
+      "prop.seat_bench"
+    ],
+    "generated_files_restored_byte_for_byte": true,
+    "existing_checklist_generator_limitation": "Batch10 title missing from tools/pixelize/src/status.ts; manifest and aggregate counts include batch10, checklist omits its rows."
+  },
+  "metadata_sha256": {
+    "art/ASSETS.md": "a1cb7b13ba289849da099c531aea236b32d769241b4daf657dfa7e7ffc190ed5",
+    "assets/manifest.json": "7b2f1a2ea0aba523844f9c6ee0250e826ade3792581b9c4ba8d5f6e9f3a15320"
+  }
+}
