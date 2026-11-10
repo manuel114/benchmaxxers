@@ -134,6 +134,8 @@ describe('appearance over HTTP and MCP', () => {
   it('publishes a catalog but requires a gym pass for all personal appearance routes', async () => {
     const catalog = await (await fetch(`${base}/api/appearance`)).json();
     expect(catalog.choices.hairstyle).toEqual(['crop', 'curls', 'bob', 'bun', 'bald']);
+    expect(catalog.choices.topStyle).toEqual(['tshirt', 'tank', 'hoodie']);
+    expect(catalog.choices.bottomsStyle).toEqual(['shorts', 'joggers', 'leggings']);
     for (const [path, method] of [
       ['/api/me/appearance', 'GET'], ['/api/me/appearance', 'PATCH'], ['/api/me/appearance/randomize', 'POST'],
     ]) {
@@ -165,18 +167,18 @@ describe('appearance over HTTP and MCP', () => {
           }
         });
       });
-      const res = await fetch(`${base}/api/me/appearance`, { method: 'PATCH', headers, body: JSON.stringify({ hairstyle: 'curls', top: 'teal' }) });
+      const res = await fetch(`${base}/api/me/appearance`, { method: 'PATCH', headers, body: JSON.stringify({ hairstyle: 'curls', top: 'teal', topStyle: 'hoodie', bottomsStyle: 'joggers' }) });
       expect(res.status).toBe(200);
       const changed = await res.json();
-      expect(changed.appearance).toEqual({ ...before.appearance, hairstyle: 'curls', top: 'teal' });
+      expect(changed.appearance).toEqual({ ...before.appearance, hairstyle: 'curls', top: 'teal', topStyle: 'hoodie', bottomsStyle: 'joggers' });
       expect(await update).toMatchObject({ type: 'agent_updated', agent: { build: 0, appearance: changed.appearance } });
       const snapshot = await (await fetch(`${base}/api/gyms/gym-1`)).json();
       expect(snapshot.agents.find((a: { name: string }) => a.name === 'CustomLook').appearance).toEqual(changed.appearance);
       const profile = await (await fetch(`${base}/api/agents/CustomLook`)).json();
       expect(profile).toMatchObject({ appearance: changed.appearance, stats: { strength: 0, stamina: 0, flexibility: 0 } });
       expect(await (await fetch(`${base}/api/me/appearance`, { headers: { Authorization: `Bearer ${otherPass}` } })).json()).toEqual(otherBefore);
-      const mcp = await call(client, 'customize_appearance', { hairstyle: 'bun', hair: 'silver' });
-      expect(mcp.body!.appearance).toEqual({ ...changed.appearance, hairstyle: 'bun', hair: 'silver' });
+      const mcp = await call(client, 'customize_appearance', { hairstyle: 'bun', hair: 'silver', topStyle: 'tank', bottomsStyle: 'leggings' });
+      expect(mcp.body!.appearance).toEqual({ ...changed.appearance, hairstyle: 'bun', hair: 'silver', topStyle: 'tank', bottomsStyle: 'leggings' });
       const reroll = await call(client, 'randomize_appearance');
       expect(reroll.error).toBe(false);
       expect((await (await fetch(`${base}/api/me/appearance`, { headers })).json()).appearance).toEqual(reroll.body!.appearance);
@@ -188,7 +190,7 @@ describe('appearance over HTTP and MCP', () => {
     const pass = makeAgent('ValidateLook');
     const headers = { Authorization: `Bearer ${pass}`, 'Content-Type': 'application/json' };
     const before = await (await fetch(`${base}/api/me/appearance`, { headers })).json();
-    for (const body of ['{', '{}', 'null', '[]', '{"hairstyle":"unknown"}', '{"skin":"#ffffff"}', '{"top":"red","build":3}', '{"agentId":"someone-else"}']) {
+    for (const body of ['{', '{}', 'null', '[]', '{"hairstyle":"unknown"}', '{"skin":"#ffffff"}', '{"top":"red","build":3}', '{"agentId":"someone-else"}', '{"topStyle":"blue"}', '{"bottomsStyle":"jeans"}']) {
       const res = await fetch(`${base}/api/me/appearance`, { method: 'PATCH', headers, body });
       expect(res.status).toBe(400);
     }
@@ -202,6 +204,7 @@ describe('appearance over HTTP and MCP', () => {
       expect(world.snapshot('gym-1')!.agents.find((a) => a.name === 'ValidateLook')!.appearance).toEqual(rerolled.appearance);
       expect((await call(client, 'customize_appearance')).error).toBe(true);
       expect((await call(client, 'customize_appearance', { hairstyle: 'not-real' })).error).toBe(true);
+      expect((await call(client, 'customize_appearance', { topStyle: 'cape' })).error).toBe(true);
       expect((await call(client, 'customize_appearance', { top: 'red', build: 3 })).error).toBe(true);
       expect((await call(client, 'randomize_appearance', { agentId: 'someone-else' })).error).toBe(true);
       expect(await (await fetch(`${base}/api/me/appearance`, { headers })).json()).toEqual(rerolled);

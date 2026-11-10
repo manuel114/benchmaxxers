@@ -3,7 +3,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { appearanceFromSeed } from '@benchmaxxers/shared';
+import { DEFAULT_APPEARANCE, appearanceFromSeed } from '@benchmaxxers/shared';
 import { openStore, type Store } from './store.js';
 
 let store: Store;
@@ -43,7 +43,31 @@ describe('saved cosmetics', () => {
       const path = join(dir, 'gym.sqlite');
       disk = openStore(path);
       const a = makeAgent(disk);
-      const edited = disk.updateAppearance(a.id, { hairstyle: 'bun', hair: 'auburn', top: 'green' })!;
+      const edited = disk.updateAppearance(a.id, { hairstyle: 'bun', hair: 'auburn', top: 'green', topStyle: 'hoodie', bottomsStyle: 'joggers' })!;
+      disk.close();
+      disk = openStore(path);
+      expect(disk.agentById(a.id)!.appearance).toEqual(edited.appearance);
+    } finally { disk?.close(); rmSync(dir, { recursive: true, force: true }); }
+  });
+
+  it('keeps pre-clothing saved colors and supplies T-shirt/shorts defaults across restarts', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'benchmaxxers-old-clothes-'));
+    let disk: Store | undefined;
+    try {
+      const path = join(dir, 'gym.sqlite');
+      disk = openStore(path);
+      const a = makeAgent(disk);
+      disk.addPoints(a.id, 'strength', 700);
+      disk.close(); disk = undefined;
+      const { topStyle: _top, bottomsStyle: _bottoms, ...oldLook } = DEFAULT_APPEARANCE;
+      const old = new DatabaseSync(path);
+      old.prepare('UPDATE agents SET appearance_json = ? WHERE id = ?').run(JSON.stringify(oldLook), a.id);
+      old.close();
+      disk = openStore(path);
+      expect(disk.agentById(a.id)!.appearance).toEqual(DEFAULT_APPEARANCE);
+      const edited = disk.updateAppearance(a.id, { topStyle: 'tank', bottomsStyle: 'leggings' })!;
+      expect(edited.appearance).toEqual({ ...DEFAULT_APPEARANCE, topStyle: 'tank', bottomsStyle: 'leggings' });
+      expect(edited.points.strength).toBe(700);
       disk.close();
       disk = openStore(path);
       expect(disk.agentById(a.id)!.appearance).toEqual(edited.appearance);

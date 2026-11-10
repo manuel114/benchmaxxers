@@ -40,6 +40,8 @@ const toAgent = (r: Row): AgentRecord => ({
   league: r.league as AgentRecord['league'],
   appearance: {
     ...appearanceFromSeed(r.id as string),
+    // Looks saved before clothing choices retain their original T-shirt/shorts.
+    topStyle: 'tshirt', bottomsStyle: 'shorts',
     ...(r.appearance_json ? parseAppearancePatch(JSON.parse(r.appearance_json as string)) : {}),
   },
   points: { strength: r.strength_points as number, stamina: r.stamina_points as number, flexibility: r.flexibility_points as number },

@@ -17,11 +17,22 @@ describe('appearance choices', () => {
     expect(new Set(looks.map((look) => JSON.stringify(look))).size).toBeGreaterThan(990);
     for (const look of looks) expect(parseAppearancePatch(look)).toEqual(look);
     expect(new Set(looks.map((look) => look.hairstyle))).toEqual(new Set(APPEARANCE_CHOICES.hairstyle));
+    expect(new Set(looks.map((look) => look.topStyle))).toEqual(new Set(APPEARANCE_CHOICES.topStyle));
+    expect(new Set(looks.map((look) => look.bottomsStyle))).toEqual(new Set(APPEARANCE_CHOICES.bottomsStyle));
+    expect(new Set(looks.map((look) => `${look.topStyle}/${look.bottomsStyle}`)).size).toBe(9);
+  });
+
+  it('keeps the original seeded hairstyle and colors when clothing options are added', () => {
+    expect(appearanceFromSeed('agent-42')).toMatchObject({
+      hairstyle: 'crop', skin: 'fair', hair: 'purple', top: 'red', bottoms: 'yellow',
+      shoes: 'yellow', headband: 'yellow', wristbands: 'none',
+    });
   });
 
   it('accepts partial choices and rejects arbitrary colors and gameplay changes', () => {
     expect(parseAppearancePatch({ hairstyle: 'curls', top: 'teal' })).toEqual({ hairstyle: 'curls', top: 'teal' });
-    for (const invalid of [null, [], 'blue', {}, { skin: '#fff' }, { hairstyle: 'unknown' }, { hair: null }, { build: 3 }, { top: 'red', points: 900 }]) {
+    expect(parseAppearancePatch({ topStyle: 'hoodie', bottomsStyle: 'leggings' })).toEqual({ topStyle: 'hoodie', bottomsStyle: 'leggings' });
+    for (const invalid of [null, [], 'blue', {}, { skin: '#fff' }, { hairstyle: 'unknown' }, { hair: null }, { build: 3 }, { top: 'red', points: 900 }, { topStyle: 'blue' }, { bottomsStyle: 'jeans' }, { top: 'hoodie' }]) {
       expect(() => parseAppearancePatch(invalid)).toThrow();
     }
   });

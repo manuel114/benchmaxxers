@@ -1,6 +1,8 @@
 /** Cosmetic choices stay independent of strength, animation and exercise scoring. */
 export const HAIRSTYLES = ['crop', 'curls', 'bob', 'bun', 'bald'] as const;
 export type Hairstyle = (typeof HAIRSTYLES)[number];
+export const TOP_STYLES = ['tshirt', 'tank', 'hoodie'] as const;
+export const BOTTOMS_STYLES = ['shorts', 'joggers', 'leggings'] as const;
 export type ColorRamp = readonly [string, string, string];
 
 /** Runtime swap colors; the source sprite always uses art/palettes/character.json. */
@@ -37,6 +39,8 @@ export const OUTFIT_RAMPS = {
 type OutfitColor = keyof typeof OUTFIT_RAMPS;
 export type Appearance = {
   hairstyle: Hairstyle;
+  topStyle: (typeof TOP_STYLES)[number];
+  bottomsStyle: (typeof BOTTOMS_STYLES)[number];
   skin: keyof typeof SKIN_RAMPS;
   hair: keyof typeof HAIR_RAMPS;
   top: OutfitColor;
@@ -51,6 +55,8 @@ const outfitColors = Object.keys(OUTFIT_RAMPS) as OutfitColor[];
 /** Public catalog used by clients and by validation; no arbitrary hex input. */
 export const APPEARANCE_CHOICES = {
   hairstyle: HAIRSTYLES,
+  topStyle: TOP_STYLES,
+  bottomsStyle: BOTTOMS_STYLES,
   skin: Object.keys(SKIN_RAMPS) as Appearance['skin'][],
   hair: Object.keys(HAIR_RAMPS) as Appearance['hair'][],
   top: outfitColors,
@@ -62,7 +68,7 @@ export const APPEARANCE_CHOICES = {
 
 /** Matches every original source-sprite color, for references and renderer tests. */
 export const DEFAULT_APPEARANCE: Appearance = {
-  hairstyle: 'crop', skin: 'medium', hair: 'brown', top: 'blue', bottoms: 'navy',
+  hairstyle: 'crop', topStyle: 'tshirt', bottomsStyle: 'shorts', skin: 'medium', hair: 'brown', top: 'blue', bottoms: 'navy',
   shoes: 'red', headband: 'yellow', wristbands: 'green',
 };
 
@@ -102,6 +108,8 @@ export const appearanceFromSeed = (seed: string): Appearance => {
   return {
     hairstyle: pick('hairstyle'), skin: pick('skin'), hair: pick('hair'), top: pick('top'),
     bottoms: pick('bottoms'), shoes: pick('shoes'), headband: pick('headband'), wristbands: pick('wristbands'),
+    // Append new draws: keep the original seeded hair and color choices stable.
+    topStyle: pick('topStyle'), bottomsStyle: pick('bottomsStyle'),
   };
 };
 
@@ -112,7 +120,7 @@ const rgb = (hex: string): readonly [number, number, number] => {
 
 /**
  * Recolors a character layer from its original source palette in a single pass.
- * Draw the selected hair geometry separately; this helper does not invent hair art.
+ * Select hair and clothing geometry separately; this helper only changes colors.
  * Ink, eyes, blush, metal and alpha remain unchanged. Never recolor a whole scene.
  */
 export const recolorCharacterPixels = (pixels: Uint8Array | Uint8ClampedArray, appearance: Appearance): Uint8ClampedArray => {

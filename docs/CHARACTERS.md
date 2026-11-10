@@ -8,7 +8,7 @@ choices saved. Colors stay familiar as the agent gets stronger.
 ## Hairstyles first
 
 Five distinct silhouettes: **crop, curls, bob, bun and bald**. Shape does more for
-recognition than recoloring identical hair. Clothing shapes can follow later.
+recognition than recoloring identical hair.
 
 ![Hairstyle design comparison: crop, curls, bob, bun, bald](concepts/hairstyles@2x.png)
 
@@ -17,6 +17,26 @@ zoom. It is not approved production sprite art, an animation strip or a complete
 batch-2 asset. The style tile still needs approval before production character
 art. The source palettes and asset list are unchanged.
 
+## Clothing shapes
+
+Choose tops and bottoms independently: **T-shirt, tank, hoodie** × **shorts,
+joggers, leggings**, giving nine shape combinations before color choices.
+
+![Clothing concept comparison at 2×](concepts/clothes@2x.png)
+
+Top row: T-shirt, tank and hoodie, all with shorts. Bottom row: shorts, joggers
+and leggings, all with the same T-shirt. Identical hair, skin, body dimensions
+and outfit colors make the garment differences clear. This comparison was
+palette-cleaned at 256×256 and shown at exact 2× zoom; it is concept art, not
+production sprites. Both concept images passed `pixelize check` without warnings.
+
+`topStyle` and `bottomsStyle` select shapes; `top` and `bottoms` still select
+colors. For example, `{ "topStyle": "hoodie", "bottomsStyle": "joggers",
+"top": "teal" }` changes garments and shirt color while keeping all other
+choices. New agents and rerolls randomize shapes too. Previously saved looks
+without these fields use `tshirt`/`shorts`, preserving their old colors and hair;
+the original seed sequence for those older fields is unchanged.
+
 ## What is implemented
 
 | Part | Choices |
@@ -24,6 +44,8 @@ art. The source palettes and asset list are unchanged.
 | Hairstyle | Crop, curls, bob, bun, bald |
 | Skin | Six natural skin-tone ramps |
 | Hair color | Brown, black, blond, auburn, silver, purple |
+| Top style | T-shirt (`tshirt`), tank, hoodie |
+| Bottoms style | Shorts, joggers, leggings |
 | Shirt, bottoms, shoes | Nine color ramps, chosen independently |
 | Headband, wristbands | Nine color ramps or hidden, chosen independently |
 | Body build | Earned from strength; cannot be randomized or customized |
@@ -57,20 +79,26 @@ Live customization emits `agent_updated`; reconnecting gets the saved look.
 ## Production rendering still to build
 
 The gym does not have a live pixel-art viewer or finished character sprites yet.
-The server stores hairstyle ids, but those ids do not generate hair pixels.
-The next character-art batch should prepare a bald base head and matching hair
-layers before expanding the animation set:
+The server stores hairstyle and garment ids, but those ids do not generate
+sprite pixels. The next character-art batch should prepare a bald base head,
+hair and garment layers before expanding the animation set:
 
 1. Pick the body animation from strength-derived build, activity, direction and
-   frame. The base body includes skin and clothes, without permanent hair.
-2. Attach the selected hair shape to the same head anchor. Reuse the shape across
+   frame. Expose the skin needed by tanks and shorts; avoid permanently painting
+   a T-shirt or shorts into the base used for all variants.
+2. Draw the selected top and bottoms on the same body pose. They need matching
+   masks/layers for each build, direction and animation frame. Preserve earned
+   shoulder/limb dimensions: a hoodie does not make an agent Buff, and leggings
+   do not change leg size. Keep the hood down, sleeves clear of wristband overlays,
+   joggers tapered with cuffs, and leggings fitted without loose fabric.
+3. Attach the selected hair shape to the same head anchor. Reuse the shape across
    body builds; follow any head motion per animation frame. Bald omits the layer.
-3. Compose the headband in front of the hair (or on the scalp), with an explicit
+4. Compose the headband in front of the hair (or on the scalp), with an explicit
    mask/layer so `none` hides it cleanly. Keep all hair within the 32×48 frame.
-4. Recolor **from the original source pixels** using `recolorCharacterPixels`.
+5. Recolor **from the original source pixels** using `recolorCharacterPixels`.
    Never recolor a previously recolored sprite or a whole gym scene. Cache by
    source sprite/frame and full appearance, and invalidate on appearance updates.
-5. Draw headphones and progress effects as separate overlays, preserving the
+6. Draw headphones and progress effects as separate overlays, preserving the
    selected colors and using integer zoom with smoothing disabled.
 
 The current palette helper also supports hiding bands in flattened legacy

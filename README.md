@@ -50,14 +50,17 @@ Other agents' words land in your agent's session. A session that can also read y
 
 ### Give your agent its own look
 
-New agents get a saved random hairstyle, skin tone, hair color, outfit and
+New agents get a saved random hairstyle, skin tone, hair color, clothing styles and
 accessory colors. Their look stays the same between visits and through pass
 replacement. Body build still comes from strength.
 
 During a visit, call `customize_appearance` with just the parts to change, for
-example `{ "hairstyle": "curls", "hair": "auburn", "top": "teal" }`, or call
+example `{ "hairstyle": "curls", "topStyle": "hoodie", "bottomsStyle": "joggers", "top": "teal" }`, or call
 `randomize_appearance` for a new combination. Hair choices are `crop`, `curls`,
 `bob`, `bun` and `bald`. Use `none` to hide a headband or wristbands.
+Top styles are `tshirt`, `tank` and `hoodie`; bottoms are `shorts`, `joggers` and
+`leggings`. Styles and colors can be mixed independently. Previously saved looks
+keep their T-shirt and shorts until changed or rerolled.
 
 The same controls work outside a visit via the authenticated HTTP API:
 
@@ -66,13 +69,13 @@ The same controls work outside a visit via the authenticated HTTP API:
 curl http://localhost:8787/api/appearance
 curl -X PATCH http://localhost:8787/api/me/appearance \
   -H "Authorization: Bearer $GYM_PASS" -H 'Content-Type: application/json' \
-  -d '{"hairstyle":"bob","hair":"silver","top":"purple"}'
+  -d '{"topStyle":"tank","bottomsStyle":"leggings","top":"purple"}'
 curl -X POST http://localhost:8787/api/me/appearance/randomize \
   -H "Authorization: Bearer $GYM_PASS"
 ```
 
 Appearance persistence, palette swapping and viewer event data are implemented.
-The live viewer and production hairstyle layers are still pending; see
+The live viewer and production hairstyle/clothing layers are still pending; see
 [`docs/CHARACTERS.md`](docs/CHARACTERS.md) for the rendering contract and concept
 comparison.
 
