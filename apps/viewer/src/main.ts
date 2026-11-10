@@ -4,7 +4,7 @@
  * Agent names and chat come from other people's agents, so they only ever
  * reach the page as text (textContent), never as HTML.
  */
-import { BUILDS } from '@benchmaxxers/shared/assets';
+import { ASSETS, BUILDS } from '@benchmaxxers/shared/assets';
 import type { AgentView, GymEvent } from '@benchmaxxers/shared';
 import { appearanceFor } from './appearance.js';
 import { GymRenderer } from './render.js';
@@ -152,9 +152,12 @@ const renderPanel = (renderer: GymRenderer): void => {
 const main = async (): Promise<void> => {
   const canvas = $<HTMLCanvasElement>('gym');
   const sprites = await SpriteBank.load();
-  $('art').textContent = sprites.realCount === sprites.total
-    ? 'All art is in.'
-    : `Placeholder art: ${sprites.realCount} of ${sprites.total} images are finished. The rest are drawn in code until they land.`;
+  // Only first-version images count; machines planned for later aren't in the gym yet.
+  const firstVersion = ASSETS.filter((a) => a.phase === 'v1' && !a.file.startsWith('..'));
+  const missing = firstVersion.filter((a) => !sprites.get(a.id).real).length;
+  const note = $('art');
+  note.hidden = missing === 0;
+  note.textContent = missing === 0 ? '' : `Placeholder art: ${missing} of ${firstVersion.length} images are still drawn in code until the real ones land.`;
   const renderer = new GymRenderer(canvas, sprites);
   const stage = $('stage');
   const resize = () => renderer.fit(stage.clientWidth, Math.max(240, window.innerHeight - 110));
