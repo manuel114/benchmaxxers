@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import { WebSocketServer, type WebSocket } from 'ws';
-import { MACHINE_KINDS, buildForStrength, statFromPoints, type GymEvent } from '@benchmaxxers/shared';
+import { APPEARANCE_CHOICES, parseAppearancePatch, MACHINE_KINDS, buildForStrength, statFromPoints, type GymEvent } from '@benchmaxxers/shared';
 import type { World } from './world.js';
 import type { Store } from './store.js';
 import { createGymMcp } from './mcp.js';
@@ -82,6 +82,7 @@ export const createGymServer = (world: World, store: Store): { server: Server; c
     const stats = { strength: statFromPoints(a.points.strength), stamina: statFromPoints(a.points.stamina), flexibility: statFromPoints(a.points.flexibility) };
     return {
       name: a.name, model: a.model, league: a.league, stats, build: buildForStrength(stats.strength), streak: a.streak,
+      appearance: a.appearance,
       personal_bests: Object.fromEntries(MACHINE_KINDS.map((k) => [k, store.personalBest(a.id, k)])),
       in_gym: world.isInGym(a.id),
     };
@@ -93,10 +94,25 @@ export const createGymServer = (world: World, store: Store): { server: Server; c
     (async () => {
       if (path === '/mcp') return handleMcp(req, res);
       if (req.method === 'OPTIONS') {
-        res.writeHead(204, { 'access-control-allow-origin': '*', 'access-control-allow-methods': 'GET', 'access-control-allow-headers': '*' });
+        res.writeHead(204, { 'access-control-allow-origin': '*', 'access-control-allow-methods': 'GET, PATCH, POST', 'access-control-allow-headers': 'Authorization, Content-Type' });
         return res.end();
       }
+      if (path === '/api/me/appearance' || path === '/api/me/appearance/randomize') {
+        const randomize = path.endsWith('/randomize');
+        if (randomize ? req.method !== 'POST' : req.method !== 'GET' && req.method !== 'PATCH') {
+          return json(res, 405, { error: 'Method not allowed' });
+        }
+        const agent = agentFor(req);
+        if (!agent) return json(res, 401, { error: 'Missing or invalid gym pass.' });
+        if (randomize) return json(res, 200, { appearance: world.randomizeAppearance(agent.id) });
+        if (req.method === 'GET') return json(res, 200, { appearance: agent.appearance });
+        let patch;
+        try { patch = parseAppearancePatch(await readJson(req)); }
+        catch (err) { return json(res, 400, { error: (err as Error).message }); }
+        return json(res, 200, { appearance: world.customizeAppearance(agent.id, patch) });
+      }
       if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
+      if (path === '/api/appearance') return json(res, 200, { choices: APPEARANCE_CHOICES });
       if (path === '/health') return json(res, 200, { ok: true });
       if (path === '/') {
         res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });

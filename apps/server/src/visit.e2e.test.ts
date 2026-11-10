@@ -114,6 +114,8 @@ describe('a visit over MCP', () => {
     expect(events.filter((e) => e.type === 'chat').every((e) => e.type !== 'chat' || e.kind !== 'whisper' || e.text === null)).toBe(true);
     const finished = events.find((e) => e.type === 'set_finished');
     expect(finished && finished.type === 'set_finished' && finished.result.reveal).toHaveLength(3);
+    const entered = events.find((e) => e.type === 'agent_entered');
+    expect(entered && entered.type === 'agent_entered' && entered.agent.appearance).toHaveProperty('hairstyle');
 
     ws.close();
     await ava.close();
@@ -125,5 +127,85 @@ describe('a visit over MCP', () => {
     expect(gyms[0]).toMatchObject({ id: 'gym-1', name: 'Gym 1' });
     const ava = await (await fetch(`${base}/api/agents/Ava`)).json();
     expect(ava).toMatchObject({ name: 'Ava', personal_bests: { bench: 6 } });
+  });
+});
+
+describe('appearance over HTTP and MCP', () => {
+  it('publishes a catalog but requires a gym pass for all personal appearance routes', async () => {
+    const catalog = await (await fetch(`${base}/api/appearance`)).json();
+    expect(catalog.choices.hairstyle).toEqual(['crop', 'curls', 'bob', 'bun', 'bald']);
+    for (const [path, method] of [
+      ['/api/me/appearance', 'GET'], ['/api/me/appearance', 'PATCH'], ['/api/me/appearance/randomize', 'POST'],
+    ]) {
+      expect((await fetch(`${base}${path}`, { method })).status).toBe(401);
+    }
+    const preflight = await fetch(`${base}/api/me/appearance`, { method: 'OPTIONS' });
+    expect(preflight.status).toBe(204);
+    expect(preflight.headers.get('access-control-allow-methods')).toContain('PATCH');
+    expect(preflight.headers.get('access-control-allow-headers')).toContain('Authorization');
+  });
+
+  it('patches only the authenticated agent and notifies viewers during a visit', async () => {
+    const pass = makeAgent('CustomLook');
+    const otherPass = makeAgent('OtherLook');
+    const client = await connect(pass);
+    const headers = { Authorization: `Bearer ${pass}`, 'Content-Type': 'application/json' };
+    const before = await (await fetch(`${base}/api/me/appearance`, { headers })).json();
+    const otherBefore = await (await fetch(`${base}/api/me/appearance`, { headers: { Authorization: `Bearer ${otherPass}` } })).json();
+    const ws = new WebSocket(`${base.replace('http', 'ws')}/ws?gym=gym-1`);
+    try {
+      await new Promise<void>((resolve, reject) => { ws.once('open', resolve); ws.once('error', reject); });
+      expect((await call(client, 'enter_gym')).body!.your_appearance).toEqual(before.appearance);
+      const update = new Promise<GymEvent>((resolve, reject) => {
+        const timer = setTimeout(() => reject(new Error('Missing appearance update')), 2000);
+        ws.on('message', (raw) => {
+          const event = JSON.parse(raw.toString()) as GymEvent;
+          if (event.type === 'agent_updated' && event.agent.name === 'CustomLook') {
+            clearTimeout(timer); resolve(event);
+          }
+        });
+      });
+      const res = await fetch(`${base}/api/me/appearance`, { method: 'PATCH', headers, body: JSON.stringify({ hairstyle: 'curls', top: 'teal' }) });
+      expect(res.status).toBe(200);
+      const changed = await res.json();
+      expect(changed.appearance).toEqual({ ...before.appearance, hairstyle: 'curls', top: 'teal' });
+      expect(await update).toMatchObject({ type: 'agent_updated', agent: { build: 0, appearance: changed.appearance } });
+      const snapshot = await (await fetch(`${base}/api/gyms/gym-1`)).json();
+      expect(snapshot.agents.find((a: { name: string }) => a.name === 'CustomLook').appearance).toEqual(changed.appearance);
+      const profile = await (await fetch(`${base}/api/agents/CustomLook`)).json();
+      expect(profile).toMatchObject({ appearance: changed.appearance, stats: { strength: 0, stamina: 0, flexibility: 0 } });
+      expect(await (await fetch(`${base}/api/me/appearance`, { headers: { Authorization: `Bearer ${otherPass}` } })).json()).toEqual(otherBefore);
+      const mcp = await call(client, 'customize_appearance', { hairstyle: 'bun', hair: 'silver' });
+      expect(mcp.body!.appearance).toEqual({ ...changed.appearance, hairstyle: 'bun', hair: 'silver' });
+      const reroll = await call(client, 'randomize_appearance');
+      expect(reroll.error).toBe(false);
+      expect((await (await fetch(`${base}/api/me/appearance`, { headers })).json()).appearance).toEqual(reroll.body!.appearance);
+      await call(client, 'leave_gym');
+    } finally { ws.terminate(); await client.close(); }
+  });
+
+  it('rejects malformed cosmetics and gameplay edits without modifying the saved look', async () => {
+    const pass = makeAgent('ValidateLook');
+    const headers = { Authorization: `Bearer ${pass}`, 'Content-Type': 'application/json' };
+    const before = await (await fetch(`${base}/api/me/appearance`, { headers })).json();
+    for (const body of ['{', '{}', 'null', '[]', '{"hairstyle":"unknown"}', '{"skin":"#ffffff"}', '{"top":"red","build":3}', '{"agentId":"someone-else"}']) {
+      const res = await fetch(`${base}/api/me/appearance`, { method: 'PATCH', headers, body });
+      expect(res.status).toBe(400);
+    }
+    expect(await (await fetch(`${base}/api/me/appearance`, { headers })).json()).toEqual(before);
+    // Reroll works before entering, and the next visit uses the same persisted choices.
+    const rerolled = await (await fetch(`${base}/api/me/appearance/randomize`, { method: 'POST', headers })).json();
+    expect(await (await fetch(`${base}/api/me/appearance`, { headers })).json()).toEqual(rerolled);
+    const client = await connect(pass);
+    try {
+      await call(client, 'enter_gym');
+      expect(world.snapshot('gym-1')!.agents.find((a) => a.name === 'ValidateLook')!.appearance).toEqual(rerolled.appearance);
+      expect((await call(client, 'customize_appearance')).error).toBe(true);
+      expect((await call(client, 'customize_appearance', { hairstyle: 'not-real' })).error).toBe(true);
+      expect((await call(client, 'customize_appearance', { top: 'red', build: 3 })).error).toBe(true);
+      expect((await call(client, 'randomize_appearance', { agentId: 'someone-else' })).error).toBe(true);
+      expect(await (await fetch(`${base}/api/me/appearance`, { headers })).json()).toEqual(rerolled);
+      await call(client, 'leave_gym');
+    } finally { await client.close(); }
   });
 });

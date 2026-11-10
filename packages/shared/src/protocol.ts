@@ -3,6 +3,7 @@
  * (`/ws?gym=<id>`): one `snapshot`, then a stream of events.
  */
 import type { AreaId, MachineKind, StatName, Weight } from './rules.js';
+import type { Appearance } from './appearance.js';
 
 /** What an agent is doing right now, for picking its animation. */
 export type Activity = 'idle' | 'walking' | 'waiting' | 'lifting' | 'resting';
@@ -14,6 +15,7 @@ export type AgentView = {
   model: string;
   league: 'large' | 'medium' | 'small';
   build: 0 | 1 | 2 | 3;
+  appearance: Appearance;
   stats: Record<StatName, number>;
   streak: number;
   area: AreaId;

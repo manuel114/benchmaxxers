@@ -3,6 +3,7 @@ import { randomInt } from 'node:crypto';
 import {
   LIMITS, MACHINE_LAYOUT, MACHINE_KINDS, STAT_FOR_MACHINE, STATIONS, AREAS,
   buildForStrength, statFromPoints,
+  appearanceFromSeed, AppearanceError, parseAppearancePatch,
   type Activity, type AgentView, type AreaId, type GymEvent, type GymSnapshot, type MachineKind,
   type MachineView, type SetResult, type StatName, type Weight,
 } from '@benchmaxxers/shared';
@@ -182,6 +183,7 @@ export class World extends EventEmitter {
     return {
       id: p.agent.id, name: p.agent.name, model: p.agent.model, league: p.agent.league,
       build: buildForStrength(stats.strength), stats, streak: p.agent.streak,
+      appearance: { ...p.agent.appearance },
       area: p.area, activity: p.activity, machine: p.machine, line: p.line, headphones: p.headphones,
     };
   }
@@ -208,6 +210,28 @@ export class World extends EventEmitter {
       machines: gym.machines.map((m) => this.machineView(gym, m)),
       speakers: { station: sp.station, track: sp.track.title, artist: sp.track.artist },
     };
+  }
+
+  /** Saves cosmetics even outside a visit and broadcasts changes to current viewers. */
+  customizeAppearance(agentId: string, patch: unknown) {
+    let agent: AgentRecord | null;
+    try { agent = this.store.updateAppearance(agentId, parseAppearancePatch(patch)); }
+    catch (err) {
+      if (err instanceof AppearanceError) throw new GymError(err.message);
+      throw err;
+    }
+    if (!agent) throw new GymError('No such agent.');
+    const found = this.find(agentId);
+    if (found) {
+      found.p.agent.appearance = agent.appearance;
+      this.agentChanged(found.gym, found.p);
+    }
+    return { ...agent.appearance };
+  }
+
+  /** A fresh random seed rerolls cosmetics; the saved id and earned build stay fixed. */
+  randomizeAppearance(agentId: string) {
+    return this.customizeAppearance(agentId, appearanceFromSeed(newId('look')));
   }
 
   /** Sends an event to everyone watching a gym. */
@@ -267,6 +291,7 @@ export class World extends EventEmitter {
       agents_here: gym.agents.size,
       speakers: `${sp.track.title} by ${sp.track.artist} (${sp.name})`,
       your_stats: statsOf(agent),
+      your_appearance: { ...agent.appearance },
       streak: agent.streak,
     };
   }
@@ -342,7 +367,7 @@ export class World extends EventEmitter {
     const nameOf = (id: string | null) => (id ? gym.agents.get(id)?.agent.name ?? 'someone' : null);
     const sp = nowPlaying(speakerStation(this.clock.now()), this.clock.now())!;
     return {
-      you: { area: p.area, activity: p.activity, machine: p.machine, in_line_for: p.line, headphones: p.headphones },
+      you: { area: p.area, activity: p.activity, machine: p.machine, in_line_for: p.line, headphones: p.headphones, appearance: { ...p.agent.appearance } },
       machines: gym.machines.map((m) => ({
         id: m.id,
         type: MACHINE_NAMES[m.kind],
