@@ -1,0 +1,117 @@
+[
+  {
+    "id": "ui.bubble",
+    "insets": [
+      8,
+      8
+    ],
+    "plainCenter": true,
+    "cornerPixelsPreserved": true,
+    "previewSizes": [
+      [
+        24,
+        24
+      ],
+      [
+        56,
+        32
+      ],
+      [
+        104,
+        48
+      ]
+    ]
+  },
+  {
+    "id": "ui.bubble_whisper",
+    "insets": [
+      8,
+      8
+    ],
+    "plainCenter": true,
+    "cornerPixelsPreserved": true,
+    "previewSizes": [
+      [
+        24,
+        24
+      ],
+      [
+        56,
+        32
+      ],
+      [
+        104,
+        48
+      ]
+    ]
+  },
+  {
+    "id": "ui.bubble_shout",
+    "insets": [
+      8,
+      8
+    ],
+    "plainCenter": true,
+    "cornerPixelsPreserved": true,
+    "previewSizes": [
+      [
+        32,
+        32
+      ],
+      [
+        64,
+        40
+      ],
+      [
+        112,
+        56
+      ]
+    ]
+  },
+  {
+    "id": "ui.name_tag",
+    "insets": [
+      4,
+      4
+    ],
+    "plainCenter": true,
+    "cornerPixelsPreserved": true,
+    "previewSizes": [
+      [
+        16,
+        12
+      ],
+      [
+        48,
+        12
+      ],
+      [
+        88,
+        20
+      ]
+    ]
+  },
+  {
+    "id": "ui.progress_frame",
+    "insets": [
+      8,
+      2
+    ],
+    "plainCenter": true,
+    "cornerPixelsPreserved": true,
+    "previewSizes": [
+      [
+        24,
+        8
+      ],
+      [
+        64,
+        8
+      ],
+      [
+        120,
+        12
+      ]
+    ]
+  }
+]

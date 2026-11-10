@@ -1,0 +1,426 @@
+{
+  "assetCount": 24,
+  "protectedFilesPreserved": true,
+  "checks": [
+    {
+      "id": "fx.sweat",
+      "size": [
+        64,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 6,
+          "sha256": "63261df846915878f5c79b569c22c901e97c3d389594afc95c637ef52f816267"
+        },
+        {
+          "solidPixels": 25,
+          "sha256": "75b43e05cdb3f011a3c25748eee9138249b5882c7e2bf385c9d3c2b6047a074b"
+        },
+        {
+          "solidPixels": 20,
+          "sha256": "0fb1d531df8ee02c7fd0c422ae78c08022fa8c18e937a3b163c5e9d6f4ed986e"
+        },
+        {
+          "solidPixels": 3,
+          "sha256": "07e3b5e17ff591c11848f8bd6d6799b45c6fd2fce59696510e7d9226dc0a5679"
+        }
+      ]
+    },
+    {
+      "id": "fx.cheer",
+      "size": [
+        128,
+        32
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 64,
+          "sha256": "9e3cc763fd0b3785b7dfd518e048c5ccad17351b67c008f72cacf5d42bddf803"
+        },
+        {
+          "solidPixels": 237,
+          "sha256": "a37f24b31aa71190754bc3ad3ea9603432e39af61058324370ea00f8a2d9cb6e"
+        },
+        {
+          "solidPixels": 208,
+          "sha256": "1009818393b0992ab1ff1c652bfae4de28fda9ee24ffa7385733bacf24a7cca9"
+        },
+        {
+          "solidPixels": 72,
+          "sha256": "ea617912dd5fe5bf7d97bf6ee2d9ee6ff03dd5f361d682786e3e92af57e137b5"
+        }
+      ]
+    },
+    {
+      "id": "fx.dust",
+      "size": [
+        128,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 78,
+          "sha256": "6420dcb1259de324945865028a98ba496a679451900c96a4dbd70b01bcb0d179"
+        },
+        {
+          "solidPixels": 117,
+          "sha256": "7c4cd7d63304751eaeb3f49212551cbbc62784dc4b8410172a2416eaefd3150d"
+        },
+        {
+          "solidPixels": 145,
+          "sha256": "3a73b64c0600f759a66ef16df45be5f4c75286fd8974cbda2f7ae681abdcdde0"
+        },
+        {
+          "solidPixels": 66,
+          "sha256": "95f68d2f7f67cc1e15cbfb2dbb573614f56e4489dc07c30a16b3264265c83c2d"
+        }
+      ]
+    },
+    {
+      "id": "fx.sparkle",
+      "size": [
+        64,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 12,
+          "sha256": "8f8c14f58125a4c30c22145271c54ce95cfc5f1fcf8c7c3876e9a16f73c386d0"
+        },
+        {
+          "solidPixels": 33,
+          "sha256": "c83a9811955c8d9d94cc521c7382fa3a8136ff9797dda582c13e5d1396ca06a7"
+        },
+        {
+          "solidPixels": 68,
+          "sha256": "a8ab78b5ef559d6b6394d4ab3f06a7591fa29b25e17754bfe46eee47bd1e3472"
+        },
+        {
+          "solidPixels": 12,
+          "sha256": "fd511dcf1b2ce82dcf8777175517801f17fce31d95c6ab0dc91f85e4015cf64b"
+        }
+      ]
+    },
+    {
+      "id": "fx.notes",
+      "size": [
+        64,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 47,
+          "sha256": "438b8a51bc5daa60708793a37ddf6f564adde9b315a1316778bf98aa0e77ff4e"
+        },
+        {
+          "solidPixels": 47,
+          "sha256": "f6d97507f195566864eb770866b89e18953ca657b2d63c9c21cf89e1f6bab5eb"
+        },
+        {
+          "solidPixels": 27,
+          "sha256": "d09fb818ff66369f161119e65c6bd6ae93c08b5756f90ab1672dac35d075a23c"
+        },
+        {
+          "solidPixels": 6,
+          "sha256": "ab9f0ac70eb7be30e6a02a0d6fca8acbd94348be8edb02a5953d90e76017a846"
+        }
+      ]
+    },
+    {
+      "id": "fx.headphones_down",
+      "size": [
+        20,
+        12
+      ],
+      "palette": "character",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 112,
+          "sha256": "51c13566b7c83abddf9d7f1fadb6f05e19df07ccd6946069dfe7fb95d922421c"
+        }
+      ]
+    },
+    {
+      "id": "fx.headphones_up",
+      "size": [
+        20,
+        12
+      ],
+      "palette": "character",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 100,
+          "sha256": "71bcdd3c606d186820a6236caea844ff5a8ab3ed81f89f358489fa89d50ed30a"
+        }
+      ]
+    },
+    {
+      "id": "fx.headphones_side",
+      "size": [
+        20,
+        12
+      ],
+      "palette": "character",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 64,
+          "sha256": "d27344e1727a652db6d2ec2fc6918ea22da35fc3c6d7eb647125a4778c3981be"
+        }
+      ]
+    },
+    {
+      "id": "ui.bubble",
+      "size": [
+        24,
+        24
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 564,
+          "sha256": "88af19d8b2fb0bf5087526102b4c3f74dbec76be5c8511b47a4e3814565c49c2"
+        }
+      ]
+    },
+    {
+      "id": "ui.bubble_tail",
+      "size": [
+        8,
+        6
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 28,
+          "sha256": "9f3b67681dac207337db12ff3006acb9a821c86f84f3448e3bc7194eca84df57"
+        }
+      ]
+    },
+    {
+      "id": "ui.bubble_whisper",
+      "size": [
+        24,
+        24
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 550,
+          "sha256": "9bb5797455300f1e586cc72f43b6f674142620e48db5e9fa864a442649e66ac5"
+        }
+      ]
+    },
+    {
+      "id": "ui.bubble_shout",
+      "size": [
+        32,
+        32
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 672,
+          "sha256": "353c3f5d78a15f5c7740d7a2359ce833f561f18c8283796829c4353ffca3a53d"
+        }
+      ]
+    },
+    {
+      "id": "ui.name_tag",
+      "size": [
+        16,
+        12
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 172,
+          "sha256": "e804128111c5237b74701f11006282c4922eb8c54535e5f8692aa5bd79132cb8"
+        }
+      ]
+    },
+    {
+      "id": "ui.line_badge",
+      "size": [
+        12,
+        12
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 108,
+          "sha256": "0d1e4e225a1c255682e7675ac86fd89a50c4286b7510e8ac270ef3eb36a91330"
+        }
+      ]
+    },
+    {
+      "id": "ui.progress_frame",
+      "size": [
+        24,
+        8
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 56,
+          "sha256": "edea03ef072a8b758b482efa7f8536fefc80019410761844154e81fdaeb550db"
+        }
+      ]
+    },
+    {
+      "id": "ui.progress_fill",
+      "size": [
+        4,
+        4
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 16,
+          "sha256": "c28807ddea5f7e6f5028cc94921b57827ce957ecab24a843faf3d21252c12eab"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_headphones",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 124,
+          "sha256": "58f3ecbe693bd7db800535441755cec5f9d199cfb40bbab8dee14917f4ac0a81"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_note",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 86,
+          "sha256": "5fae6def93d8ef13f59551e40d89ab5923718f7b12704f644e3238a13abb9894"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_dumbbell",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 55,
+          "sha256": "e5ee5439a9493af927a1b1e394e9b11474d84a8dbe3ccabd95d60e566d2615e6"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_heart",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 146,
+          "sha256": "14ea697aade04ddeee4e15f8f0b4971c4532e86b6e6aa64cc8945e32915e52c5"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_leaf",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 122,
+          "sha256": "4c719aeb26b973876d5b22467c23c74e81060f0a766eda03099122f75cf9de3b"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_flame",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 105,
+          "sha256": "11de6d4958d104be377363ff2452dfa9d2873f778bc7523ecbb613f868a759ae"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_trophy",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 110,
+          "sha256": "af45aa6f3253561aeae26786fbd10bc63a07926364d563b566961c135742afba"
+        }
+      ]
+    },
+    {
+      "id": "ui.icon_clock",
+      "size": [
+        16,
+        16
+      ],
+      "palette": "environment",
+      "pixelizeCheck": "passed",
+      "frames": [
+        {
+          "solidPixels": 150,
+          "sha256": "3acb322647d96cecceff5e641c45e2be3ae143dec1ee1b200fb386e203bbf38b"
+        }
+      ]
+    }
+  ]
+}
