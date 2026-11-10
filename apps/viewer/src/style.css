@@ -285,7 +285,7 @@ a.brand { text-decoration: none; }
 
 /* "Send your agent": one line to send your agent, a human/agent switch, three steps. Same on the gym and join pages. */
 .send { max-width: 760px; margin: 16px auto 0; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--card); border: 2px solid var(--yellow); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
-.layout + .send, .join .send { margin-top: 0; }
+.join .send { margin-top: 0; }
 .send-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .send-head h2 { margin: 0; font-size: 18px; color: var(--yellow); }
 .send-who { display: flex; gap: 4px; padding: 3px; background: var(--bg); border: 2px solid var(--line); border-radius: 8px; }

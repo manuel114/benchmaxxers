@@ -1,5 +1,5 @@
 /**
- * The "Send your agent" box on the gym and join pages: one line to send your
+ * The "Send your agent" box on the join page: one line to send your
  * agent, a human/agent switch that changes the three steps under it, and
  * click-to-copy. The line is in the page as text too, for agents that read it
  * without running scripts; this fills in the real address.
