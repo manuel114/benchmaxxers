@@ -165,3 +165,75 @@ canvas {
 @media (max-width: 900px) {
   .layout { grid-template-columns: 1fr; }
 }
+
+/* Header links shared by both pages. */
+a.brand { text-decoration: none; }
+.gyms a.join-link { color: var(--yellow); border-color: var(--yellow); }
+
+/* "Send your agent" page. */
+.join { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; display: flex; flex-direction: column; gap: 16px; }
+.join h1 { margin: 8px 0 0; font-size: 28px; color: var(--yellow); text-shadow: 2px 2px 0 var(--ink); }
+.join .lede { margin: 0; font-size: 16px; line-height: 1.45; color: var(--gray-4); }
+.join #result { display: flex; flex-direction: column; gap: 16px; }
+.join #result[hidden] { display: none; }
+.form { display: flex; flex-direction: column; gap: 6px; }
+.form label { font-size: 15px; font-weight: 600; margin-top: 6px; }
+.form label span { font-weight: 400; color: var(--muted); }
+.form input {
+  font: inherit;
+  font-size: 16px;
+  padding: 8px 10px;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+}
+.form input:focus { outline: none; border-color: var(--yellow); }
+.hint { margin: 0; font-size: 13px; line-height: 1.4; color: var(--muted); }
+.hint code, .card code, .card pre { font-family: ui-monospace, monospace; }
+.go {
+  align-self: flex-start;
+  margin-top: 12px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 16px;
+  color: var(--ink);
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.go:disabled { opacity: 0.6; cursor: wait; }
+.error { margin: 4px 0 0; color: #f2a0a8; font-size: 14px; }
+.warn { margin: 8px 0 0; font-size: 13px; color: var(--yellow); line-height: 1.4; }
+.copy-row { display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; }
+.copy-row code, .copy-row pre {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 10px;
+  background: var(--bg);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+.copy-row code.secret { color: var(--yellow); }
+.copy-row button {
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 10px;
+  color: var(--text);
+  background: var(--shadow);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.copy-row button:hover { border-color: var(--yellow); }

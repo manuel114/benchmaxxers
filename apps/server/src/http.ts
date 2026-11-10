@@ -7,7 +7,9 @@ import { APPEARANCE_CHOICES, parseAppearancePatch, MACHINE_KINDS, buildForStreng
 import type { World } from './world.js';
 import type { Store } from './store.js';
 import { createGymMcp } from './mcp.js';
-import { hashPass, passFromHeader } from './passes.js';
+import { hashPass, launchInfo, newPass, passFromHeader } from './passes.js';
+import { SIGNUP_LIMITS, SignupError, selfServeSignup } from './signup.js';
+import { serveStatic } from './static.js';
 
 /** One connected agent session. */
 type Session = { transport: StreamableHTTPServerTransport; agentId: string };
@@ -36,8 +38,20 @@ const json = (res: ServerResponse, status: number, body: unknown): void => {
   res.end(JSON.stringify(body));
 };
 
-/** Starts the gym's HTTP server: MCP for agents, WebSocket and JSON for viewers. */
-export const createGymServer = (world: World, store: Store): { server: Server; close: () => Promise<void> } => {
+/** Settings for the gym's HTTP server. All optional; tests use the defaults. */
+export type GymServerOptions = {
+  /** Public address used in launch commands handed to new agents. */
+  publicUrl?: string;
+  /** Folder with the built gym page to serve at / and /join. */
+  staticDir?: string;
+  /** Header holding the visitor's real address when a proxy sits in front. */
+  clientIpHeader?: string;
+  /** Limits on self-serve gym passes. */
+  signupLimits?: { perAddressPerDay: number; perHour: number };
+};
+
+/** Starts the gym's HTTP server: MCP for agents, WebSocket and JSON for viewers, and the gym page. */
+export const createGymServer = (world: World, store: Store, options: GymServerOptions = {}): { server: Server; close: () => Promise<void> } => {
   const sessions = new Map<string, Session>();
   world.setMaxListeners(0);
 
@@ -75,6 +89,16 @@ export const createGymServer = (world: World, store: Store): { server: Server; c
     await transport.handleRequest(req, res, body);
   };
 
+  /** The visitor's address: from the proxy's header when one is configured, otherwise the connection. */
+  const clientAddress = (req: IncomingMessage): string => {
+    const fromProxy = options.clientIpHeader ? req.headers[options.clientIpHeader] : undefined;
+    const value = Array.isArray(fromProxy) ? fromProxy[0] : fromProxy;
+    return value?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
+  };
+
+  /** The public address, from the settings or from the request when none is set. */
+  const publicUrl = (req: IncomingMessage): string => options.publicUrl ?? `http://${req.headers.host ?? 'localhost'}`;
+
   /** Public profile of an agent, for the viewer. */
   const profile = (name: string) => {
     const a = store.agentByName(name);
@@ -111,6 +135,30 @@ export const createGymServer = (world: World, store: Store): { server: Server; c
         catch (err) { return json(res, 400, { error: (err as Error).message }); }
         return json(res, 200, { appearance: world.customizeAppearance(agent.id, patch) });
       }
+      if (path === '/api/passes') {
+        if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
+        let body: { name?: unknown; model?: unknown } | undefined;
+        try { body = (await readJson(req)) as typeof body; } catch (err) { return json(res, 400, { error: (err as Error).message }); }
+        try {
+          const made = selfServeSignup(store, {
+            name: body?.name, model: body?.model, address: clientAddress(req), now: Date.now(),
+            limits: options.signupLimits ?? SIGNUP_LIMITS,
+          });
+          return json(res, 201, { name: made.name, model: made.model, pass: made.pass, ...launchInfo(publicUrl(req), made.pass) });
+        } catch (err) {
+          if (err instanceof SignupError) return json(res, err.status, { error: err.message });
+          throw err;
+        }
+      }
+      if (path === '/api/me/pass') {
+        if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
+        const agent = agentFor(req);
+        if (!agent) return json(res, 401, { error: 'Missing or invalid gym pass.' });
+        const { pass, hash } = newPass();
+        store.replacePass(agent.id, hash);
+        return json(res, 200, { name: agent.name, pass, ...launchInfo(publicUrl(req), pass) });
+      }
+      if (options.staticDir && !path.startsWith('/api/') && serveStatic(options.staticDir, req, res, path)) return;
       if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
       if (path === '/api/appearance') return json(res, 200, { choices: APPEARANCE_CHOICES });
       if (path === '/health') return json(res, 200, { ok: true });

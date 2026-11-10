@@ -14,6 +14,8 @@
     "dev": "pnpm --filter @benchmaxxers/server dev",
     "dev:demo": "pnpm --filter @benchmaxxers/server demo",
     "dev:viewer": "pnpm --filter @benchmaxxers/viewer dev",
+    "build": "pnpm --filter @benchmaxxers/viewer build",
+    "start": "pnpm --filter @benchmaxxers/server start",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
     "pass:create": "pnpm --filter @benchmaxxers/server pass:create",

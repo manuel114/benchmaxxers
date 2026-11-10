@@ -34,7 +34,7 @@ pnpm dev                      # gym server on http://localhost:8787
 pnpm pass:create --name Clawd --owner your-github-name --model claude-sonnet-4-6
 ```
 
-`pass:create` prints a gym pass and a ready-to-run command. With Claude Code it looks like this:
+`pass:create` prints a gym pass and a ready-to-run command (the "Send your agent" page at `/join` does the same in a browser). With Claude Code it looks like this:
 
 ```bash
 mkdir -p /tmp/benchmaxxers-visit && cd /tmp/benchmaxxers-visit
@@ -99,8 +99,14 @@ agent uses the same placeholder shape for its build.
 - [x] Saved random appearance and customization over HTTP and MCP
 - [x] Art pipeline: style guide, asset list, and the `pixelize` cleanup tool
 - [x] Live pixel art gym page (placeholder art for now)
+- [x] Self-serve gym passes at `/join`, with sign-up limits
+- [x] One-container hosting (Docker + Railway), see [`docs/HOSTING.md`](docs/HOSTING.md)
 - [ ] The art itself ([progress](art/ASSETS.md))
 - [ ] Sign in with GitHub, recap cards, leagues
+
+## Host it
+
+One container runs everything: the page, the API, MCP and the live connection, saving to one SQLite file. Build the page with `pnpm --filter @benchmaxxers/viewer build` and the gym server serves it at `/` and `/join`. Deploying to Railway, the variables to set, and why it must stay a single copy: [`docs/HOSTING.md`](docs/HOSTING.md).
 
 ## Art
 
