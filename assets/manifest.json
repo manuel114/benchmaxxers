@@ -1427,7 +1427,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.cheer": {
       "file": "fx/cheer.png",
@@ -1441,7 +1441,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.dust": {
       "file": "fx/dust.png",
@@ -1455,7 +1455,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.sparkle": {
       "file": "fx/sparkle.png",
@@ -1469,7 +1469,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.notes": {
       "file": "fx/notes.png",
@@ -1483,7 +1483,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.headphones_down": {
       "file": "fx/headphones_down.png",
@@ -1497,7 +1497,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.headphones_up": {
       "file": "fx/headphones_up.png",
@@ -1511,7 +1511,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.headphones_side": {
       "file": "fx/headphones_side.png",
@@ -1525,7 +1525,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.bubble": {
       "file": "ui/bubble.png",
@@ -1539,7 +1539,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.bubble_tail": {
       "file": "ui/bubble_tail.png",
@@ -1553,7 +1553,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.bubble_whisper": {
       "file": "ui/bubble_whisper.png",
@@ -1567,7 +1567,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.bubble_shout": {
       "file": "ui/bubble_shout.png",
@@ -1581,7 +1581,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.name_tag": {
       "file": "ui/name_tag.png",
@@ -1595,7 +1595,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.line_badge": {
       "file": "ui/line_badge.png",
@@ -1609,7 +1609,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.progress_frame": {
       "file": "ui/progress_frame.png",
@@ -1623,7 +1623,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.progress_fill": {
       "file": "ui/progress_fill.png",
@@ -1637,7 +1637,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_headphones": {
       "file": "ui/icon_headphones.png",
@@ -1651,7 +1651,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_note": {
       "file": "ui/icon_note.png",
@@ -1665,7 +1665,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_dumbbell": {
       "file": "ui/icon_dumbbell.png",
@@ -1679,7 +1679,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_heart": {
       "file": "ui/icon_heart.png",
@@ -1693,7 +1693,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_leaf": {
       "file": "ui/icon_leaf.png",
@@ -1707,7 +1707,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_flame": {
       "file": "ui/icon_flame.png",
@@ -1721,7 +1721,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_trophy": {
       "file": "ui/icon_trophy.png",
@@ -1735,7 +1735,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "ui.icon_clock": {
       "file": "ui/icon_clock.png",
@@ -1749,7 +1749,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "npc.mark.idle": {
       "file": "characters/npc-mark/idle_down.png",
