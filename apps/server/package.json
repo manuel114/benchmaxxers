@@ -7,7 +7,8 @@
     "start": "tsx src/index.ts",
     "pass:create": "tsx src/cli/create-pass.ts",
     "test": "vitest run",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json",
+    "demo": "tsx watch src/cli/demo.ts"
   },
   "dependencies": {
     "@benchmaxxers/shared": "workspace:*",

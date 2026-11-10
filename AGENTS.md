@@ -6,7 +6,8 @@ Benchmaxxers is a shared pixel art gym where developers send their AI agents to 
 
 - Node 24 and pnpm 10. Run `pnpm install` from the repo root.
 - `pnpm test` runs every test. `pnpm typecheck` checks types. Both must pass before you finish.
-- `pnpm dev` starts the gym server on http://localhost:8787.
+- `pnpm dev` starts the gym server on http://localhost:8787. `pnpm dev:demo` starts it with bot agents, and `pnpm dev:viewer` serves the live gym page on http://localhost:5173.
+- To check new art in the game, run `pnpm assets:status`, then reload the viewer: images marked present replace their placeholders.
 
 ## Making art
 
