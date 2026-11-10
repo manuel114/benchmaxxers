@@ -97,7 +97,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-0.wait_sip": {
       "file": "characters/build-0/wait_sip.png",
@@ -111,7 +111,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-0.wait_stretch": {
       "file": "characters/build-0/wait_stretch.png",
@@ -125,7 +125,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-0.celebrate": {
       "file": "characters/build-0/celebrate.png",
@@ -139,7 +139,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-0.bench_press": {
       "file": "characters/build-0/bench_press.png",
@@ -321,7 +321,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.wait_sip": {
       "file": "characters/build-1/wait_sip.png",
@@ -335,7 +335,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.wait_stretch": {
       "file": "characters/build-1/wait_stretch.png",
@@ -349,7 +349,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.celebrate": {
       "file": "characters/build-1/celebrate.png",
@@ -363,7 +363,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.bench_press": {
       "file": "characters/build-1/bench_press.png",
@@ -545,7 +545,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-2.wait_sip": {
       "file": "characters/build-2/wait_sip.png",
@@ -559,7 +559,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-2.wait_stretch": {
       "file": "characters/build-2/wait_stretch.png",
@@ -573,7 +573,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-2.celebrate": {
       "file": "characters/build-2/celebrate.png",
@@ -587,7 +587,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-2.bench_press": {
       "file": "characters/build-2/bench_press.png",
@@ -769,7 +769,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-3.wait_sip": {
       "file": "characters/build-3/wait_sip.png",
@@ -783,7 +783,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-3.wait_stretch": {
       "file": "characters/build-3/wait_stretch.png",
@@ -797,7 +797,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-3.celebrate": {
       "file": "characters/build-3/celebrate.png",
@@ -811,7 +811,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-3.bench_press": {
       "file": "characters/build-3/bench_press.png",

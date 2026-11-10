@@ -1,0 +1,2671 @@
+{
+  "batch": 7,
+  "strips": 16,
+  "frames": 64,
+  "frameSize": [
+    32,
+    48
+  ],
+  "anchor": [
+    16,
+    46
+  ],
+  "assets": {
+    "char.build-0.wait_watch": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 15,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 314,
+            "hair": 78,
+            "headband": 33,
+            "skin": 84,
+            "cream": 2,
+            "blush": 2,
+            "top": 64,
+            "wristband": 14,
+            "bottoms": 19,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 356,
+            "hair": 78,
+            "headband": 33,
+            "skin": 96,
+            "cream": 2,
+            "blush": 2,
+            "top": 16,
+            "wristband": 8,
+            "bottoms": 13,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 341,
+            "hair": 78,
+            "headband": 33,
+            "skin": 93,
+            "cream": 4,
+            "blush": 2,
+            "top": 13,
+            "wristband": 9,
+            "bottoms": 18,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 345,
+            "hair": 78,
+            "headband": 33,
+            "skin": 78,
+            "cream": 2,
+            "blush": 2,
+            "top": 45,
+            "wristband": 11,
+            "bottoms": 17,
+            "shoes": 32
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-0.wait_sip": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 4,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 10,
+          "ramps": {
+            "ink": 357,
+            "hair": 78,
+            "headband": 33,
+            "skin": 89,
+            "cream": 2,
+            "blush": 2,
+            "top": 39,
+            "wristband": 11,
+            "metal": 6,
+            "bottoms": 16,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 4,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 167,
+          "headPixelsOccludedByBottle": 1,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 11,
+          "ramps": {
+            "ink": 349,
+            "hair": 78,
+            "headband": 33,
+            "skin": 86,
+            "cream": 2,
+            "blush": 2,
+            "metal": 9,
+            "top": 29,
+            "wristband": 10,
+            "bottoms": 19,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 157,
+          "headPixelsOccludedByBottle": 11,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 15,
+          "ramps": {
+            "ink": 351,
+            "hair": 78,
+            "headband": 33,
+            "skin": 77,
+            "cream": 2,
+            "blush": 2,
+            "metal": 7,
+            "top": 35,
+            "wristband": 11,
+            "bottoms": 19,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 4,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 7,
+          "ramps": {
+            "ink": 362,
+            "hair": 78,
+            "headband": 33,
+            "skin": 88,
+            "cream": 2,
+            "blush": 2,
+            "top": 24,
+            "metal": 7,
+            "wristband": 13,
+            "bottoms": 18,
+            "shoes": 32
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-0.wait_stretch": {
+      "fps": 4,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 15,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 314,
+            "hair": 78,
+            "headband": 33,
+            "skin": 84,
+            "cream": 2,
+            "blush": 2,
+            "top": 64,
+            "wristband": 14,
+            "bottoms": 19,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 23,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 379,
+            "hair": 78,
+            "headband": 33,
+            "wristband": 12,
+            "skin": 76,
+            "cream": 2,
+            "blush": 2,
+            "top": 47,
+            "bottoms": 13,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 335,
+            "hair": 78,
+            "headband": 33,
+            "skin": 71,
+            "cream": 2,
+            "blush": 2,
+            "top": 49,
+            "wristband": 11,
+            "bottoms": 16,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 346,
+            "hair": 78,
+            "headband": 33,
+            "skin": 74,
+            "cream": 2,
+            "blush": 2,
+            "top": 44,
+            "wristband": 17,
+            "bottoms": 16,
+            "shoes": 32
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-0.celebrate": {
+      "fps": 10,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        -1,
+        -2,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 15,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 314,
+            "hair": 78,
+            "headband": 33,
+            "skin": 84,
+            "cream": 2,
+            "blush": 2,
+            "top": 64,
+            "wristband": 14,
+            "bottoms": 19,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 4,
+            "w": 20,
+            "h": 43
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 362,
+            "hair": 78,
+            "headband": 33,
+            "skin": 89,
+            "cream": 2,
+            "blush": 2,
+            "top": 40,
+            "wristband": 7,
+            "bottoms": 19,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 3,
+            "w": 22,
+            "h": 44
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 389,
+            "hair": 78,
+            "headband": 33,
+            "skin": 82,
+            "cream": 2,
+            "blush": 2,
+            "wristband": 7,
+            "top": 45,
+            "bottoms": 18,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 20,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 131,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 353,
+            "hair": 78,
+            "headband": 33,
+            "skin": 89,
+            "cream": 2,
+            "blush": 2,
+            "top": 35,
+            "wristband": 10,
+            "bottoms": 17,
+            "shoes": 32
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-1.wait_watch": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 6,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 341,
+            "hair": 78,
+            "headband": 33,
+            "skin": 86,
+            "cream": 2,
+            "blush": 2,
+            "top": 60,
+            "wristband": 15,
+            "bottoms": 28,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 353,
+            "hair": 78,
+            "headband": 33,
+            "skin": 96,
+            "cream": 4,
+            "blush": 2,
+            "top": 48,
+            "wristband": 10,
+            "bottoms": 8,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 353,
+            "hair": 78,
+            "headband": 33,
+            "skin": 103,
+            "cream": 3,
+            "blush": 2,
+            "top": 22,
+            "wristband": 10,
+            "bottoms": 19,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 351,
+            "hair": 78,
+            "headband": 33,
+            "skin": 87,
+            "cream": 3,
+            "blush": 2,
+            "top": 59,
+            "wristband": 11,
+            "bottoms": 16,
+            "shoes": 41
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-1.wait_sip": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 15,
+          "ramps": {
+            "ink": 355,
+            "hair": 78,
+            "headband": 33,
+            "skin": 84,
+            "cream": 2,
+            "blush": 2,
+            "top": 58,
+            "wristband": 12,
+            "metal": 8,
+            "bottoms": 15,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 6,
+          "ramps": {
+            "ink": 352,
+            "hair": 78,
+            "headband": 33,
+            "skin": 83,
+            "cream": 2,
+            "blush": 2,
+            "top": 35,
+            "metal": 4,
+            "wristband": 11,
+            "bottoms": 25,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 160,
+          "headPixelsOccludedByBottle": 8,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 12,
+          "ramps": {
+            "ink": 357,
+            "hair": 78,
+            "headband": 33,
+            "skin": 79,
+            "cream": 2,
+            "blush": 2,
+            "metal": 9,
+            "top": 20,
+            "wristband": 12,
+            "bottoms": 25,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 11,
+          "ramps": {
+            "ink": 357,
+            "hair": 78,
+            "headband": 33,
+            "skin": 83,
+            "cream": 2,
+            "blush": 2,
+            "top": 57,
+            "metal": 8,
+            "wristband": 11,
+            "bottoms": 15,
+            "shoes": 41
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-1.wait_stretch": {
+      "fps": 4,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 6,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 341,
+            "hair": 78,
+            "headband": 33,
+            "skin": 86,
+            "cream": 2,
+            "blush": 2,
+            "top": 60,
+            "wristband": 15,
+            "bottoms": 28,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 24,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 381,
+            "hair": 78,
+            "headband": 33,
+            "wristband": 11,
+            "skin": 83,
+            "cream": 2,
+            "blush": 2,
+            "top": 46,
+            "bottoms": 16,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 2,
+            "y": 5,
+            "w": 24,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 379,
+            "hair": 78,
+            "headband": 33,
+            "wristband": 12,
+            "skin": 85,
+            "cream": 2,
+            "blush": 2,
+            "top": 49,
+            "bottoms": 17,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 346,
+            "hair": 78,
+            "headband": 33,
+            "skin": 91,
+            "cream": 2,
+            "blush": 2,
+            "top": 55,
+            "wristband": 17,
+            "bottoms": 25,
+            "shoes": 41
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            -2,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-1.celebrate": {
+      "fps": 10,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        -1,
+        -2,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 5,
+            "w": 21,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 6,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 341,
+            "hair": 78,
+            "headband": 33,
+            "skin": 86,
+            "cream": 2,
+            "blush": 2,
+            "top": 60,
+            "wristband": 15,
+            "bottoms": 28,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 4,
+            "w": 22,
+            "h": 43
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 359,
+            "hair": 78,
+            "headband": 33,
+            "skin": 90,
+            "cream": 2,
+            "blush": 2,
+            "top": 40,
+            "wristband": 14,
+            "bottoms": 25,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 3,
+            "w": 23,
+            "h": 44
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 366,
+            "hair": 78,
+            "headband": 33,
+            "skin": 83,
+            "cream": 2,
+            "blush": 2,
+            "wristband": 10,
+            "top": 49,
+            "bottoms": 22,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 22,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 143,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 344,
+            "hair": 78,
+            "headband": 33,
+            "skin": 92,
+            "cream": 2,
+            "blush": 2,
+            "top": 45,
+            "wristband": 10,
+            "bottoms": 25,
+            "shoes": 41
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-2.wait_watch": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 13,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 357,
+            "hair": 78,
+            "headband": 33,
+            "skin": 107,
+            "cream": 2,
+            "blush": 2,
+            "top": 101,
+            "wristband": 12,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 391,
+            "hair": 78,
+            "headband": 33,
+            "skin": 127,
+            "cream": 3,
+            "blush": 2,
+            "top": 49,
+            "wristband": 10,
+            "bottoms": 14,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 390,
+            "hair": 78,
+            "headband": 33,
+            "skin": 138,
+            "cream": 4,
+            "blush": 2,
+            "top": 13,
+            "wristband": 11,
+            "bottoms": 22,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 28,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 385,
+            "hair": 78,
+            "headband": 33,
+            "skin": 119,
+            "cream": 4,
+            "blush": 2,
+            "top": 88,
+            "wristband": 3,
+            "bottoms": 22,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-2.wait_sip": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 2,
+            "y": 5,
+            "w": 27,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 10,
+          "ramps": {
+            "ink": 393,
+            "hair": 78,
+            "headband": 33,
+            "skin": 110,
+            "cream": 2,
+            "blush": 2,
+            "top": 79,
+            "metal": 8,
+            "wristband": 10,
+            "bottoms": 22,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 5,
+          "ramps": {
+            "ink": 379,
+            "hair": 78,
+            "headband": 33,
+            "skin": 107,
+            "cream": 2,
+            "blush": 2,
+            "metal": 7,
+            "top": 59,
+            "wristband": 9,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 5,
+            "w": 25,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 158,
+          "headPixelsOccludedByBottle": 10,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 11,
+          "ramps": {
+            "ink": 373,
+            "hair": 78,
+            "headband": 33,
+            "skin": 101,
+            "cream": 2,
+            "blush": 2,
+            "metal": 6,
+            "wristband": 11,
+            "top": 56,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 2,
+            "y": 5,
+            "w": 27,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 7,
+          "ramps": {
+            "ink": 397,
+            "hair": 78,
+            "headband": 33,
+            "skin": 111,
+            "cream": 2,
+            "blush": 2,
+            "top": 82,
+            "wristband": 11,
+            "metal": 7,
+            "bottoms": 22,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-2.wait_stretch": {
+      "fps": 4,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 13,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 357,
+            "hair": 78,
+            "headband": 33,
+            "skin": 107,
+            "cream": 2,
+            "blush": 2,
+            "top": 101,
+            "wristband": 12,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 2,
+            "y": 5,
+            "w": 27,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 389,
+            "hair": 78,
+            "headband": 33,
+            "skin": 112,
+            "cream": 2,
+            "blush": 2,
+            "top": 93,
+            "bottoms": 23,
+            "wristband": 6,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 384,
+            "hair": 78,
+            "headband": 33,
+            "skin": 100,
+            "cream": 2,
+            "blush": 2,
+            "top": 96,
+            "wristband": 4,
+            "bottoms": 24,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 375,
+            "hair": 78,
+            "headband": 33,
+            "skin": 114,
+            "cream": 2,
+            "blush": 2,
+            "top": 93,
+            "wristband": 10,
+            "bottoms": 24,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-2.celebrate": {
+      "fps": 10,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        -1,
+        -2,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 13,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 357,
+            "hair": 78,
+            "headband": 33,
+            "skin": 107,
+            "cream": 2,
+            "blush": 2,
+            "top": 101,
+            "wristband": 12,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 3,
+            "y": 4,
+            "w": 26,
+            "h": 43
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 388,
+            "hair": 78,
+            "headband": 33,
+            "skin": 113,
+            "cream": 2,
+            "blush": 2,
+            "top": 60,
+            "wristband": 12,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 2,
+            "y": 3,
+            "w": 27,
+            "h": 44
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 407,
+            "hair": 78,
+            "headband": 33,
+            "skin": 110,
+            "cream": 2,
+            "blush": 2,
+            "wristband": 11,
+            "top": 82,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 3,
+            "y": 5,
+            "w": 26,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 139,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 375,
+            "hair": 78,
+            "headband": 33,
+            "skin": 114,
+            "cream": 2,
+            "blush": 2,
+            "top": 60,
+            "wristband": 11,
+            "bottoms": 25,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-3.wait_watch": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 30,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 9,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 323,
+            "hair": 78,
+            "headband": 33,
+            "skin": 222,
+            "cream": 2,
+            "blush": 2,
+            "top": 131,
+            "wristband": 20,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 29,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 386,
+            "hair": 78,
+            "headband": 33,
+            "skin": 200,
+            "cream": 4,
+            "blush": 2,
+            "top": 11,
+            "wristband": 14,
+            "bottoms": 13,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 2,
+            "y": 5,
+            "w": 28,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 370,
+            "hair": 78,
+            "headband": 33,
+            "skin": 189,
+            "cream": 4,
+            "blush": 2,
+            "wristband": 13,
+            "top": 18,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 30,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 391,
+            "hair": 78,
+            "headband": 33,
+            "skin": 206,
+            "cream": 3,
+            "blush": 2,
+            "top": 66,
+            "wristband": 11,
+            "bottoms": 18,
+            "shoes": 10
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-3.wait_sip": {
+      "fps": 6,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 0,
+            "y": 5,
+            "w": 32,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 14,
+          "ramps": {
+            "ink": 404,
+            "hair": 78,
+            "headband": 33,
+            "skin": 218,
+            "cream": 2,
+            "blush": 2,
+            "top": 79,
+            "metal": 14,
+            "wristband": 13,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 0,
+            "y": 5,
+            "w": 32,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 12,
+          "ramps": {
+            "ink": 391,
+            "hair": 78,
+            "headband": 33,
+            "skin": 196,
+            "cream": 2,
+            "blush": 2,
+            "metal": 9,
+            "wristband": 19,
+            "top": 64,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 31,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 160,
+          "headPixelsOccludedByBottle": 8,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 20,
+          "ramps": {
+            "ink": 376,
+            "hair": 78,
+            "headband": 33,
+            "skin": 184,
+            "cream": 2,
+            "blush": 2,
+            "metal": 7,
+            "wristband": 16,
+            "top": 76,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 0,
+            "y": 5,
+            "w": 32,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 12,
+          "ramps": {
+            "ink": 400,
+            "hair": 78,
+            "headband": 33,
+            "skin": 214,
+            "cream": 2,
+            "blush": 2,
+            "top": 81,
+            "metal": 16,
+            "wristband": 11,
+            "bottoms": 19,
+            "shoes": 10
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-3.wait_stretch": {
+      "fps": 4,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 30,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 9,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 323,
+            "hair": 78,
+            "headband": 33,
+            "skin": 222,
+            "cream": 2,
+            "blush": 2,
+            "top": 131,
+            "wristband": 20,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 0,
+            "y": 5,
+            "w": 31,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 424,
+            "skin": 210,
+            "hair": 78,
+            "wristband": 13,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "top": 88,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 31,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 418,
+            "hair": 78,
+            "skin": 195,
+            "wristband": 12,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "top": 86,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 30,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 385,
+            "hair": 78,
+            "headband": 33,
+            "skin": 215,
+            "cream": 2,
+            "blush": 2,
+            "top": 82,
+            "wristband": 20,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    },
+    "char.build-3.celebrate": {
+      "fps": 10,
+      "frames": 4,
+      "size": [
+        128,
+        48
+      ],
+      "anchor": [
+        16,
+        46
+      ],
+      "uniqueFrames": 4,
+      "headOffsets": [
+        0,
+        -1,
+        -2,
+        0
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 30,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 9,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 323,
+            "hair": 78,
+            "headband": 33,
+            "skin": 222,
+            "cream": 2,
+            "blush": 2,
+            "top": 131,
+            "wristband": 20,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 1,
+            "y": 4,
+            "w": 31,
+            "h": 43
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 388,
+            "hair": 78,
+            "headband": 33,
+            "skin": 210,
+            "cream": 2,
+            "blush": 2,
+            "wristband": 19,
+            "top": 71,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 0,
+            "y": 3,
+            "w": 32,
+            "h": 44
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 414,
+            "hair": 78,
+            "headband": 33,
+            "skin": 203,
+            "cream": 2,
+            "wristband": 15,
+            "blush": 2,
+            "top": 98,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 1,
+            "y": 5,
+            "w": 30,
+            "h": 42
+          },
+          "feetRow": 46,
+          "outlineLeaks": 0,
+          "headMaterialPixelsRetained": 168,
+          "headPixelsOccludedByBottle": 0,
+          "lowerBodyPixelsRetained": 70,
+          "firstFrameInkRepairs": 0,
+          "bottleHandContacts": 0,
+          "ramps": {
+            "ink": 372,
+            "hair": 78,
+            "headband": 33,
+            "skin": 213,
+            "cream": 2,
+            "blush": 2,
+            "top": 68,
+            "wristband": 14,
+            "bottoms": 20,
+            "shoes": 10
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "warnings": []
+      }
+    }
+  },
+  "warnings": [],
+  "manifestToggles": [
+    "char.build-0.wait_watch",
+    "char.build-0.wait_sip",
+    "char.build-0.wait_stretch",
+    "char.build-0.celebrate",
+    "char.build-1.wait_watch",
+    "char.build-1.wait_sip",
+    "char.build-1.wait_stretch",
+    "char.build-1.celebrate",
+    "char.build-2.wait_watch",
+    "char.build-2.wait_sip",
+    "char.build-2.wait_stretch",
+    "char.build-2.celebrate",
+    "char.build-3.wait_watch",
+    "char.build-3.wait_sip",
+    "char.build-3.wait_stretch",
+    "char.build-3.celebrate"
+  ],
+  "previews": {
+    "wait_watch": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pairOrder": [
+        "idle_down frame1",
+        "new action"
+      ],
+      "zoom": 2,
+      "frameSheet": [
+        640,
+        448
+      ],
+      "loopFrame": [
+        640,
+        112
+      ],
+      "allActionForegroundPixelsMatched": 11356
+    },
+    "wait_sip": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pairOrder": [
+        "idle_down frame1",
+        "new action"
+      ],
+      "zoom": 2,
+      "frameSheet": [
+        640,
+        448
+      ],
+      "loopFrame": [
+        640,
+        112
+      ],
+      "allActionForegroundPixelsMatched": 11668
+    },
+    "wait_stretch": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pairOrder": [
+        "idle_down frame1",
+        "new action"
+      ],
+      "zoom": 2,
+      "frameSheet": [
+        640,
+        448
+      ],
+      "loopFrame": [
+        640,
+        112
+      ],
+      "allActionForegroundPixelsMatched": 11801
+    },
+    "celebrate": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pairOrder": [
+        "idle_down frame1",
+        "new action"
+      ],
+      "zoom": 2,
+      "frameSheet": [
+        640,
+        448
+      ],
+      "loopFrame": [
+        640,
+        112
+      ],
+      "allActionForegroundPixelsMatched": 11726
+    }
+  },
+  "headArmSeams": {
+    "framesChecked": 64,
+    "violations": 0
+  },
+  "browser": {
+    "realSprites": 102,
+    "newStrips": 16,
+    "frames": 64,
+    "allMetadataMatch": true,
+    "exactFps": true,
+    "anchors": [
+      16,
+      46
+    ],
+    "all16Routes": [
+      "char.build-0.wait_watch",
+      "char.build-0.wait_sip",
+      "char.build-0.wait_stretch",
+      "char.build-0.celebrate",
+      "char.build-1.wait_watch",
+      "char.build-1.wait_sip",
+      "char.build-1.wait_stretch",
+      "char.build-1.celebrate",
+      "char.build-2.wait_watch",
+      "char.build-2.wait_sip",
+      "char.build-2.wait_stretch",
+      "char.build-2.celebrate",
+      "char.build-3.wait_watch",
+      "char.build-3.wait_sip",
+      "char.build-3.wait_stretch",
+      "char.build-3.celebrate"
+    ],
+    "allFourBuildsComparedWithIdle": true,
+    "browserMatchesNative2x": true,
+    "shirtPixelsRecolored": 3910,
+    "otherPixelsUnchanged": 94394,
+    "warnings": {
+      "canvasReadbackPerformanceAdvisories": 16,
+      "errors": 0,
+      "failedRequests": 0
+    }
+  },
+  "validation": {
+    "pixelizeCleanups": 16,
+    "pixelizeCliChecks": 16,
+    "pixelizeWarnings": 0,
+    "testsPassed": 99,
+    "typecheck": "passed",
+    "assetStatus": "103/127",
+    "gif": "Four action/idle comparison loops and overview;idle runs6fps independently, actions6/6/4/10fps;10ms timing quantization;every decoded visual/timing segment matches exact2x source pixels"
+  }
+}
