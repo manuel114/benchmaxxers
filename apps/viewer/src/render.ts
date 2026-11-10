@@ -6,7 +6,7 @@
  */
 import { AREA_RECTS, ROOM, type AgentView, type AreaId, type GymSnapshot, type MachineView } from '@benchmaxxers/shared';
 import { appearanceFor, type Appearance } from './appearance.js';
-import { DOOR, ROOM_PX, WALL_ROWS, machineSpot, placeAll, step, type Mover, type Placement, type Point } from './layout.js';
+import { DOOR, ROOM_PX, WALL_ROWS, machineSpot, placeAll, spotterSpot, step, type Mover, type Placement, type Point } from './layout.js';
 import { drawSprite, frameAt, type Sprite, type SpriteBank } from './sprites.js';
 import { STAFF_ID, type Bubble, type ViewState } from './state.js';
 import { ENV } from './pixels.js';
@@ -42,11 +42,15 @@ const WALL_PROPS: [string, number, number][] = [
   ['prop.speaker', 32, 34],
   ['prop.poster_bolt', 168, 44],
   ['prop.mirror', 352, 50],
-  ['prop.poster_dumbbell', 432, 44],
+  ['prop.whiteboard', 432, 54],
+  ['prop.poster_dumbbell', 560, 44],
   ['prop.clock', 592, 34],
   ['prop.poster_heart', 752, 44],
 ];
 
+
+/** Where the personal-best bell hangs on the back wall. It's drawn every frame so it can ring. */
+const BELL_SPOT: Point = { x: 720, y: 40 };
 
 /** Mat colours, one per yoga mat in order. */
 const MAT_COLOURS = ['pink', 'teal', 'purple', 'green'];
@@ -84,6 +88,10 @@ export class GymRenderer {
   selected: string | null = null;
   /** Latest on-screen spots, for click hit-testing. */
   private spots = new Map<string, Point>();
+  /** Mark from the front desk, who walks over to spot when nobody else can. */
+  private mark: { mover: Mover; route: Point[]; goal: Point | null; atBench: boolean } = {
+    mover: { ...MARK_SPOT, facing: 'down', walking: false }, route: [], goal: null, atBench: false,
+  };
 
   constructor(private readonly canvas: HTMLCanvasElement, private readonly sprites: SpriteBank) {
     this.art = document.createElement('canvas');
@@ -207,7 +215,9 @@ export class GymRenderer {
       gym.machines.forEach((m) => items.push(...this.machineItems(m, usedMachines.has(m.id), gym)));
     }
     for (const [id, x, y] of FLOOR_PROPS) items.push({ y, draw: () => drawSprite(ctx, this.sprites.get(id), 0, x, y) });
-    items.push({ y: MARK_SPOT.y, draw: () => this.drawMark(now) });
+    this.moveMark(gym, dt);
+    items.push({ y: this.mark.mover.y, draw: () => this.drawMark(now) });
+    this.drawBell(state, now);
 
     items.sort((a, b) => a.y - b.y);
     for (const it of items) it.draw();
@@ -254,7 +264,11 @@ export class GymRenderer {
       const poses = ['yoga_tree', 'yoga_warrior', 'yoga_dog'];
       return { id: `${b}.${poses[Math.floor(t.since / 1000) % poses.length]}`, flip: false, action: true };
     }
+    if (t.agent.spotting) return { id: `${b}.spot`, flip: false, action: false };
     if (flash === 'personal_best' || flash === 'perfect') return { id: `${b}.celebrate`, flip: false, action: false };
+    if (flash === 'wave' && place.pose === 'stand') return { id: `${b}.wave`, flip: false, action: false };
+    // Catching their breath between sets, anywhere but the water cooler (where they sip).
+    if (t.agent.activity === 'resting' && place.pose !== 'rest') return { id: `${b}.breathe`, flip: false, action: false };
     if (place.pose === 'rest') return { id: `${b}.wait_sip`, flip: false, action: false };
     if (place.pose === 'wait') {
       const waits = t.agent.stats.flexibility >= 40 ? ['wait_stretch', 'wait_watch'] : ['wait_watch', 'wait_sip'];
@@ -298,9 +312,41 @@ export class GymRenderer {
   }
 
   /** Draws Mark at the front desk. */
+  /** Draws Mark: behind the desk, or walking to and spotting at a bench when nobody else could. */
   private drawMark(now: number): void {
-    const s = this.sprites.get('npc.mark.idle');
-    drawSprite(this.actx, s, frameAt(s, now), MARK_SPOT.x, MARK_SPOT.y);
+    const m = this.mark.mover;
+    if (m.walking) {
+      const dir = m.facing === 'left' || m.facing === 'right' ? 'side' : m.facing;
+      const s = this.sprites.get(`npc.mark.walk_${dir}`);
+      drawSprite(this.actx, s, frameAt(s, now), m.x, m.y, m.facing === 'left');
+      return;
+    }
+    const s = this.sprites.get(this.mark.atBench ? 'npc.mark.spot' : 'npc.mark.idle');
+    drawSprite(this.actx, s, frameAt(s, now), m.x, m.y);
+  }
+
+  /** Moves Mark toward the bench he is spotting at, or back to the desk. */
+  private moveMark(gym: GymSnapshot | null, dt: number): void {
+    const bench = gym?.machines.find((x) => x.spotter === 'mark');
+    const target = bench ? spotterSpot(bench) : MARK_SPOT;
+    const k = this.mark;
+    if (!k.goal || k.goal.x !== target.x || k.goal.y !== target.y) {
+      k.goal = target;
+      k.route = findPath(k.mover, target);
+    }
+    k.mover = step(k.mover, k.route[0] ?? target, dt);
+    if (!k.mover.walking && k.route.length > 0) {
+      k.route.shift();
+      if (k.route.length > 0) k.mover = { ...k.mover, walking: true };
+    }
+    k.atBench = Boolean(bench) && !k.mover.walking;
+  }
+
+  /** Draws the personal-best bell, swinging while someone's personal best is being celebrated. */
+  private drawBell(state: ViewState, now: number): void {
+    const ringing = state.flashes.some((f) => f.kind === 'personal_best');
+    const s = this.sprites.get(ringing ? 'fx.bell_ring' : 'prop.pb_bell');
+    drawSprite(this.actx, s, ringing ? frameAt(s, now) : 0, BELL_SPOT.x, BELL_SPOT.y);
   }
 
   /** Names, line numbers, set progress and speech bubbles, at screen resolution. */
@@ -397,7 +443,7 @@ export class GymRenderer {
 
     // Speech bubbles last, so they sit on top of everything.
     for (const b of state.bubbles) {
-      const p = b.agentId === STAFF_ID ? MARK_SPOT : this.spots.get(b.agentId);
+      const p = b.agentId === STAFF_ID ? this.mark.mover : this.spots.get(b.agentId);
       if (!p) continue;
       const onMachine = this.tracked.get(b.agentId)?.agent.activity === 'lifting';
       drawBubble(ctx, b, p.x * z, (p.y - (onMachine ? 62 : 52)) * z, z, size, Date.now(), this.sprites);

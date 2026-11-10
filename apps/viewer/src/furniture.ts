@@ -25,6 +25,7 @@ export const FLOOR_PROPS: [string, number, number][] = [
   ['prop.locker_room_door', 144, 254],
   // Water cooler lounge, where agents rest between sets.
   ['prop.water_cooler', 48, 382],
-  ['prop.plant_small', 140, 380],
+  ['prop.vending_machine', 140, 398],
+  ['prop.seat_bench', 96, 470],
   ['prop.plant_big', 870, 500],
 ];

@@ -212,6 +212,9 @@ const characterFrame = (build: 0 | 1 | 2 | 3, anim: string, frame: number): Pixe
   if (anim === 'wait_watch') return drawFigure(build, { dir: 'down', arms: frame === 0 ? 'down' : 'watch', tank });
   if (anim === 'wait_sip') return drawFigure(build, { dir: 'down', arms: frame === 0 || frame === 3 ? 'down' : 'sip', tank });
   if (anim === 'wait_stretch') return drawFigure(build, { dir: 'down', arms: frame < 2 ? 'stretch_l' : 'stretch_r', tank });
+  if (anim === 'spot') return drawFigure(build, { dir: 'side', arms: 'out', bob: frame, tank });
+  if (anim === 'wave') return drawFigure(build, { dir: 'down', arms: frame % 2 === 0 ? 'stretch_r' : 'down', tank });
+  if (anim === 'breathe') return drawFigure(build, { dir: 'down', bob: frame === 1 || frame === 2 ? 2 : 1, tank });
   if (anim === 'celebrate') return drawFigure(build, { dir: 'down', arms: frame % 2 === 0 ? 'down' : 'fist', lift: frame === 1 || frame === 2 ? 2 : 0, tank });
   return drawAction(build, anim, frame);
 };
@@ -400,6 +403,30 @@ const drawProp = (id: string, w: number, h: number): Pixels => {
       px.block(24, 20, 30, 3, E.gray);
       px.block(52, 12, 3, 24, E.gray);
       break;
+    case 'whiteboard':
+      px.block(2, 4, w - 4, h - 12, E.gray);
+      px.rect(5, 7, w - 10, h - 18, E.cream);
+      for (let i = 0; i < 4; i++) px.rect(8, 10 + i * 6, 14 + ((i * 7) % 20), 1, i % 2 ? E.blue[1] : E.red[1]);
+      px.rect(6, h - 8, w - 12, 2, E.gray[1]);
+      break;
+    case 'pb_bell':
+      px.rect(14, 2, 4, 6, E.wood[1]);
+      px.ellipse(9, 8, 14, 14, E.yellow[1]);
+      px.rect(9, 20, 14, 2, E.yellow[0]);
+      px.rect(15, 22, 2, 4, E.wood[0]);
+      break;
+    case 'vending_machine':
+      px.block(2, 4, w - 4, h - 6, E.red);
+      px.rect(5, 8, w - 14, h - 24, E.blue[2]);
+      for (let r = 0; r < 4; r++) px.rect(7, 12 + r * 8, w - 18, 2, r % 2 ? E.yellow[1] : E.green[1]);
+      px.rect(w - 8, 14, 3, 6, E.gray[1]);
+      break;
+    case 'seat_bench':
+      shadow(w - 8);
+      px.block(4, 8, w - 8, 10, E.red);
+      px.rect(8, 18, 4, 10, E.wood[0]);
+      px.rect(w - 12, 18, 4, 10, E.wood[0]);
+      break;
     case 'yoga_mat_pink':
     case 'yoga_mat_teal':
     case 'yoga_mat_purple':
@@ -450,6 +477,14 @@ const drawFx = (id: string, w: number, h: number, frame: number): Pixels => {
       px.rect(10, 9 - frame * 2, 2, 5, E.purple[1]);
       px.rect(8, 12 - frame * 2, 3, 3, E.purple[1]);
       break;
+    case 'bell_ring': {
+      const swing = [-2, 0, 2, 0][frame]!;
+      px.rect(14, 2, 4, 6, E.wood[1]);
+      px.ellipse(9 + swing, 8, 14, 14, E.yellow[1]);
+      px.rect(9 + swing, 20, 14, 2, E.yellow[0]);
+      if (frame % 2 === 0) { px.rect(2, 10, 2, 6, E.yellow[2]); px.rect(28, 10, 2, 6, E.yellow[2]); }
+      break;
+    }
     case 'headphones_down':
     case 'headphones_up':
     case 'headphones_side': {
@@ -490,7 +525,7 @@ export const drawPlaceholder = (def: Pick<AssetDef, 'id' | 'width' | 'height' | 
   for (let f = 0; f < def.frames; f++) {
     let frame: Pixels;
     if (group === 'char') frame = characterFrame(Number(a!.split('-')[1]) as 0 | 1 | 2 | 3, b!, f);
-    else if (group === 'npc') frame = characterFrame(2, b === 'wave' ? 'celebrate' : 'idle_down', f);
+    else if (group === 'npc') frame = characterFrame(2, b === 'idle' ? 'idle_down' : b!, f);
     else if (group === 'tile') frame = drawTile(a!, def.width, def.height);
     else if (group === 'prop') frame = drawProp(a!, def.width, def.height);
     else if (group === 'fx') frame = drawFx(a!, def.width, def.height, f);

@@ -23,9 +23,16 @@ describe('walking around furniture', () => {
     expect(walk(DOOR, route).every(isFree)).toBe(true);
   });
 
-  it('puts check-in, locker and cooler spots on open floor in front of the furniture', () => {
+  it('puts people checking in, at the lockers and in the cooler lounge on open floor', async () => {
+    const { placeAll } = await import('./layout.js');
+    const { MACHINE_LAYOUT: layout, DEFAULT_APPEARANCE } = await import('@benchmaxxers/shared');
     for (const area of ['front_desk', 'locker_room', 'water_cooler'] as const) {
-      for (let n = 0; n < 8; n++) expect(isFree(areaSpot(area, n, `agt_${n}`)), `${area} ${n}`).toBe(true);
+      const agents = Array.from({ length: 8 }, (_, i) => ({
+        id: `agt_${i}`, name: `A${i}`, model: 'm', league: 'medium' as const, build: 1 as const, area,
+        activity: 'idle' as const, machine: null, line: null, headphones: null, spotting: null, stats: { strength: 0, stamina: 0, flexibility: 0 }, appearance: DEFAULT_APPEARANCE,
+      }));
+      const gym = { id: 'gym-1', name: 'Gym 1', capacity: 24, agents, machines: layout.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })), speakers: null, whiteboard: [] } as never;
+      for (const [id, p] of placeAll(gym, isFree)) expect(isFree(p), `${area} ${id}`).toBe(true);
     }
   });
 

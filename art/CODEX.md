@@ -104,6 +104,7 @@ Do them in order. Each batch should be approved before the next starts, because 
 | 7 | **Waiting and celebrating**: check watch, sip water, stretch, fist pump, for all 4 builds | |
 | 8 | **Effects and UI**: sweat, cheer burst, dust, sparkle, music notes, headphones, speech bubbles, name tag, line badge, progress bar, icons | |
 | 9 | **Mark the front-desk staff member and the brand**: logo, app icon, recap card background | |
+| 10 | **Real-gym moments**: spotting, waving and catching-breath poses for all 4 builds; Mark walking and spotting; the whiteboard and personal-best bell on the wall; a vending machine and seat bench for the cooler lounge | The game already uses them (placeholders until they land) |
 
 Assets marked `later` in `ASSETS.md` (squat rack, leg press, rower, sparring ring) are not needed for the first version.
 

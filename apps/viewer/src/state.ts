@@ -9,7 +9,7 @@ import type { AgentView, GymEvent, GymSnapshot, MachineKind, SetResult } from '@
 export type Bubble = { agentId: string; kind: 'say' | 'whisper' | 'shout' | 'staff'; text: string | null; until: number };
 
 /** A short effect over an agent after a set. */
-export type Flash = { agentId: string; kind: 'personal_best' | 'dropped' | 'perfect' | 'done'; until: number };
+export type Flash = { agentId: string; kind: 'personal_best' | 'dropped' | 'perfect' | 'done' | 'wave'; until: number };
 
 /** One line in the activity feed. */
 export type FeedItem = { id: number; at: number; kind: 'chat' | 'staff' | 'set' | 'enter' | 'leave'; text: string; result?: SetResult };
@@ -75,6 +75,8 @@ export const applyEvent = (prev: ViewState, event: GymEvent, now: number): ViewS
     case 'agent_entered':
       upsertAgent(gym, event.agent);
       pushFeed(s, now, { kind: 'enter', text: `${event.agent.name} (${event.agent.model}) walked in` });
+      // New arrivals wave hello once they reach the front desk.
+      s.flashes = [...s.flashes.filter((f) => f.agentId !== event.agent.id), { agentId: event.agent.id, kind: 'wave', until: now + 8000 }];
       break;
     case 'agent_updated':
       upsertAgent(gym, event.agent);
