@@ -1,0 +1,2886 @@
+{
+  "batch": 6,
+  "newStrips": 18,
+  "tonedRepairs": 2,
+  "totalStrips": 24,
+  "totalFrames": 72,
+  "anchor": [
+    32,
+    60
+  ],
+  "assets": {
+    "char.build-0.bench_press": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 12,
+            "w": 55,
+            "h": 31
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 208,
+          "barMetalPixelsMatched": 148,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 653,
+            "metal": 148,
+            "skin": 171,
+            "wristband": 20,
+            "hair": 41,
+            "headband": 39,
+            "bottoms": 29,
+            "cream": 4,
+            "blush": 3,
+            "top": 57,
+            "shoes": 31
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 4,
+            "y": 7,
+            "w": 55,
+            "h": 36
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 203,
+          "barMetalPixelsMatched": 129,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 750,
+            "metal": 129,
+            "skin": 196,
+            "wristband": 25,
+            "bottoms": 39,
+            "hair": 64,
+            "headband": 39,
+            "cream": 3,
+            "top": 53,
+            "blush": 2,
+            "shoes": 30
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 0,
+            "w": 55,
+            "h": 43
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 193,
+          "barMetalPixelsMatched": 156,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 774,
+            "metal": 156,
+            "skin": 215,
+            "wristband": 18,
+            "hair": 73,
+            "headband": 35,
+            "blush": 3,
+            "bottoms": 41,
+            "top": 59,
+            "cream": 2,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 54,
+            "h": 38
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 758,
+            "metal": 143,
+            "skin": 193,
+            "wristband": 18,
+            "bottoms": 53,
+            "hair": 79,
+            "headband": 36,
+            "cream": 2,
+            "blush": 3,
+            "top": 51,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -18
+          ],
+          [
+            -1,
+            -18
+          ],
+          [
+            -1,
+            -18
+          ],
+          [
+            0,
+            -18
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": [
+          "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames."
+        ]
+      }
+    },
+    "char.build-0.bench_fail": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 7,
+            "w": 55,
+            "h": 35
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 195,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 647,
+            "metal": 143,
+            "skin": 179,
+            "wristband": 12,
+            "hair": 55,
+            "headband": 36,
+            "bottoms": 51,
+            "top": 59,
+            "blush": 5,
+            "shoes": 30
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 8,
+            "w": 55,
+            "h": 34
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 190,
+          "barMetalPixelsMatched": 150,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 615,
+            "metal": 150,
+            "skin": 170,
+            "wristband": 11,
+            "headband": 34,
+            "hair": 41,
+            "bottoms": 55,
+            "cream": 6,
+            "top": 50,
+            "blush": 5,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 5,
+            "y": 18,
+            "w": 55,
+            "h": 24
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 152,
+          "barMetalPixelsMatched": 137,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 505,
+            "metal": 137,
+            "skin": 126,
+            "bottoms": 49,
+            "hair": 22,
+            "headband": 27,
+            "wristband": 11,
+            "top": 54,
+            "blush": 5,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 11,
+            "w": 55,
+            "h": 31
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 188,
+          "barMetalPixelsMatched": 157,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 600,
+            "metal": 157,
+            "skin": 155,
+            "hair": 34,
+            "headband": 33,
+            "wristband": 5,
+            "bottoms": 58,
+            "cream": 4,
+            "top": 47,
+            "blush": 5,
+            "shoes": 30
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": [
+          "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames."
+        ]
+      }
+    },
+    "char.build-0.run": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 12,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 20,
+            "y": 10,
+            "w": 23,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 327,
+            "hair": 81,
+            "headband": 36,
+            "skin": 87,
+            "cream": 1,
+            "blush": 3,
+            "top": 36,
+            "wristband": 8,
+            "bottoms": 10,
+            "shoes": 25
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 20,
+            "y": 9,
+            "w": 23,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 317,
+            "hair": 81,
+            "headband": 36,
+            "skin": 88,
+            "cream": 1,
+            "blush": 3,
+            "top": 45,
+            "wristband": 6,
+            "bottoms": 10,
+            "shoes": 30
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 21,
+            "y": 10,
+            "w": 22,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 320,
+            "hair": 81,
+            "headband": 36,
+            "skin": 88,
+            "cream": 1,
+            "blush": 3,
+            "top": 40,
+            "wristband": 7,
+            "bottoms": 20,
+            "shoes": 22
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 21,
+            "y": 9,
+            "w": 22,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 320,
+            "hair": 81,
+            "headband": 36,
+            "skin": 93,
+            "cream": 1,
+            "blush": 3,
+            "top": 43,
+            "wristband": 7,
+            "bottoms": 9,
+            "shoes": 27
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            -1,
+            -10
+          ],
+          [
+            -1,
+            -10
+          ],
+          [
+            0,
+            -10
+          ],
+          [
+            0,
+            -10
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-0.yoga_tree": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 19,
+            "y": 5,
+            "w": 26,
+            "h": 56
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 477,
+            "skin": 133,
+            "wristband": 18,
+            "top": 42,
+            "hair": 78,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "bottoms": 19,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 19,
+            "y": 4,
+            "w": 26,
+            "h": 57
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 205,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 481,
+            "skin": 141,
+            "wristband": 16,
+            "top": 44,
+            "hair": 78,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "bottoms": 22,
+            "shoes": 29
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-0.yoga_warrior": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 13,
+            "y": 15,
+            "w": 38,
+            "h": 46
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 451,
+            "hair": 81,
+            "headband": 36,
+            "skin": 127,
+            "cream": 1,
+            "blush": 3,
+            "top": 64,
+            "wristband": 5,
+            "bottoms": 29,
+            "shoes": 42
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 13,
+            "y": 14,
+            "w": 38,
+            "h": 47
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 178,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 454,
+            "hair": 81,
+            "headband": 36,
+            "skin": 128,
+            "cream": 1,
+            "blush": 3,
+            "top": 69,
+            "wristband": 5,
+            "bottoms": 29,
+            "shoes": 42
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-0.yoga_dog": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 27,
+            "w": 54,
+            "h": 34
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 229,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 447,
+            "bottoms": 71,
+            "top": 98,
+            "skin": 157,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 16,
+            "shoes": 39
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 26,
+            "w": 54,
+            "h": 35
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 234,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 464,
+            "bottoms": 71,
+            "top": 98,
+            "skin": 166,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 16,
+            "shoes": 39
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-1.bench_press": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 12,
+            "w": 55,
+            "h": 31
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 208,
+          "barMetalPixelsMatched": 148,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 625,
+            "metal": 148,
+            "skin": 178,
+            "wristband": 20,
+            "hair": 41,
+            "headband": 39,
+            "top": 68,
+            "bottoms": 29,
+            "cream": 4,
+            "blush": 3,
+            "shoes": 31
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 4,
+            "y": 7,
+            "w": 55,
+            "h": 36
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 203,
+          "barMetalPixelsMatched": 129,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 665,
+            "metal": 129,
+            "skin": 216,
+            "wristband": 25,
+            "hair": 64,
+            "headband": 39,
+            "cream": 3,
+            "top": 83,
+            "bottoms": 51,
+            "blush": 2,
+            "shoes": 38
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 0,
+            "w": 55,
+            "h": 43
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 193,
+          "barMetalPixelsMatched": 156,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 714,
+            "metal": 156,
+            "skin": 249,
+            "wristband": 18,
+            "hair": 73,
+            "headband": 35,
+            "blush": 3,
+            "bottoms": 48,
+            "top": 87,
+            "cream": 2,
+            "shoes": 35
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 54,
+            "h": 38
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 675,
+            "metal": 143,
+            "skin": 219,
+            "wristband": 18,
+            "hair": 79,
+            "headband": 36,
+            "cream": 2,
+            "blush": 3,
+            "bottoms": 46,
+            "top": 83,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": "Unchanged Toned guide"
+    },
+    "char.build-1.bench_fail": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 7,
+            "w": 52,
+            "h": 35
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 195,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 492,
+            "metal": 143,
+            "skin": 226,
+            "wristband": 12,
+            "hair": 55,
+            "headband": 36,
+            "bottoms": 124,
+            "top": 82,
+            "blush": 5,
+            "shoes": 37
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 8,
+            "w": 53,
+            "h": 34
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 190,
+          "barMetalPixelsMatched": 150,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 479,
+            "metal": 150,
+            "skin": 190,
+            "wristband": 11,
+            "headband": 34,
+            "hair": 41,
+            "bottoms": 105,
+            "cream": 6,
+            "top": 72,
+            "blush": 5,
+            "shoes": 35
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 6,
+            "y": 18,
+            "w": 52,
+            "h": 24
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 152,
+          "barMetalPixelsMatched": 137,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 426,
+            "metal": 137,
+            "skin": 132,
+            "bottoms": 71,
+            "hair": 22,
+            "headband": 27,
+            "wristband": 11,
+            "top": 51,
+            "blush": 5,
+            "shoes": 37
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 6,
+            "y": 11,
+            "w": 52,
+            "h": 31
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 188,
+          "barMetalPixelsMatched": 157,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 479,
+            "metal": 157,
+            "skin": 162,
+            "hair": 34,
+            "headband": 33,
+            "wristband": 5,
+            "bottoms": 88,
+            "cream": 4,
+            "top": 60,
+            "blush": 5,
+            "shoes": 37
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": [
+          "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames."
+        ]
+      }
+    },
+    "char.build-1.run": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 12,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 20,
+            "y": 10,
+            "w": 24,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 299,
+            "hair": 81,
+            "headband": 36,
+            "skin": 109,
+            "cream": 1,
+            "blush": 3,
+            "top": 46,
+            "wristband": 11,
+            "bottoms": 24,
+            "shoes": 34
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 20,
+            "y": 9,
+            "w": 24,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 274,
+            "hair": 81,
+            "headband": 36,
+            "skin": 141,
+            "cream": 1,
+            "blush": 3,
+            "top": 51,
+            "wristband": 8,
+            "bottoms": 8,
+            "shoes": 17
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 21,
+            "y": 10,
+            "w": 23,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 301,
+            "hair": 81,
+            "headband": 36,
+            "skin": 110,
+            "cream": 1,
+            "blush": 3,
+            "top": 46,
+            "wristband": 9,
+            "bottoms": 19,
+            "shoes": 33
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 20,
+            "y": 9,
+            "w": 24,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 275,
+            "hair": 81,
+            "headband": 36,
+            "skin": 136,
+            "cream": 1,
+            "blush": 3,
+            "top": 55,
+            "wristband": 9,
+            "bottoms": 8,
+            "shoes": 16
+          }
+        }
+      ],
+      "pixelize": "Unchanged Toned guide"
+    },
+    "char.build-1.yoga_tree": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 18,
+            "y": 5,
+            "w": 28,
+            "h": 56
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 450,
+            "skin": 193,
+            "wristband": 14,
+            "hair": 78,
+            "headband": 33,
+            "blush": 3,
+            "cream": 2,
+            "bottoms": 41,
+            "top": 33,
+            "shoes": 34
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 18,
+            "y": 4,
+            "w": 28,
+            "h": 57
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 205,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 455,
+            "skin": 199,
+            "wristband": 14,
+            "hair": 78,
+            "headband": 33,
+            "blush": 3,
+            "cream": 2,
+            "bottoms": 45,
+            "top": 33,
+            "shoes": 37
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-1.yoga_warrior": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 13,
+            "y": 15,
+            "w": 39,
+            "h": 46
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 400,
+            "hair": 81,
+            "headband": 36,
+            "skin": 164,
+            "cream": 1,
+            "blush": 3,
+            "top": 91,
+            "wristband": 8,
+            "bottoms": 58,
+            "shoes": 57
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 13,
+            "y": 14,
+            "w": 39,
+            "h": 47
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 178,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 403,
+            "hair": 81,
+            "headband": 36,
+            "skin": 164,
+            "cream": 1,
+            "blush": 3,
+            "top": 98,
+            "wristband": 8,
+            "bottoms": 58,
+            "shoes": 57
+          }
+        }
+      ],
+      "pixelize": "Unchanged Toned guide"
+    },
+    "char.build-1.yoga_dog": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 26,
+            "w": 54,
+            "h": 35
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 229,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 423,
+            "bottoms": 138,
+            "top": 103,
+            "skin": 180,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 24,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 25,
+            "w": 54,
+            "h": 36
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 234,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 441,
+            "bottoms": 138,
+            "top": 103,
+            "skin": 191,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 24,
+            "shoes": 41
+          }
+        }
+      ],
+      "pixelize": "Unchanged Toned guide"
+    },
+    "char.build-2.bench_press": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 12,
+            "w": 55,
+            "h": 31
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 208,
+          "barMetalPixelsMatched": 148,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 637,
+            "metal": 148,
+            "skin": 175,
+            "wristband": 20,
+            "hair": 41,
+            "headband": 39,
+            "bottoms": 26,
+            "top": 91,
+            "cream": 4,
+            "blush": 3,
+            "shoes": 31
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 4,
+            "y": 7,
+            "w": 55,
+            "h": 36
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 203,
+          "barMetalPixelsMatched": 129,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 729,
+            "metal": 129,
+            "skin": 223,
+            "wristband": 25,
+            "bottoms": 28,
+            "hair": 64,
+            "headband": 39,
+            "cream": 3,
+            "top": 89,
+            "blush": 2,
+            "shoes": 30
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 0,
+            "w": 55,
+            "h": 43
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 193,
+          "barMetalPixelsMatched": 156,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 763,
+            "metal": 156,
+            "skin": 288,
+            "wristband": 18,
+            "bottoms": 30,
+            "hair": 73,
+            "headband": 35,
+            "blush": 3,
+            "top": 97,
+            "cream": 2,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 54,
+            "h": 38
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 693,
+            "metal": 143,
+            "skin": 237,
+            "wristband": 18,
+            "hair": 79,
+            "headband": 36,
+            "cream": 2,
+            "bottoms": 33,
+            "blush": 3,
+            "top": 93,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -18
+          ],
+          [
+            -1,
+            -18
+          ],
+          [
+            -1,
+            -18
+          ],
+          [
+            0,
+            -18
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": [
+          "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames."
+        ]
+      }
+    },
+    "char.build-2.bench_fail": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 7,
+            "w": 55,
+            "h": 35
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 195,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 592,
+            "metal": 143,
+            "skin": 221,
+            "wristband": 12,
+            "hair": 55,
+            "headband": 36,
+            "top": 115,
+            "bottoms": 56,
+            "blush": 5,
+            "shoes": 32
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 8,
+            "w": 55,
+            "h": 34
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 190,
+          "barMetalPixelsMatched": 150,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 578,
+            "metal": 150,
+            "skin": 188,
+            "wristband": 11,
+            "headband": 34,
+            "hair": 41,
+            "bottoms": 50,
+            "cream": 6,
+            "top": 88,
+            "blush": 5,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 5,
+            "y": 18,
+            "w": 55,
+            "h": 24
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 152,
+          "barMetalPixelsMatched": 137,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 489,
+            "metal": 137,
+            "skin": 139,
+            "bottoms": 44,
+            "hair": 22,
+            "headband": 27,
+            "wristband": 11,
+            "top": 44,
+            "blush": 5,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 11,
+            "w": 55,
+            "h": 31
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 188,
+          "barMetalPixelsMatched": 157,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 550,
+            "metal": 157,
+            "skin": 160,
+            "hair": 34,
+            "headband": 33,
+            "wristband": 5,
+            "bottoms": 58,
+            "cream": 4,
+            "top": 79,
+            "blush": 5,
+            "shoes": 30
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": [
+          "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames."
+        ]
+      }
+    },
+    "char.build-2.run": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 12,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 18,
+            "y": 10,
+            "w": 29,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 326,
+            "hair": 81,
+            "headband": 36,
+            "skin": 139,
+            "cream": 1,
+            "blush": 3,
+            "top": 85,
+            "wristband": 11,
+            "bottoms": 18,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 18,
+            "y": 9,
+            "w": 29,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 321,
+            "hair": 81,
+            "headband": 36,
+            "skin": 139,
+            "cream": 1,
+            "blush": 3,
+            "top": 85,
+            "wristband": 7,
+            "bottoms": 9,
+            "shoes": 29
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 18,
+            "y": 10,
+            "w": 29,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 325,
+            "hair": 81,
+            "headband": 36,
+            "skin": 145,
+            "cream": 1,
+            "blush": 3,
+            "top": 84,
+            "wristband": 10,
+            "bottoms": 14,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 18,
+            "y": 9,
+            "w": 29,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 322,
+            "hair": 81,
+            "headband": 36,
+            "skin": 144,
+            "cream": 1,
+            "blush": 3,
+            "top": 85,
+            "wristband": 8,
+            "bottoms": 10,
+            "shoes": 23
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -10
+          ],
+          [
+            0,
+            -10
+          ],
+          [
+            0,
+            -10
+          ],
+          [
+            0,
+            -10
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-2.yoga_tree": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 17,
+            "y": 5,
+            "w": 31,
+            "h": 56
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 506,
+            "skin": 206,
+            "wristband": 20,
+            "hair": 78,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "top": 47,
+            "bottoms": 27,
+            "shoes": 30
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 17,
+            "y": 4,
+            "w": 31,
+            "h": 57
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 205,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 512,
+            "skin": 215,
+            "wristband": 18,
+            "hair": 78,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "top": 44,
+            "bottoms": 31,
+            "shoes": 33
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-2.yoga_warrior": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 13,
+            "y": 15,
+            "w": 38,
+            "h": 46
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 428,
+            "hair": 81,
+            "headband": 36,
+            "skin": 132,
+            "cream": 1,
+            "blush": 3,
+            "top": 104,
+            "wristband": 6,
+            "bottoms": 37,
+            "shoes": 42
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 13,
+            "y": 14,
+            "w": 38,
+            "h": 47
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 178,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 435,
+            "hair": 81,
+            "headband": 36,
+            "skin": 132,
+            "cream": 1,
+            "blush": 3,
+            "top": 110,
+            "wristband": 6,
+            "bottoms": 37,
+            "shoes": 42
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-2.yoga_dog": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 27,
+            "w": 54,
+            "h": 34
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 229,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 440,
+            "bottoms": 122,
+            "top": 101,
+            "skin": 180,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 21,
+            "shoes": 36
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 26,
+            "w": 54,
+            "h": 35
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 234,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 457,
+            "bottoms": 122,
+            "top": 101,
+            "skin": 191,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 21,
+            "shoes": 36
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-3.bench_press": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 12,
+            "w": 55,
+            "h": 31
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 208,
+          "barMetalPixelsMatched": 148,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 624,
+            "metal": 148,
+            "skin": 197,
+            "wristband": 20,
+            "hair": 41,
+            "headband": 39,
+            "top": 81,
+            "cream": 4,
+            "blush": 3,
+            "bottoms": 20,
+            "shoes": 31
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 4,
+            "y": 7,
+            "w": 55,
+            "h": 36
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 203,
+          "barMetalPixelsMatched": 129,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 711,
+            "metal": 129,
+            "skin": 266,
+            "wristband": 25,
+            "bottoms": 26,
+            "hair": 64,
+            "headband": 39,
+            "cream": 3,
+            "top": 92,
+            "blush": 2,
+            "shoes": 30
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 0,
+            "w": 55,
+            "h": 43
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 193,
+          "barMetalPixelsMatched": 156,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 749,
+            "metal": 156,
+            "skin": 331,
+            "wristband": 18,
+            "bottoms": 25,
+            "hair": 73,
+            "headband": 35,
+            "top": 102,
+            "blush": 3,
+            "cream": 2,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 54,
+            "h": 38
+          },
+          "baseline": 42,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 676,
+            "metal": 143,
+            "skin": 268,
+            "wristband": 18,
+            "hair": 79,
+            "headband": 36,
+            "top": 101,
+            "cream": 2,
+            "blush": 3,
+            "bottoms": 23,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -18
+          ],
+          [
+            -1,
+            -18
+          ],
+          [
+            -1,
+            -18
+          ],
+          [
+            0,
+            -18
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": [
+          "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames."
+        ]
+      }
+    },
+    "char.build-3.bench_fail": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 7,
+            "w": 55,
+            "h": 35
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 195,
+          "barMetalPixelsMatched": 143,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 576,
+            "metal": 143,
+            "skin": 292,
+            "wristband": 12,
+            "hair": 55,
+            "headband": 36,
+            "top": 38,
+            "bottoms": 73,
+            "blush": 5,
+            "shoes": 30
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 8,
+            "w": 55,
+            "h": 34
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 190,
+          "barMetalPixelsMatched": 150,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 552,
+            "metal": 150,
+            "skin": 238,
+            "wristband": 11,
+            "headband": 34,
+            "hair": 41,
+            "bottoms": 70,
+            "cream": 6,
+            "top": 32,
+            "blush": 5,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 5,
+            "y": 18,
+            "w": 55,
+            "h": 24
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 152,
+          "barMetalPixelsMatched": 137,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 488,
+            "metal": 137,
+            "skin": 146,
+            "bottoms": 61,
+            "hair": 22,
+            "headband": 27,
+            "wristband": 11,
+            "top": 29,
+            "blush": 5,
+            "shoes": 28
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 11,
+            "w": 55,
+            "h": 31
+          },
+          "baseline": 41,
+          "headMaterialPixelsMatched": 188,
+          "barMetalPixelsMatched": 157,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 527,
+            "metal": 157,
+            "skin": 213,
+            "hair": 34,
+            "headband": 33,
+            "wristband": 5,
+            "bottoms": 80,
+            "cream": 4,
+            "top": 23,
+            "blush": 5,
+            "shoes": 30
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ],
+          [
+            0,
+            -19
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": [
+          "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames."
+        ]
+      }
+    },
+    "char.build-3.run": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 12,
+      "uniqueFrames": 4,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 14,
+            "y": 10,
+            "w": 37,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 353,
+            "hair": 81,
+            "headband": 36,
+            "skin": 245,
+            "cream": 1,
+            "blush": 3,
+            "top": 91,
+            "wristband": 19,
+            "shoes": 28,
+            "bottoms": 10
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 14,
+            "y": 9,
+            "w": 37,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 362,
+            "hair": 81,
+            "headband": 36,
+            "skin": 211,
+            "cream": 1,
+            "blush": 3,
+            "top": 91,
+            "wristband": 21,
+            "shoes": 28,
+            "bottoms": 2
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 14,
+            "y": 10,
+            "w": 37,
+            "h": 41
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 170,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 347,
+            "hair": 81,
+            "headband": 36,
+            "skin": 245,
+            "cream": 1,
+            "blush": 3,
+            "top": 99,
+            "wristband": 19,
+            "bottoms": 16,
+            "shoes": 27
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 14,
+            "y": 9,
+            "w": 37,
+            "h": 42
+          },
+          "baseline": 50,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 362,
+            "hair": 81,
+            "headband": 36,
+            "skin": 206,
+            "cream": 1,
+            "blush": 3,
+            "top": 98,
+            "wristband": 21,
+            "shoes": 29,
+            "bottoms": 2
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            -10
+          ],
+          [
+            0,
+            -10
+          ],
+          [
+            0,
+            -10
+          ],
+          [
+            0,
+            -10
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-3.yoga_tree": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 14,
+            "y": 5,
+            "w": 37,
+            "h": 56
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 197,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 562,
+            "skin": 362,
+            "wristband": 20,
+            "hair": 78,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "top": 114,
+            "bottoms": 65,
+            "shoes": 24
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 14,
+            "y": 4,
+            "w": 37,
+            "h": 57
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 205,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 576,
+            "skin": 368,
+            "wristband": 18,
+            "hair": 78,
+            "headband": 33,
+            "cream": 2,
+            "blush": 2,
+            "top": 105,
+            "bottoms": 69,
+            "shoes": 28
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-3.yoga_warrior": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 13,
+            "y": 15,
+            "w": 37,
+            "h": 46
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 173,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 435,
+            "hair": 81,
+            "headband": 36,
+            "skin": 182,
+            "cream": 1,
+            "blush": 3,
+            "top": 85,
+            "wristband": 12,
+            "bottoms": 23,
+            "shoes": 42
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 13,
+            "y": 14,
+            "w": 37,
+            "h": 47
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 178,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 450,
+            "hair": 81,
+            "headband": 36,
+            "skin": 177,
+            "cream": 1,
+            "blush": 3,
+            "top": 94,
+            "wristband": 12,
+            "bottoms": 23,
+            "shoes": 42
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    },
+    "char.build-3.yoga_dog": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "uniqueFrames": 2,
+      "anchor": [
+        32,
+        60
+      ],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 28,
+            "w": 54,
+            "h": 33
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 229,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 443,
+            "bottoms": 179,
+            "top": 91,
+            "skin": 253,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 28,
+            "shoes": 43
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 27,
+            "w": 54,
+            "h": 34
+          },
+          "baseline": 60,
+          "headMaterialPixelsMatched": 234,
+          "barMetalPixelsMatched": 0,
+          "outlineLeaks": 0,
+          "ramps": {
+            "ink": 463,
+            "bottoms": 179,
+            "top": 91,
+            "skin": 265,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 28,
+            "shoes": 43
+          }
+        }
+      ],
+      "pixelize": {
+        "inverseTranslation": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "byteExact": true,
+        "pixelizeCheck": [],
+        "warnings": []
+      }
+    }
+  },
+  "warnings": [
+    {
+      "id": "char.build-0.bench_press",
+      "message": "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames.",
+      "reason": "Bar movement changes full bounds, with head/contacts registered to Toned."
+    },
+    {
+      "id": "char.build-0.bench_fail",
+      "message": "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames.",
+      "reason": "Bar movement changes full bounds, with head/contacts registered to Toned."
+    },
+    {
+      "id": "char.build-1.bench_fail",
+      "message": "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames.",
+      "reason": "Bar movement changes full bounds, with head/contacts registered to Toned."
+    },
+    {
+      "id": "char.build-2.bench_press",
+      "message": "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames.",
+      "reason": "Bar movement changes full bounds, with head/contacts registered to Toned."
+    },
+    {
+      "id": "char.build-2.bench_fail",
+      "message": "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames.",
+      "reason": "Bar movement changes full bounds, with head/contacts registered to Toned."
+    },
+    {
+      "id": "char.build-3.bench_press",
+      "message": "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames.",
+      "reason": "Bar movement changes full bounds, with head/contacts registered to Toned."
+    },
+    {
+      "id": "char.build-3.bench_fail",
+      "message": "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames.",
+      "reason": "Bar movement changes full bounds, with head/contacts registered to Toned."
+    }
+  ],
+  "repairs": {
+    "bench_fail": {
+      "changedInkPixels": 174,
+      "requestedOutlineCoordinatesVerified": true,
+      "otherPixelsUnchanged": true
+    },
+    "yoga_tree": {
+      "changedInkPixels": 70,
+      "requestedOutlineCoordinatesVerified": true,
+      "otherPixelsUnchanged": true
+    }
+  },
+  "paletteChecks": 24,
+  "manifestToggles": [
+    "char.build-0.bench_press",
+    "char.build-0.bench_fail",
+    "char.build-0.run",
+    "char.build-0.yoga_tree",
+    "char.build-0.yoga_warrior",
+    "char.build-0.yoga_dog",
+    "char.build-2.bench_press",
+    "char.build-2.bench_fail",
+    "char.build-2.run",
+    "char.build-2.yoga_tree",
+    "char.build-2.yoga_warrior",
+    "char.build-2.yoga_dog",
+    "char.build-3.bench_press",
+    "char.build-3.bench_fail",
+    "char.build-3.run",
+    "char.build-3.yoga_tree",
+    "char.build-3.yoga_warrior",
+    "char.build-3.yoga_dog"
+  ],
+  "previews": {
+    "bench_press": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "zoom": 2,
+      "allFramesPreview": [
+        640,
+        704
+      ],
+      "loopFrame": [
+        640,
+        176
+      ],
+      "foregroundPixelsMatched": 21472,
+      "foregroundOccluded": 0,
+      "contactAnchor": [
+        32,
+        60
+      ],
+      "machineOffset": [
+        0,
+        14
+      ]
+    },
+    "bench_fail": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "zoom": 2,
+      "allFramesPreview": [
+        640,
+        704
+      ],
+      "loopFrame": [
+        640,
+        176
+      ],
+      "foregroundPixelsMatched": 17793,
+      "foregroundOccluded": 0,
+      "contactAnchor": [
+        32,
+        60
+      ],
+      "machineOffset": [
+        0,
+        14
+      ]
+    },
+    "run": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "zoom": 2,
+      "allFramesPreview": [
+        640,
+        704
+      ],
+      "loopFrame": [
+        640,
+        176
+      ],
+      "foregroundPixelsMatched": 9492,
+      "foregroundOccluded": 1794,
+      "contactAnchor": [
+        32,
+        60
+      ],
+      "machineOffset": [
+        0,
+        14
+      ]
+    },
+    "yoga_tree": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "zoom": 2,
+      "allFramesPreview": [
+        640,
+        352
+      ],
+      "loopFrame": [
+        640,
+        176
+      ],
+      "foregroundPixelsMatched": 7919,
+      "foregroundOccluded": 0,
+      "contactAnchor": [
+        32,
+        60
+      ],
+      "machineOffset": [
+        0,
+        32
+      ]
+    },
+    "yoga_warrior": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "zoom": 2,
+      "allFramesPreview": [
+        640,
+        352
+      ],
+      "loopFrame": [
+        640,
+        176
+      ],
+      "foregroundPixelsMatched": 7067,
+      "foregroundOccluded": 0,
+      "contactAnchor": [
+        32,
+        60
+      ],
+      "machineOffset": [
+        0,
+        32
+      ]
+    },
+    "yoga_dog": {
+      "buildOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "zoom": 2,
+      "allFramesPreview": [
+        640,
+        352
+      ],
+      "loopFrame": [
+        640,
+        176
+      ],
+      "foregroundPixelsMatched": 7935,
+      "foregroundOccluded": 0,
+      "contactAnchor": [
+        32,
+        60
+      ],
+      "machineOffset": [
+        0,
+        32
+      ]
+    }
+  },
+  "browser": {
+    "realSprites": 81,
+    "actionStrips": 24,
+    "frames": 72,
+    "allMetadataMatches": true,
+    "exactFps": true,
+    "anchors": [
+      32,
+      60
+    ],
+    "all24Routes": [
+      "char.build-0.bench_press",
+      "char.build-1.bench_press",
+      "char.build-2.bench_press",
+      "char.build-3.bench_press",
+      "char.build-0.bench_fail",
+      "char.build-1.bench_fail",
+      "char.build-2.bench_fail",
+      "char.build-3.bench_fail",
+      "char.build-0.run",
+      "char.build-1.run",
+      "char.build-2.run",
+      "char.build-3.run",
+      "char.build-0.yoga_tree",
+      "char.build-1.yoga_tree",
+      "char.build-2.yoga_tree",
+      "char.build-3.yoga_tree",
+      "char.build-0.yoga_warrior",
+      "char.build-1.yoga_warrior",
+      "char.build-2.yoga_warrior",
+      "char.build-3.yoga_warrior",
+      "char.build-0.yoga_dog",
+      "char.build-1.yoga_dog",
+      "char.build-2.yoga_dog",
+      "char.build-3.yoga_dog"
+    ],
+    "occupiedBenchLayers": 1,
+    "treadmillLayers": 2,
+    "shirtPixelsRecolored": 5253,
+    "nonShirtPixelsUnchanged": 289659,
+    "warnings": {
+      "canvasReadbackPerformanceAdvisories": 24,
+      "errors": 0,
+      "failedRequests": 0
+    }
+  },
+  "validation": {
+    "cliCleanups": 20,
+    "cliChecks": 20,
+    "nativeStripChecks": 24,
+    "testsPassed": 82,
+    "typecheck": "passed",
+    "assetsStatus": "82/127",
+    "newOutlineChecks": "54 new frames: zero material pixels within two cardinal steps of transparency",
+    "gifChecks": "Six exact2x loops with all decoded pixels equal to composited PNG frames",
+    "scope": "18 new strips;2 ink-only Toned repairs; generated status files and review artifacts"
+  }
+}
