@@ -153,7 +153,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-0.wave": {
       "file": "characters/build-0/wave.png",
@@ -167,7 +167,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-0.breathe": {
       "file": "characters/build-0/breathe.png",
@@ -181,7 +181,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-0.bench_press": {
       "file": "characters/build-0/bench_press.png",
@@ -419,7 +419,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.wave": {
       "file": "characters/build-1/wave.png",
@@ -433,7 +433,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.breathe": {
       "file": "characters/build-1/breathe.png",
@@ -447,7 +447,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-1.bench_press": {
       "file": "characters/build-1/bench_press.png",
@@ -685,7 +685,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-2.wave": {
       "file": "characters/build-2/wave.png",
@@ -699,7 +699,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-2.breathe": {
       "file": "characters/build-2/breathe.png",
@@ -713,7 +713,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-2.bench_press": {
       "file": "characters/build-2/bench_press.png",
@@ -951,7 +951,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-3.wave": {
       "file": "characters/build-3/wave.png",
@@ -965,7 +965,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-3.breathe": {
       "file": "characters/build-3/breathe.png",
@@ -979,7 +979,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "char.build-3.bench_press": {
       "file": "characters/build-3/bench_press.png",
@@ -1959,7 +1959,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "npc.mark.walk_up": {
       "file": "characters/npc-mark/walk_up.png",
@@ -1973,7 +1973,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "npc.mark.walk_side": {
       "file": "characters/npc-mark/walk_side.png",
@@ -1987,7 +1987,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "npc.mark.spot": {
       "file": "characters/npc-mark/spot.png",
@@ -2001,7 +2001,7 @@
       ],
       "palette": "character",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.whiteboard": {
       "file": "props/whiteboard.png",
@@ -2015,7 +2015,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.pb_bell": {
       "file": "props/pb_bell.png",
@@ -2029,7 +2029,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "fx.bell_ring": {
       "file": "fx/bell_ring.png",
@@ -2043,7 +2043,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.vending_machine": {
       "file": "props/vending_machine.png",
@@ -2057,7 +2057,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.seat_bench": {
       "file": "props/seat_bench.png",
@@ -2071,7 +2071,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "brand.logo": {
       "file": "brand/logo.png",
