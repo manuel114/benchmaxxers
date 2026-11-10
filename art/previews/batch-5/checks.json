@@ -1,0 +1,838 @@
+{
+  "front_desk": {
+    "size": [
+      96,
+      64
+    ],
+    "anchor": [
+      48,
+      62
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 5,
+      "y": 6,
+      "w": 86,
+      "h": 58
+    },
+    "opaquePixels": 3993,
+    "transparentPixels": 2151,
+    "flatShadowPixels": 271,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "38c789bba36eb39f6553ad53915e99dfdef3e15487350abcc52eb68675b40b31",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "lockers": {
+    "size": [
+      32,
+      64
+    ],
+    "anchor": [
+      16,
+      62
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 2,
+      "w": 30,
+      "h": 62
+    },
+    "opaquePixels": 1817,
+    "transparentPixels": 231,
+    "flatShadowPixels": 28,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "1dbaec8c4f31931eb0f9b6036b25c27c38a6eda620f5636f7b0a948553c5625e",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "locker_room_door": {
+    "size": [
+      32,
+      64
+    ],
+    "anchor": [
+      16,
+      62
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 1,
+      "w": 30,
+      "h": 63
+    },
+    "opaquePixels": 1751,
+    "transparentPixels": 297,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": false,
+    "sha256": "218dee20a33c9d6b634e6ffe6b87c8a3cbdbd3fde0ac6581ecbee574a5c67aca",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "water_cooler": {
+    "size": [
+      32,
+      48
+    ],
+    "anchor": [
+      16,
+      46
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 4,
+      "y": 4,
+      "w": 24,
+      "h": 44
+    },
+    "opaquePixels": 817,
+    "transparentPixels": 719,
+    "flatShadowPixels": 8,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "abe8dfda5a0ee2d89aad400fc7b1e5d1175b0e498bc7250ed331274fadf0817e",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "plant_big": {
+    "size": [
+      32,
+      48
+    ],
+    "anchor": [
+      16,
+      46
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 9,
+      "w": 30,
+      "h": 39
+    },
+    "opaquePixels": 769,
+    "transparentPixels": 767,
+    "flatShadowPixels": 23,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "08fd4462058d443c53c6bc662d51b28293aac37dbc63900848f6faa2f73ce857",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "plant_small": {
+    "size": [
+      32,
+      32
+    ],
+    "anchor": [
+      16,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 4,
+      "y": 4,
+      "w": 24,
+      "h": 28
+    },
+    "opaquePixels": 453,
+    "transparentPixels": 571,
+    "flatShadowPixels": 17,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "09058a297c7a204ca4c032bc8dd0b64ad371848eeed25b74cb32e8767c8715be",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "speaker": {
+    "size": [
+      32,
+      32
+    ],
+    "anchor": [
+      16,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 4,
+      "y": 4,
+      "w": 23,
+      "h": 28
+    },
+    "opaquePixels": 608,
+    "transparentPixels": 416,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": false,
+    "sha256": "5dc8f24cb9e5eb353140e4a4fd970cc10e094c63581bb49017092417b49a8a8a",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "mirror": {
+    "size": [
+      64,
+      48
+    ],
+    "anchor": [
+      32,
+      46
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 2,
+      "y": 21,
+      "w": 60,
+      "h": 27
+    },
+    "opaquePixels": 1588,
+    "transparentPixels": 1484,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": false,
+    "sha256": "f5837fdc91b785472463a9e60639adaa778ef875ee73298bdf34463b168635aa",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "poster_dumbbell": {
+    "size": [
+      32,
+      32
+    ],
+    "anchor": [
+      16,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 10,
+      "w": 30,
+      "h": 22
+    },
+    "opaquePixels": 648,
+    "transparentPixels": 376,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": false,
+    "sha256": "327fac174e1aad1063cd72e8ca40cb8254094a4977e8580b43c2c9e2bf4558f7",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "poster_heart": {
+    "size": [
+      32,
+      32
+    ],
+    "anchor": [
+      16,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 10,
+      "w": 30,
+      "h": 22
+    },
+    "opaquePixels": 648,
+    "transparentPixels": 376,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": false,
+    "sha256": "770467760b48a46f5e004b811ad2d4153dae8e976d8e571e88322beea8f3f4cd",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "poster_bolt": {
+    "size": [
+      32,
+      32
+    ],
+    "anchor": [
+      16,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 10,
+      "w": 30,
+      "h": 22
+    },
+    "opaquePixels": 648,
+    "transparentPixels": 376,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": false,
+    "sha256": "71e5560350bbebdc2147196e610ac791f337b47b98494bc020473a92b67aa28f",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "clock": {
+    "size": [
+      32,
+      32
+    ],
+    "anchor": [
+      16,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 4,
+      "w": 29,
+      "h": 28
+    },
+    "opaquePixels": 626,
+    "transparentPixels": 398,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": false,
+    "sha256": "2360415199f7a0b81c539193474e734423afb534b2dc9a2e38d0459ea62607dd",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "dumbbell_rack": {
+    "size": [
+      64,
+      32
+    ],
+    "anchor": [
+      32,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 10,
+      "w": 61,
+      "h": 22
+    },
+    "opaquePixels": 1074,
+    "transparentPixels": 974,
+    "flatShadowPixels": 149,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "273131df59663583952d797090873886708c5d02cad2b7f3b85ffc01a11d64ba",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "kettlebells": {
+    "size": [
+      32,
+      32
+    ],
+    "anchor": [
+      16,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 13,
+      "w": 30,
+      "h": 19
+    },
+    "opaquePixels": 433,
+    "transparentPixels": 591,
+    "flatShadowPixels": 36,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "08686e9d14a36270afc5fd7efc8be68caf93f2de3c8aa59505a6537431f039b8",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "bench_back": {
+    "size": [
+      64,
+      48
+    ],
+    "anchor": [
+      32,
+      46
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 4,
+      "w": 62,
+      "h": 44
+    },
+    "opaquePixels": 1490,
+    "transparentPixels": 1582,
+    "flatShadowPixels": 160,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "23f8f411edaabea8a2057c2591b28b16aef96787c4eedada23c2c44f83d53e57",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "bench_bar": {
+    "size": [
+      64,
+      24
+    ],
+    "anchor": [
+      32,
+      22
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 4,
+      "w": 62,
+      "h": 18
+    },
+    "opaquePixels": 570,
+    "transparentPixels": 966,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": true,
+    "sha256": "5d4619a2ac9e1986f542dac5efd54401b9df741c3dcb5c73fbf9920ee4e99df5",
+    "initialCleanupRegistration": [
+      0,
+      -2
+    ]
+  },
+  "treadmill_back": {
+    "size": [
+      64,
+      48
+    ],
+    "anchor": [
+      32,
+      46
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 1,
+      "y": 19,
+      "w": 62,
+      "h": 29
+    },
+    "opaquePixels": 1409,
+    "transparentPixels": 1663,
+    "flatShadowPixels": 134,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "31c16edce3a15cb0857f79da30544ba75aba9dd1453b8582a489c348cfa8859b",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "treadmill_front": {
+    "size": [
+      64,
+      48
+    ],
+    "anchor": [
+      32,
+      46
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 23,
+      "y": 5,
+      "w": 40,
+      "h": 40
+    },
+    "opaquePixels": 521,
+    "transparentPixels": 2551,
+    "flatShadowPixels": 0,
+    "floorStanding": false,
+    "layer": true,
+    "sha256": "2f7444ae5e9ddfb8fac5769e1d68379362654f6388c8f25ed57ec226a3601ec7",
+    "initialCleanupRegistration": [
+      11,
+      -3
+    ]
+  },
+  "yoga_mat_pink": {
+    "size": [
+      64,
+      32
+    ],
+    "anchor": [
+      32,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 2,
+      "y": 11,
+      "w": 60,
+      "h": 21
+    },
+    "opaquePixels": 926,
+    "transparentPixels": 1122,
+    "flatShadowPixels": 51,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "6890b21cbabb83a7fda69a0553f55fdbf23eab5ce6eeadaefb346e96ec7ce3f2",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "yoga_mat_teal": {
+    "size": [
+      64,
+      32
+    ],
+    "anchor": [
+      32,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 2,
+      "y": 11,
+      "w": 60,
+      "h": 21
+    },
+    "opaquePixels": 926,
+    "transparentPixels": 1122,
+    "flatShadowPixels": 51,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "587fbdb001c6bb82352e117ed02af3edf72ebd6c5875c7b1f86ede2ec0c87d8c",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "yoga_mat_purple": {
+    "size": [
+      64,
+      32
+    ],
+    "anchor": [
+      32,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 2,
+      "y": 11,
+      "w": 60,
+      "h": 21
+    },
+    "opaquePixels": 926,
+    "transparentPixels": 1122,
+    "flatShadowPixels": 51,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "774446c6005ca83810701c4921e15ef9353cbd811b4e4ae9fd9d8f883879dd77",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "yoga_mat_green": {
+    "size": [
+      64,
+      32
+    ],
+    "anchor": [
+      32,
+      30
+    ],
+    "horizontalRegistration": 0,
+    "verticalRegistration": 0,
+    "bounds": {
+      "x": 2,
+      "y": 11,
+      "w": 60,
+      "h": 21
+    },
+    "opaquePixels": 926,
+    "transparentPixels": 1122,
+    "flatShadowPixels": 51,
+    "floorStanding": true,
+    "layer": false,
+    "sha256": "ad1d1a75c0bff1fba6344b7ef9a73f107a883a0f3c9bdbccfe46631dd3f26d50",
+    "initialCleanupRegistration": [
+      0,
+      0
+    ]
+  },
+  "layerChecks": {
+    "benchBackHasNoBar": true,
+    "barHasNoShadow": true,
+    "holderSeats": [
+      9,
+      9
+    ],
+    "restingShaftInBench": 9,
+    "barDrawOffset": [
+      0,
+      -4
+    ],
+    "treadmillFrontNoBaseOrShadow": true,
+    "runnerOpeningClear": true,
+    "occlusion": {
+      "overlapPixels": 81,
+      "visibleActorPixels": 465,
+      "actor": "Existing Toned idle_side frame 1 used only for static occlusion preview"
+    }
+  },
+  "previewChecks": {
+    "front_desk": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 3993,
+      "backdrop": "wood and back wall"
+    },
+    "lockers": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 1817,
+      "backdrop": "rubber and back wall"
+    },
+    "locker_room_door": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 1751,
+      "backdrop": "wood and back wall"
+    },
+    "water_cooler": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 817,
+      "backdrop": "wood and back wall"
+    },
+    "plant_big": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 769,
+      "backdrop": "rubber and back wall"
+    },
+    "plant_small": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 453,
+      "backdrop": "wood and back wall"
+    },
+    "speaker": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 608,
+      "backdrop": "wood and back wall"
+    },
+    "mirror": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 1588,
+      "backdrop": "wood and back wall"
+    },
+    "poster_dumbbell": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 648,
+      "backdrop": "wood and back wall"
+    },
+    "poster_heart": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 648,
+      "backdrop": "wood and back wall"
+    },
+    "poster_bolt": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 648,
+      "backdrop": "wood and back wall"
+    },
+    "clock": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 626,
+      "backdrop": "wood and back wall"
+    },
+    "dumbbell_rack": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 1074,
+      "backdrop": "rubber and back wall"
+    },
+    "kettlebells": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 433,
+      "backdrop": "rubber and back wall"
+    },
+    "bench_back": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 1490,
+      "backdrop": "rubber and back wall"
+    },
+    "bench_bar": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 570,
+      "backdrop": "rubber and back wall"
+    },
+    "treadmill_back": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 1409,
+      "backdrop": "wood and back wall"
+    },
+    "treadmill_front": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 521,
+      "backdrop": "wood and back wall"
+    },
+    "yoga_mat_pink": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 926,
+      "backdrop": "wood and back wall"
+    },
+    "yoga_mat_teal": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 926,
+      "backdrop": "wood and back wall"
+    },
+    "yoga_mat_purple": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 926,
+      "backdrop": "wood and back wall"
+    },
+    "yoga_mat_green": {
+      "preview": [
+        256,
+        256
+      ],
+      "zoom": 2,
+      "foregroundPixelsChecked": 926,
+      "backdrop": "wood and back wall"
+    }
+  }
+}

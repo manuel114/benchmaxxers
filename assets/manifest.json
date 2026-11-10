@@ -1063,7 +1063,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.lockers": {
       "file": "props/lockers.png",
@@ -1077,7 +1077,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.locker_room_door": {
       "file": "props/locker_room_door.png",
@@ -1091,7 +1091,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.water_cooler": {
       "file": "props/water_cooler.png",
@@ -1105,7 +1105,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.plant_big": {
       "file": "props/plant_big.png",
@@ -1119,7 +1119,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.plant_small": {
       "file": "props/plant_small.png",
@@ -1133,7 +1133,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.speaker": {
       "file": "props/speaker.png",
@@ -1147,7 +1147,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.mirror": {
       "file": "props/mirror.png",
@@ -1161,7 +1161,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.poster_dumbbell": {
       "file": "props/poster_dumbbell.png",
@@ -1175,7 +1175,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.poster_heart": {
       "file": "props/poster_heart.png",
@@ -1189,7 +1189,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.poster_bolt": {
       "file": "props/poster_bolt.png",
@@ -1203,7 +1203,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.clock": {
       "file": "props/clock.png",
@@ -1217,7 +1217,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.dumbbell_rack": {
       "file": "props/dumbbell_rack.png",
@@ -1231,7 +1231,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.kettlebells": {
       "file": "props/kettlebells.png",
@@ -1245,7 +1245,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.bench_back": {
       "file": "props/bench_back.png",
@@ -1259,7 +1259,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.bench_bar": {
       "file": "props/bench_bar.png",
@@ -1273,7 +1273,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.treadmill_back": {
       "file": "props/treadmill_back.png",
@@ -1287,7 +1287,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.treadmill_front": {
       "file": "props/treadmill_front.png",
@@ -1301,7 +1301,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.yoga_mat_pink": {
       "file": "props/yoga_mat_pink.png",
@@ -1315,7 +1315,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.yoga_mat_teal": {
       "file": "props/yoga_mat_teal.png",
@@ -1329,7 +1329,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.yoga_mat_purple": {
       "file": "props/yoga_mat_purple.png",
@@ -1343,7 +1343,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.yoga_mat_green": {
       "file": "props/yoga_mat_green.png",
@@ -1357,7 +1357,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.squat_rack": {
       "file": "props/squat_rack.png",
