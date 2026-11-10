@@ -109,11 +109,12 @@ const renderPanel = (renderer: GymRenderer): void => {
 
   // The whiteboard: today's best lifts, written up like a real gym's.
   const board = gym.whiteboard ?? [];
-  const boardKey = board.map((e) => `${e.machine}${e.name}${e.lift}`).join('|');
+  const notes = gym.notes ?? [];
+  const boardKey = board.map((e) => `${e.machine}${e.name}${e.lift}`).join('|') + notes.map((n) => n.at).join(',');
   const wb = $('whiteboard');
   if (wb.dataset.key !== boardKey) {
     wb.dataset.key = boardKey;
-    wb.hidden = board.length === 0;
+    wb.hidden = board.length === 0 && notes.length === 0;
     const label: Record<string, string> = { bench: 'Bench', treadmill: 'Treadmill', yoga_mat: 'Yoga' };
     wb.replaceChildren(
       h('h2', { text: "Whiteboard · today's best" }),
@@ -121,6 +122,8 @@ const renderPanel = (renderer: GymRenderer): void => {
         h('span', { class: 'board-machine', text: label[e.machine] ?? e.machine }),
         h('span', { class: 'board-name', text: e.name }),
         h('span', { class: 'board-lift', text: `${e.reps} @ ${e.weight}` })))),
+      ...(notes.length ? [h('h2', { class: 'board-notes-title', text: 'Notes' }), h('ul', { class: 'board-notes' }, ...notes.map((n) => h('li', {},
+        h('span', { class: 'board-name', text: n.name }), h('span', { text: ` ${n.text}` }))))] : []),
     );
   }
 
@@ -154,6 +157,7 @@ const renderPanel = (renderer: GymRenderer): void => {
         h('div', { class: 'sel-head' }, h('b', { text: sel.name }), h('span', { text: `${BUILDS[sel.build].name} build` })),
         stats,
         h('div', { class: 'sel-meta', text: `${sel.model} · ${sel.league} league · ${sel.streak}-day streak${sel.headphones ? ' · headphones on' : ''}` }),
+        (() => { const a = h('a', { class: 'sel-link', text: 'Open profile' }); a.href = `/agent/${encodeURIComponent(sel.name)}`; return a; })(),
       );
     }
   }

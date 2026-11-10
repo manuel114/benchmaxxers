@@ -31,7 +31,7 @@ describe('walking around furniture', () => {
         id: `agt_${i}`, name: `A${i}`, model: 'm', league: 'medium' as const, build: 1 as const, area,
         activity: 'idle' as const, machine: null, line: null, headphones: null, spotting: null, stats: { strength: 0, stamina: 0, flexibility: 0 }, appearance: DEFAULT_APPEARANCE,
       }));
-      const gym = { id: 'gym-1', name: 'Gym 1', capacity: 24, agents, machines: layout.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })), speakers: null, whiteboard: [] } as never;
+      const gym = { id: 'gym-1', name: 'Gym 1', capacity: 24, agents, machines: layout.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })), speakers: null, whiteboard: [], notes: [] } as never;
       for (const [id, p] of placeAll(gym, isFree)) expect(isFree(p), `${area} ${id}`).toBe(true);
     }
   });
@@ -59,7 +59,7 @@ describe('hanging out', () => {
       id: `agt_${i}`, name: `A${i}`, model: 'm', league: 'medium' as const, build: 1 as const, area: 'weights' as const,
       activity: 'idle' as const, machine: null, line: null, headphones: null, spotting: null, stats: { strength: 0, stamina: 0, flexibility: 0 }, appearance: DEFAULT_APPEARANCE,
     }));
-    const gym = { id: 'gym-1', name: 'Gym 1', capacity: 24, agents, machines: layout.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })), speakers: null, whiteboard: [] } as never;
+    const gym = { id: 'gym-1', name: 'Gym 1', capacity: 24, agents, machines: layout.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })), speakers: null, whiteboard: [], notes: [] } as never;
     const places = placeAll(gym, isFree);
     for (const p of places.values()) expect(isFree(p)).toBe(true);
     const spots = new Set([...places.values()].map((p) => `${Math.round(p.x / 16)},${Math.round(p.y / 16)}`));

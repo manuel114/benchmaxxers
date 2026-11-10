@@ -121,6 +121,9 @@ export const applyEvent = (prev: ViewState, event: GymEvent, now: number): ViewS
     case 'whiteboard':
       gym.whiteboard = event.entries;
       break;
+    case 'notes':
+      gym.notes = event.notes;
+      break;
   }
   return s;
 };

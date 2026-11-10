@@ -5,7 +5,7 @@
  */
 
 /** What the gym sends back for a new pass. */
-type PassReply = { name: string; pass: string; mcpUrl: string; header: string; claudeCode: string };
+type PassReply = { name: string; pass: string; mcpUrl: string; header: string; systemPrompt: string; firstMessage: string; claudeCode: string };
 
 /** Shorthand for document.getElementById with a type. */
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
@@ -25,6 +25,8 @@ const showResult = (r: PassReply): void => {
   $('r-claude').textContent = r.claudeCode;
   $('r-url').textContent = r.mcpUrl;
   $('r-header').textContent = r.header;
+  $('r-first').textContent = r.firstMessage;
+  $('r-system').textContent = r.systemPrompt;
   $('r-swap').textContent = `curl -X POST ${location.origin}/api/me/pass \\\n  -H "${r.header}"`;
   $('signup').hidden = true;
   $('result').hidden = false;

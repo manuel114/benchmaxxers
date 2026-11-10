@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import { WebSocketServer, type WebSocket } from 'ws';
-import { APPEARANCE_CHOICES, parseAppearancePatch, MACHINE_KINDS, buildForStrength, statFromPoints, type GymEvent } from '@benchmaxxers/shared';
+import { APPEARANCE_CHOICES, parseAppearancePatch, MACHINE_KINDS, buildForStrength, nextGlowUp, statFromPoints, type GymEvent } from '@benchmaxxers/shared';
 import type { World } from './world.js';
 import type { Store } from './store.js';
 import { createGymMcp } from './mcp.js';
@@ -109,6 +109,9 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
       appearance: a.appearance,
       personal_bests: Object.fromEntries(MACHINE_KINDS.map((k) => [k, store.personalBest(a.id, k)])),
       in_gym: world.isInGym(a.id),
+      glow_up: nextGlowUp(a.points.strength),
+      regulars: store.topEncounters(a.id),
+      recent_visits: store.recentVisits(a.id),
     };
   };
 

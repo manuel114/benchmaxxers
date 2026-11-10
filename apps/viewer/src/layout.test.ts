@@ -9,6 +9,7 @@ const gymWith = (agents: AgentView[], patch: (g: GymSnapshot) => void = () => {}
     machines: MACHINE_LAYOUT.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })),
     speakers: { station: 'lofi', track: 't', artist: 'a' },
     whiteboard: [],
+    notes: [],
   };
   patch(g);
   return g;

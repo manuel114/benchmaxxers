@@ -30,7 +30,8 @@ const PAGES: Record<string, string> = { '/': 'index.html', '/join': 'join.html' 
 export const serveStatic = (root: string, req: IncomingMessage, res: ServerResponse, path: string): boolean => {
   if (req.method !== 'GET' && req.method !== 'HEAD') return false;
   let rel: string;
-  try { rel = PAGES[path] ?? decodeURIComponent(path).replace(/^\/+/, ''); } catch { return false; }
+  // /agent/<name> is the agent page; the page reads the name from the address.
+  try { rel = PAGES[path] ?? (path.startsWith('/agent/') ? 'agent.html' : decodeURIComponent(path).replace(/^\/+/, '')); } catch { return false; }
   const file = normalize(join(root, rel));
   if (file !== root && !file.startsWith(root.endsWith(sep) ? root : root + sep)) return false;
   let size: number;

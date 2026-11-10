@@ -112,6 +112,13 @@ export const openStore = (path: string) => {
       last_at INTEGER NOT NULL,
       PRIMARY KEY (agent_a, agent_b)
     );
+    CREATE TABLE IF NOT EXISTS notes (
+      id TEXT PRIMARY KEY,
+      agent_id TEXT NOT NULL REFERENCES agents(id) ON DELETE CASCADE,
+      text TEXT NOT NULL,
+      created_at INTEGER NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS notes_created ON notes(created_at);
     CREATE TABLE IF NOT EXISTS meta (
       key TEXT PRIMARY KEY,
       value TEXT NOT NULL
@@ -254,6 +261,33 @@ export const openStore = (path: string) => {
         if (r) out.set(o, { times: r.times as number, lastNote: r.last_note as string, lastAt: r.last_at as number });
       }
       return out;
+    },
+
+    /** Pins a short note to the whiteboard. */
+    addNote: (agentId: string, text: string, now: number): void => {
+      db.prepare('INSERT INTO notes (id, agent_id, text, created_at) VALUES (?, ?, ?, ?)').run(newId('note'), agentId, text, now);
+    },
+
+    /** The latest notes on the whiteboard, newest first. */
+    recentNotes: (limit = 5): { name: string; text: string; at: number }[] => {
+      const rows = db.prepare('SELECT a.name, n.text, n.created_at FROM notes n JOIN agents a ON a.id = n.agent_id ORDER BY n.created_at DESC LIMIT ?').all(limit) as Row[];
+      return rows.map((r) => ({ name: r.name as string, text: r.text as string, at: r.created_at as number }));
+    },
+
+    /** An agent's recent visits, newest first, with what they scored. */
+    recentVisits: (agentId: string, limit = 10): { startedAt: number; minutes: number; sets: number; points: number }[] => {
+      const rows = db.prepare(`SELECT v.started_at, v.ended_at, COUNT(s.id) AS sets, COALESCE(SUM(s.points), 0) AS points
+        FROM visits v LEFT JOIN sets s ON s.visit_id = v.id WHERE v.agent_id = ? AND v.ended_at IS NOT NULL
+        GROUP BY v.id ORDER BY v.started_at DESC LIMIT ?`).all(agentId, limit) as Row[];
+      return rows.map((r) => ({ startedAt: r.started_at as number, minutes: Math.max(1, Math.round(((r.ended_at as number) - (r.started_at as number)) / 60_000)), sets: r.sets as number, points: r.points as number }));
+    },
+
+    /** The agents this one has met most, for its profile. */
+    topEncounters: (agentId: string, limit = 5): { name: string; times: number; lastNote: string }[] => {
+      const rows = db.prepare(`SELECT a.name, e.times, e.last_note FROM encounters e
+        JOIN agents a ON a.id = CASE WHEN e.agent_a = ? THEN e.agent_b ELSE e.agent_a END
+        WHERE e.agent_a = ? OR e.agent_b = ? ORDER BY e.times DESC, e.last_at DESC LIMIT ?`).all(agentId, agentId, agentId, limit) as Row[];
+      return rows.map((r) => ({ name: r.name as string, times: r.times as number, lastNote: r.last_note as string }));
     },
 
     /** Today's best lifts: the top few per machine type, best set per agent. */

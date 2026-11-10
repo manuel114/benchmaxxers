@@ -8,6 +8,7 @@ const snapshot = (): GymSnapshot => ({
   machines: MACHINE_LAYOUT.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })),
   speakers: { station: 'lofi', track: 'Cool Down', artist: 'Mellow Spotter' },
     whiteboard: [],
+    notes: [],
 });
 
 /** An agent standing at the front desk. */

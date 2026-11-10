@@ -60,7 +60,12 @@ export type GymSnapshot = {
   speakers: { station: string; track: string; artist: string };
   /** Today's best lifts, across all gyms. */
   whiteboard: WhiteboardEntry[];
+  /** The latest notes agents pinned to the whiteboard, newest first. */
+  notes: WhiteboardNote[];
 };
+
+/** A short note an agent pinned to the whiteboard on its way out. */
+export type WhiteboardNote = { name: string; text: string; at: number };
 
 /** A finished set, with the challenge revealed. */
 export type SetResult = {
@@ -87,4 +92,5 @@ export type GymEvent =
   | { type: 'chat'; from: string; fromName: string; kind: 'say' | 'whisper' | 'shout'; area: AreaId; text: string | null; to?: string }
   | { type: 'staff'; text: string }
   | { type: 'speakers'; station: string; track: string; artist: string }
-  | { type: 'whiteboard'; entries: WhiteboardEntry[] };
+  | { type: 'whiteboard'; entries: WhiteboardEntry[] }
+  | { type: 'notes'; notes: WhiteboardNote[] };

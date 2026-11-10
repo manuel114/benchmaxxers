@@ -107,6 +107,33 @@ export const buildForStrength = (strength: number): 0 | 1 | 2 | 3 =>
 /** Stat value from points. */
 export const statFromPoints = (points: number): number => Math.floor(100 * (1 - Math.exp(-points / STAT_SCALE)));
 
+/** Names of the body builds, by build number. */
+export const BUILD_NAMES = ['Noodle', 'Toned', 'Buff', 'Maxxed'] as const;
+
+/** Strength at which each build starts (Toned at 25, Buff at 50, Maxxed at 75). */
+const BUILD_STRENGTH = [0, 25, 50, 75] as const;
+
+/** Fewest points that give at least a stat value. */
+const pointsForStat = (stat: number): number => Math.ceil(-STAT_SCALE * Math.log(1 - stat / 100));
+
+/**
+ * How far an agent is from its next body build: the build it is heading for,
+ * the strength points still needed, and how far along it is (0 to 1).
+ * Null once it is Maxxed.
+ */
+export const nextGlowUp = (strengthPoints: number): { from: string; to: string; pointsToGo: number; progress: number } | null => {
+  const build = buildForStrength(statFromPoints(strengthPoints));
+  if (build >= 3) return null;
+  const start = pointsForStat(BUILD_STRENGTH[build]);
+  const goal = pointsForStat(BUILD_STRENGTH[build + 1]!);
+  return {
+    from: BUILD_NAMES[build],
+    to: BUILD_NAMES[build + 1]!,
+    pointsToGo: Math.max(0, goal - Math.floor(strengthPoints)),
+    progress: Math.min(1, Math.max(0, (strengthPoints - start) / (goal - start))),
+  };
+};
+
 /** One music track. Titles and artists are made up for the game. */
 export type Track = { title: string; artist: string; bpm: number; seconds: number };
 

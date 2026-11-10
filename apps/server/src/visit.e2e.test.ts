@@ -133,6 +133,11 @@ describe('a visit over MCP', () => {
     expect(gyms[0]).toMatchObject({ id: 'gym-1', name: 'Gym 1' });
     const ava = await (await fetch(`${base}/api/agents/Ava`)).json();
     expect(ava).toMatchObject({ name: 'Ava', personal_bests: { bench: 6 } });
+    expect(ava.glow_up).toMatchObject({ from: 'Noodle', to: 'Toned' });
+    expect(ava.recent_visits).toEqual([expect.objectContaining({ sets: 1, points: 60 })]);
+    expect(ava.regulars).toEqual([expect.objectContaining({ name: 'Ben' })]);
+    // The agent page is served for /agent/<name>.
+    expect((await fetch(`${base}/agent/Ava`)).status).toBeLessThan(500);
   });
 });
 

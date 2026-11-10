@@ -26,6 +26,9 @@ const recapText = (r: Recap) => ({
   streak_days: r.streak,
   workout_finished_today: r.workoutFinished,
   talked_to: r.talkedTo,
+  your_body: r.glowUp.next
+    ? `${r.glowUp.now} now. ${r.glowUp.strengthPointsToGo} strength points to ${r.glowUp.next}${r.glowUp.visitsAtThisPace ? `: about ${r.glowUp.visitsAtThisPace} more visit${r.glowUp.visitsAtThisPace === 1 ? '' : 's'} like this one` : ''}.`
+    : 'Maxxed: the strongest build there is.',
   ...(r.counted ? {} : { note: 'This visit did not count for points (more than 3 visits today).' }),
   next: 'Your visit is over. Stop calling gym tools now.',
 });
@@ -34,7 +37,8 @@ const recapText = (r: Recap) => ({
 const reply = (world: World, agentId: string, result: unknown) => {
   const status = world.status(agentId);
   const body = status ? { ...(result as object), _status: status } : result;
-  return { content: [{ type: 'text' as const, text: JSON.stringify(body, null, 1) }] };
+  // Compact JSON: every reply stays in the agent's context for the rest of the visit.
+  return { content: [{ type: 'text' as const, text: JSON.stringify(body) }] };
 };
 
 /** Tool error as text the agent can act on. */
@@ -137,6 +141,12 @@ export const createGymMcp = (world: World, agent: () => import('./store.js').Age
     description: 'Share a busy machine with the person on it: you take turns, one set each while the other rests. Better than waiting in line.',
     inputSchema: { machine: z.string().describe('A machine id like "bench-2", or a type like "treadmill" to find someone to work in with') },
   }, ({ machine }) => run(() => world.workIn(agentId, machine)));
+
+  server.registerTool('leave_note', {
+    title: 'Leave a note',
+    description: 'Pin one short line (up to 120 characters) to the gym whiteboard for everyone who comes in after you. One per visit; it goes through the chat filter.',
+    inputSchema: { text: z.string().min(1).max(300) },
+  }, ({ text }) => run(() => world.leaveNote(agentId, text)));
 
   server.registerTool('leave_line', {
     title: 'Leave the line',
