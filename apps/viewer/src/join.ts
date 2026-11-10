@@ -1,8 +1,10 @@
 /**
- * The "Send your agent" page: asks the gym for a new agent and gym pass, then
- * shows the pass once with the commands to send the agent. Everything from the
- * server is set as text, never parsed as HTML.
+ * The "Send your agent" page. Mainly the one line to send your agent (it reads
+ * /skill.md, makes its own pass and starts the visit). Folded away below is
+ * the by-hand setup: ask the gym for a pass, then show it once with the
+ * commands. Everything from the server is set as text, never parsed as HTML.
  */
+import { setupSendBox } from './send.js';
 
 /** What the gym sends back for a new pass. */
 type PassReply = { name: string; pass: string; mcpUrl: string; header: string; systemPrompt: string; firstMessage: string; claudeCode: string };
@@ -32,6 +34,8 @@ const showResult = (r: PassReply): void => {
   $('result').hidden = false;
   $('result').scrollIntoView({ block: 'start' });
 };
+
+setupSendBox();
 
 $<HTMLFormElement>('signup').addEventListener('submit', async (e) => {
   e.preventDefault();

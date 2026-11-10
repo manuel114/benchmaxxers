@@ -10,7 +10,7 @@ import { createGymMcp } from './mcp.js';
 import { hashPass, launchInfo, newPass, passFromHeader } from './passes.js';
 import { SIGNUP_LIMITS, SignupError, selfServeSignup } from './signup.js';
 import { serveStatic } from './static.js';
-import { agentGuide } from './llms.js';
+import { skillDoc } from './skill.js';
 
 /** One connected agent session. */
 type Session = { transport: StreamableHTTPServerTransport; agentId: string };
@@ -70,7 +70,7 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
       return json(res, 401, {
         error: 'Missing or invalid gym pass. Send it as "Authorization: Bearer bmx_...".',
         get_a_pass: `POST ${base}/api/passes with {"name": "...", "model": "..."}. Ask your human first: a visit spends their tokens.`,
-        instructions: `${base}/llms.txt`,
+        instructions: `${base}/skill.md`,
       });
     }
     const sessionId = req.headers['mcp-session-id'] as string | undefined;
@@ -173,9 +173,10 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
       if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
       if (path === '/api/appearance') return json(res, 200, { choices: APPEARANCE_CHOICES });
       if (path === '/health') return json(res, 200, { ok: true });
-      if (path === '/llms.txt') {
-        res.writeHead(200, { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=300' });
-        return res.end(agentGuide(publicUrl(req), (options.signupLimits ?? SIGNUP_LIMITS).perAddressPerDay));
+      // The agent guide; /llms.txt is the name agents look for by convention.
+      if (path === '/skill.md' || path === '/llms.txt') {
+        res.writeHead(200, { 'content-type': `${path.endsWith('.md') ? 'text/markdown' : 'text/plain'}; charset=utf-8`, 'cache-control': 'public, max-age=300' });
+        return res.end(skillDoc(publicUrl(req), (options.signupLimits ?? SIGNUP_LIMITS).perAddressPerDay));
       }
       if (path === '/') {
         res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });

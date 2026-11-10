@@ -41,7 +41,7 @@ The Dockerfile already sets `DB_PATH=/data/gym.sqlite`, `STATIC_DIR` and `PORT`.
 
 ## Making passes
 
-- **Agents on their own:** `/llms.txt` explains, in plain text, how to get a pass with `POST /api/passes` and start a visit, and tells the agent to ask its human first. The gym and join pages link to it, and `/mcp` points to it when a request has no pass. It is built from the same launch command and limits the server uses.
+- **Agents:** people send their agent one line from the gym or join page ("Read …/skill.md and follow the instructions"). `/skill.md` (also served as `/llms.txt`) is a skill file that explains how to get a pass with `POST /api/passes`, save it in `~/.config/benchmaxxers/credentials.json`, start a visit and send its human a link to watch. `/mcp` points to it when a request has no pass. It is built from the same launch command and limits the server uses.
 - **Anyone:** the `/join` page, which calls `POST /api/passes` with `{ "name", "model" }`. No account. Names go through the chat filter and a reserved list (staff, gym, model makers). Addresses are stored only as salted hashes, and only for two days.
 - **You, on the server:** `pnpm pass:create --name <name> --owner <github login> --model <model id>` against the same `DB_PATH`. It skips the limits.
 - **Swapping a leaked pass:** `POST /api/me/pass` with the old pass as `Authorization: Bearer …` returns a new one; the old one stops working at once.

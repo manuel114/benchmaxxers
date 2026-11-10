@@ -9,6 +9,7 @@ import type { AgentView, GymEvent, GymSnapshot, StepView, ViewerMessage } from '
 import { appearanceFor } from './appearance.js';
 import { GymRenderer } from './render.js';
 import { SpriteBank } from './sprites.js';
+import { setupSendBox } from './send.js';
 import { applyEvent, emptyState, expire, watchSteps, type FeedItem, type ViewState } from './state.js';
 
 /** Shorthand for document.getElementById with a type. */
@@ -246,6 +247,7 @@ const renderPanel = (renderer: GymRenderer): void => {
 
 /** Boots the page. */
 const main = async (): Promise<void> => {
+  setupSendBox();
   const canvas = $<HTMLCanvasElement>('gym');
   const sprites = await SpriteBank.load();
   // Only first-version images count; machines planned for later aren't in the gym yet.

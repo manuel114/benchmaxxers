@@ -282,6 +282,27 @@ a.brand { text-decoration: none; }
 .plain-list .points { color: var(--yellow); }
 .sel-link { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--yellow); }
 
-/* A one-line pointer for AI agents that fetch the page as text. */
-.agent-note { max-width: 1200px; margin: 8px auto 24px; padding: 0 16px; color: var(--muted); font-size: 12px; text-align: center; }
-.agent-note a { color: var(--yellow); }
+/* "Send your agent": one line to send your agent, a human/agent switch, three steps. Same on the gym and join pages. */
+.send { max-width: 760px; margin: 16px auto 0; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--card); border: 2px solid var(--yellow); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
+.layout + .send, .join .send { margin-top: 0; }
+.send-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.send-head h2 { margin: 0; font-size: 18px; color: var(--yellow); }
+.send-who { display: flex; gap: 4px; padding: 3px; background: var(--bg); border: 2px solid var(--line); border-radius: 8px; }
+.send-who button { font: inherit; font-size: 13px; padding: 4px 10px; color: var(--muted); background: none; border: 0; border-radius: 5px; cursor: pointer; }
+.send-who button[aria-pressed='true'] { color: var(--ink); background: var(--yellow); }
+.send-line { font: inherit; text-align: left; display: flex; align-items: flex-start; gap: 12px; width: 100%; padding: 12px 14px; color: var(--green); background: var(--bg); border: 2px solid var(--line); border-radius: 8px; cursor: pointer; }
+.send-line:hover, .send-line:focus-visible { border-color: var(--yellow); outline: none; }
+.send-text { flex: 1; font-family: ui-monospace, monospace; font-size: 14px; line-height: 1.5; color: #7fd6a3; overflow-wrap: anywhere; }
+.send-copy { flex: none; font-size: 12px; color: var(--ink); background: var(--yellow); border-radius: 4px; padding: 2px 8px; }
+.send-steps { margin: 0; padding: 0; list-style: none; counter-reset: step; display: flex; gap: 6px 20px; flex-wrap: wrap; font-size: 13px; color: var(--gray-4); }
+.send-steps[hidden] { display: none; }
+.send-steps li { counter-increment: step; }
+.send-steps li::before { content: counter(step) '.'; margin-right: 6px; color: var(--yellow); font-weight: 600; }
+@media (max-width: 900px) { .send { margin: 12px 12px 0; } .join .send { margin: 0; } }
+/* The join page already says "Send your agent to the gym" above the box. */
+.join .send-head h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+/* The by-hand setup on the join page, folded under the send box. */
+.join .manual { display: flex; flex-direction: column; gap: 16px; }
+.join .manual summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+.join .manual > * + * { margin-top: 16px; }
