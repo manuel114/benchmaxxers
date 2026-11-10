@@ -36,10 +36,20 @@ const besideSpot = (m: MachineView): Point => {
   return { x: s.x - 40, y: s.y };
 };
 
-/** Where the n-th person (0 = first) waiting in a machine's line stands. */
-export const lineSpot = (m: MachineView, n: number): Point => {
+/** How far apart people in a line stand, in art pixels: far enough that their name tags (about 9 pixels tall) don't overlap. */
+export const LINE_STEP = { down: 14, zig: 12, mats: 20 } as const;
+
+/**
+ * Where the n-th person (0 = first) waiting in a machine's line stands.
+ * At benches and treadmills the line runs down from the machine in a short
+ * zigzag, so name tags stack instead of overlapping; machines there are only
+ * 3 tiles apart, too close for a line to spread sideways. Mats have more mats
+ * below them, so their line runs sideways, spaced wider.
+ */
+export const lineSpot = (m: Pick<MachineView, 'x' | 'y' | 'kind'>, n: number): Point => {
   const s = machineSpot(m);
-  return { x: s.x - 30 + n * 16, y: s.y + 28 };
+  if (m.kind === 'yoga_mat') return { x: s.x - 30 + n * LINE_STEP.mats, y: s.y + 28 };
+  return { x: s.x - 30 + (n % 2) * LINE_STEP.zig, y: s.y + 26 + n * LINE_STEP.down };
 };
 
 /** A free standing spot inside an area, the n-th of the agents loitering there. */
