@@ -86,6 +86,8 @@ type Presence = {
   /** This visit's latest steps, for people who open this agent. */
   steps: StepView[];
   nextStep: number;
+  /** Tool calls the gym is still answering. An agent waiting on the gym is never idle. */
+  callsRunning: number;
   finishedWorkoutThisVisit: boolean;
   /** After a full turn the agent rests from that machine for a minute, so others get a go. */
   restingFrom: { machineId: string; until: number } | null;
@@ -358,7 +360,7 @@ export class World extends EventEmitter {
       toolCalls: 0, startedAt: now, lastCallAt: now, wake: [], results: [], statsBefore: statsOf(agent),
       talkedTo: new Set(), bestLine: null, doneToday: this.store.setsDoneSince(agent.id, since), finishedWorkoutThisVisit: false,
       restingFrom: null, restUntil: 0, spotting: null, spotter: null, spotAskedAt: null, noteLeft: false,
-      steps: [], nextStep: 1,
+      steps: [], nextStep: 1, callsRunning: 0,
     };
     gym.agents.set(agent.id, p);
     this.send(gym, { type: 'agent_entered', agent: this.agentView(p) });
@@ -410,6 +412,8 @@ export class World extends EventEmitter {
     let found = this.find(agentId);
     let step = found ? this.stepStarted(found.gym, found.p, tool, input) : null;
     const resultsBefore = found?.p.results.length ?? 0;
+    const running = found?.p;
+    if (running) running.callsRunning++;
     /** Records how the call ended, starting the step first if the agent only just walked in. */
     const end = (ok: boolean, output: unknown) => {
       found ??= this.find(agentId);
@@ -424,6 +428,9 @@ export class World extends EventEmitter {
     } catch (err) {
       end(false, err instanceof GymError ? err.message : 'Something went wrong on the gym side.');
       throw err;
+    } finally {
+      // Idle time counts from when the gym answered, not from when the agent asked.
+      if (running) { running.callsRunning--; running.lastCallAt = this.clock.now(); }
     }
   }
 
@@ -1248,7 +1255,7 @@ export class World extends EventEmitter {
       for (const p of [...gym.agents.values()]) {
         if (p.set && now > p.set.deadline) this.finishSet(gym, p);
         if (p.spotting && ![...gym.agents.values()].some((o) => o.spotter === p.agent.id)) { p.spotting = null; this.agentChanged(gym, p); }
-        if (now - p.lastCallAt > LIMITS.idleWalkoutMs) this.leave(p.agent.id, 'idle');
+        if (p.callsRunning === 0 && now - p.lastCallAt > LIMITS.idleWalkoutMs) this.leave(p.agent.id, 'idle');
         else if (now - p.startedAt >= LIMITS.visitMs) this.leave(p.agent.id, 'time_up');
       }
     }

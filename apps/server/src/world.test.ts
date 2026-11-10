@@ -405,3 +405,23 @@ describe('steps', () => {
     expect(seen.filter(([id]) => id === 2)).toEqual([[2, false], [2, true]]);
   });
 });
+
+describe('idle walk-outs', () => {
+  it('never walks out an agent that is waiting on the gym, and counts idle time from the reply', async () => {
+    const a = agent('Waiter');
+    world.enter(a);
+    let release!: () => void;
+    const call = world.logged(a.id, 'rest', {}, () => new Promise<void>((r) => { release = r; }));
+    clock.tick(LIMITS.idleWalkoutMs + 60_000);
+    world.sweep();
+    expect(world.isInGym(a.id)).toBe(true);
+    release();
+    await call;
+    clock.tick(LIMITS.idleWalkoutMs - 1000);
+    world.sweep();
+    expect(world.isInGym(a.id)).toBe(true);
+    clock.tick(2000);
+    world.sweep();
+    expect(world.isInGym(a.id)).toBe(false);
+  });
+});

@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { APPEARANCE_CHOICES, AREAS, STATIONS } from '@benchmaxxers/shared';
@@ -42,6 +43,35 @@ const reply = (world: World, agentId: string, result: unknown) => {
   return { content: [{ type: 'text' as const, text: JSON.stringify(body) }] };
 };
 
+/** How often a long call (resting, waiting in line, waiting for a spot) tells the client it is still going. */
+const KEEPALIVE_MS = 10_000;
+
+/** Calls slower than this get a line in the server log. */
+const SLOW_CALL_MS = 15_000;
+
+/** What the MCP SDK hands each tool call, as far as the keepalive needs it. */
+type CallExtra = {
+  _meta?: { progressToken?: string | number };
+  sendNotification: (n: { method: 'notifications/progress'; params: { progressToken: string | number; progress: number; message?: string } }) => Promise<void>;
+};
+
+/**
+ * Keeps a slow call visibly alive: every 10 seconds it sends a progress
+ * notification on the call's own stream, if the client asked for progress.
+ * Without it a call held for most of a minute sends nothing, and clients and
+ * proxies can give up on it. Returns a function that stops it.
+ */
+export const keepAlive = (extra: CallExtra | undefined): (() => void) => {
+  const token = extra?._meta?.progressToken;
+  if (!extra || token === undefined) return () => {};
+  let ticks = 0;
+  const timer = setInterval(() => {
+    ticks++;
+    extra.sendNotification({ method: 'notifications/progress', params: { progressToken: token, progress: ticks, message: 'still waiting at the gym' } }).catch(() => {});
+  }, KEEPALIVE_MS);
+  return () => clearInterval(timer);
+};
+
 /** Tool error as text the agent can act on. */
 const fail = (message: string) => ({ content: [{ type: 'text' as const, text: message }], isError: true });
 
@@ -49,8 +79,18 @@ const fail = (message: string) => ({ content: [{ type: 'text' as const, text: me
 export const createGymMcp = (world: World, agent: () => import('./store.js').AgentRecord | null, agentId: string): McpServer => {
   const server = new McpServer({ name: 'benchmaxxers-gym', version: '0.1.0' }, { instructions: GYM_INSTRUCTIONS });
 
+  /** The current call's extras, so `run` can reach them without threading them through every tool. */
+  const callExtra = new AsyncLocalStorage<CallExtra>();
+  const register = server.registerTool.bind(server);
+  // Every tool handler runs inside callExtra, holding the SDK's extras for that call.
+  server.registerTool = ((name: string, config: unknown, cb: (...args: unknown[]) => unknown) =>
+    register(name, config as never, ((...args: unknown[]) => callExtra.run(args.at(-1) as CallExtra, () => cb(...args))) as never)) as typeof server.registerTool;
+
   /** Runs a tool: counts the call, ends the visit at its limits, records it as a step, turns rule breaks into readable errors. */
   const run = async (tool: string, input: Record<string, unknown>, fn: () => unknown | Promise<unknown>) => {
+    const extra = callExtra.getStore();
+    const stop = keepAlive(extra);
+    const started = Date.now();
     try {
       const gate = world.beginCall(agentId);
       if (gate.ended) return reply(world, agentId, recapText(gate.ended));
@@ -58,6 +98,11 @@ export const createGymMcp = (world: World, agent: () => import('./store.js').Age
     } catch (err) {
       if (err instanceof GymError) return fail(err.message);
       throw err;
+    } finally {
+      stop();
+      // Slow calls are where replies get lost, so leave a trace of each one in the server log.
+      const ms = Date.now() - started;
+      if (ms > SLOW_CALL_MS) console.log(`[mcp] slow ${tool} for ${agentId}: ${Math.round(ms / 1000)}s, progress ${extra?._meta?.progressToken !== undefined ? 'on' : 'off'}`);
     }
   };
 
