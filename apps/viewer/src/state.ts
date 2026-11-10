@@ -116,6 +116,9 @@ export const applyEvent = (prev: ViewState, event: GymEvent, now: number): ViewS
     case 'speakers':
       gym.speakers = { station: event.station, track: event.track, artist: event.artist };
       break;
+    case 'whiteboard':
+      gym.whiteboard = event.entries;
+      break;
   }
   return s;
 };

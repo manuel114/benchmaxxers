@@ -104,6 +104,14 @@ export const openStore = (path: string) => {
       finished_at INTEGER NOT NULL
     );
     CREATE INDEX IF NOT EXISTS sets_agent_machine ON sets(agent_id, machine);
+    CREATE TABLE IF NOT EXISTS encounters (
+      agent_a TEXT NOT NULL REFERENCES agents(id) ON DELETE CASCADE,
+      agent_b TEXT NOT NULL REFERENCES agents(id) ON DELETE CASCADE,
+      times INTEGER NOT NULL DEFAULT 0,
+      last_note TEXT NOT NULL,
+      last_at INTEGER NOT NULL,
+      PRIMARY KEY (agent_a, agent_b)
+    );
     CREATE TABLE IF NOT EXISTS meta (
       key TEXT PRIMARY KEY,
       value TEXT NOT NULL
@@ -219,10 +227,50 @@ export const openStore = (path: string) => {
       return (r.best as number | null) ?? 0;
     },
 
-    /** Machines the agent finished a set on since a moment. */
-    machinesDoneSince: (agentId: string, since: number): Set<MachineKind> => {
-      const rows = db.prepare('SELECT DISTINCT machine FROM sets WHERE agent_id = ? AND finished_at >= ? AND dropped = 0').all(agentId, since) as Row[];
-      return new Set(rows.map((r) => r.machine as MachineKind));
+    /** Sets the agent finished on each machine type since a moment (not counting dropped or empty ones). */
+    setsDoneSince: (agentId: string, since: number): Partial<Record<MachineKind, number>> => {
+      const rows = db.prepare('SELECT machine, COUNT(*) AS n FROM sets WHERE agent_id = ? AND finished_at >= ? AND dropped = 0 AND reps > 0 GROUP BY machine').all(agentId, since) as Row[];
+      return Object.fromEntries(rows.map((r) => [r.machine as MachineKind, r.n as number]));
+    },
+
+    /**
+     * Notes that two agents did something together (chatted, spotted, worked in),
+     * so the gym can tell them they are regulars next time. Stored once per pair.
+     */
+    recordEncounter: (a: string, b: string, note: string, now: number): void => {
+      if (a === b) return;
+      const [x, y] = a < b ? [a, b] : [b, a];
+      db.prepare(`INSERT INTO encounters (agent_a, agent_b, times, last_note, last_at) VALUES (?, ?, 1, ?, ?)
+        ON CONFLICT (agent_a, agent_b) DO UPDATE SET times = times + 1, last_note = excluded.last_note, last_at = excluded.last_at`).run(x, y, note, now);
+    },
+
+    /** How often an agent has met each of some others, and what they last did together. */
+    encountersWith: (agentId: string, others: string[]): Map<string, { times: number; lastNote: string; lastAt: number }> => {
+      const out = new Map<string, { times: number; lastNote: string; lastAt: number }>();
+      const q = db.prepare('SELECT times, last_note, last_at FROM encounters WHERE agent_a = ? AND agent_b = ?');
+      for (const o of others) {
+        const [x, y] = agentId < o ? [agentId, o] : [o, agentId];
+        const r = q.get(x, y) as Row | undefined;
+        if (r) out.set(o, { times: r.times as number, lastNote: r.last_note as string, lastAt: r.last_at as number });
+      }
+      return out;
+    },
+
+    /** Today's best lifts: the top few per machine type, best set per agent. */
+    bestLiftsSince: (since: number, perMachine = 3): { machine: MachineKind; name: string; weight: Weight; reps: number; lift: number }[] => {
+      const rows = db.prepare(`SELECT s.machine, a.name, s.weight, s.reps, s.lift FROM sets s JOIN agents a ON a.id = s.agent_id
+        WHERE s.finished_at >= ? AND s.dropped = 0 AND s.lift > 0 ORDER BY s.lift DESC, s.finished_at ASC`).all(since) as Row[];
+      const out: { machine: MachineKind; name: string; weight: Weight; reps: number; lift: number }[] = [];
+      const seen = new Set<string>();
+      const count = new Map<string, number>();
+      for (const r of rows) {
+        const key = `${r.machine}|${r.name}`;
+        if (seen.has(key) || (count.get(r.machine as string) ?? 0) >= perMachine) continue;
+        seen.add(key);
+        count.set(r.machine as string, (count.get(r.machine as string) ?? 0) + 1);
+        out.push({ machine: r.machine as MachineKind, name: r.name as string, weight: r.weight as Weight, reps: r.reps as number, lift: r.lift as number });
+      }
+      return out;
     },
 
     /** A value saved once and kept for good, such as a secret; made with `make` the first time. */

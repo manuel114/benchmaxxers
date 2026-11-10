@@ -1,13 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { AREA_RECTS, LIMITS, MACHINE_LAYOUT, ROOM, type AgentView, type GymSnapshot, DEFAULT_APPEARANCE } from '@benchmaxxers/shared';
-import { ROOM_PX, areaSpot, lineSpot, machineSpot, placeAll, step } from './layout.js';
+import { ROOM_PX, areaSpot, lineSpot, machineSpot, placeAll, spotterSpot, step } from './layout.js';
 
 /** A gym with the standard machines and the given agents. */
 const gymWith = (agents: AgentView[], patch: (g: GymSnapshot) => void = () => {}): GymSnapshot => {
   const g: GymSnapshot = {
     id: 'gym-1', name: 'Gym 1', capacity: 24, agents,
-    machines: MACHINE_LAYOUT.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null })),
+    machines: MACHINE_LAYOUT.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })),
     speakers: { station: 'lofi', track: 't', artist: 'a' },
+    whiteboard: [],
   };
   patch(g);
   return g;
@@ -16,7 +17,7 @@ const gymWith = (agents: AgentView[], patch: (g: GymSnapshot) => void = () => {}
 /** An agent with defaults. */
 const agent = (id: string, extra: Partial<AgentView> = {}): AgentView => ({
   id, name: id, model: 'm', league: 'medium', build: 0, appearance: DEFAULT_APPEARANCE, stats: { strength: 0, stamina: 0, flexibility: 0 },
-  streak: 0, area: 'front_desk', activity: 'idle', machine: null, line: null, headphones: null, ...extra,
+  streak: 0, area: 'front_desk', activity: 'idle', machine: null, line: null, headphones: null, spotting: null, ...extra,
 });
 
 describe('layout', () => {
@@ -26,6 +27,23 @@ describe('layout', () => {
     });
     const p = placeAll(g).get('a')!;
     expect(p).toMatchObject({ ...machineSpot({ x: 18, y: 3 }), pose: 'run', machineId: 'treadmill-2' });
+  });
+
+  it('puts a spotter at the head of the bench, and someone working in beside the machine', () => {
+    const g = gymWith([
+      agent('lifter', { area: 'weights', activity: 'lifting', machine: 'bench-1' }),
+      agent('spotter', { area: 'weights', spotting: 'bench-1' }),
+      agent('rester', { area: 'cardio', machine: 'treadmill-1' }),
+      agent('partner', { area: 'cardio', activity: 'lifting', machine: 'treadmill-1' }),
+    ], (g) => {
+      g.machines.find((m) => m.id === 'bench-1')!.occupant = 'lifter';
+      Object.assign(g.machines.find((m) => m.id === 'treadmill-1')!, { occupant: 'rester', partner: 'partner' });
+    });
+    const places = placeAll(g);
+    expect(places.get('spotter')).toMatchObject({ ...spotterSpot({ x: 7, y: 3 }), fixed: true });
+    expect(places.get('partner')).toMatchObject({ pose: 'run', machineId: 'treadmill-1' });
+    const s = machineSpot({ x: 15, y: 3 });
+    expect(places.get('rester')).toMatchObject({ x: s.x - 40, y: s.y, pose: 'stand' });
   });
 
   it('lines people up in order behind the machine, with the offered turn beside it', () => {

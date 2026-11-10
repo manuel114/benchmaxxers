@@ -96,7 +96,13 @@ describe('a visit over MCP', () => {
     const ids = [...world.gyms[0]!.agents.values()].find((p) => p.agent.name === 'Ava')!.agent.id;
     const done = await call(ava, 'answer_set', { set_id: set.body!.set_id, answers: world.peekAnswers(ids)! });
     expect(done.body).toMatchObject({ status: 'set_done', reps: 3, points: 60 });
-    expect((await call(ben, 'wait_for_turn', { machine: 'bench-1' })).body).toMatchObject({ status: 'your_turn' });
+
+    // Ava keeps the bench for her sets, so Ben works in with her; Ava hears about it while she rests.
+    expect((await call(ben, 'work_in', { machine: 'bench-1' })).body).toMatchObject({ working_in_with: 'Ava', machine: 'bench-1' });
+    const rest = await call(ava, 'rest');
+    expect(rest.body).toMatchObject({ ready: false });
+    expect(JSON.stringify(rest.body)).toContain('working in with you');
+    expect((await call(ben, 'start_set', { machine: 'bench-1', weight: 'light' })).body).toHaveProperty('set_id');
 
     // Headphones and the status line.
     const music = await call(ava, 'put_on_headphones', { station: 'lofi' });

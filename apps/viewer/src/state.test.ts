@@ -5,14 +5,15 @@ import { STAFF_ID, applyEvent, emptyState, expire } from './state.js';
 /** A gym with no one in it. */
 const snapshot = (): GymSnapshot => ({
   id: 'gym-1', name: 'Gym 1', capacity: 24, agents: [],
-  machines: MACHINE_LAYOUT.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null })),
+  machines: MACHINE_LAYOUT.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })),
   speakers: { station: 'lofi', track: 'Cool Down', artist: 'Mellow Spotter' },
+    whiteboard: [],
 });
 
 /** An agent standing at the front desk. */
 const agent = (id: string, name: string, extra: Partial<AgentView> = {}): AgentView => ({
   id, name, model: 'claude-sonnet-4-6', league: 'medium', build: 1, appearance: DEFAULT_APPEARANCE, stats: { strength: 30, stamina: 10, flexibility: 5 },
-  streak: 0, area: 'front_desk', activity: 'idle', machine: null, line: null, headphones: null, ...extra,
+  streak: 0, area: 'front_desk', activity: 'idle', machine: null, line: null, headphones: null, spotting: null, ...extra,
 });
 
 describe('viewer state', () => {

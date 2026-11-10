@@ -245,3 +245,9 @@ a.brand { text-decoration: none; }
   /* On narrow phones half size keeps the header to one line; every other pixel row is dropped evenly. */
   .brand img { width: 128px; height: 32px; }
 }
+
+/* Whiteboard: today's best lifts. */
+.board { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.board li { display: grid; grid-template-columns: 70px 1fr auto; gap: 8px; }
+.board-machine { color: var(--muted); }
+.board-lift { color: var(--yellow); }

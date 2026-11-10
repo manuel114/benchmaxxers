@@ -7,7 +7,7 @@
  *   pnpm dev:demo                 # 8 bots on http://localhost:8787
  *   DEMO_BOTS=20 pnpm dev:demo    # more
  */
-import { AREAS, MACHINE_KINDS, STATIONS, type AreaId, type Weight } from '@benchmaxxers/shared';
+import { AREAS, LIMITS, MACHINE_KINDS, STATIONS, type AreaId, type Weight } from '@benchmaxxers/shared';
 import { config } from '../config.js';
 import { openStore, type AgentRecord } from '../store.js';
 import { World, GymError } from '../world.js';
@@ -79,32 +79,65 @@ const visit = async (agentId: string, record: () => AgentRecord, accuracy: numbe
   const call = () => world.isInGym(agentId) && world.beginCall(agentId).ended === null && world.isInGym(agentId);
   world.enter(record(), 'demo');
   await sleep(between(1500, 4000));
-  const sets = between(2, 5);
+  const exercises = between(2, 3);
 
-  for (let done = 0; done < sets && !stopping; done++) {
+  /** Rests until ready, answering any ask for a spot along the way (sometimes). */
+  const restUp = async (): Promise<boolean> => {
+    for (let i = 0; i < 4; i++) {
+      if (!call()) return false;
+      let r: Awaited<ReturnType<World['rest']>>;
+      try { r = await world.rest(agentId); } catch { return true; }
+      if ('status' in r) return false;
+      const asking = r.asking_for_a_spot?.[0];
+      if (asking && Math.random() < 0.6 && call()) {
+        try { world.spot(agentId, asking); await sleep(between(6000, 12_000)); } catch { /* someone else got there first */ }
+      }
+      if (r.ready) return true;
+    }
+    return true;
+  };
+
+  for (let done = 0; done < exercises && !stopping; done++) {
     if (!call()) return;
     const kind = any(MACHINE_KINDS);
-    let turn: Awaited<ReturnType<World['waitForTurn']>> | null = null;
-    for (let tries = 0; tries < 4; tries++) {
+    let machine: string | null = null;
+    for (let tries = 0; tries < 4 && !machine; tries++) {
       if (!call()) return;
-      try { turn = await world.waitForTurn(agentId, kind); } catch { turn = null; break; }
-      if (turn.status === 'your_turn' || turn.status !== 'waiting') break;
-      if (Math.random() < 0.3 && call()) { try { world.speak(agentId, 'say', any(LINES)); } catch { /* cooldown */ } }
+      let turn: Awaited<ReturnType<World['waitForTurn']>>;
+      try { turn = await world.waitForTurn(agentId, kind); } catch { break; }
+      if (turn.status === 'your_turn') { machine = turn.machine; break; }
+      if (turn.status !== 'waiting') break;
+      // Sometimes ask to work in rather than keep waiting, like a real gym.
+      if (Math.random() < 0.35 && call()) {
+        try { machine = world.workIn(agentId, turn.machine).machine; } catch { /* no room to work in */ }
+      } else if (Math.random() < 0.3 && call()) {
+        try { world.speak(agentId, 'say', any(LINES)); } catch { /* cooldown */ }
+      }
     }
-    if (!turn || turn.status !== 'your_turn') continue;
+    if (!machine) continue;
 
-    await sleep(between(800, 2500));
-    if (!call()) return;
-    const weight: Weight = any(['light', 'medium', 'medium', 'heavy'] as const);
-    let set: ReturnType<World['startSet']>;
-    try { set = world.startSet(agentId, turn.machine, weight); } catch { continue; }
-    for (;;) {
-      await sleep(between(1500, 4500));
-      const answers = world.peekAnswers(agentId);
-      if (!answers || !call()) break;
-      const given = answers.map((a) => (Math.random() < accuracy ? a : 'pass'));
-      const res = world.answerSet(agentId, set.set_id, given);
-      if (res.status === 'set_done') break;
+    // A few sets on this machine, resting between them.
+    const sets = between(1, LIMITS.setsPerTurn);
+    for (let n = 0; n < sets && !stopping; n++) {
+      await sleep(between(800, 2500));
+      if (!call()) return;
+      const weight: Weight = any(['light', 'medium', 'medium', 'heavy'] as const);
+      if (kind === 'bench' && weight === 'heavy') {
+        try { await world.askForSpot(agentId); } catch { /* lift lighter instead */ }
+      }
+      let set: ReturnType<World['startSet']>;
+      try { set = world.startSet(agentId, machine, weight); } catch {
+        try { set = world.startSet(agentId, machine, 'medium'); } catch { break; }
+      }
+      for (;;) {
+        await sleep(between(1500, 4500));
+        const answers = world.peekAnswers(agentId);
+        if (!answers || !call()) break;
+        const given = answers.map((a) => (Math.random() < accuracy ? a : 'pass'));
+        const res = world.answerSet(agentId, set.set_id, given);
+        if (res.status === 'set_done') break;
+      }
+      if (!(await restUp())) return;
     }
 
     // Between sets: maybe chat, music or a water break.

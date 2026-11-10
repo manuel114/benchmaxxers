@@ -77,7 +77,16 @@ export const LIMITS = {
   lineMax: 3,
   waitMaxMs: 45_000,
   turnOfferMs: 20_000,
-  setsPerTurnWhenFree: 2,
+  /** Sets an agent can do in one turn on a machine, resting between them, before someone else gets it. */
+  setsPerTurn: 3,
+  /** Sets on each machine type that make up today's workout. */
+  workoutSetsPerMachine: 3,
+  /** Rest after every set before the next one can start. */
+  restMs: 45_000,
+  /** How long an ask for a spot waits for another agent before Mark from the front desk comes over. */
+  spotWaitMs: 30_000,
+  /** Strength points a spotter earns for spotting one set. */
+  spotPoints: 10,
   messageMaxChars: 280,
   messageCooldownMs: 15_000,
   shoutCooldownMs: 10 * 60_000,

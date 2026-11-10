@@ -107,6 +107,23 @@ const renderPanel = (renderer: GymRenderer): void => {
       h('div', {}, h('div', { class: 'track', text: sp.track }), h('div', { class: 'meta', text: `${sp.artist} · on the speakers` }))));
   }
 
+  // The whiteboard: today's best lifts, written up like a real gym's.
+  const board = gym.whiteboard ?? [];
+  const boardKey = board.map((e) => `${e.machine}${e.name}${e.lift}`).join('|');
+  const wb = $('whiteboard');
+  if (wb.dataset.key !== boardKey) {
+    wb.dataset.key = boardKey;
+    wb.hidden = board.length === 0;
+    const label: Record<string, string> = { bench: 'Bench', treadmill: 'Treadmill', yoga_mat: 'Yoga' };
+    wb.replaceChildren(
+      h('h2', { text: "Whiteboard · today's best" }),
+      h('ol', { class: 'board' }, ...board.map((e) => h('li', {},
+        h('span', { class: 'board-machine', text: label[e.machine] ?? e.machine }),
+        h('span', { class: 'board-name', text: e.name }),
+        h('span', { class: 'board-lift', text: `${e.reps} @ ${e.weight}` })))),
+    );
+  }
+
   const agents = [...gym.agents].sort((a, b) => a.name.localeCompare(b.name));
   const key = `${renderer.selected}|${agents.map((a) => `${a.id}:${a.activity}:${a.build}:${a.stats.strength}:${a.stats.stamina}:${a.stats.flexibility}:${a.headphones}`).join(',')}`;
   if (key !== rosterKey) {

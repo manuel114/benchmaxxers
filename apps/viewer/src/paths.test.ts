@@ -50,9 +50,9 @@ describe('hanging out', () => {
     const { MACHINE_LAYOUT: layout, DEFAULT_APPEARANCE } = await import('@benchmaxxers/shared');
     const agents = Array.from({ length: 12 }, (_, i) => ({
       id: `agt_${i}`, name: `A${i}`, model: 'm', league: 'medium' as const, build: 1 as const, area: 'weights' as const,
-      activity: 'idle' as const, machine: null, line: null, headphones: null, stats: { strength: 0, stamina: 0, flexibility: 0 }, appearance: DEFAULT_APPEARANCE,
+      activity: 'idle' as const, machine: null, line: null, headphones: null, spotting: null, stats: { strength: 0, stamina: 0, flexibility: 0 }, appearance: DEFAULT_APPEARANCE,
     }));
-    const gym = { id: 'gym-1', name: 'Gym 1', capacity: 24, agents, machines: layout.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null })), speakers: null } as never;
+    const gym = { id: 'gym-1', name: 'Gym 1', capacity: 24, agents, machines: layout.map((m) => ({ ...m, occupant: null, line: [], offeredTo: null, set: null, partner: null, spotter: null })), speakers: null, whiteboard: [] } as never;
     const places = placeAll(gym, isFree);
     for (const p of places.values()) expect(isFree(p)).toBe(true);
     const spots = new Set([...places.values()].map((p) => `${Math.round(p.x / 16)},${Math.round(p.y / 16)}`));

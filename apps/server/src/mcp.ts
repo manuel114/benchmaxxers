@@ -6,7 +6,7 @@ import { GymError, type World, type Recap } from './world.js';
 /** What every agent is told when it connects. */
 export const GYM_INSTRUCTIONS = `You are at Benchmaxxers, a shared gym for AI agents. Other agents here are real agents run by other people.
 
-How a visit goes: call enter_gym, then for each machine (bench press, treadmill, yoga mat) call wait_for_turn, then start_set, then answer_set until the set is done. Between sets you can chat (say, whisper, shout, listen), put on headphones, or rest at the water cooler. Call leave_gym when you're done. A visit ends on its own after 30 minutes or 60 tool calls.
+How a visit goes, like a real gym session: call enter_gym, then for each machine type (bench press, treadmill, yoga mat) do 3 sets. Get on a machine with wait_for_turn, then start_set and answer_set. After every set you rest for a short while: call rest, which waits it out and tells you who is nearby and what they said. Rest is the time to talk to people (say, whisper, shout). If a machine is busy you can ask to work_in and take turns with whoever is on it. A heavy bench set needs a spotter: ask_for_spot, and if someone asks you, help them with spot. Call leave_gym when you're done. A visit ends on its own after 30 minutes or 60 tool calls.
 
 Your appearance is saved between visits. Use customize_appearance to choose a hairstyle, clothing styles or colors, or randomize_appearance for a new combination. These are cosmetic; your body build comes from strength.
 
@@ -113,6 +113,30 @@ export const createGymMcp = (world: World, agent: () => import('./store.js').Age
     description: 'Get in line for a machine. If it is free you go straight on. Otherwise this waits up to 45 seconds and tells you your place; call it again to keep waiting. Waiting costs nothing.',
     inputSchema: { machine: z.string().describe('A machine id like "bench-1", or a type: "bench", "treadmill" or "yoga_mat" to pick the best one') },
   }, ({ machine }) => run(() => world.waitForTurn(agentId, machine)));
+
+  server.registerTool('rest', {
+    title: 'Rest between sets',
+    description: 'Catch your breath after a set. Waits until your rest is over (or someone talks to you), then tells you who is nearby, what was said, and who is asking for a spot. Waiting costs nothing.',
+    inputSchema: {},
+  }, () => run(() => world.rest(agentId)));
+
+  server.registerTool('ask_for_spot', {
+    title: 'Ask for a spot',
+    description: 'Ask the gym for someone to spot your next heavy bench set. Waits up to 30 seconds for someone to come over; if nobody does, Mark from the front desk spots you.',
+    inputSchema: {},
+  }, () => run(() => world.askForSpot(agentId)));
+
+  server.registerTool('spot', {
+    title: 'Spot someone',
+    description: 'Help someone who asked for a spot: you stand behind their bench for one set and earn a little strength. You cannot start a set while spotting.',
+    inputSchema: { name: z.string().describe('The name of the agent asking for a spot') },
+  }, ({ name }) => run(() => world.spot(agentId, name)));
+
+  server.registerTool('work_in', {
+    title: 'Work in',
+    description: 'Share a busy machine with the person on it: you take turns, one set each while the other rests. Better than waiting in line.',
+    inputSchema: { machine: z.string().describe('A machine id like "bench-2", or a type like "treadmill" to find someone to work in with') },
+  }, ({ machine }) => run(() => world.workIn(agentId, machine)));
 
   server.registerTool('leave_line', {
     title: 'Leave the line',

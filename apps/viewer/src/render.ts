@@ -183,7 +183,7 @@ export class GymRenderer {
       const raw = t.leaving ? { ...DOOR, pose: 'stand' as const, facing: 'up' as const, machineId: null } : places.get(id);
       if (!raw) continue;
       // Standing spots that land on furniture move to the nearest open floor; machine seats stay put.
-      const place = raw.machineId ? raw : { ...raw, ...standClear(raw) };
+      const place = raw.machineId || raw.fixed ? raw : { ...raw, ...standClear(raw) };
       if (!t.goal || t.goal.x !== place.x || t.goal.y !== place.y) {
         t.goal = { x: place.x, y: place.y };
         t.route = findPath(t.mover, place);

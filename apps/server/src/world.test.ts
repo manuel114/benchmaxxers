@@ -27,8 +27,13 @@ const perfectSet = (a: AgentRecord, machine: string, weight: 'light' | 'medium' 
 beforeEach(() => {
   store = openStore(':memory:');
   clock = fakeClock();
-  world = new World(store, clock, { waitMaxMs: 20, turnOfferMs: 20_000 });
+  world = new World(store, clock, { waitMaxMs: 20, turnOfferMs: 20_000, spotWaitMs: 20 });
 });
+
+/** Does a set, then rests it off, as many times as asked. */
+const setsWithRest = (a: AgentRecord, machine: string, n: number, weight: 'light' | 'medium' | 'heavy' = 'light') => {
+  for (let i = 0; i < n; i++) { perfectSet(a, machine, weight); clock.tick(LIMITS.restMs); }
+};
 
 describe('visits', () => {
   it('checks an agent in at the front desk with today\'s workout', () => {
@@ -73,34 +78,48 @@ describe('machines and lines', () => {
     const waiting = await world.waitForTurn(b.id, 'bench-1');
     expect(waiting).toMatchObject({ status: 'waiting', place_in_line: 1 });
 
-    // A finishes; B is waiting, so A must step off and B gets the turn.
-    const s = world.lookAround(a.id); expect(s.you.machine).toBe('bench-1');
-    const res = world.answerSet(a.id, (world as unknown as { find: (id: string) => { p: { set: { setId: string } } } }).find(a.id).p.set.setId, world.peekAnswers(a.id)!);
-    expect(res.status).toBe('set_done');
+    // A keeps the bench for a full turn of sets, resting between; then B gets it.
+    let r: ReturnType<World['answerSet']>;
+    do { r = world.answerSet(a.id, undefined, world.peekAnswers(a.id)!); } while (r.status === 'next');
+    clock.tick(LIMITS.restMs);
+    setsWithRest(a, 'bench-1', LIMITS.setsPerTurn - 1);
     expect(world.lookAround(a.id).you.machine).toBeNull();
     expect((await world.waitForTurn(b.id, 'bench-1')).status).toBe('your_turn');
   });
 
-  it('lets an agent do a second set when nobody is waiting, but not a third', () => {
+  it('makes everyone rest between sets, and hands the machine on after a full turn', () => {
     const a = agent('Fay');
     world.enter(a);
     void world.waitForTurn(a.id, 'treadmill');
     perfectSet(a, 'treadmill-1');
-    perfectSet(a, 'treadmill-1');
+    expect(() => world.startSet(a.id, 'treadmill-1', 'light')).toThrow(/Catch your breath/);
+    clock.tick(LIMITS.restMs);
+    setsWithRest(a, 'treadmill-1', LIMITS.setsPerTurn - 1);
     expect(() => world.startSet(a.id, 'treadmill-1', 'light')).toThrow(/full turn/);
     clock.tick(61_000);
     expect(world.startSet(a.id, 'treadmill-1', 'light')).toHaveProperty('set_id');
+  });
+
+  it('rests until the rest is over, then says you are ready, with who is nearby', async () => {
+    const a = agent('Gus'), b = agent('Hal');
+    world.enter(a); world.enter(b);
+    void world.waitForTurn(a.id, 'bench-1');
+    perfectSet(a, 'bench-1');
+    world.walkTo(b.id, 'weights');
+    const resting = await world.rest(a.id);
+    expect(resting).toMatchObject({ ready: false, nearby: ['Hal'] });
+    clock.tick(LIMITS.restMs);
+    expect(await world.rest(a.id)).toMatchObject({ ready: true, rest_left_seconds: 0 });
   });
 
   it('gives the turn to the next agent when one misses it', async () => {
     const a = agent('Gil'), b = agent('Hana'), c = agent('Ida');
     for (const x of [a, b, c]) world.enter(x);
     await world.waitForTurn(a.id, 'mat-1');
-    const start = world.startSet(a.id, 'mat-1', 'light');
     await world.waitForTurn(b.id, 'mat-1');
     await world.waitForTurn(c.id, 'mat-1');
-    // A finishes; the turn is offered to B, who never shows up.
-    world.answerSet(a.id, start.set_id, world.peekAnswers(a.id)!);
+    // A finishes a full turn; the mat is offered to B, who never shows up.
+    setsWithRest(a, 'mat-1', LIMITS.setsPerTurn);
     clock.tick(21_000);
     world.sweep();
     expect((await world.waitForTurn(c.id, 'mat-1')).status).toBe('your_turn');
@@ -137,10 +156,12 @@ describe('scoring', () => {
     expect(statFromPoints(store.agentById(a.id)!.points.strength)).toBeGreaterThan(0);
   });
 
-  it('drops the bar on a heavy set with less than half right', () => {
+  it('drops the bar on a heavy set with less than half right', async () => {
     const a = agent('Ola');
     world.enter(a);
     void world.waitForTurn(a.id, 'bench');
+    expect(() => world.startSet(a.id, 'bench-1', 'heavy')).toThrow(/spotter/);
+    expect(await world.askForSpot(a.id)).toMatchObject({ spotter: 'Mark from the front desk' });
     const start = world.startSet(a.id, 'bench-1', 'heavy');
     const res = world.answerSet(a.id, start.set_id, ['no idea', 'no idea', 'no idea']);
     expect(res).toMatchObject({ status: 'set_done', points: 0 });
@@ -195,11 +216,11 @@ describe('scoring', () => {
   it('finishes today\'s workout after all three machines and starts a streak', () => {
     const a = agent('Quinn');
     world.enter(a);
-    for (const m of ['bench-1', 'treadmill-1', 'mat-1']) { void world.waitForTurn(a.id, m); perfectSet(a, m); world.walkTo(a.id, 'water_cooler'); }
+    for (const m of ['bench-1', 'treadmill-1', 'mat-1']) { void world.waitForTurn(a.id, m); setsWithRest(a, m, LIMITS.workoutSetsPerMachine); world.walkTo(a.id, 'water_cooler'); clock.tick(61_000); }
     expect(store.agentById(a.id)!.streak).toBe(1);
     const recap = world.leave(a.id, 'left');
     expect(recap.workoutFinished).toBe(true);
-    expect(recap.sets).toHaveLength(3);
+    expect(recap.sets).toHaveLength(3 * LIMITS.workoutSetsPerMachine);
   });
 
   it('does not count points after 3 visits in a day', () => {
@@ -246,3 +267,59 @@ describe('talking', () => {
     expect(world.listen(b.id).messages).toHaveLength(0);
   });
 });
+
+describe('people working out together', () => {
+  it('lets another agent spot a heavy bench set, and thanks them with strength', async () => {
+    const a = agent('Ivy'), b = agent('Jay');
+    world.enter(a); world.enter(b);
+    await world.waitForTurn(a.id, 'bench-1');
+    const asking = world.askForSpot(a.id);
+    expect(world.listen(b.id).messages.some((m) => m.said.includes('asking for a spot'))).toBe(true);
+    expect(world.spot(b.id, 'Ivy')).toMatchObject({ spotting: 'Ivy', machine: 'bench-1' });
+    expect(await asking).toMatchObject({ spotter: 'Jay' });
+    expect(() => world.startSet(b.id, 'bench-2', 'light')).toThrow(/spotting/);
+    const done = perfectSet(a, 'bench-1', 'heavy');
+    expect(done).toMatchObject({ status: 'set_done', spotted_by: 'Jay' });
+    expect(store.agentById(b.id)!.points.strength).toBe(LIMITS.spotPoints);
+    expect(world.lookAround(b.id).you).toMatchObject({ area: 'weights' });
+    expect(world.startSet(b.id, 'bench-2', 'light')).toHaveProperty('set_id'); // done spotting: free to lift
+  });
+
+  it('lets someone work in: the two take turns on one machine', async () => {
+    const a = agent('Kim'), b = agent('Lee');
+    world.enter(a); world.enter(b);
+    await world.waitForTurn(a.id, 'treadmill-1');
+    world.startSet(a.id, 'treadmill-1', 'light');
+    expect(world.workIn(b.id, 'treadmill-1')).toMatchObject({ working_in_with: 'Kim', machine: 'treadmill-1' });
+    expect(() => world.startSet(b.id, 'treadmill-1', 'light')).toThrow(/mid-set/);
+    let r: ReturnType<World['answerSet']>;
+    do { r = world.answerSet(a.id, undefined, world.peekAnswers(a.id)!); } while (r.status === 'next');
+    // Kim rests; Lee goes.
+    expect(world.startSet(b.id, 'treadmill-1', 'light')).toHaveProperty('set_id');
+    expect(world.listen(a.id).messages.some((m) => m.said.includes('working in with you'))).toBe(true);
+  });
+
+  it('remembers regulars and tells them when the other walks in', () => {
+    const a = agent('Max'), b = agent('Nat');
+    world.enter(a); world.enter(b);
+    world.walkTo(b.id, 'front_desk');
+    world.speak(a.id, 'say', 'Morning!');
+    world.leave(a.id, 'left');
+    clock.tick(60_000);
+    const back = world.enter(a);
+    expect(back).toMatchObject({ regulars_here: [expect.objectContaining({ name: 'Nat', times_met: 1, last_time: 'chatted' })] });
+    expect(world.listen(b.id).messages.some((m) => m.said.includes('Max just walked in'))).toBe(true);
+  });
+
+  it('rings the personal-best bell for everyone and writes the lift on the whiteboard', () => {
+    const a = agent('Oli'), b = agent('Pip');
+    world.enter(a); world.enter(b);
+    void world.waitForTurn(a.id, 'mat-1');
+    const res = perfectSet(a, 'mat-1', 'medium');
+    expect(res).toMatchObject({ personal_best: true });
+    expect(res).toHaveProperty('tip');
+    expect(world.listen(b.id).messages.some((m) => m.said.includes('PB bell'))).toBe(true);
+    expect(world.lookAround(b.id).whiteboard[0]).toContain('Oli');
+  });
+});
+

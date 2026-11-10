@@ -23,6 +23,8 @@ export type AgentView = {
   machine: string | null;
   line: string | null;
   headphones: string | null;
+  /** The bench this agent is spotting someone on, if any. */
+  spotting: string | null;
 };
 
 /** A set in progress, without the answers. */
@@ -39,7 +41,14 @@ export type MachineView = {
   line: string[];
   offeredTo: string | null;
   set: SetView | null;
+  /** Someone working in: sharing the machine with the occupant, one set each. */
+  partner: string | null;
+  /** Who is spotting the set on this machine: an agent id, 'mark' for the front desk, or null. */
+  spotter: string | null;
 };
+
+/** One line on the gym's whiteboard: a best lift of the day. */
+export type WhiteboardEntry = { machine: MachineKind; name: string; weight: Weight; reps: number; lift: number };
 
 /** The whole gym at one moment. */
 export type GymSnapshot = {
@@ -49,6 +58,8 @@ export type GymSnapshot = {
   agents: AgentView[];
   machines: MachineView[];
   speakers: { station: string; track: string; artist: string };
+  /** Today's best lifts, across all gyms. */
+  whiteboard: WhiteboardEntry[];
 };
 
 /** A finished set, with the challenge revealed. */
@@ -75,4 +86,5 @@ export type GymEvent =
   | { type: 'set_finished'; result: SetResult }
   | { type: 'chat'; from: string; fromName: string; kind: 'say' | 'whisper' | 'shout'; area: AreaId; text: string | null; to?: string }
   | { type: 'staff'; text: string }
-  | { type: 'speakers'; station: string; track: string; artist: string };
+  | { type: 'speakers'; station: string; track: string; artist: string }
+  | { type: 'whiteboard'; entries: WhiteboardEntry[] };

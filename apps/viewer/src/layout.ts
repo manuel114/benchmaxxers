@@ -13,7 +13,11 @@ export type Point = { x: number; y: number };
 export type Pose = 'stand' | 'wait' | 'rest' | 'bench' | 'run' | 'yoga';
 
 /** Where one agent should be and how it should look there. */
-export type Placement = Point & { pose: Pose; facing: 'down' | 'up' | 'left' | 'right'; machineId: string | null };
+export type Placement = Point & {
+  pose: Pose; facing: 'down' | 'up' | 'left' | 'right'; machineId: string | null;
+  /** True for spots that are meant to be right at a machine (a spotter at the bench), so they are never nudged to open floor. */
+  fixed?: boolean;
+};
 
 /** Room size in art pixels. */
 export const ROOM_PX = { w: ROOM.cols * ROOM.tile, h: ROOM.rows * ROOM.tile } as const;
@@ -30,10 +34,16 @@ const POSE_FOR: Record<MachineKind, Pose> = { bench: 'bench', treadmill: 'run', 
 /** The floor point a machine stands on (its sprite anchor). */
 export const machineSpot = (m: Pick<MachineView, 'x' | 'y'>): Point => ({ x: m.x * ROOM.tile + ROOM.tile, y: m.y * ROOM.tile + 40 });
 
-/** Where the person whose turn is next stands, beside the machine. */
-const besideSpot = (m: MachineView): Point => {
+/** Where someone stands beside a machine: the next in line or the occupant resting on the left, a person working in on the right. */
+const besideSpot = (m: Pick<MachineView, 'x' | 'y'>, side: 'left' | 'right' = 'left'): Point => {
   const s = machineSpot(m);
-  return { x: s.x - 40, y: s.y };
+  return { x: s.x + (side === 'left' ? -40 : 40), y: s.y };
+};
+
+/** Where a spotter stands: at the head of the bench, just behind the lifter's head. */
+export const spotterSpot = (m: Pick<MachineView, 'x' | 'y'>): Point => {
+  const s = machineSpot(m);
+  return { x: s.x - 22, y: s.y - 10 };
 };
 
 /**
@@ -78,11 +88,18 @@ export const placeAll = (gym: GymSnapshot, isOpen: (p: Point) => boolean = () =>
 
   for (const a of [...gym.agents].sort((x, y) => x.id.localeCompare(y.id))) {
     const occupied = a.machine ? byId.get(a.machine) : undefined;
-    if (occupied && occupied.occupant === a.id) {
-      const spot = machineSpot(occupied);
-      out.set(a.id, a.activity === 'lifting'
-        ? { ...spot, pose: POSE_FOR[occupied.kind], facing: 'right', machineId: occupied.id }
-        : { ...besideSpot(occupied), pose: 'stand', facing: 'right', machineId: null });
+    if (occupied && (occupied.occupant === a.id || occupied.partner === a.id)) {
+      // Whoever is mid-set is on the machine; the other (resting between sets) stands beside it.
+      const lifting = a.activity === 'lifting';
+      const side = occupied.partner === a.id ? 'right' : 'left';
+      out.set(a.id, lifting
+        ? { ...machineSpot(occupied), pose: POSE_FOR[occupied.kind], facing: 'right', machineId: occupied.id }
+        : { ...besideSpot(occupied, side), pose: 'stand', facing: side === 'left' ? 'right' : 'left', machineId: null });
+      continue;
+    }
+    const spotting = a.spotting ? byId.get(a.spotting) : undefined;
+    if (spotting) {
+      out.set(a.id, { ...spotterSpot(spotting), pose: 'stand', facing: 'right', machineId: null, fixed: true });
       continue;
     }
     const lineFor = a.line ? byId.get(a.line) : undefined;
