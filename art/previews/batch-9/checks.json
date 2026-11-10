@@ -1,0 +1,183 @@
+{
+  "assets": {
+    "npc.mark.idle": {
+      "file": "assets/characters/npc-mark/idle_down.png",
+      "size": [
+        128,
+        48
+      ],
+      "palette": "character",
+      "sha256": "4dbbc6525bffb5bb72bba3c75e7aef4ceb03287dd93a2b894d0e3fdda204814d",
+      "alpha": "binary",
+      "palette_check": "passed",
+      "magenta_pixels": 0,
+      "frames": 4,
+      "fps": 6,
+      "anchor": [
+        16,
+        46
+      ],
+      "bounds": [
+        [
+          3,
+          5,
+          29,
+          47
+        ],
+        [
+          3,
+          4,
+          29,
+          47
+        ],
+        [
+          3,
+          4,
+          29,
+          47
+        ],
+        [
+          3,
+          5,
+          29,
+          47
+        ]
+      ],
+      "unique_frames": 2
+    },
+    "npc.mark.wave": {
+      "file": "assets/characters/npc-mark/wave_down.png",
+      "size": [
+        128,
+        48
+      ],
+      "palette": "character",
+      "sha256": "4413b8215805577dbc317c5b622fc09d78d00e9ee250ef09890cffbe1fb76492",
+      "alpha": "binary",
+      "palette_check": "passed",
+      "magenta_pixels": 0,
+      "frames": 4,
+      "fps": 8,
+      "anchor": [
+        16,
+        46
+      ],
+      "bounds": [
+        [
+          3,
+          5,
+          29,
+          47
+        ],
+        [
+          3,
+          5,
+          30,
+          47
+        ],
+        [
+          3,
+          5,
+          31,
+          47
+        ],
+        [
+          3,
+          5,
+          29,
+          47
+        ]
+      ],
+      "unique_frames": 4
+    },
+    "brand.logo": {
+      "file": "assets/brand/logo.png",
+      "size": [
+        256,
+        64
+      ],
+      "palette": "environment",
+      "sha256": "7d08089b1f0e17edf069d0a26b890ca16036fcac2f8a3e8acaf909869a6063c2",
+      "alpha": "binary",
+      "palette_check": "passed",
+      "magenta_pixels": 0
+    },
+    "brand.mark": {
+      "file": "assets/brand/mark.png",
+      "size": [
+        32,
+        32
+      ],
+      "palette": "environment",
+      "sha256": "230bb1f8d4ca470ebab10dd9991dbb214feee5de531c87aac7ec59735f2354f5",
+      "alpha": "binary",
+      "palette_check": "passed",
+      "magenta_pixels": 0
+    },
+    "brand.recap_bg": {
+      "file": "assets/brand/recap_bg.png",
+      "size": [
+        300,
+        157
+      ],
+      "palette": "environment",
+      "sha256": "5db3e2452a6e701238196641e466b899ac3ae98ede4d6b0ee63e420d9afdfab8",
+      "alpha": "binary",
+      "palette_check": "passed",
+      "magenta_pixels": 0
+    }
+  },
+  "pixelize_warnings": [],
+  "tests": {
+    "pnpm test": {
+      "passed": 82
+    },
+    "pnpm typecheck": "passed"
+  },
+  "mark_registration": {
+    "idle_alpha_matches_buff": true,
+    "idle_skin_bands_shorts_shoes_match_buff": true,
+    "wave_head_chest_resting_arm_legs_match_idle_rest": true,
+    "idle_head_offsets_y": [
+      0,
+      -1,
+      -1,
+      0
+    ],
+    "wave_frame_3_pixelize_recentering_reversed": 1
+  },
+  "recap_text_safe_rect": {
+    "x": 154,
+    "y": 10,
+    "width": 134,
+    "height": 137,
+    "fill": "#F4F2EE"
+  },
+  "desk_preview": {
+    "review_mark_anchor": [
+      112,
+      126
+    ],
+    "current_game_mark_anchor": [
+      80,
+      126
+    ],
+    "desk_anchor": [
+      96,
+      158
+    ],
+    "review_note": "Mark offset32px right of existing monitor for costume review; current game placement also exported. No application layout changes."
+  },
+  "assets_status": {
+    "executed": true,
+    "batch_9_present": [
+      "npc.mark.idle",
+      "npc.mark.wave",
+      "brand.logo",
+      "brand.mark",
+      "brand.recap_bg"
+    ],
+    "outputs_restored_byte_for_byte": true,
+    "note": "Other uncommitted batch assets were present during validation; aggregate progress is not reported for this PR."
+  }
+}
