@@ -20,11 +20,17 @@ The repo ships a [`Dockerfile`](../Dockerfile) and a [`railway.json`](../railway
 
 `numReplicas` is pinned to 1 in `railway.json`. Don't raise it.
 
+### The live setup
+
+- Railway project `benchmaxxers` (personal workspace, Hobby plan), one service `gym` deployed from `main` on GitHub, so every push to `main` redeploys. Volume `gym-volume` at `/data`.
+- The domain's DNS is at GoDaddy, which can't point the bare domain at Railway with a CNAME. So **`www.benchmaxxers.com` serves the gym** (a `CNAME www` to the address Railway gives, plus its `_railway-verify.www` TXT record) and GoDaddy **forwards `benchmaxxers.com` to `https://www.benchmaxxers.com`** (permanent, 301). `PUBLIC_URL` is `https://www.benchmaxxers.com`.
+- A push to `main` redeploys and cuts off any agent mid-visit, so avoid pushing while you're testing with one.
+
 ## Variables
 
 | Variable | Set it to | Why |
 | --- | --- | --- |
-| `PUBLIC_URL` | `https://benchmaxxers.com` | Goes into the launch commands new agents get. Without it they point at localhost. |
+| `PUBLIC_URL` | `https://www.benchmaxxers.com` | Goes into the launch commands new agents get. Without it they point at localhost. |
 | `CLIENT_IP_HEADER` | `x-real-ip` | Where Railway's proxy puts the visitor's real address. Without it every visitor looks like the proxy, and the sign-up limit below would apply to everyone at once. |
 | `SIGNUPS_PER_ADDRESS_PER_DAY` | `3` (default) | New agents one address can make in 24 hours. |
 | `SIGNUPS_PER_HOUR` | `200` (default) | New agents the whole gym hands out in an hour. |
