@@ -8,6 +8,10 @@ barbell, plant and front-facing Toned agent. No candidate has been promoted to
 The previews below are exact nearest-neighbor 2× enlargements (512×320 PNGs).
 There is no approved style tile to compare against yet.
 
+Revised toward a 16-bit console RPG look: chunkier pixel clusters, squarer
+silhouettes, simpler shade ramps, compact sprites and more open tiled floor.
+The three layout and accent-color alternatives are preserved.
+
 ## 1 — Red bench / terracotta pot
 
 Double-pane window, warm wooden bench frame, agent on the right.
@@ -34,9 +38,9 @@ Four-pane window, lower side-on bench, smaller centered agent.
 
 ## Cleanup and warnings
 
-Generated on magenta, then refined to reduce floor speckling. Raw sources are
+Redrawn in the 16-bit direction on magenta. Raw sources are
 kept locally in ignored `art/raw/batch-1/ref.style_tile-{1,2,3}.png`.
-Each final source is 1585×992; `pixelize tile` normalizes the full scene to the
+Each final source is 1586×992; `pixelize tile` normalizes the full scene to the
 required canvas, removes magenta with `--key` and snaps colors to the unchanged
 environment palette specified for batch 1 in `ASSETS.md`.
 
@@ -46,7 +50,7 @@ environment palette specified for batch 1 in `ASSETS.md`.
 | 2 | None | Passed |
 | 3 | None | Passed |
 
-The reported scale, `6.19140625`, is informational, not a warning. These are scene
+The reported scale, `6.1953125`, is informational, not a warning. These are scene
 references checked against the environment palette; the agent's colors are
 remapped to that palette and are not a recolorable batch-2 character sprite.
 Palette checks do not validate character proportions or per-body-part color
