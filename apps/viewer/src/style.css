@@ -157,6 +157,7 @@ canvas {
 
 /* The opened agent's steps: its gym calls on one side, the gym's replies on the other, like a chat. */
 .steps-card { max-height: 560px; display: flex; flex-direction: column; }
+.steps-card[hidden] { display: none; }
 .steps-now { margin: 0 0 4px; color: var(--yellow); font-size: 14px; }
 .steps-note { margin: 0 0 10px; color: var(--muted); font-size: 11px; }
 .steps { list-style: none; margin: 0; padding: 0 2px 0 0; overflow: auto; display: flex; flex-direction: column; gap: 10px; font-size: 12px; }
