@@ -1,0 +1,344 @@
+[
+  {
+    "id": "fx.sweat",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "registeredSize": [
+      256,
+      16
+    ],
+    "command": "pnpm pixelize strip art/raw/batch-8/registered/fx.sweat.png --frames 4 --frame 16x16 --anchor 8,15 --scale 8 --palette environment --out assets/fx/sweat.png",
+    "registrationMismatches": 0,
+    "warnings": [
+      "! Frame heights vary a lot (4, 7, 6, 2). The head may change size between frames."
+    ]
+  },
+  {
+    "id": "fx.cheer",
+    "sourceSize": [
+      2222,
+      708
+    ],
+    "registeredSize": [
+      320,
+      32
+    ],
+    "command": "pnpm pixelize strip art/raw/batch-8/registered/fx.cheer.png --frames 4 --frame 32x32 --anchor 16,31 --scale 8 --palette environment --out assets/fx/cheer.png",
+    "registrationMismatches": 0,
+    "warnings": [
+      "! Frame heights vary a lot (12, 22, 28, 25). The head may change size between frames."
+    ]
+  },
+  {
+    "id": "fx.dust",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "registeredSize": [
+      320,
+      16
+    ],
+    "command": "pnpm pixelize strip art/raw/batch-8/registered/fx.dust.png --frames 4 --frame 32x16 --anchor 16,15 --scale 8 --palette environment --out assets/fx/dust.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "fx.sparkle",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "registeredSize": [
+      256,
+      16
+    ],
+    "command": "pnpm pixelize strip art/raw/batch-8/registered/fx.sparkle.png --frames 4 --frame 16x16 --anchor 8,15 --scale 8 --palette environment --out assets/fx/sparkle.png",
+    "registrationMismatches": 0,
+    "warnings": [
+      "! Frame heights vary a lot (4, 7, 12, 4). The head may change size between frames."
+    ]
+  },
+  {
+    "id": "fx.notes",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "registeredSize": [
+      256,
+      16
+    ],
+    "command": "pnpm pixelize strip art/raw/batch-8/registered/fx.notes.png --frames 4 --frame 16x16 --anchor 8,15 --scale 8 --palette environment --out assets/fx/notes.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "fx.headphones_down",
+    "sourceSize": [
+      1619,
+      971
+    ],
+    "registeredSize": [
+      20,
+      12
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/fx.headphones_down.png --size 20x12 --scale 8 --palette character --out assets/fx/headphones_down.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "fx.headphones_up",
+    "sourceSize": [
+      1619,
+      971
+    ],
+    "registeredSize": [
+      20,
+      12
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/fx.headphones_up.png --size 20x12 --scale 8 --palette character --out assets/fx/headphones_up.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "fx.headphones_side",
+    "sourceSize": [
+      1619,
+      971
+    ],
+    "registeredSize": [
+      12,
+      12
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/fx.headphones_side.png --size 20x12 --scale 8 --palette character --out assets/fx/headphones_side.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.bubble",
+    "sourceSize": [
+      1268,
+      1241
+    ],
+    "registeredSize": [
+      24,
+      24
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.bubble.png --size 24x24 --scale 8 --palette environment --out assets/ui/bubble.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.bubble_tail",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "registeredSize": [
+      8,
+      6
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.bubble_tail.png --size 8x6 --scale 8 --palette environment --out assets/ui/bubble_tail.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.bubble_whisper",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "registeredSize": [
+      24,
+      24
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.bubble_whisper.png --size 24x24 --scale 8 --palette environment --out assets/ui/bubble_whisper.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.bubble_shout",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      32,
+      32
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.bubble_shout.png --size 32x32 --scale 8 --palette environment --out assets/ui/bubble_shout.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.name_tag",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "registeredSize": [
+      16,
+      12
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.name_tag.png --size 16x12 --scale 8 --palette environment --out assets/ui/name_tag.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.line_badge",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      12,
+      12
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.line_badge.png --size 12x12 --scale 8 --palette environment --out assets/ui/line_badge.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.progress_frame",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "registeredSize": [
+      24,
+      8
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.progress_frame.png --size 24x8 --scale 8 --palette environment --out assets/ui/progress_frame.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.progress_fill",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      4,
+      4
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.progress_fill.png --size 4x4 --scale 8 --palette environment --out assets/ui/progress_fill.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_headphones",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      14,
+      14
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_headphones.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_headphones.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_note",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      12,
+      14
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_note.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_note.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_dumbbell",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      14,
+      6
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_dumbbell.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_dumbbell.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_heart",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      14,
+      14
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_heart.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_heart.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_leaf",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      14,
+      14
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_leaf.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_leaf.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_flame",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      11,
+      14
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_flame.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_flame.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_trophy",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      14,
+      12
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_trophy.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_trophy.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  },
+  {
+    "id": "ui.icon_clock",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "registeredSize": [
+      14,
+      14
+    ],
+    "command": "pnpm pixelize sprite art/raw/batch-8/registered/ui.icon_clock.png --size 16x16 --scale 8 --palette environment --out assets/ui/icon_clock.png",
+    "registrationMismatches": 0,
+    "warnings": []
+  }
+]
