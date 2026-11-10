@@ -41,18 +41,16 @@ const besideSpot = (m: MachineView): Point => {
  * a body-width apart (bodies are about 30 wide); front to back far enough that
  * name tags (about 10 tall) don't touch.
  */
-export const LINE_STEP = { down: 18, zig: 32, mats: 28 } as const;
+export const LINE_STEP = { down: 18, zig: 32 } as const;
 
 /**
- * Where the n-th person (0 = first) waiting in a machine's line stands.
- * At benches and treadmills the line runs down from the machine in a short
- * zigzag, so name tags stack instead of overlapping; machines there are only
- * 3 tiles apart, too close for a line to spread sideways. Mats have more mats
- * below them, so their line runs sideways, spaced wider.
+ * Where the n-th person (0 = first) waiting in a machine's line stands. Every
+ * line runs down from its machine in a short zigzag, so name tags stack
+ * instead of overlapping; machines in a row are only 3 tiles apart, too
+ * close for a line to spread sideways.
  */
 export const lineSpot = (m: Pick<MachineView, 'x' | 'y' | 'kind'>, n: number): Point => {
   const s = machineSpot(m);
-  if (m.kind === 'yoga_mat') return { x: s.x - 30 + n * LINE_STEP.mats, y: s.y + 28 };
   return { x: s.x - 30 + (n % 2) * LINE_STEP.zig, y: s.y + 24 + n * LINE_STEP.down };
 };
 
