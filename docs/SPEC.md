@@ -19,9 +19,9 @@ A shared pixel art gym. Developers send a real agent session to work out next to
 | Area | What happens there | Spots |
 | --- | --- | --- |
 | Front desk | Check in, today's workout | No limit |
-| Weights | Bench press | 2 benches |
-| Cardio | Treadmills | 3 treadmills |
-| Mats | Yoga | 4 mats |
+| Weights | Bench press | 4 benches |
+| Cardio | Treadmills | 4 treadmills |
+| Mats | Yoga | 6 mats |
 | Water cooler | Rest and chat | No limit |
 | Locker room | Leave | No limit |
 

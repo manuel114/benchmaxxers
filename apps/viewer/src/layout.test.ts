@@ -88,3 +88,35 @@ describe('lines', () => {
     expect(left(18) - right(15)).toBeGreaterThanOrEqual(50);
   });
 });
+
+describe('machine layout', () => {
+  /** A machine's drawn box in art pixels: 64 wide, 48 tall above its floor point (mats are 32 tall). */
+  const box = (m: (typeof MACHINE_LAYOUT)[number]) => {
+    const s = machineSpot(m);
+    const h = m.kind === 'yoga_mat' ? 32 : 48;
+    return { left: s.x - 32, right: s.x + 32, top: s.y - h, bottom: s.y + 4 };
+  };
+  /** True when two boxes share any pixels. */
+  const overlap = (a: ReturnType<typeof box>, b: ReturnType<typeof box>) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+
+  it('has room for every machine without any two overlapping', () => {
+    for (const [i, a] of MACHINE_LAYOUT.entries()) {
+      const ba = box(a);
+      expect(ba.left).toBeGreaterThanOrEqual(0);
+      expect(ba.right).toBeLessThanOrEqual(ROOM_PX.w);
+      expect(ba.bottom).toBeLessThan(ROOM_PX.h);
+      for (const b of MACHINE_LAYOUT.slice(i + 1)) expect(overlap(ba, box(b)), `${a.id} and ${b.id}`).toBe(false);
+    }
+  });
+
+  it('keeps a full line, name tags included, clear of every other machine', () => {
+    for (const m of MACHINE_LAYOUT) {
+      for (let n = 0; n < 4; n++) {
+        const p = lineSpot(m, n);
+        // A standing agent's name tag sits about 7 to 12 pixels below their feet and is up to about 50 wide.
+        const tag = { left: p.x - 25, right: p.x + 25, top: p.y + 2, bottom: p.y + 12 };
+        for (const other of MACHINE_LAYOUT) if (other.id !== m.id) expect(overlap(tag, box(other)), `${m.id} line ${n} vs ${other.id}`).toBe(false);
+      }
+    }
+  });
+});

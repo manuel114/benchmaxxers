@@ -38,6 +38,7 @@ const WALL_FEATURES: [string, number][] = [
   ['tile.wall_window', 224],
   ['tile.wall_window', 480],
   ['tile.wall_window', 640],
+  ['tile.wall_window', 800],
 ];
 
 /** Things hung on the back wall: [sprite id, anchor x, anchor y]. */
@@ -47,21 +48,21 @@ const WALL_PROPS: [string, number, number][] = [
   ['prop.mirror', 352, 50],
   ['prop.poster_dumbbell', 432, 44],
   ['prop.clock', 592, 34],
-  ['prop.poster_heart', 736, 44],
+  ['prop.poster_heart', 752, 44],
 ];
 
 /** Props standing on the floor: [sprite id, anchor x, anchor y]. Drawn depth-sorted with people. */
 const FLOOR_PROPS: [string, number, number][] = [
   ['prop.front_desk', DESK_SPOT.x, DESK_SPOT.y],
   ['prop.plant_big', 20, 104],
-  ['prop.dumbbell_rack', 300, 250],
-  ['prop.kettlebells', 380, 252],
-  ['prop.water_cooler', 300, 330],
-  ['prop.plant_small', 356, 330],
-  ['prop.lockers', 52, 330],
-  ['prop.lockers', 84, 330],
-  ['prop.locker_room_door', 120, 330],
-  ['prop.plant_big', 748, 440],
+  ['prop.dumbbell_rack', 416, 250],
+  ['prop.kettlebells', 416, 330],
+  ['prop.water_cooler', 430, 430],
+  ['prop.plant_small', 176, 470],
+  ['prop.lockers', 52, 362],
+  ['prop.lockers', 84, 362],
+  ['prop.locker_room_door', 120, 362],
+  ['prop.plant_big', 870, 500],
 ];
 
 /** Mat colours, one per yoga mat in order. */
