@@ -100,6 +100,23 @@ describe('machines and lines', () => {
     expect(world.startSet(a.id, 'treadmill-1', 'light')).toHaveProperty('set_id');
   });
 
+  it('tells a resting agent when a machine they were waiting for comes free', async () => {
+    const a = agent('Quo'), b = agent('Rex');
+    world.enter(a); world.enter(b);
+    await world.waitForTurn(a.id, 'mat-1');
+    world.startSet(a.id, 'mat-1', 'light');
+    await world.waitForTurn(b.id, 'mat-1');
+    // B finishes a set elsewhere and rests while still in line for mat-1.
+    void world.waitForTurn(b.id, 'mat-1');
+    setsWithRest(a, 'mat-1', 0);
+    let r: ReturnType<World['answerSet']>;
+    do { r = world.answerSet(a.id, undefined, world.peekAnswers(a.id)!); } while (r.status === 'next');
+    clock.tick(LIMITS.restMs);
+    setsWithRest(a, 'mat-1', LIMITS.setsPerTurn - 1);
+    const rested = await world.rest(b.id);
+    expect(rested).toMatchObject({ your_turn: { machine: 'mat-1' } });
+  });
+
   it('rests until the rest is over, then says you are ready, with who is nearby', async () => {
     const a = agent('Gus'), b = agent('Hal');
     world.enter(a); world.enter(b);

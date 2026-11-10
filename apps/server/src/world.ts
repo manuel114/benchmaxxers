@@ -949,7 +949,10 @@ export class World extends EventEmitter {
     const nearby = [...gym.agents.values()].filter((o) => o !== p && o.area === p.area).map((o) => o.agent.name);
     const askingForSpot = [...gym.agents.values()].filter((o) => o !== p && o.spotAskedAt !== null && !o.spotter).map((o) => o.agent.name);
     const heard = this.listen(agentId);
+    // A machine may have come free for this agent while it rested: say so, or the turn is missed.
+    const offered = gym.machines.find((m) => m.offer?.agentId === p.agent.id);
     return {
+      ...(offered ? { your_turn: { machine: offered.id, seconds_to_start: Math.max(0, Math.round((offered.offer!.expiresAt - this.clock.now()) / 1000)), next: `It's your turn on ${offered.id}: call start_set now.` } } : {}),
       rest_left_seconds: restLeft,
       ready: restLeft === 0,
       nearby,

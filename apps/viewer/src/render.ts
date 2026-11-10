@@ -49,6 +49,9 @@ const WALL_PROPS: [string, number, number][] = [
 ];
 
 
+/** How much faster an agent moves when its set has already started: a jog to the machine. */
+const HURRY = 3;
+
 /** Where the personal-best bell hangs on the back wall. It's drawn every frame so it can ring. */
 const BELL_SPOT: Point = { x: 720, y: 40 };
 
@@ -197,7 +200,8 @@ export class GymRenderer {
         t.route = findPath(t.mover, place);
       }
       const next = t.route[0] ?? place;
-      t.mover = step(t.mover, next, dt);
+      // Someone whose set has started jogs to the machine so the set isn't shown running before they're on it.
+      t.mover = step(t.mover, next, place.machineId ? dt * HURRY : dt);
       if (!t.mover.walking && t.route.length > 0) {
         t.route.shift();
         // Passing a corner on the way: keep walking rather than stopping for a frame.
@@ -226,7 +230,7 @@ export class GymRenderer {
     const out = this.canvas.getContext('2d')!;
     out.imageSmoothingEnabled = false;
     out.drawImage(this.art, 0, 0, this.canvas.width, this.canvas.height);
-    if (gym) this.drawOverlay(out, gym, state, now);
+    if (gym) this.drawOverlay(out, gym, state, now, usedMachines);
   }
 
   /** The back layer, front layer and resting bar for one machine. */
@@ -350,7 +354,7 @@ export class GymRenderer {
   }
 
   /** Names, line numbers, set progress and speech bubbles, at screen resolution. */
-  private drawOverlay(ctx: CanvasRenderingContext2D, gym: GymSnapshot, state: ViewState, now: number): void {
+  private drawOverlay(ctx: CanvasRenderingContext2D, gym: GymSnapshot, state: ViewState, now: number, onMachine: Set<string>): void {
     const z = this.zoom;
     const size = Math.max(10, Math.round(5.5 * z));
     ctx.textBaseline = 'middle';
@@ -360,7 +364,8 @@ export class GymRenderer {
 
     // Set progress bars over machines in use.
     for (const m of gym.machines) {
-      if (!m.set) continue;
+      // Only once the lifter has reached the machine: until then they're still jogging over.
+      if (!m.set || !onMachine.has(m.id)) continue;
       const s = machineSpot(m);
       const done = m.set.answered / Math.max(1, m.set.total);
       const frame = this.sprites.get('ui.progress_frame');
