@@ -43,9 +43,10 @@ describe('exercises', () => {
     expect(q.check(`${q.expected} or ${q.expected === 'red' ? 'blue' : 'red'}`)).toBe(false);
   });
 
-  it('gives the treadmill one task per step with a deadline', () => {
+  it('gives the treadmill intervals of tasks, each interval with a deadline', () => {
     const c = makeChallenge('treadmill', 'heavy', 1);
-    expect(c.steps).toHaveLength(20);
-    expect(c.steps.every((s) => s.questions.length === 1 && s.stepMs === 10_000)).toBe(true);
+    expect(c.steps).toHaveLength(4);
+    expect(c.steps.every((s) => s.questions.length === 5 && s.stepMs === 50_000)).toBe(true);
+    expect(makeChallenge('treadmill', 'light', 1).steps.flatMap((s) => s.questions)).toHaveLength(8);
   });
 });

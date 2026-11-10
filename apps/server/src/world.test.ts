@@ -147,12 +147,34 @@ describe('scoring', () => {
     expect(res).toHaveProperty('dropped_the_bar');
   });
 
+  it('moves the next waiter to a treadmill that frees up, even from another treadmill\'s line', async () => {
+    const [a, b, c] = [agent('Ola'), agent('Pat'), agent('Ray')];
+    for (const x of [a, b, c]) world.enter(x);
+    void world.waitForTurn(a.id, 'treadmill-1');
+    world.startSet(a.id, 'treadmill-1', 'light');
+    void world.waitForTurn(b.id, 'treadmill-2');
+    const bSet = world.startSet(b.id, 'treadmill-2', 'light');
+    // Fill the other two treadmills so C has to queue, behind A on treadmill-1.
+    const [d, e] = [agent('Sal'), agent('Tia')];
+    for (const x of [d, e]) { world.enter(x); }
+    void world.waitForTurn(d.id, 'treadmill-3'); world.startSet(d.id, 'treadmill-3', 'light');
+    void world.waitForTurn(e.id, 'treadmill-4'); world.startSet(e.id, 'treadmill-4', 'light');
+    const waiting = world.waitForTurn(c.id, 'treadmill-1');
+    // B finishes and walks away from treadmill-2; C should be offered it at once.
+    let r: ReturnType<World['answerSet']>;
+    do { r = world.answerSet(b.id, bSet.set_id, world.peekAnswers(b.id)!); } while (r.status === 'next');
+    world.walkTo(b.id, 'water_cooler');
+    const res = await waiting;
+    expect(res).toMatchObject({ status: 'your_turn', machine: 'treadmill-2' });
+    expect(world.startSet(c.id, 'treadmill-2', 'light')).toHaveProperty('set_id');
+  });
+
   it('counts late treadmill answers as wrong', () => {
     const a = agent('Pia');
     world.enter(a);
     void world.waitForTurn(a.id, 'treadmill');
     const start = world.startSet(a.id, 'treadmill-1', 'light');
-    clock.tick(16_000);
+    clock.tick(61_000);
     const res = world.answerSet(a.id, start.set_id, world.peekAnswers(a.id)!);
     expect(res).toMatchObject({ status: 'next', last: 'too late' });
   });

@@ -33,7 +33,7 @@ export const AREA_RECTS: Record<AreaId, { x: number; y: number; w: number; h: nu
   front_desk: { x: 1, y: 2, w: 4, h: 4 },
   weights: { x: 6, y: 2, w: 8, h: 10 },
   cardio: { x: 14, y: 2, w: 13, h: 6 },
-  mats: { x: 14, y: 8, w: 13, h: 8 },
+  mats: { x: 15, y: 8, w: 12, h: 8 },
   water_cooler: { x: 6, y: 12, w: 8, h: 4 },
   locker_room: { x: 1, y: 10, w: 4, h: 6 },
 };
@@ -53,12 +53,12 @@ export const MACHINE_LAYOUT: { id: string; kind: MachineKind; area: AreaId; x: n
   { id: 'treadmill-2', kind: 'treadmill', area: 'cardio', x: 18, y: 3 },
   { id: 'treadmill-3', kind: 'treadmill', area: 'cardio', x: 21, y: 3 },
   { id: 'treadmill-4', kind: 'treadmill', area: 'cardio', x: 24, y: 3 },
-  { id: 'mat-1', kind: 'yoga_mat', area: 'mats', x: 15, y: 9 },
-  { id: 'mat-2', kind: 'yoga_mat', area: 'mats', x: 19, y: 9 },
-  { id: 'mat-3', kind: 'yoga_mat', area: 'mats', x: 23, y: 9 },
-  { id: 'mat-4', kind: 'yoga_mat', area: 'mats', x: 15, y: 12 },
-  { id: 'mat-5', kind: 'yoga_mat', area: 'mats', x: 19, y: 12 },
-  { id: 'mat-6', kind: 'yoga_mat', area: 'mats', x: 23, y: 12 },
+  { id: 'mat-1', kind: 'yoga_mat', area: 'mats', x: 16, y: 9 },
+  { id: 'mat-2', kind: 'yoga_mat', area: 'mats', x: 20, y: 9 },
+  { id: 'mat-3', kind: 'yoga_mat', area: 'mats', x: 24, y: 9 },
+  { id: 'mat-4', kind: 'yoga_mat', area: 'mats', x: 16, y: 12 },
+  { id: 'mat-5', kind: 'yoga_mat', area: 'mats', x: 20, y: 12 },
+  { id: 'mat-6', kind: 'yoga_mat', area: 'mats', x: 24, y: 12 },
 ];
 
 /** Limits and timings. Times are in milliseconds. */

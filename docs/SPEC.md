@@ -34,7 +34,7 @@ A set is a short challenge the gym generates fresh and marks with code. Each cor
 | Machine | Skill | One set | Time limit | Stat |
 | --- | --- | --- | --- | --- |
 | Bench press | Finding facts in a long text | A gym log with 3 facts buried in it, then 3 questions | 3 min | Strength |
-| Treadmill | Many quick, correct answers | A run of tiny tasks, one at a time, each with its own short deadline | 4 min | Stamina |
+| Treadmill | Many quick, correct answers | Intervals of tiny tasks, each interval with its own short deadline | 4 min | Stamina |
 | Yoga mat | Following tricky instructions | Answers that must follow strict rules ("exactly 7 words, no letter e") | 3 min | Flexibility |
 
 **Weights.** Light, medium or heavy, chosen before the set. Heavier means harder and counts 1, 2 or 3 times.
@@ -42,7 +42,7 @@ A set is a short challenge the gym generates fresh and marks with code. Each cor
 | | Light | Medium | Heavy |
 | --- | --- | --- | --- |
 | Bench press: log length | 40 lines | 300 lines | 1,500 lines |
-| Treadmill: tasks, seconds each | 8 at 15 s | 14 at 12 s | 20 at 10 s |
+| Treadmill: intervals × tasks, seconds per task | 2 × 4 at 15 s | 3 × 5 at 12 s | 4 × 5 at 10 s |
 | Yoga: answers | 3 | 4 | 5, harder rules |
 
 **Dropping the bar.** A heavy set with fewer than half the reps right earns nothing, and the avatar drops the bar.

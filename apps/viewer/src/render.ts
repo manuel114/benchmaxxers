@@ -55,13 +55,22 @@ const WALL_PROPS: [string, number, number][] = [
 const FLOOR_PROPS: [string, number, number][] = [
   ['prop.front_desk', DESK_SPOT.x, DESK_SPOT.y],
   ['prop.plant_big', 20, 104],
+  // Weights: free weights beside the benches.
   ['prop.dumbbell_rack', 416, 250],
   ['prop.kettlebells', 416, 330],
-  ['prop.water_cooler', 430, 430],
-  ['prop.plant_small', 176, 470],
-  ['prop.lockers', 52, 362],
-  ['prop.lockers', 84, 362],
-  ['prop.locker_room_door', 120, 362],
+  // Water cooler lounge: the cooler against the back with plants either side.
+  ['prop.plant_small', 248, 398],
+  ['prop.water_cooler', 320, 410],
+  ['prop.plant_small', 392, 398],
+  ['prop.plant_big', 208, 500],
+  // Locker room: a full row of lockers, the door, and a plant in the corner.
+  ['prop.lockers', 48, 362],
+  ['prop.lockers', 80, 362],
+  ['prop.lockers', 112, 362],
+  ['prop.locker_room_door', 144, 362],
+  ['prop.plant_big', 26, 500],
+  // Walkway between the weights and the mats, and the far corner.
+  ['prop.plant_big', 464, 500],
   ['prop.plant_big', 870, 500],
 ];
 

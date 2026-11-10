@@ -421,8 +421,9 @@ export class World extends EventEmitter {
     else this.machineChanged(gym, m);
   }
 
-  /** If a machine is free and someone is waiting, offers it to them. */
+  /** If a machine is free and someone is waiting (here, or at a busier machine of the same type), offers it to them. */
   private advance(gym: Gym, m: Machine): void {
+    if (!m.occupant && !m.offer && m.line.length === 0) this.borrowWaiter(gym, m);
     if (!m.occupant && !m.offer && m.line.length > 0) {
       const next = m.line.shift()!;
       m.offer = { agentId: next, expiresAt: this.clock.now() + this.opts.turnOfferMs };
@@ -430,6 +431,38 @@ export class World extends EventEmitter {
       if (np) for (const w of np.wake.splice(0)) w();
     }
     this.machineChanged(gym, m);
+  }
+
+  /**
+   * Moves the front agent of the longest line at another machine of the same
+   * type onto this free machine's line, like the next person in a gym queue
+   * walking over to the treadmill that just freed up. Skips anyone resting
+   * from this machine after a full turn.
+   */
+  private borrowWaiter(gym: Gym, m: Machine): void {
+    const now = this.clock.now();
+    const donors = gym.machines
+      .filter((x) => x.kind === m.kind && x.id !== m.id && x.line.length > 0)
+      .sort((a, b) => b.line.length - a.line.length);
+    for (const d of donors) {
+      const id = d.line.find((a) => {
+        const r = gym.agents.get(a)?.restingFrom;
+        return !(r && r.machineId === m.id && now < r.until);
+      });
+      if (!id) continue;
+      d.line = d.line.filter((x) => x !== id);
+      m.line.push(id);
+      const p = gym.agents.get(id);
+      if (p) { p.line = m.id; this.agentChanged(gym, p); }
+      this.machineChanged(gym, d);
+      return;
+    }
+  }
+
+  /** True when a machine is free with nobody waiting for it, while a machine of the same type has a line. */
+  private idleWhileOthersWait(gym: Gym, m: Machine): boolean {
+    return !m.occupant && !m.offer && m.line.length === 0
+      && gym.machines.some((x) => x.kind === m.kind && x.id !== m.id && x.line.length > 0);
   }
 
   /** Public: step out of line. */
@@ -499,13 +532,15 @@ export class World extends EventEmitter {
     });
 
     if (!this.find(agentId)) return { status: 'visit_over' as const };
-    if (m.offer?.agentId === p.agent.id) return this.yourTurn(m);
-    const place = m.line.indexOf(p.agent.id);
+    // The agent may have been moved to another free machine of the same type while waiting.
+    const cur = gym.machines.find((x) => x.id === p.line) ?? m;
+    if (cur.offer?.agentId === p.agent.id) return this.yourTurn(cur);
+    const place = cur.line.indexOf(p.agent.id);
     if (place < 0) return { status: 'not_in_line' as const, note: 'You are no longer in this line. Call wait_for_turn again to rejoin.' };
-    const ahead = place + (m.offer ? 1 : 0) + (m.occupant ? 1 : 0);
+    const ahead = place + (cur.offer ? 1 : 0) + (cur.occupant ? 1 : 0);
     return {
       status: 'waiting' as const,
-      machine: m.id,
+      machine: cur.id,
       place_in_line: place + 1,
       ahead_of_you: ahead,
       about_minutes: Math.max(1, ahead * 2),
@@ -760,6 +795,8 @@ export class World extends EventEmitter {
             missed.inbox.push({ from: 'Front desk', kind: 'staff', text: `You missed your turn on ${m.id}. Call wait_for_turn to get back in line.`, at: now });
             this.agentChanged(gym, missed);
           }
+          this.advance(gym, m);
+        } else if (this.idleWhileOthersWait(gym, m)) {
           this.advance(gym, m);
         }
       }
