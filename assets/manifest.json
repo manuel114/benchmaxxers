@@ -909,7 +909,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.floor_rubber_2": {
       "file": "tiles/floor_rubber_2.png",
@@ -923,7 +923,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.floor_wood_1": {
       "file": "tiles/floor_wood_1.png",
@@ -937,7 +937,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.floor_wood_2": {
       "file": "tiles/floor_wood_2.png",
@@ -951,7 +951,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.floor_mat_pink": {
       "file": "tiles/floor_mat_pink.png",
@@ -965,7 +965,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.floor_mat_teal": {
       "file": "tiles/floor_mat_teal.png",
@@ -979,7 +979,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.wall_back": {
       "file": "tiles/wall_back.png",
@@ -993,7 +993,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.wall_window": {
       "file": "tiles/wall_window.png",
@@ -1007,7 +1007,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.wall_door": {
       "file": "tiles/wall_door.png",
@@ -1021,7 +1021,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.wall_side": {
       "file": "tiles/wall_side.png",
@@ -1035,7 +1035,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "tile.wall_front": {
       "file": "tiles/wall_front.png",
@@ -1049,7 +1049,7 @@
       ],
       "palette": "environment",
       "phase": "v1",
-      "present": false
+      "present": true
     },
     "prop.front_desk": {
       "file": "props/front_desk.png",

@@ -1,0 +1,239 @@
+{
+  "tiles": {
+    "floor_rubber_1": {
+      "size": [
+        32,
+        32
+      ],
+      "opaquePixels": 1024,
+      "paletteColors": 4,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "xy",
+      "repeatPreview": [
+        192,
+        192
+      ],
+      "previewCopies": 9,
+      "sha256": "bde337e3647d5527e2af165ec680170d5d8d2c559771f7ccd1e0ab89dbe6df9c"
+    },
+    "floor_rubber_2": {
+      "size": [
+        32,
+        32
+      ],
+      "opaquePixels": 1024,
+      "paletteColors": 4,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "xy",
+      "repeatPreview": [
+        192,
+        192
+      ],
+      "previewCopies": 9,
+      "sha256": "8232c48bb8f7ce946e8de5464d565765713b6dabbac6c99308b2bc5dcd5a5015"
+    },
+    "floor_wood_1": {
+      "size": [
+        32,
+        32
+      ],
+      "opaquePixels": 1024,
+      "paletteColors": 3,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "xy",
+      "repeatPreview": [
+        192,
+        192
+      ],
+      "previewCopies": 9,
+      "sha256": "cba7ac45f3d89b456a2e13fd9fb955b8907bd2a0a8c5ba831c36c4af9d1d6d63"
+    },
+    "floor_wood_2": {
+      "size": [
+        32,
+        32
+      ],
+      "opaquePixels": 1024,
+      "paletteColors": 3,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "xy",
+      "repeatPreview": [
+        192,
+        192
+      ],
+      "previewCopies": 9,
+      "sha256": "631424d1c412ad20d897ef8594a4d3c9d109ee819689cea3780b85fd46ec65a7"
+    },
+    "floor_mat_pink": {
+      "size": [
+        32,
+        32
+      ],
+      "opaquePixels": 1024,
+      "paletteColors": 2,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "xy",
+      "repeatPreview": [
+        192,
+        192
+      ],
+      "previewCopies": 9,
+      "sha256": "873641c9a1cab2c7741c587d22b3e85113bc2ac47f030a35d53a1f07ba7b373d"
+    },
+    "floor_mat_teal": {
+      "size": [
+        32,
+        32
+      ],
+      "opaquePixels": 1024,
+      "paletteColors": 2,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "xy",
+      "repeatPreview": [
+        192,
+        192
+      ],
+      "previewCopies": 9,
+      "sha256": "566bb769b649d126b65cc1bd540f35fa10c41db751a9be59a7d63bb28fc94adb"
+    },
+    "wall_back": {
+      "size": [
+        32,
+        64
+      ],
+      "opaquePixels": 2048,
+      "paletteColors": 7,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "x",
+      "repeatPreview": [
+        192,
+        384
+      ],
+      "previewCopies": 9,
+      "sha256": "0dd76dcffea2ed3563089648bb44362b7a594db77181dc2c0f6a06134b3e05fc"
+    },
+    "wall_window": {
+      "size": [
+        64,
+        64
+      ],
+      "opaquePixels": 4096,
+      "paletteColors": 12,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "x",
+      "repeatPreview": [
+        384,
+        384
+      ],
+      "previewCopies": 9,
+      "sha256": "c70893cfabd9d757c34fb0a19b8c85e4d8dda4fcb1ec00e00f94efc051e47614"
+    },
+    "wall_door": {
+      "size": [
+        64,
+        64
+      ],
+      "opaquePixels": 4096,
+      "paletteColors": 12,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "x",
+      "repeatPreview": [
+        384,
+        384
+      ],
+      "previewCopies": 9,
+      "sha256": "0ade83463a419aee2ee51d543420937028b9b94e25f416edd352ff9c12306096"
+    },
+    "wall_side": {
+      "size": [
+        8,
+        32
+      ],
+      "opaquePixels": 256,
+      "paletteColors": 5,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "y",
+      "repeatPreview": [
+        48,
+        192
+      ],
+      "previewCopies": 9,
+      "sha256": "f68d973f90f230a024ff65aaefb808743ec38551f287210bf40932163825918d"
+    },
+    "wall_front": {
+      "size": [
+        32,
+        8
+      ],
+      "opaquePixels": 256,
+      "paletteColors": 5,
+      "wrapMismatchPixels": {
+        "x": 0,
+        "y": 0
+      },
+      "intendedRepeat": "x",
+      "repeatPreview": [
+        192,
+        48
+      ],
+      "previewCopies": 9,
+      "sha256": "247afe9545621c915c4d7d38016234329f9dc2d2bb66be5597e8a6d401135842"
+    }
+  },
+  "mixedFloorSeams": {
+    "rubber": {
+      "aToB": {
+        "x": 0,
+        "y": 0
+      },
+      "bToA": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "wood": {
+      "aToB": {
+        "x": 0,
+        "y": 0
+      },
+      "bToA": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "mixedWallPairs": 9,
+  "mixedWallMismatchPixels": 0,
+  "sideFrontProfilesMatch": true,
+  "pixelizeWarnings": []
+}
