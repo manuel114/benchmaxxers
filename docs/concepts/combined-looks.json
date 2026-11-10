@@ -1,0 +1,29 @@
+{
+  "columns": 3,
+  "looks": [
+    {
+      "id": "look-1",
+      "appearance": { "hairstyle": "bob", "topStyle": "tshirt", "bottomsStyle": "shorts", "skin": "fair", "hair": "blond", "top": "green", "bottoms": "navy", "shoes": "cream", "headband": "red", "wristbands": "green" }
+    },
+    {
+      "id": "look-2",
+      "appearance": { "hairstyle": "curls", "topStyle": "tank", "bottomsStyle": "joggers", "skin": "deep", "hair": "black", "top": "red", "bottoms": "navy", "shoes": "yellow", "headband": "yellow", "wristbands": "cream" }
+    },
+    {
+      "id": "look-3",
+      "appearance": { "hairstyle": "bun", "topStyle": "hoodie", "bottomsStyle": "leggings", "skin": "medium", "hair": "auburn", "top": "teal", "bottoms": "navy", "shoes": "navy", "headband": "pink", "wristbands": "teal" }
+    },
+    {
+      "id": "look-4",
+      "appearance": { "hairstyle": "crop", "topStyle": "hoodie", "bottomsStyle": "shorts", "skin": "dark", "hair": "brown", "top": "yellow", "bottoms": "purple", "shoes": "cream", "headband": "navy", "wristbands": "red" }
+    },
+    {
+      "id": "look-5",
+      "appearance": { "hairstyle": "crop", "topStyle": "tshirt", "bottomsStyle": "leggings", "skin": "light", "hair": "silver", "top": "purple", "bottoms": "navy", "shoes": "pink", "headband": "teal", "wristbands": "green" }
+    },
+    {
+      "id": "look-6",
+      "appearance": { "hairstyle": "bald", "topStyle": "tank", "bottomsStyle": "joggers", "skin": "tan", "hair": "brown", "top": "cream", "bottoms": "teal", "shoes": "red", "headband": "red", "wristbands": "navy" }
+    }
+  ]
+}

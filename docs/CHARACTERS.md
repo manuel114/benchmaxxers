@@ -37,6 +37,44 @@ choices. New agents and rerolls randomize shapes too. Previously saved looks
 without these fields use `tshirt`/`shorts`, preserving their old colors and hair;
 the original seed sequence for those older fields is unchanged.
 
+## Combined colors and shapes
+
+![Six combined appearances using runtime palette swaps](concepts/combined-looks@2x.png)
+
+Each look combines a skin tone, hair shape and color, garment shapes and colors,
+shoes, headband and wristbands. All six use the same Toned body for comparison.
+The full saved choices are in [`concepts/combined-looks.json`](concepts/combined-looks.json),
+in row-major order:
+
+| Look | Skin / hair | Clothes |
+| --- | --- | --- |
+| 1 | Fair / blond bob | Green T-shirt, navy shorts, cream shoes |
+| 2 | Deep / black curls | Red tank, navy joggers, yellow shoes |
+| 3 | Medium / auburn bun | Teal hoodie, navy leggings, navy shoes |
+| 4 | Dark / brown crop | Yellow hoodie, purple shorts, cream shoes |
+| 5 | Light / silver crop | Purple T-shirt, navy leggings, pink shoes |
+| 6 | Tan / bald | Cream tank, teal joggers, red shoes |
+
+The source sheet, `combined-source.png`, was cleaned at 256×256 and passed
+`pixelize check --palette character --size 256x256` without warnings. Each cell
+was then recolored using the shared `recolorCharacterPixels` function and its
+validated appearance object. The final preview is an exact 2× enlargement.
+Runtime skin/hair/outfit ramps intentionally differ from the canonical source
+palette; re-quantizing the colored output to the source palette would lose the
+chosen colors. The source palettes themselves have not changed.
+
+Rebuild from the repository root:
+
+```bash
+pnpm --filter @benchmaxxers/pixelize exec tsx ../../docs/concepts/render-combined.mjs
+```
+
+The script checks complete valid choices, unique preset ids, binary/preserved
+alpha, unchanged ink and PNG round-trips. It applies colors only: the hair and
+garment shapes are already drawn in the source sheet. Editing shape ids in the
+JSON does not redraw the source. This is a reproducible concept comparison,
+not the pending production sprite layers or live viewer.
+
 ## What is implemented
 
 | Part | Choices |
