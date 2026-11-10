@@ -107,16 +107,24 @@ export class GymRenderer {
    * Sizes the canvas to fill the space. The room is drawn at a whole-number
    * zoom of at least 2 (the smallest one at or above the space), then CSS
    * shrinks it to fit with nearest-neighbour scaling, so pixels stay sharp.
+   * `minScale` keeps the room from shrinking below that size (phones pan it instead).
    */
-  fit(maxWidth: number, maxHeight: number): void {
+  fit(maxWidth: number, maxHeight: number, minScale = 0): void {
     const dpr = window.devicePixelRatio || 1;
-    const cssScale = Math.min(maxWidth / ROOM_PX.w, maxHeight / ROOM_PX.h);
+    const cssScale = Math.max(minScale, Math.min(maxWidth / ROOM_PX.w, maxHeight / ROOM_PX.h));
     const zoom = Math.max(2, Math.ceil(cssScale * dpr));
     this.zoom = zoom;
     this.canvas.width = ROOM_PX.w * zoom;
     this.canvas.height = ROOM_PX.h * zoom;
     this.canvas.style.width = `${Math.floor(ROOM_PX.w * cssScale)}px`;
     this.canvas.style.height = `${Math.floor(ROOM_PX.h * cssScale)}px`;
+  }
+
+  /** Where an agent stands, in CSS pixels from the canvas's left edge, if they're in the room. */
+  cssXOf(id: string): number | null {
+    const p = this.spots.get(id);
+    if (!p) return null;
+    return (p.x * this.canvas.getBoundingClientRect().width) / ROOM_PX.w;
   }
 
   /** The agent under a click at CSS pixel (x, y) on the canvas, if any. */

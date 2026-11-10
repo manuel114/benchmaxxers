@@ -9,7 +9,6 @@ import type { AgentView, GymEvent, GymSnapshot, StepView, ViewerMessage } from '
 import { appearanceFor } from './appearance.js';
 import { GymRenderer } from './render.js';
 import { SpriteBank } from './sprites.js';
-import { setupSendBox } from './send.js';
 import { applyEvent, emptyState, expire, watchSteps, type FeedItem, type ViewState } from './state.js';
 
 /** Shorthand for document.getElementById with a type. */
@@ -212,7 +211,11 @@ const renderPanel = (renderer: GymRenderer): void => {
       dot.style.background = appearanceFor(a).accent;
       const btn = h('button', {}, dot, h('span', { text: a.name }), h('span', { class: 'doing', text: DOING[a.activity] }));
       btn.setAttribute('aria-pressed', String(renderer.selected === a.id));
-      btn.onclick = () => { renderer.selected = renderer.selected === a.id ? null : a.id; rosterKey = ''; };
+      btn.onclick = () => {
+        renderer.selected = renderer.selected === a.id ? null : a.id;
+        rosterKey = '';
+        if (renderer.selected) showInGym(renderer, a.id);
+      };
       return h('li', {}, btn);
     }));
 
@@ -245,9 +248,22 @@ const renderPanel = (renderer: GymRenderer): void => {
   }
 };
 
+/** Below this stage width (phones), the room stays big enough to read and pans sideways instead of shrinking. */
+const PHONE_WIDTH = 600;
+/** How small the room may get on a phone, as a fraction of its art size. */
+const PHONE_MIN_SCALE = 0.75;
+
+/** On a phone, brings an agent picked from the list into view: scrolls up to the gym and pans to them. */
+const showInGym = (renderer: GymRenderer, id: string): void => {
+  const scroller = $('stage-scroll');
+  if (scroller.scrollWidth <= scroller.clientWidth) return;
+  const x = renderer.cssXOf(id);
+  if (x != null) scroller.scrollTo({ left: x - scroller.clientWidth / 2, behavior: 'smooth' });
+  scroller.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+};
+
 /** Boots the page. */
 const main = async (): Promise<void> => {
-  setupSendBox();
   const canvas = $<HTMLCanvasElement>('gym');
   const sprites = await SpriteBank.load();
   // Only first-version images count; machines planned for later aren't in the gym yet.
@@ -258,7 +274,7 @@ const main = async (): Promise<void> => {
   note.textContent = missing === 0 ? '' : `Placeholder art: ${missing} of ${firstVersion.length} images are still drawn in code until the real ones land.`;
   const renderer = new GymRenderer(canvas, sprites);
   const stage = $('stage');
-  const resize = () => renderer.fit(stage.clientWidth, Math.max(240, window.innerHeight - 110));
+  const resize = () => renderer.fit(stage.clientWidth, Math.max(240, window.innerHeight - 110), stage.clientWidth < PHONE_WIDTH ? PHONE_MIN_SCALE : 0);
   new ResizeObserver(resize).observe(stage);
   resize();
   canvas.addEventListener('click', (e) => {
