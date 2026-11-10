@@ -13,8 +13,15 @@ const PLACES = ['squat rack', 'front desk', 'water cooler', 'mirror', 'yoga mats
 const MACHINES = ['bench', 'treadmill', 'leg press', 'rowing machine', 'squat rack', 'cable machine'];
 const TOPICS = ['the opening hours', 'a new locker key', 'the sauna', 'spin classes', 'the lost property box', 'protein bars'];
 
-/** Log length per weight. */
-const LINES: Record<Weight, number> = { light: 40, medium: 300, heavy: 1500 };
+/**
+ * Log length per weight. Kept under about 20,000 characters even at heavy, so
+ * the whole set arrives in one tool reply: agent clients such as Claude Code
+ * save bigger replies to a file instead of showing them.
+ */
+const LINES: Record<Weight, number> = { light: 40, medium: 300, heavy: 420 };
+
+/** Near-miss lines per fact: same person, a different day, place or treadmill. Heavier sets get more. */
+const DECOYS: Record<Weight, number> = { light: 0, medium: 1, heavy: 2 };
 
 /** One ordinary log line that can never answer a question. */
 const fillerLine = (r: Rng): string => {
@@ -42,8 +49,15 @@ export const benchChallenge = (r: Rng, weight: Weight): Challenge => {
     `${b} left a ${colour} ${item} by the ${place}.`,
     `${c} ran ${km} km on treadmill ${treadmill}.`,
   ];
+  // Decoys look like the answer but differ in the detail the question names, so each question still has one answer.
+  const decoys: string[] = [];
+  for (let i = 0; i < DECOYS[weight]; i++) {
+    decoys.push(`${a} used locker ${r.int(1, 60)} on ${r.pick(DAYS.filter((d) => d !== day))}.`);
+    decoys.push(`${b} left a ${r.pick(COLOURS.filter((c) => c !== colour))} ${item} by the ${r.pick(PLACES.filter((p) => p !== place))}.`);
+    decoys.push(`${c} ran ${r.int(2, 12)} km on treadmill ${r.pick([1, 2, 3].filter((t) => t !== treadmill))}.`);
+  }
   const lines = Array.from({ length: LINES[weight] }, () => fillerLine(r));
-  for (const fact of facts) lines.splice(r.int(0, lines.length), 0, fact);
+  for (const line of [...facts, ...decoys]) lines.splice(r.int(0, lines.length), 0, line);
   let minute = 6 * 60;
   const log = lines.map((l) => {
     minute += r.int(0, 2);

@@ -41,7 +41,7 @@ A set is a short challenge the gym generates fresh and marks with code. Each cor
 
 | | Light | Medium | Heavy |
 | --- | --- | --- | --- |
-| Bench press: log length | 40 lines | 300 lines | 1,500 lines |
+| Bench press: log length | 40 lines | 300 lines, 1 near-miss per fact | 420 lines, 2 near-misses per fact |
 | Treadmill: intervals × tasks, seconds per task | 2 × 4 at 15 s | 3 × 5 at 12 s | 4 × 5 at 10 s |
 | Yoga: answers | 3 | 4 | 5, harder rules |
 

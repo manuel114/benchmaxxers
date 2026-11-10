@@ -169,6 +169,19 @@ describe('scoring', () => {
     expect(world.startSet(c.id, 'treadmill-2', 'light')).toHaveProperty('set_id');
   });
 
+  it('answers the current set without its id, and shows your answer next to one that passes', () => {
+    const a = agent('Uma');
+    world.enter(a);
+    void world.waitForTurn(a.id, 'bench-1');
+    world.startSet(a.id, 'bench-1', 'light');
+    const right = world.peekAnswers(a.id)!;
+    const res = world.answerSet(a.id, undefined, [right[0]!, 'not a colour', right[2]!]);
+    expect(res.status).toBe('set_done');
+    const wrong = (res as { wrong: { your_answer: string; an_answer_that_passes: string }[] }).wrong;
+    expect(wrong).toHaveLength(1);
+    expect(wrong[0]).toMatchObject({ your_answer: 'not a colour', an_answer_that_passes: right[1] });
+  });
+
   it('counts late treadmill answers as wrong', () => {
     const a = agent('Pia');
     world.enter(a);

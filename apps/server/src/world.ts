@@ -33,7 +33,7 @@ type Machine = {
 /** A set someone is doing right now. */
 type ActiveSet = {
   setId: string; machineId: string; weight: Weight; challenge: Challenge;
-  step: number; correct: boolean[]; startedAt: number; stepStartedAt: number; deadline: number;
+  step: number; correct: boolean[]; given: string[]; startedAt: number; stepStartedAt: number; deadline: number;
 };
 
 /** A message waiting in an agent's inbox. */
@@ -573,7 +573,7 @@ export class World extends EventEmitter {
 
     const now = this.clock.now();
     const challenge = makeChallenge(m.kind, weight, randomInt(2 ** 31));
-    p.set = { setId: newId('set'), machineId: m.id, weight, challenge, step: 0, correct: [], startedAt: now, stepStartedAt: now, deadline: now + challenge.timeLimitMs };
+    p.set = { setId: newId('set'), machineId: m.id, weight, challenge, step: 0, correct: [], given: [], startedAt: now, stepStartedAt: now, deadline: now + challenge.timeLimitMs };
     p.area = m.area;
     p.activity = 'lifting';
     this.agentChanged(gym, p);
@@ -594,15 +594,18 @@ export class World extends EventEmitter {
   }
 
   /** Marks the answers for the current step, then moves on or finishes the set. */
-  answerSet(agentId: string, setId: string, answers: string[]) {
+  answerSet(agentId: string, setId: string | undefined, answers: string[]) {
     const { gym, p } = this.need(agentId);
     const s = p.set;
-    if (!s || s.setId !== setId) throw new GymError('That set is not running. Check the set_id from start_set.');
+    if (!s) throw new GymError('You are not in a set. Call start_set first.');
+    // The set id is optional: an agent can only be in one set, so a missing id means that one.
+    if (setId && s.setId !== setId) throw new GymError(`That is not your current set. Your current set is ${s.setId}, or leave set_id out.`);
     const now = this.clock.now();
     const step = s.challenge.steps[s.step]!;
     const late = now > s.deadline || (step.stepMs !== undefined && now - s.stepStartedAt > step.stepMs);
     const marks = step.questions.map((q, i) => !late && answers[i] !== undefined && q.check(answers[i]!));
     s.correct.push(...marks);
+    s.given.push(...step.questions.map((_, i) => answers[i] ?? ''));
     s.step++;
     s.stepStartedAt = now;
     const m = gym.machines.find((x) => x.id === s.machineId)!;
@@ -682,7 +685,11 @@ export class World extends EventEmitter {
       ...(personalBest ? { personal_best: true } : {}),
       stat: { name: stat, before, after },
       ...(buildNow > buildBefore ? { glow_up: 'Your body changed! You look stronger.' } : {}),
-      wrong: result.reveal.filter((r) => !r.correct).slice(0, 5).map((r) => ({ question: r.ask.slice(0, 120), answer: r.expected })),
+      wrong: result.reveal
+        .map((r, i) => ({ r, given: s.given[i] ?? '' }))
+        .filter(({ r }) => !r.correct)
+        .slice(0, 5)
+        .map(({ r, given }) => ({ question: r.ask.slice(0, 120), your_answer: given.slice(0, 200) || '(none, or too late)', an_answer_that_passes: r.expected })),
       todays_workout: MACHINE_KINDS.map((k) => ({ machine: MACHINE_NAMES[k], done_today: p.doneToday.has(k) })),
       ...(streakNote ? { streak: streakNote } : {}),
       machine: mustMove ? 'You have stepped off the machine so the next person can go.' : 'Nobody is waiting: you can do one more set here with start_set.',

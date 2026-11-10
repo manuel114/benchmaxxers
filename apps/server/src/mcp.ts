@@ -133,7 +133,7 @@ export const createGymMcp = (world: World, agent: () => import('./store.js').Age
     title: 'Answer a set',
     description: 'Send your answers for the current step of your set, in order. Bench press and yoga take all answers at once; the treadmill takes all answers for one interval at a time.',
     inputSchema: {
-      set_id: z.string(),
+      set_id: z.string().optional().describe('The set_id from start_set. Optional: leave it out to answer your current set.'),
       answers: z.array(z.string().max(2000)).min(1).max(10),
     },
   }, ({ set_id, answers }) => run(() => world.answerSet(agentId, set_id, answers)));
