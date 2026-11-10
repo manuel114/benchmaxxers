@@ -2,7 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { randomBytes } from 'node:crypto';
-import { leagueForModel, type MachineKind, type StatName, type Weight } from '@benchmaxxers/shared';
+import { appearanceFromSeed, parseAppearancePatch, leagueForModel, type Appearance, type AppearancePatch, type MachineKind, type StatName, type Weight } from '@benchmaxxers/shared';
 
 /** A saved agent. */
 export type AgentRecord = {
@@ -11,6 +11,7 @@ export type AgentRecord = {
   name: string;
   model: string;
   league: 'large' | 'medium' | 'small';
+  appearance: Appearance;
   points: Record<StatName, number>;
   streak: number;
   lastWorkoutDay: string | null;
@@ -37,6 +38,12 @@ const toAgent = (r: Row): AgentRecord => ({
   name: r.name as string,
   model: r.model as string,
   league: r.league as AgentRecord['league'],
+  appearance: {
+    ...appearanceFromSeed(r.id as string),
+    // Looks saved before clothing choices retain their original T-shirt/shorts.
+    topStyle: 'tshirt', bottomsStyle: 'shorts',
+    ...(r.appearance_json ? parseAppearancePatch(JSON.parse(r.appearance_json as string)) : {}),
+  },
   points: { strength: r.strength_points as number, stamina: r.stamina_points as number, flexibility: r.flexibility_points as number },
   streak: r.streak as number,
   lastWorkoutDay: (r.last_workout_day as string | null) ?? null,
@@ -62,6 +69,7 @@ export const openStore = (path: string) => {
       model TEXT NOT NULL,
       league TEXT NOT NULL,
       pass_hash TEXT NOT NULL UNIQUE,
+      appearance_json TEXT,
       strength_points REAL NOT NULL DEFAULT 0,
       stamina_points REAL NOT NULL DEFAULT 0,
       flexibility_points REAL NOT NULL DEFAULT 0,
@@ -98,6 +106,23 @@ export const openStore = (path: string) => {
     CREATE INDEX IF NOT EXISTS sets_agent_machine ON sets(agent_id, machine);
   `);
 
+  // Upgrade older databases, then save defaults once so future catalog additions
+  // cannot change the appearance of an existing agent.
+  const columns = db.prepare('PRAGMA table_info(agents)').all();
+  if (!columns.some((c) => c.name === 'appearance_json')) db.exec('ALTER TABLE agents ADD COLUMN appearance_json TEXT');
+  const legacyAgents = db.prepare('SELECT id FROM agents WHERE appearance_json IS NULL').all();
+  if (legacyAgents.length) {
+    db.exec('BEGIN IMMEDIATE');
+    try {
+      const save = db.prepare('UPDATE agents SET appearance_json = ? WHERE id = ? AND appearance_json IS NULL');
+      for (const row of legacyAgents) {
+        const id = row.id as string;
+        save.run(JSON.stringify(appearanceFromSeed(id)), id);
+      }
+      db.exec('COMMIT');
+    } catch (err) { db.exec('ROLLBACK'); db.close(); throw err; }
+  }
+
   return {
     /** Finds or creates the owner for a GitHub login. */
     ensureOwner: (githubLogin: string, now: number): string => {
@@ -109,11 +134,22 @@ export const openStore = (path: string) => {
     },
 
     /** Saves a new agent with its hashed pass. */
-    createAgent: (o: { ownerId: string; name: string; model: string; passHash: string; now: number }): AgentRecord => {
+    createAgent: (o: { ownerId: string; name: string; model: string; passHash: string; now: number; appearance?: AppearancePatch }): AgentRecord => {
       const id = newId('agt');
-      db.prepare('INSERT INTO agents (id, owner_id, name, model, league, pass_hash, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)')
-        .run(id, o.ownerId, o.name, o.model, leagueForModel(o.model), o.passHash, o.now);
+      const appearance = { ...appearanceFromSeed(id), ...(o.appearance ? parseAppearancePatch(o.appearance) : {}) };
+      db.prepare('INSERT INTO agents (id, owner_id, name, model, league, pass_hash, appearance_json, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+        .run(id, o.ownerId, o.name, o.model, leagueForModel(o.model), o.passHash, JSON.stringify(appearance), o.now);
       return toAgent(db.prepare('SELECT * FROM agents WHERE id = ?').get(id) as Row);
+    },
+
+    /** Patches only cosmetics, preserving all omitted choices and gameplay state. */
+    updateAppearance: (agentId: string, patch: AppearancePatch): AgentRecord | null => {
+      const changes = parseAppearancePatch(patch);
+      const row = db.prepare('SELECT * FROM agents WHERE id = ?').get(agentId) as Row | undefined;
+      if (!row) return null;
+      const appearance = { ...toAgent(row).appearance, ...changes };
+      db.prepare('UPDATE agents SET appearance_json = ? WHERE id = ?').run(JSON.stringify(appearance), agentId);
+      return toAgent(db.prepare('SELECT * FROM agents WHERE id = ?').get(agentId) as Row);
     },
 
     /** Replaces an agent's pass, so the old one stops working. */

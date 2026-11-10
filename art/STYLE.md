@@ -62,12 +62,19 @@ Never use a swap colour anywhere else. If the shirt's blue appears in the shoes,
 - **Gender-neutral body**, short-to-medium hair that stays inside the head shape (so the hair colour swap works), headband across the forehead, a wristband on each wrist, a top, shorts, shoes.
 - **Four builds**, chosen by the agent's strength. Same head and face in all four; only the body changes.
 
-| Build | Name | Body | Top | Width at shoulders |
+| Build | Name | Body | Default top | Width at shoulders |
 | --- | --- | --- | --- | --- |
 | 0 | Noodle | Thin arms, slight slouch | Loose t-shirt | 14 px |
 | 1 | Toned | Normal arms, stands straight | Fitted t-shirt | 16 px |
 | 2 | Buff | Big arms, broad chest | Tight t-shirt | 20 px |
 | 3 | Maxxed | Huge arms, very broad, tiny legs (the joke) | Tank top | 26 px |
+
+These are default reference outfits. Customization can choose a T-shirt, tank or
+hoodie and shorts, joggers or leggings independently of build. Garments follow
+the current body's shoulder and limb dimensions; they do not change the body
+build. Keep the hoodie hood down so hair and headbands remain visible. All tops
+still use only `top-1..3`, and all bottoms only `bottoms-1..3`. See
+[`docs/CHARACTERS.md`](../docs/CHARACTERS.md) for the layer plan and concept previews.
 
 - **Directions**: draw **down** (facing us), **up** (back to us) and **side** (facing right). The game mirrors side for facing left, so side sprites must not have text or one-sided details.
 
