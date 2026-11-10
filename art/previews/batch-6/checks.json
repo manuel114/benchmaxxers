@@ -1,0 +1,794 @@
+{
+  "batch": 6,
+  "build": 1,
+  "anchor": [
+    32,
+    60
+  ],
+  "assets": {
+    "char.build-1.bench_press": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "anchor": [
+        32,
+        60
+      ],
+      "uniqueFrames": 4,
+      "pixelizeCheck": [],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 12,
+            "w": 55,
+            "h": 31
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 625,
+            "metal": 148,
+            "skin": 178,
+            "wristband": 20,
+            "hair": 41,
+            "headband": 39,
+            "top": 68,
+            "bottoms": 29,
+            "cream": 4,
+            "blush": 3,
+            "shoes": 31
+          },
+          "barGripContacts": [
+            8,
+            8
+          ]
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 4,
+            "y": 7,
+            "w": 55,
+            "h": 36
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 665,
+            "metal": 129,
+            "skin": 216,
+            "wristband": 25,
+            "hair": 64,
+            "headband": 39,
+            "cream": 3,
+            "top": 83,
+            "bottoms": 51,
+            "blush": 2,
+            "shoes": 38
+          },
+          "barGripContacts": [
+            4,
+            6
+          ]
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 4,
+            "y": 0,
+            "w": 55,
+            "h": 43
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 714,
+            "metal": 156,
+            "skin": 249,
+            "wristband": 18,
+            "hair": 73,
+            "headband": 35,
+            "blush": 3,
+            "bottoms": 48,
+            "top": 87,
+            "cream": 2,
+            "shoes": 35
+          },
+          "barGripContacts": [
+            8,
+            12
+          ]
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 5,
+            "y": 5,
+            "w": 54,
+            "h": 38
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 675,
+            "metal": 143,
+            "skin": 219,
+            "wristband": 18,
+            "hair": 79,
+            "headband": 36,
+            "cream": 2,
+            "blush": 3,
+            "bottoms": 46,
+            "top": 83,
+            "shoes": 28
+          },
+          "barGripContacts": [
+            4,
+            10
+          ]
+        }
+      ],
+      "warnings": [
+        "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames."
+      ]
+    },
+    "char.build-1.bench_fail": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 8,
+      "anchor": [
+        32,
+        60
+      ],
+      "uniqueFrames": 4,
+      "pixelizeCheck": [],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 6,
+            "y": 7,
+            "w": 52,
+            "h": 35
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 459,
+            "metal": 143,
+            "skin": 228,
+            "wristband": 12,
+            "hair": 57,
+            "headband": 36,
+            "bottoms": 144,
+            "top": 90,
+            "blush": 5,
+            "shoes": 37
+          },
+          "barGripContacts": [
+            12,
+            34
+          ]
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 6,
+            "y": 8,
+            "w": 53,
+            "h": 34
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 439,
+            "metal": 150,
+            "skin": 192,
+            "wristband": 11,
+            "headband": 34,
+            "hair": 43,
+            "bottoms": 133,
+            "cream": 6,
+            "top": 80,
+            "blush": 5,
+            "shoes": 35
+          },
+          "barGripContacts": [
+            25,
+            15
+          ]
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 6,
+            "y": 18,
+            "w": 52,
+            "h": 24
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 383,
+            "metal": 137,
+            "skin": 134,
+            "bottoms": 104,
+            "hair": 23,
+            "headband": 27,
+            "wristband": 11,
+            "top": 58,
+            "blush": 5,
+            "shoes": 37
+          },
+          "barGripContacts": [
+            16,
+            55
+          ]
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 6,
+            "y": 11,
+            "w": 52,
+            "h": 31
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 421,
+            "metal": 157,
+            "skin": 165,
+            "hair": 38,
+            "headband": 33,
+            "wristband": 5,
+            "bottoms": 125,
+            "cream": 4,
+            "top": 73,
+            "blush": 5,
+            "shoes": 37
+          },
+          "barGripContacts": [
+            22,
+            51
+          ]
+        }
+      ],
+      "warnings": [
+        "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames."
+      ]
+    },
+    "char.build-1.run": {
+      "size": [
+        256,
+        64
+      ],
+      "frames": 4,
+      "fps": 12,
+      "anchor": [
+        32,
+        60
+      ],
+      "uniqueFrames": 4,
+      "pixelizeCheck": [],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 20,
+            "y": 10,
+            "w": 24,
+            "h": 41
+          },
+          "inversePixelizeTranslation": [
+            0,
+            -10
+          ],
+          "ramps": {
+            "ink": 299,
+            "hair": 81,
+            "headband": 36,
+            "skin": 109,
+            "cream": 1,
+            "blush": 3,
+            "top": 46,
+            "wristband": 11,
+            "bottoms": 24,
+            "shoes": 34
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 20,
+            "y": 9,
+            "w": 24,
+            "h": 42
+          },
+          "inversePixelizeTranslation": [
+            0,
+            -10
+          ],
+          "ramps": {
+            "ink": 274,
+            "hair": 81,
+            "headband": 36,
+            "skin": 141,
+            "cream": 1,
+            "blush": 3,
+            "top": 51,
+            "wristband": 8,
+            "bottoms": 8,
+            "shoes": 17
+          }
+        },
+        {
+          "frame": 3,
+          "bounds": {
+            "x": 21,
+            "y": 10,
+            "w": 23,
+            "h": 41
+          },
+          "inversePixelizeTranslation": [
+            0,
+            -10
+          ],
+          "ramps": {
+            "ink": 301,
+            "hair": 81,
+            "headband": 36,
+            "skin": 110,
+            "cream": 1,
+            "blush": 3,
+            "top": 46,
+            "wristband": 9,
+            "bottoms": 19,
+            "shoes": 33
+          }
+        },
+        {
+          "frame": 4,
+          "bounds": {
+            "x": 20,
+            "y": 9,
+            "w": 24,
+            "h": 42
+          },
+          "inversePixelizeTranslation": [
+            0,
+            -10
+          ],
+          "ramps": {
+            "ink": 275,
+            "hair": 81,
+            "headband": 36,
+            "skin": 136,
+            "cream": 1,
+            "blush": 3,
+            "top": 55,
+            "wristband": 9,
+            "bottoms": 8,
+            "shoes": 16
+          }
+        }
+      ],
+      "warnings": []
+    },
+    "char.build-1.yoga_tree": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "anchor": [
+        32,
+        60
+      ],
+      "uniqueFrames": 2,
+      "pixelizeCheck": [],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 18,
+            "y": 5,
+            "w": 28,
+            "h": 56
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 415,
+            "skin": 197,
+            "wristband": 14,
+            "hair": 78,
+            "headband": 33,
+            "blush": 3,
+            "cream": 2,
+            "bottoms": 41,
+            "top": 33,
+            "shoes": 34
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 18,
+            "y": 4,
+            "w": 28,
+            "h": 57
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 420,
+            "skin": 203,
+            "wristband": 14,
+            "hair": 78,
+            "headband": 33,
+            "blush": 3,
+            "cream": 2,
+            "bottoms": 45,
+            "top": 33,
+            "shoes": 37
+          }
+        }
+      ],
+      "warnings": []
+    },
+    "char.build-1.yoga_warrior": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "anchor": [
+        32,
+        60
+      ],
+      "uniqueFrames": 2,
+      "pixelizeCheck": [],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 13,
+            "y": 15,
+            "w": 39,
+            "h": 46
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 400,
+            "hair": 81,
+            "headband": 36,
+            "skin": 164,
+            "cream": 1,
+            "blush": 3,
+            "top": 91,
+            "wristband": 8,
+            "bottoms": 58,
+            "shoes": 57
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 13,
+            "y": 14,
+            "w": 39,
+            "h": 47
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 403,
+            "hair": 81,
+            "headband": 36,
+            "skin": 164,
+            "cream": 1,
+            "blush": 3,
+            "top": 98,
+            "wristband": 8,
+            "bottoms": 58,
+            "shoes": 57
+          }
+        }
+      ],
+      "warnings": []
+    },
+    "char.build-1.yoga_dog": {
+      "size": [
+        128,
+        64
+      ],
+      "frames": 2,
+      "fps": 3,
+      "anchor": [
+        32,
+        60
+      ],
+      "uniqueFrames": 2,
+      "pixelizeCheck": [],
+      "framesAudit": [
+        {
+          "frame": 1,
+          "bounds": {
+            "x": 5,
+            "y": 26,
+            "w": 54,
+            "h": 35
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 423,
+            "bottoms": 138,
+            "top": 103,
+            "skin": 180,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 24,
+            "shoes": 41
+          }
+        },
+        {
+          "frame": 2,
+          "bounds": {
+            "x": 5,
+            "y": 25,
+            "w": 54,
+            "h": 36
+          },
+          "inversePixelizeTranslation": [
+            0,
+            0
+          ],
+          "ramps": {
+            "ink": 441,
+            "bottoms": 138,
+            "top": 103,
+            "skin": 191,
+            "hair": 41,
+            "headband": 14,
+            "blush": 3,
+            "cream": 1,
+            "wristband": 24,
+            "shoes": 41
+          }
+        }
+      ],
+      "warnings": []
+    }
+  },
+  "warnings": [
+    {
+      "id": "char.build-1.bench_press",
+      "message": "Frame heights vary a lot (31, 36, 43, 38). The head may change size between frames.",
+      "reason": "The held barbell moves vertically while head/body stay supported; this changes the overall bounding-box height."
+    },
+    {
+      "id": "char.build-1.bench_fail",
+      "message": "Frame heights vary a lot (35, 34, 24, 31). The head may change size between frames.",
+      "reason": "The held barbell moves vertically while head/body stay supported; this changes the overall bounding-box height."
+    }
+  ],
+  "registration": "Inverse integer translation after pixelize restores prop-relative registration; no scaling, redrawing or metadata changes.",
+  "previews": {
+    "bench_press": {
+      "zoom": 2,
+      "framePreview": [
+        256,
+        256
+      ],
+      "stripPreview": [
+        1024,
+        256
+      ],
+      "machine": "bench_back",
+      "drawOrder": [
+        "bench_back",
+        "bench_press"
+      ],
+      "anchor": [
+        32,
+        60
+      ],
+      "registeredForegroundPixelsChecked": 5253,
+      "foregroundOccludedPixels": 0
+    },
+    "bench_fail": {
+      "zoom": 2,
+      "framePreview": [
+        256,
+        256
+      ],
+      "stripPreview": [
+        1024,
+        256
+      ],
+      "machine": "bench_back",
+      "drawOrder": [
+        "bench_back",
+        "bench_fail"
+      ],
+      "anchor": [
+        32,
+        60
+      ],
+      "registeredForegroundPixelsChecked": 4321,
+      "foregroundOccludedPixels": 0
+    },
+    "run": {
+      "zoom": 2,
+      "framePreview": [
+        256,
+        256
+      ],
+      "stripPreview": [
+        1024,
+        256
+      ],
+      "machine": "treadmill_back",
+      "drawOrder": [
+        "treadmill_back",
+        "run",
+        "treadmill_front"
+      ],
+      "anchor": [
+        32,
+        60
+      ],
+      "registeredForegroundPixelsChecked": 2173,
+      "foregroundOccludedPixels": 350
+    },
+    "yoga_tree": {
+      "zoom": 2,
+      "framePreview": [
+        256,
+        256
+      ],
+      "stripPreview": [
+        512,
+        256
+      ],
+      "machine": "yoga_mat_pink",
+      "drawOrder": [
+        "yoga_mat_pink",
+        "yoga_tree"
+      ],
+      "anchor": [
+        32,
+        60
+      ],
+      "registeredForegroundPixelsChecked": 1718,
+      "foregroundOccludedPixels": 0
+    },
+    "yoga_warrior": {
+      "zoom": 2,
+      "framePreview": [
+        256,
+        256
+      ],
+      "stripPreview": [
+        512,
+        256
+      ],
+      "machine": "yoga_mat_pink",
+      "drawOrder": [
+        "yoga_mat_pink",
+        "yoga_warrior"
+      ],
+      "anchor": [
+        32,
+        60
+      ],
+      "registeredForegroundPixelsChecked": 1808,
+      "foregroundOccludedPixels": 0
+    },
+    "yoga_dog": {
+      "zoom": 2,
+      "framePreview": [
+        256,
+        256
+      ],
+      "stripPreview": [
+        512,
+        256
+      ],
+      "machine": "yoga_mat_pink",
+      "drawOrder": [
+        "yoga_mat_pink",
+        "yoga_dog"
+      ],
+      "anchor": [
+        32,
+        60
+      ],
+      "registeredForegroundPixelsChecked": 1965,
+      "foregroundOccludedPixels": 0
+    }
+  },
+  "browser": {
+    "realSprites": 63,
+    "newActions": 6,
+    "frames": 18,
+    "allSpecsMatch": true,
+    "timing": true,
+    "anchors": [
+      32,
+      60
+    ],
+    "otherBuildsStillPlaceholder": true,
+    "occupiedBenchLayers": 1,
+    "treadmillLayers": 2,
+    "appearanceChangedPixels": 1281,
+    "routed": [
+      "char.build-1.bench_press",
+      "char.build-1.bench_fail",
+      "char.build-1.run",
+      "char.build-1.yoga_tree",
+      "char.build-1.yoga_warrior",
+      "char.build-1.yoga_dog"
+    ],
+    "warnings": [
+      "Canvas2D readback performance advisory in the local inspection harness (6 occurrences); no runtime errors or failed requests."
+    ]
+  },
+  "verification": {
+    "pixelizeChecks": 6,
+    "testsPassed": 82,
+    "typecheck": "passed",
+    "assetsStatus": "64 of 127 v1 assets",
+    "unchanged": "Approved references, palettes, props, tiles, earlier idle/walk strips and other builds",
+    "manifestEntriesChanged": [
+      "char.build-1.bench_press",
+      "char.build-1.bench_fail",
+      "char.build-1.run",
+      "char.build-1.yoga_tree",
+      "char.build-1.yoga_warrior",
+      "char.build-1.yoga_dog"
+    ],
+    "gif": "Six looping256x256 composites and one512x768 mobile overview; GIF durations rounded to10ms; game FPS unchanged."
+  }
+}
