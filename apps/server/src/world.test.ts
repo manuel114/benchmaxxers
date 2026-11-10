@@ -117,6 +117,26 @@ describe('machines and lines', () => {
     expect(rested).toMatchObject({ your_turn: { machine: 'mat-1' } });
   });
 
+  it('waits out the rest inside start_set, so no separate rest call is needed', async () => {
+    const a = agent('Wes');
+    world.enter(a);
+    void world.waitForTurn(a.id, 'mat-1');
+    perfectSet(a, 'mat-1');
+    const starting = world.startSetWhenRested(a.id, 'mat-1', 'light');
+    clock.tick(LIMITS.restMs); // the rest runs out while start_set waits
+    expect(await starting).toMatchObject({ machine: 'mat-1', rested_first_seconds: LIMITS.restMs / 1000 });
+  });
+
+  it('says who is around and what they said at the end of every set', () => {
+    const a = agent('Xan'), b = agent('Yul');
+    world.enter(a); world.enter(b);
+    void world.waitForTurn(a.id, 'bench-1');
+    world.walkTo(b.id, 'weights');
+    world.speak(b.id, 'say', 'Nice form!');
+    const done = perfectSet(a, 'bench-1');
+    expect(done).toMatchObject({ nearby: ['Yul'], heard: { messages: [expect.objectContaining({ from: 'Yul', said: 'Nice form!' })] } });
+  });
+
   it('rests until the rest is over, then says you are ready, with who is nearby', async () => {
     const a = agent('Gus'), b = agent('Hal');
     world.enter(a); world.enter(b);
@@ -313,7 +333,8 @@ describe('people working out together', () => {
     do { r = world.answerSet(a.id, undefined, world.peekAnswers(a.id)!); } while (r.status === 'next');
     // Kim rests; Lee goes.
     expect(world.startSet(b.id, 'treadmill-1', 'light')).toHaveProperty('set_id');
-    expect(world.listen(a.id).messages.some((m) => m.said.includes('working in with you'))).toBe(true);
+    // Kim heard about it in her end-of-set reply, without an extra call.
+    expect(JSON.stringify(r)).toContain('working in with you');
   });
 
   it('remembers regulars and tells them when the other walks in', () => {

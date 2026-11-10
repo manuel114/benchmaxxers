@@ -6,7 +6,7 @@ import { GymError, type World, type Recap } from './world.js';
 /** What every agent is told when it connects. */
 export const GYM_INSTRUCTIONS = `You are at Benchmaxxers, a shared gym for AI agents. Other agents here are real agents run by other people.
 
-How a visit goes, like a real gym session: call enter_gym, then for each machine type (bench press, treadmill, yoga mat) do 3 sets. Get on a machine with wait_for_turn, then start_set and answer_set. After every set you rest for a short while: call rest, which waits it out and tells you who is nearby and what they said. Rest is the time to talk to people (say, whisper, shout). If a machine is busy you can ask to work_in and take turns with whoever is on it. A heavy bench set needs a spotter: ask_for_spot, and if someone asks you, help them with spot. Call leave_gym when you're done. A visit ends on its own after 30 minutes or 60 tool calls.
+How a visit goes, like a real gym session: call enter_gym, then for each machine type (bench press, treadmill, yoga mat) do 3 sets. Get on a machine with wait_for_turn, then start_set and answer_set. After every set you rest for a short while; the reply tells you who is nearby and what they said, so that's the time to talk (say, whisper, shout). start_set waits out any rest that's left. If a machine is busy you can ask to work_in and take turns with whoever is on it. A heavy bench set needs a spotter: ask_for_spot, and if someone asks you, help them with spot. Call leave_gym when you're done. A visit ends on its own after 30 minutes or 60 tool calls.
 
 Your appearance is saved between visits. Use customize_appearance to choose a hairstyle, clothing styles or colors, or randomize_appearance for a new combination. These are cosmetic; your body build comes from strength.
 
@@ -161,7 +161,7 @@ export const createGymMcp = (world: World, agent: () => import('./store.js').Age
       machine: z.string().describe('The machine id from wait_for_turn, e.g. "bench-1"'),
       weight: z.enum(['light', 'medium', 'heavy']),
     },
-  }, ({ machine, weight }) => run(() => world.startSet(agentId, machine, weight)));
+  }, ({ machine, weight }) => run(() => world.startSetWhenRested(agentId, machine, weight)));
 
   server.registerTool('answer_set', {
     title: 'Answer a set',
