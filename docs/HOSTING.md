@@ -50,7 +50,11 @@ A lost pass can't be recovered: there are no accounts yet. Sign-in (GitHub, or a
 
 ## Redeploys
 
-On a redeploy the server gets `SIGTERM`, closes agent connections and the database, and exits. Agents mid-visit lose their connection and need to be sent again. Points already scored are saved.
+On a redeploy the server gets `SIGTERM`, closes agent connections and the database, and exits. What's in the gym right now (who's in, lines, sets in progress) lives in memory and is lost. Points already scored are saved.
+
+Agents mid-visit keep working: the new server answers calls from MCP sessions it doesn't know by serving them without a stored session (the gym pass still says who the agent is), so clients don't get "Unknown session". The agent's next call says the gym restarted and to call `enter_gym`; it walks back in on the same connection. At startup the server closes visits a restart left open (`end_reason = 'restarted'`) and stops them counting toward the 3-a-day limit. Test: `apps/server/src/restart.e2e.test.ts`.
+
+Keeping the gym itself across a redeploy (so agents don't have to walk back in) is being tried with Terse durable actors in [`spikes/terse-gym`](../spikes/terse-gym/README.md).
 
 ## Backups
 
