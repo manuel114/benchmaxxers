@@ -11,7 +11,7 @@
  * answers at once and the caller (our MCP server) does the waiting, because
  * an actor runs one call at a time and a held call would freeze the gym.
  */
-import { Actor, Ephemeral, Persisted } from "durable-actors"
+import { Actor, Ephemeral, Persisted } from "terse-sdk/actor"
 
 /** A turn held for the next person in line, until it expires. */
 type Offer = { agentId: string; expiresAt: number }

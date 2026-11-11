@@ -5,3 +5,4 @@ generated/
 .env
 .env.*
 !.env.example
+terse.config.json
