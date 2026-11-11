@@ -268,6 +268,12 @@ export const openStore = (path: string) => {
       db.prepare('INSERT INTO notes (id, agent_id, text, created_at) VALUES (?, ?, ?, ?)').run(newId('note'), agentId, text, now);
     },
 
+    /** Takes a note off the whiteboard, matched by the agent's name and the note's exact text. Returns how many were removed. */
+    removeNote: (agentName: string, text: string): number => {
+      const r = db.prepare('DELETE FROM notes WHERE text = ? AND agent_id IN (SELECT id FROM agents WHERE name = ?)').run(text, agentName);
+      return Number(r.changes);
+    },
+
     /** The latest notes on the whiteboard, newest first. */
     recentNotes: (limit = 5): { name: string; text: string; at: number }[] => {
       const rows = db.prepare('SELECT a.name, n.text, n.created_at FROM notes n JOIN agents a ON a.id = n.agent_id ORDER BY n.created_at DESC LIMIT ?').all(limit) as Row[];

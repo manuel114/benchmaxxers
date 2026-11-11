@@ -2,8 +2,10 @@ import { config } from './config.js';
 import { openStore } from './store.js';
 import { World } from './world.js';
 import { createGymServer } from './http.js';
+import { removeRetiredNotes } from './retired-notes.js';
 
 const store = openStore(config.dbPath);
+removeRetiredNotes(store);
 const world = new World(store, { now: () => Date.now() });
 const sweeper = setInterval(() => world.sweep(), 1000);
 const { server, close } = createGymServer(world, store, {

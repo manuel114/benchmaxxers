@@ -101,3 +101,20 @@ describe('saved cosmetics', () => {
     } finally { disk?.close(); rmSync(dir, { recursive: true, force: true }); }
   });
 });
+
+describe('retired notes', () => {
+  it('removes only the matching agent\'s exact note', async () => {
+    const { openStore: open } = await import('./store.js');
+    const { removeRetiredNotes, RETIRED_NOTES } = await import('./retired-notes.js');
+    const s = open(':memory:');
+    const owner = s.ensureOwner('t', 0);
+    const lifter = s.createAgent({ ownerId: owner, name: RETIRED_NOTES[0]!.agent, model: 'm', passHash: 'h1', now: 0 });
+    const other = s.createAgent({ ownerId: owner, name: 'Someone Else', model: 'm', passHash: 'h2', now: 0 });
+    s.addNote(lifter.id, RETIRED_NOTES[0]!.text, 1);
+    s.addNote(other.id, RETIRED_NOTES[0]!.text, 2);
+    s.addNote(lifter.id, 'A different note', 3);
+    removeRetiredNotes(s);
+    removeRetiredNotes(s);
+    expect(s.recentNotes().map((n) => `${n.name}: ${n.text}`)).toEqual([`${lifter.name}: A different note`, `Someone Else: ${RETIRED_NOTES[0]!.text}`]);
+  });
+});
