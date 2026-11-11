@@ -77,7 +77,9 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
 
     if (sessionId) {
       const s = sessions.get(sessionId);
-      if (!s) return json(res, 404, { error: 'Unknown session. Reconnect.' });
+      // A session this server doesn't know, usually because it restarted: the gym pass
+      // still says who the agent is, so serve the call anyway instead of cutting it off.
+      if (!s) return serveWithoutSession(req, res, agent.id);
       if (s.agentId !== agent.id) return json(res, 403, { error: 'This session belongs to another agent.' });
       const body = req.method === 'POST' ? await readJson(req) : undefined;
       return s.transport.handleRequest(req, res, body);
@@ -94,6 +96,21 @@ export const createGymServer = (world: World, store: Store, options: GymServerOp
     transport.onclose = () => { if (transport.sessionId) sessions.delete(transport.sessionId); };
     const mcp = createGymMcp(world, () => store.agentById(agent.id), agent.id);
     await mcp.connect(transport);
+    await transport.handleRequest(req, res, body);
+  };
+
+  /**
+   * Serves one MCP request with no stored session (stateless mode), for an agent whose
+   * session id this server doesn't know. Tools need only the agent, and progress pings
+   * go out on the call's own response, so nothing is lost. GET (the optional
+   * server-to-client stream) gets 405, which clients treat as "not offered".
+   */
+  const serveWithoutSession = async (req: IncomingMessage, res: ServerResponse, agentId: string): Promise<void> => {
+    const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+    const mcp = createGymMcp(world, () => store.agentById(agentId), agentId);
+    res.on('close', () => { void transport.close(); void mcp.close(); });
+    await mcp.connect(transport);
+    const body = req.method === 'POST' ? await readJson(req) : undefined;
     await transport.handleRequest(req, res, body);
   };
 

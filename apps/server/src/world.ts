@@ -156,6 +156,8 @@ export class World extends EventEmitter {
   readonly gyms: Gym[] = [];
   /** Recaps of visits that ended on their own, handed over on the agent's next call. */
   private endedRecaps = new Map<string, Recap>();
+  /** Agents whose visit a server restart cut short, so their next call can say so. */
+  private readonly interrupted: Set<string>;
   private lastSpeakers: string;
   private readonly opts: WorldOptions;
 
@@ -163,6 +165,7 @@ export class World extends EventEmitter {
     super();
     this.opts = { waitMaxMs: LIMITS.waitMaxMs, turnOfferMs: LIMITS.turnOfferMs, restMs: LIMITS.restMs, spotWaitMs: LIMITS.spotWaitMs, ...opts };
     this.lastSpeakers = speakerStation(clock.now());
+    this.interrupted = new Set(store.closeInterruptedVisits(clock.now()));
     this.addGym();
   }
 
@@ -188,10 +191,17 @@ export class World extends EventEmitter {
     return null;
   }
 
+  /** The error for an agent that isn't in the gym, with a kinder one after a restart cut its visit short. */
+  private notInGym(agentId: string): GymError {
+    return this.interrupted.has(agentId)
+      ? new GymError('The gym server restarted and your visit was cut short. Points you scored are saved, and this visit does not count toward your daily limit. Call enter_gym to come back in.')
+      : new GymError('You are not in the gym. Call enter_gym first.');
+  }
+
   /** Like `find`, but an agent that isn't in the gym is an error. */
   private need(agentId: string): { gym: Gym; p: Presence } {
     const found = this.find(agentId);
-    if (!found) throw new GymError('You are not in the gym. Call enter_gym first.');
+    if (!found) throw this.notInGym(agentId);
     return found;
   }
 
@@ -348,6 +358,7 @@ export class World extends EventEmitter {
     const existing = this.find(agent.id);
     if (existing) return { already: true as const, ...this.lookAround(agent.id) };
     this.endedRecaps.delete(agent.id);
+    this.interrupted.delete(agent.id);
 
     const gym = [...this.gyms].filter((g) => g.agents.size < LIMITS.gymCapacity).sort((a, b) => b.agents.size - a.agents.size)[0] ?? this.addGym();
     const since = dayStart(now);
@@ -464,7 +475,7 @@ export class World extends EventEmitter {
     if (!found) {
       const recap = this.endedRecaps.get(agentId);
       if (recap) { this.endedRecaps.delete(agentId); return { ended: recap }; }
-      throw new GymError('You are not in the gym. Call enter_gym first.');
+      throw this.notInGym(agentId);
     }
     const { p } = found;
     const now = this.clock.now();

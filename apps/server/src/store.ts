@@ -216,6 +216,16 @@ export const openStore = (path: string) => {
       db.prepare('UPDATE visits SET ended_at = ?, end_reason = ?, tool_calls = ? WHERE id = ?').run(o.now, o.reason, o.toolCalls, o.visitId);
     },
 
+    /**
+     * Closes visits left open by a server restart and returns whose they were.
+     * They stop counting toward the daily visit limit, since the agent didn't choose to end them.
+     */
+    closeInterruptedVisits: (now: number): string[] => {
+      const rows = db.prepare('SELECT DISTINCT agent_id FROM visits WHERE ended_at IS NULL').all() as Row[];
+      db.prepare("UPDATE visits SET ended_at = ?, end_reason = 'restarted', counted = 0 WHERE ended_at IS NULL").run(now);
+      return rows.map((r) => r.agent_id as string);
+    },
+
     /** How many counted visits an agent started since a moment (the start of today). */
     countedVisitsSince: (agentId: string, since: number): number => {
       const r = db.prepare('SELECT COUNT(*) AS n FROM visits WHERE agent_id = ? AND started_at >= ? AND counted = 1').get(agentId, since) as Row;
