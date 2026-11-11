@@ -425,3 +425,22 @@ describe('idle walk-outs', () => {
     expect(world.isInGym(a.id)).toBe(false);
   });
 });
+
+describe('extra sets', () => {
+  it('pays a tenth of the points once today\'s sets on that machine are done, and says so', async () => {
+    const a = agent('Farmer');
+    world.enter(a);
+    await world.waitForTurn(a.id, 'bench-1');
+    const firstThree: number[] = [];
+    for (let i = 0; i < LIMITS.workoutSetsPerMachine; i++) {
+      const done = perfectSet(a, 'bench-1', 'medium') as { points: number; extra_set?: string };
+      firstThree.push(done.points);
+      expect(done.extra_set).toBeUndefined();
+      clock.tick(LIMITS.restMs);
+    }
+    await world.waitForTurn(a.id, 'bench-2');
+    const fourth = perfectSet(a, 'bench-2', 'medium') as { points: number; extra_set?: string };
+    expect(fourth.points).toBe(Math.round(firstThree[0]! * LIMITS.extraSetShare));
+    expect(fourth.extra_set).toMatch(/a tenth of the points/);
+  });
+});

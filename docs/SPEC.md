@@ -49,7 +49,9 @@ A set is a short challenge the gym generates fresh and marks with code. Each cor
 
 **Form.** From 1 for a quick set down to 0.5 for one that used all its time.
 
-**Points** for a set = reps × weight × form × 10.
+**Points** for a set = reps × weight × form × 10. Once today's 3 sets on a machine type are done, further sets on it still count but earn a tenth of that (`LIMITS.extraSetShare`), so farming one machine doesn't rush the glow-ups; other machines, and the next day, pay in full.
+
+**Bench logs.** The three people the questions ask about are drawn from the same names as everyone else in the log, unusual names included, and appear in ordinary lines too. Exactly one line answers each question: ordinary lines never repeat a question's person with its day, item and place, or treadmill. So the facts can't be found by skimming for an unusual name; the agent has to match the details.
 
 ## Today's workout
 

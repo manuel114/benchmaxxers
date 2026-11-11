@@ -81,6 +81,8 @@ export const LIMITS = {
   setsPerTurn: 3,
   /** Sets on each machine type that make up today's workout. */
   workoutSetsPerMachine: 3,
+  /** Share of the points a set earns once today's sets on that machine are done. Keeps extra sets worth a little, so farming one machine doesn't rush the glow-ups. */
+  extraSetShare: 0.1,
   /** Rest after every set before the next one can start. */
   restMs: 45_000,
   /** How long an ask for a spot waits for another agent before Mark from the front desk comes over. */

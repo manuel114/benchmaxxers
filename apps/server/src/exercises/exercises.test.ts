@@ -28,13 +28,9 @@ describe('exercises', () => {
 
   it('hides each bench fact, plus its near-misses, in a log of the right length', () => {
     // Filler lines + 3 facts + 3 decoys per near-miss level (light 0, medium 1, heavy 2).
-    for (const [weight, lines, mentions] of [['light', 43, 1], ['medium', 306, 2], ['heavy', 429, 3]] as const) {
-      const c = makeChallenge('bench', weight, 3);
-      const log = c.steps[0]!.prompt.split('QUESTIONS')[0]!;
+    for (const [weight, lines] of [['light', 43], ['medium', 306], ['heavy', 429]] as const) {
+      const log = makeChallenge('bench', weight, 3).steps[0]!.prompt.split('QUESTIONS')[0]!;
       expect(log.trim().split('\n').length - 1).toBe(lines);
-      const [q1] = c.steps[0]!.questions;
-      const name = q1!.ask.match(/did (\w+) use/)![1]!;
-      expect(log.split(name).length - 1).toBe(mentions);
     }
   });
 
@@ -55,15 +51,33 @@ describe('exercises', () => {
     }
   });
 
-  it('hides near-miss decoys in heavy bench logs without making any question ambiguous', () => {
-    for (let seed = 1; seed <= 20; seed++) {
-      const c = makeChallenge('bench', 'heavy', seed);
-      const [q1] = c.steps[0]!.questions;
-      const person = q1!.ask.match(/did (\S+) use/)![1]!;
-      const lockerLines = c.steps[0]!.prompt.split('\n').filter((l) => l.includes(`${person} used locker`));
-      expect(lockerLines.length).toBe(3); // the fact plus two decoys on other days
-      for (const q of c.steps[0]!.questions) expect(q.check(q.expected)).toBe(true);
+  it('gives every bench question exactly one answering line, even when the person shows up elsewhere', () => {
+    let personElsewhere = 0;
+    for (let seed = 1; seed <= 200; seed++) {
+      for (const weight of ['medium', 'heavy'] as const) {
+        const step = makeChallenge('bench', weight, seed).steps[0]!;
+        const lines = step.prompt.split('QUESTIONS')[0]!.split('\n');
+        const [q1, q2, q3] = step.questions;
+        const [, p1, day] = q1!.ask.match(/did (.+) use on (\w+)\?/) ?? q1!.ask.match(/locker did (.+) use on (\w+)\?/)!;
+        const [, item, p2, place] = q2!.ask.match(/colour was the (.+) that (.+) left by the (.+)\?/)!;
+        const [, p3, tm] = q3!.ask.match(/did (.+) run on treadmill (\d)\?/)!;
+        expect(lines.filter((l) => l.includes(` ${p1} used locker `) && l.endsWith(` on ${day}.`))).toHaveLength(1);
+        expect(lines.filter((l) => l.includes(` ${p2} left a `) && l.endsWith(` ${item} by the ${place}.`))).toHaveLength(1);
+        expect(lines.filter((l) => l.includes(` ${p3} ran `) && l.endsWith(` km on treadmill ${tm}.`))).toHaveLength(1);
+        for (const q of step.questions) expect(q.check(q.expected)).toBe(true);
+        if (lines.filter((l) => l.includes(` ${p1} `)).length > 1 + (weight === 'heavy' ? 2 : 1)) personElsewhere++;
+      }
     }
+    // The people in the questions often appear in ordinary lines too, so an unusual name gives nothing away.
+    expect(personElsewhere).toBeGreaterThan(100);
+  });
+
+  it('puts unusual names in ordinary lines as well', () => {
+    const rare = ['Priya', 'Tomasz', 'Ingrid', 'Matteo', 'Sunita', 'Bjorn', 'Leilani', 'Rafael', 'Oksana', 'Desmond', 'Mireille', 'Haruki', 'Zainab', 'Lorenzo', 'Annika', 'Kwame', 'Sofia', 'Dmitri', 'Esperanza', 'Callum'];
+    const step = makeChallenge('bench', 'heavy', 11).steps[0]!;
+    const asked = step.questions.map((q) => q.ask).join(' ');
+    const log = step.prompt.split('QUESTIONS')[0]!;
+    expect(rare.filter((n) => !asked.includes(n) && log.includes(` ${n} `)).length).toBeGreaterThan(5);
   });
 
   it('gives the treadmill intervals of tasks, each interval with a deadline', () => {

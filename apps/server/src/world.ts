@@ -836,7 +836,10 @@ export class World extends EventEmitter {
     const kind = s.challenge.kind;
     const allQuestions = s.challenge.steps.flatMap((st) => st.questions);
     while (s.correct.length < allQuestions.length) s.correct.push(false);
-    const score = scoreSet({ correct: s.correct, weight: s.weight, usedMs: Math.min(now - s.startedAt, s.challenge.timeLimitMs), limitMs: s.challenge.timeLimitMs, counted: p.counted });
+    const full = scoreSet({ correct: s.correct, weight: s.weight, usedMs: Math.min(now - s.startedAt, s.challenge.timeLimitMs), limitMs: s.challenge.timeLimitMs, counted: p.counted });
+    // Past today's sets on this machine, a set still counts but earns a tenth of the points.
+    const extraSet = (p.doneToday[kind] ?? 0) >= LIMITS.workoutSetsPerMachine;
+    const score = extraSet ? { ...full, points: Math.round(full.points * LIMITS.extraSetShare) } : full;
     const stat = STAT_FOR_MACHINE[kind];
     const before = statFromPoints(p.agent.points[stat]);
     const previousBest = this.store.personalBest(p.agent.id, kind);
@@ -916,6 +919,7 @@ export class World extends EventEmitter {
       points: score.points,
       ...(score.dropped ? { dropped_the_bar: 'Less than half right on a heavy set: no points this time. Try medium.' } : {}),
       ...(!p.counted ? { note: 'Points are not counted: this is your 4th or later visit today.' } : {}),
+      ...(extraSet && p.counted ? { extra_set: `You already did today's ${LIMITS.workoutSetsPerMachine} sets on the ${MACHINE_NAMES[kind]}, so this one earned a tenth of the points. Other machines, or tomorrow, pay in full.` } : {}),
       ...(personalBest ? { personal_best: true } : {}),
       stat: { name: stat, before, after },
       ...(buildNow > buildBefore ? { glow_up: 'Your body changed! You look stronger.' } : {}),

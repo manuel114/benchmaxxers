@@ -2,10 +2,12 @@ import type { Weight } from '@benchmaxxers/shared';
 import type { Challenge, Question } from './types.js';
 import { type Rng, firstNumber, loose } from './rng.js';
 
-/** Names used for everyday log lines. */
-const FILLER_NAMES = ['Ava', 'Ben', 'Chloe', 'Dev', 'Elif', 'Femi', 'Gus', 'Hana', 'Ivo', 'Jade', 'Kofi', 'Lena', 'Milo', 'Nia', 'Omar', 'Pia', 'Quinn', 'Rosa', 'Sami', 'Teo', 'Uma', 'Vik', 'Wren', 'Xan', 'Yara', 'Zed', 'Ari', 'Bea', 'Cal', 'Dina', 'Eli', 'Fay', 'Gil', 'Ida', 'Jon', 'Kai', 'Lou', 'Mae', 'Ned', 'Ola'];
-/** Names only used for the three facts to find, so each fact is unique in the log. */
-const FACT_NAMES = ['Priya', 'Tomasz', 'Ingrid', 'Matteo', 'Sunita', 'Bjorn', 'Leilani', 'Rafael', 'Oksana', 'Desmond', 'Mireille', 'Haruki', 'Zainab', 'Lorenzo', 'Annika', 'Kwame', 'Sofia', 'Dmitri', 'Esperanza', 'Callum'];
+/** Everyday gym-goers' names. */
+const COMMON_NAMES = ['Ava', 'Ben', 'Chloe', 'Dev', 'Elif', 'Femi', 'Gus', 'Hana', 'Ivo', 'Jade', 'Kofi', 'Lena', 'Milo', 'Nia', 'Omar', 'Pia', 'Quinn', 'Rosa', 'Sami', 'Teo', 'Uma', 'Vik', 'Wren', 'Xan', 'Yara', 'Zed', 'Ari', 'Bea', 'Cal', 'Dina', 'Eli', 'Fay', 'Gil', 'Ida', 'Jon', 'Kai', 'Lou', 'Mae', 'Ned', 'Ola'];
+/** Less common names. They show up in ordinary lines too, so the facts to find can't be spotted just by an unusual name. */
+const RARE_NAMES = ['Priya', 'Tomasz', 'Ingrid', 'Matteo', 'Sunita', 'Bjorn', 'Leilani', 'Rafael', 'Oksana', 'Desmond', 'Mireille', 'Haruki', 'Zainab', 'Lorenzo', 'Annika', 'Kwame', 'Sofia', 'Dmitri', 'Esperanza', 'Callum'];
+/** Everyone who can appear in a log, ordinary line or fact. */
+const ALL_NAMES = [...COMMON_NAMES, ...RARE_NAMES];
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const COLOURS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'black', 'white', 'grey'];
 const ITEMS = ['towel', 'water bottle', 'hoodie', 'skipping rope', 'gym bag', 'protein shaker', 'notebook', 'pair of gloves'];
@@ -23,9 +25,9 @@ const LINES: Record<Weight, number> = { light: 40, medium: 300, heavy: 420 };
 /** Near-miss lines per fact: same person, a different day, place or treadmill. Heavier sets get more. */
 const DECOYS: Record<Weight, number> = { light: 0, medium: 1, heavy: 2 };
 
-/** One ordinary log line that can never answer a question. */
+/** One ordinary log line, about anyone. */
 const fillerLine = (r: Rng): string => {
-  const n = r.pick(FILLER_NAMES);
+  const n = r.pick(ALL_NAMES);
   switch (r.int(0, 6)) {
     case 0: return `${n} did ${r.int(2, 6)} sets on the ${r.pick(MACHINES)}.`;
     case 1: return `${n} used locker ${r.int(1, 60)} on ${r.pick(DAYS)}.`;
@@ -39,7 +41,8 @@ const fillerLine = (r: Rng): string => {
 
 /** Builds a bench press set: a long gym log with three facts hidden in it. */
 export const benchChallenge = (r: Rng, weight: Weight): Challenge => {
-  const [a, b, c] = r.shuffle(FACT_NAMES);
+  // The three people are drawn from everyone, so a fact looks like any other line.
+  const [a, b, c] = r.shuffle(ALL_NAMES);
   const day = r.pick(DAYS), locker = r.int(1, 60);
   const colour = r.pick(COLOURS), item = r.pick(ITEMS), place = r.pick(PLACES);
   const km = r.int(2, 12), treadmill = r.int(1, 3);
@@ -56,7 +59,16 @@ export const benchChallenge = (r: Rng, weight: Weight): Challenge => {
     decoys.push(`${b} left a ${r.pick(COLOURS.filter((c) => c !== colour))} ${item} by the ${r.pick(PLACES.filter((p) => p !== place))}.`);
     decoys.push(`${c} ran ${r.int(2, 12)} km on treadmill ${r.pick([1, 2, 3].filter((t) => t !== treadmill))}.`);
   }
-  const lines = Array.from({ length: LINES[weight] }, () => fillerLine(r));
+  /** True when an ordinary line would also answer one of the questions, which would give it two answers. */
+  const clashes = (line: string): boolean =>
+    line.startsWith(`${a} used locker `) && line.endsWith(` on ${day}.`)
+    || (line.startsWith(`${b} left a `) && line.endsWith(` ${item} by the ${place}.`))
+    || (line.startsWith(`${c} ran `) && line.endsWith(` km on treadmill ${treadmill}.`));
+  /** An ordinary line that answers no question. */
+  const safeFiller = (): string => {
+    for (;;) { const line = fillerLine(r); if (!clashes(line)) return line; }
+  };
+  const lines = Array.from({ length: LINES[weight] }, safeFiller);
   for (const line of [...facts, ...decoys]) lines.splice(r.int(0, lines.length), 0, line);
   let minute = 6 * 60;
   const log = lines.map((l) => {
